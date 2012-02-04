@@ -1,0 +1,70 @@
+// Program to demonstrate the class Term.
+#include <iostream>
+using namespace std;
+
+class Term {
+
+public:
+
+	Term( );
+	// initializes the term to 0
+
+	Term(int new_coefficient, (type) new_variable, int new_exponent);
+	// initializes the term to coefficient(variable)^(exponent)
+
+	int get_coefficient( );
+	// returns the Coefficient as an int
+
+	(type) get_variable( );
+	// returns the Variable
+
+	int get_exponent( );
+	// returns the Exponent as an int	
+
+	void set_coefficient(int new_coefficient);
+	
+	void set_variable((type) new_variable);
+
+	void set_exponent(int new_exponent);
+	
+private:
+	int coefficient;
+	(type) variable;
+	int exponent;
+
+};	
+
+
+
+
+Term::Term(int new_coefficient, (type) new_variable, int new_exponent) {
+	coefficient = new_coefficient;
+	variable = new_variable;
+	exponent = new_exponent;
+}
+
+Term::Term( ) : coefficient(0), variable(0), exponent(0) { }
+
+int Term::get_coefficient( ) {
+	return coefficient;
+}
+
+type Term::get_variable( ) {
+	return variable;
+}
+
+int Term::get_exponent( ) {
+	return exponent;
+}
+
+void Term::set_coefficient(int new_coefficient) {
+	coefficient = new_coefficient;
+}
+	
+void Term::set_variable((type) new_variable) {
+	variable = new_variable;
+}
+
+void Term::set_exponent(int new_exponent) {
+	exponent = new_exponent;
+}
