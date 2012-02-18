@@ -1,16 +1,17 @@
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Formula Class for Newton's Toolbox.
  * Implements the method for representing a physics equation within the system.
- * TODO add neccessy interations with term class
+ * TODO add necessary interactions with term class
  */
 
 /**
  * @author Clayven Anderson
  * @version 2/15/12 for cs48 W12
  */
-public class Formula extends ArrayList<Term>{
+public class Formula extends ArrayList<Term> implements Serializable{
   
   private String Name;
   private String info = "";
@@ -31,7 +32,6 @@ public class Formula extends ArrayList<Term>{
     return Name;
   }
 
-
   /**
    * @param name the name of the formula
    */
@@ -40,7 +40,6 @@ public class Formula extends ArrayList<Term>{
     Name = name;
   }
 
-
   /**
    * @return the info, a short description of the function
    */
@@ -48,7 +47,6 @@ public class Formula extends ArrayList<Term>{
   {
     return info;
   }
-
 
 
   /**
@@ -61,11 +59,17 @@ public class Formula extends ArrayList<Term>{
 
 
   /**
+   * returns the "tag" at position i in the tags Array list
    * @return the tags
+   * @param i i is the index of the desired tag
    */
-  public String getTags()
+  public String getTag(int i)
   {
-    return Tags.returnAllTags();
+    return Tags.getTag(i);
+  }
+  
+  public int getTagSize(){
+    return Tags.getSize();
   }
 
   /**
@@ -89,6 +93,5 @@ public class Formula extends ArrayList<Term>{
   public void deleteTerm(int i){
     this.remove(i);
   }
-  
-  
+    
 }
