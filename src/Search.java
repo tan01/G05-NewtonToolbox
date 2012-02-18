@@ -8,26 +8,36 @@
  */
 import java.util.ArrayList;
 
-public static class search {
+public class Search {
 	// for a one word search term
     //assuming we store all formulas in ArrayList<Formula> 
     //and enter that as the first argument
     //and there are tags in ArrayList<Tag> under each formula
+	private ArrayList<Formula> allFormulas = new ArrayList<Formula>();
+	private String searchTerm;
 	
-
 	private ArrayList<Formula> formulas = new ArrayList<Formula>();
 	/**
+	 * Constructor
+	 * @param allFormulas An ArrayList of all the stored formulas
+	 * @param searchTerm The String term you are searching for in the formulas
+	 */
+	public Search(ArrayList<Formula> allFormulas, String searchTerm) {
+		this.allFormulas = allFormulas;
+		this.searchTerm = searchTerm;
+	}
+	
+	/**
 	 * 
-	 * @param searchTerm The term you are searching for
 	 * @return formulas An array list of formulas
 	 */
-	ArrayList<Formula> foundFormulas(String searchTerm) {
-		int fsize = formulas.size(); //size of formula arraylist
+	public ArrayList<Formula> foundFormulas() {
+		int fsize = allFormulas.size(); //size of allFormula ArrayList
 		String currentTag;
 		for(int i=0; i<fsize; i++) { // loop through formulas
-			int tsize = formulas.get(i).getTagSize(); //size of tag arraylist
+			int tsize = allFormulas.get(i).getTagSize(); //size of tag ArrayList
 			for(int j=0; j<tsize; j++) { // loop through tags
-				currentTag = formulas.get(i).getTag(j);    	
+				currentTag = allFormulas.get(i).getTag(j);    	
 				if(searchTerm == currentTag) {
 					this.formulas.add(formulas.get(i));
 				}
