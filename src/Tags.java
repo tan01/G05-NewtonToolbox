@@ -65,6 +65,10 @@ public class Tags extends ArrayList<String> implements Serializable{
     return AllTags;
   }
 
+  public int getSize(){
+    return this.size();
+    
+  }
  
     
     

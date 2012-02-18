@@ -32,7 +32,6 @@ public class Formula extends ArrayList<Term> implements Serializable{
     return Name;
   }
 
-
   /**
    * @param name the name of the formula
    */
@@ -41,7 +40,6 @@ public class Formula extends ArrayList<Term> implements Serializable{
     Name = name;
   }
 
-
   /**
    * @return the info, a short description of the function
    */
@@ -49,7 +47,6 @@ public class Formula extends ArrayList<Term> implements Serializable{
   {
     return info;
   }
-
 
 
   /**
@@ -69,6 +66,10 @@ public class Formula extends ArrayList<Term> implements Serializable{
   public String getTag(int i)
   {
     return Tags.getTag(i);
+  }
+  
+  public int getTagSize(){
+    return Tags.getSize();
   }
 
   /**
@@ -92,6 +93,5 @@ public class Formula extends ArrayList<Term> implements Serializable{
   public void deleteTerm(int i){
     this.remove(i);
   }
-  
-  
+    
 }
