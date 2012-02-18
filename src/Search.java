@@ -8,7 +8,7 @@
  */
 import java.util.ArrayList;
 
-public class search {
+public static class search {
 	// for a one word search term
     //assuming we store all formulas in ArrayList<Formula> 
     //and enter that as the first argument
@@ -25,11 +25,11 @@ public class search {
 		int fsize = formulas.size(); //size of formula arraylist
 		String currentTag;
 		for(int i=0; i<fsize; i++) { // loop through formulas
-			int tsize = formulas.get(i).get(j).size(); //size of tag arraylist
+			int tsize = formulas.get(i).getTagSize(); //size of tag arraylist
 			for(int j=0; j<tsize; j++) { // loop through tags
-				currentTag = formulas.get(i).get(j);    	
+				currentTag = formulas.get(i).getTag(j);    	
 				if(searchTerm == currentTag) {
-					this.formulas.add(formulas.get(i).toString());
+					this.formulas.add(formulas.get(i));
 				}
 			}
 		}
