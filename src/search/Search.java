@@ -48,6 +48,12 @@ public class Search {
 	}
 
 	public static void main(String[] args) {
+		ArrayList<Formula> someFormulas = new ArrayList<Formula>();
+		
+		
+		System.out.println("blah =)");
+		Search searchObject = new Search(someFormulas, "mass");
+		
 		
 		
 		
