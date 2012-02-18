@@ -18,6 +18,7 @@ public class Formula extends ArrayList<Term> implements Serializable{
   private String Name;
   private String info = "";
   private Tags Tags = new Tags();
+  private static final long serialVersionID =  15L;
   
   /** default constructor*/
   public Formula(){
