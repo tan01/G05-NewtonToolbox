@@ -1,5 +1,3 @@
-
-
 /**
  * Search is a class to search through terms
  * of formula class with the search terms entered by the user
