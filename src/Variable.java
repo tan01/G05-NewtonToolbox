@@ -5,6 +5,7 @@
 */
 
 public class Variable {
+
 	private double value; //value of the variable
 	private char var; // variable represented as a char
 
