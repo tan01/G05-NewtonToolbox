@@ -1,3 +1,4 @@
+package internalformatting;
 /** Variable is a class to represent a variable
  * @author Michelle Len
  * @author May Camp

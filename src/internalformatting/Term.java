@@ -1,3 +1,5 @@
+package internalformatting;
+
 /** Term is a class to represent a term consisting of a coefficient, variable, and exponent
  * @author Michelle Len
  * @version 02/18/2012 for CS 48 Project, W12

@@ -1,9 +1,12 @@
+package search;
 /**
  * Search is a class to search through terms
  * of formula class with the search terms entered by the user
  * @author May Camp
  * @version 02/18/2012 for CS 48 Project, W12
  */
+import internalformatting.Formula;
+
 import java.util.ArrayList;
 
 public class Search {
