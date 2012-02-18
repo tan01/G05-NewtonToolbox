@@ -1,8 +1,8 @@
 /** Variable is a class to represent a variable
-	@author Michelle Len
-	@author May Camp
-	@version 02/14/2012 for CS 48 Project, W12
-*/
+ * @author Michelle Len
+ * @author May Camp
+ * @version 02/18/2012 for CS 48 Project, W12
+ */
 
 public class Variable {
 
@@ -19,45 +19,33 @@ public class Variable {
 	}
 
 	/** Constructor
-	 * 
 	 * @param var A character of what the variable is
 	 * @param value A double of what the value of the variable is
 	 */
+
 	public Variable (char var, double value){
 		this.var = var;
 		this.value = value;
 	}
 	
 	/**
-		Get the variable character
- 	*/
-	public char getVar () {
-		return this.var;
-	}
-	/**
-	 * Get the variable value
-	 */
-	public double getValue() {
-		return this.value;
-	}
+	 * Get the variable character and value
+ 	 */
+	
+	public char getVar () { return this.var; }
+	public double getValue() { return this.value; }
 	
 	/**
-	 * set the variable character
+	 * set the variable character and value
 	 */
-	public void setVar (char var) {
-		this.var = var;
-	}
 	
-	/**
-	 * set the variable value
-	 */
-	public void setValue (double value) {
-		this.value = value;
-	}
+	public void setVar (char var) { this.var = var; }
+	public void setValue (double value) { this.value = value; }
 
 	/**
-		Returns object as a string
-	*/
+	 * Returns object as a string
+	 */
+	
 	public String toString() {
 		return Character.toString(var);
 	} // do we need this method?
