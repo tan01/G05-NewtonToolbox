@@ -43,7 +43,7 @@ public class Term {
 	*/
 	
 	public String toString() {
-		return coefficient + x + exponent;
+		return "" + coefficient + x + exponent;
 	} // Do we need a toString method?
 	
 } // class Term

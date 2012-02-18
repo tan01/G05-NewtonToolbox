@@ -29,7 +29,7 @@ public class Variable {
 	*/
 	
 	public String toString() {
-		return var;
+		return Character.toString(var);
 	} // do we need this method?
 
 } // class Variable
