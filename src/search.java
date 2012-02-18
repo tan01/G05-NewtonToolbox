@@ -6,7 +6,9 @@
  * @author May Camp
  * @version 02/18/2012 for CS 48 Project, W12
  */
+
 import java.util.ArrayList;
+
 public class search {
 	// for a one word search term
     //assuming we store all formulas in ArrayList<Formula> 
