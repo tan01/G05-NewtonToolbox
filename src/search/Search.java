@@ -13,7 +13,7 @@ public class Search {
 	// for a one word search term
     //assuming we store all formulas in ArrayList<Formula> 
     //and enter that as the first argument
-    //and there are tags in ArrayList<Tag> under each formula
+
 	private ArrayList<Formula> allFormulas = new ArrayList<Formula>();
 	private String searchTerm;
 	
@@ -45,7 +45,12 @@ public class Search {
 			}
 		}
 		return formulas;
-		
 	}
 
+	public static void main(String[] args) {
+		
+		
+		
+		
+	}
 }
