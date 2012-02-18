@@ -1,34 +1,39 @@
+
+
+/**
+ * Search is a class to search through terms
+ * of formula class with the search terms entered by the user
+ * @author May Camp
+ * @version 02/18/2012 for CS 48 Project, W12
+ */
 import java.util.ArrayList;
-//trying to do search algorithm
-//May Camp
-
 public class search {
-
-	(ArrayList<Formula> formulas, String searchTerm) { // for a one word search term
+	// for a one word search term
     //assuming we store all formulas in ArrayList<Formula> 
     //and enter that as the first argument
     //and there are tags in ArrayList<Tag> under each formula
-
-    int fsize = formulas.size(); //size of formula arraylist
-    ArrayList<String> strings = new ArrayList<String>(); //make a new arraylist of strings
-    String currentTag;
-
-
-    for(int i=0; i<fsize; i++) { // loop through formulas
-    	
-    	int tsize = formulas.get(i).getTags().size(); //size of tag arraylist
 	
-		for(int j=0; j<tsize; j++) { // loop through tags
-	    	currentTag = formulas.get(i).get(j);
-	    	
-	    	if(searchTerm == currentTag) {
-	    		strings.add(formulas.get(i).toString());
-	    	}
+
+	private ArrayList<Formula> formulas = new ArrayList<Formula>();
+	/**
+	 * 
+	 * @param searchTerm The term you are searching for
+	 * @return formulas An array list of formulas
+	 */
+	ArrayList<Formula> foundFormulas(String searchTerm) {
+		int fsize = formulas.size(); //size of formula arraylist
+		String currentTag;
+		for(int i=0; i<fsize; i++) { // loop through formulas
+			int tsize = formulas.get(i).get(j).size(); //size of tag arraylist
+			for(int j=0; j<tsize; j++) { // loop through tags
+				currentTag = formulas.get(i).get(j);    	
+				if(searchTerm == currentTag) {
+					this.formulas.add(formulas.get(i).toString());
+				}
+			}
 		}
-    }
+		return formulas;
+		
 	}
 
-    public static void main(String[] args) { // for testing
-	
-    }
 }
