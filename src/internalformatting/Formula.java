@@ -15,7 +15,7 @@ import java.util.ArrayList;
  */
 public class Formula extends ArrayList<Term> implements Serializable{
   
-  private String Name;
+  private String name;
   private String info = "";
   private Tags Tags = new Tags();
   private static final long serialVersionID =  15L;
@@ -23,16 +23,19 @@ public class Formula extends ArrayList<Term> implements Serializable{
   /** default constructor*/
   public Formula(){
     super(1); //creates an array of capacity 1
-    this.add(0,null);
-    
+    this.add(0,null);   
 }
+  
+  public Formula(String name, String info, Tags tags){
+	  
+  }
  
   /**
    * @return the name of the formula
    */
   public String getName()
   {
-    return Name;
+    return name;
   }
 
   /**
@@ -40,7 +43,7 @@ public class Formula extends ArrayList<Term> implements Serializable{
    */
   public void setName(String name)
   {
-    Name = name;
+    this.name = name;
   }
 
   /**
