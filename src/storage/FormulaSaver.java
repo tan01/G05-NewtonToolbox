@@ -25,9 +25,10 @@ public class FormulaSaver
   }
   
   public static  Object LoadForms(){
+    FormulaDatabase One = new FormulaDatabase(); 
     try{
       ObjectInputStream is = new ObjectInputStream(new FileInputStream("FormulaDatabase.ser"));
-      FormulaDatabase One1 = (FormulaDatabase) is.readObject();
+      One = (FormulaDatabase) is.readObject();
       
     } catch(Exception ex){
       ex.printStackTrace();
@@ -42,6 +43,7 @@ public class FormulaSaver
     Formula Test3 = new Formula("form3" ,"info3");
     
     FormulaDatabase Base = new FormulaDatabase();
+    FormulaDatabase Res = new FormulaDatabase();
     
     Base.AddFormula(Test1);
     Base.AddFormula(Test2);
@@ -54,10 +56,11 @@ public class FormulaSaver
     Test2 = null;
     Test3 = null;
     
-    LoadForms();
+    Res = (FormulaDatabase) LoadForms();
     
-    for(int i; i<=2; i++){
-      Formula x = (Formula) a.get(0);
+    for(int i=0; i<=2; i++){
+      Formula x = (Formula) Res.get(i);
+      System.out.println(i + " = " + x.getName() + " " + x.getInfo());
     }
     
   }
