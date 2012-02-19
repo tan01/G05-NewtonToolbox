@@ -106,5 +106,17 @@ public class Formula extends ArrayList<Term> implements Serializable{
   public void deleteTerm(int i){
     this.remove(i);
   }
-    
+   
+  /** TEMPORARY TOSTRING METHOD
+   * NEEDS PROPER UNIT OPERATOR SUPPORT
+   */
+  
+  public String toString(){
+	  String result = "";
+	  for(int i=0;i<this.size()-1;i++){
+		  result += this.get(i).toString();
+		  result += " + ";
+	  }
+	  return result;
+  }
 }
