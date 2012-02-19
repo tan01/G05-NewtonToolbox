@@ -1,12 +1,19 @@
 package storage;
 
-import internalformatting.Formula;
+import internalformatting.*;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
+
+/**
+ * This class saves and loads the formula database
+ * @author Clayven Anderson
+ *
+ */
 
 
 public class FormulaSaver
@@ -37,13 +44,13 @@ public class FormulaSaver
     return One;
   }
   
-  public static void main(){
+  public static void main(String[] args){
     Formula Test1 = new Formula("form1", "info1");
     Formula Test2 = new Formula("form2", "info2");
     Formula Test3 = new Formula("form3" ,"info3");
     
     FormulaDatabase Base = new FormulaDatabase();
-    FormulaDatabase Res = new FormulaDatabase();
+   // FormulaDatabase Res = new FormulaDatabase();
     
     Base.AddFormula(Test1);
     Base.AddFormula(Test2);
@@ -56,11 +63,11 @@ public class FormulaSaver
     Test2 = null;
     Test3 = null;
     
-    Res = (FormulaDatabase) LoadForms();
+    //Res = (FormulaDatabase) LoadForms();
     
     for(int i=0; i<=2; i++){
-      Formula x = (Formula) Res.get(i);
-      System.out.println(i + " = " + x.getName() + " " + x.getInfo());
+      Formula x = ((ArrayList<Formula>) LoadForms()).get(i);
+      System.out.println(x.getName() + " " + x.getInfo() );
     }
     
   }
