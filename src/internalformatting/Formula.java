@@ -17,8 +17,7 @@ public class Formula extends ArrayList<Term> implements Serializable{
   private String name;
   private String info = "";
   private Tags tags = new Tags();
-  @SuppressWarnings("unused")
-  private static final long serialVersionID =  3969121L;
+  private static final long serialVersionUID =  3969121L;
   
   /** default constructor*/
   public Formula(){

@@ -14,19 +14,16 @@ import java.util.ArrayList;
 
 public class Tags extends ArrayList<String> implements Serializable{
 
-
 	/**
 	 * creates an empty Arraylist of tags
 	 */
+	
   //default constructor
-	public Tags(){
-
-    super(1);// calls superclass's constructor to make and empty ArrayList
-
+	public Tags() {
+		super(1);// calls superclass's constructor to make and empty ArrayList
   }
 
-  @SuppressWarnings("unused")
-  final private static long serialVersionID = 1670087L;
+  final private static long serialVersionUID = 1670087L;
   
   /** Appends a new "tag" to the end of the ArrayList 
    * @param newTag New tag to be appended to list
@@ -77,11 +74,10 @@ public class Tags extends ArrayList<String> implements Serializable{
     return AllTags;
   }
 
-  public int getSize(){
+  public int getSize() {
     return this.size();
-    
   }
  
   
-  }
+}
 
