@@ -28,10 +28,10 @@ public class Term implements Serializable{
 	
 	/** Constructor
 	 * 
-	 * @param coefficient Value of coefficient
+	 * @param coefficient An int value of coefficient
 	 * @param x What the variable is
-	 * @param exponent Value of exponent
-	 * @param unit Unit associated with the term, i.e. Newton, kilograms, second
+	 * @param exponent An int value of exponent
+	 * @param unit A Unit object associated with the term, see Unit class
 	 */
 	
 	public Term (int coefficient, Variable x, int exponent, Unit unit) {
