@@ -1,11 +1,14 @@
 package internalformatting;
+
+import java.io.Serializable;
+
 /** Variable is a class to represent a variable
  * @author Michelle Len
  * @author May Camp
  * @version 02/18/2012 for CS 48 Project, W12
  */
 
-public class Variable {
+public class Variable implements Serializable{
 
 	private double value; //value of the variable
 	private char var; // variable represented as a char

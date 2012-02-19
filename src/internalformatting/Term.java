@@ -1,11 +1,13 @@
 package internalformatting;
 
+import java.io.Serializable;
+
 /** Term is a class to represent a term consisting of a coefficient, variable, and exponent
  * @author Michelle Len
  * @version 02/18/2012 for CS 48 Project, W12
  */
 
-public class Term {
+public class Term implements Serializable{
 	
 	private int coefficient; // a coefficient represented as an int
 	private Variable x; // a variable object
