@@ -23,7 +23,7 @@ public class Formula extends ArrayList<Term> implements Serializable{
   /** default constructor*/
   public Formula(){
     super(1); //creates an ArrayList of capacity 1
-    this.add(0,null);   
+    this.remove(0);   
 }
   /**
    * 
