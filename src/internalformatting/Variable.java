@@ -11,14 +11,14 @@ import java.io.Serializable;
 public class Variable implements Serializable{
 
 	private double value; //value of the variable
-	private char var; // variable represented as a char
+	private String var; // variable represented as a char
 	final private static long serialVersionUID = 8383008L;
 	
 	/** Constructor	
 	 * @param var A character of what the variable is
 	 */
 
-	public Variable (char var) {
+	public Variable (String var) {
 		// assign attributes from parameters
 		this.var = var;
 	}
@@ -28,7 +28,7 @@ public class Variable implements Serializable{
 	 * @param value A double of what the value of the variable is
 	 */
 
-	public Variable (char var, double value){
+	public Variable (String var, double value){
 		this.var = var;
 		this.value = value;
 	}
@@ -37,14 +37,14 @@ public class Variable implements Serializable{
 	 * Get the variable character and value
  	 */
 	
-	public char getVar () { return this.var; }
+	public String getVar () { return this.var; }
 	public double getValue() { return this.value; }
 	
 	/**
 	 * set the variable character and value
 	 */
 	
-	public void setVar (char var) { this.var = var; }
+	public void setVar (String var) { this.var = var; }
 	public void setValue (double value) { this.value = value; }
 
 	/**
@@ -52,7 +52,7 @@ public class Variable implements Serializable{
 	 */
 	
 	public String toString() {
-		return Character.toString(var);
+		return var;
 	} // do we need this method?
 
 } // class Variable
