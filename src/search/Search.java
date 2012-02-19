@@ -33,14 +33,14 @@ public class Search {
 	 * @return formulas An array list of formulas
 	 */
 	public ArrayList<Formula> searchF() {
-		int fsize = allFormulas.size()-1; //size of allFormula ArrayList
+		int fsize = allFormulas.size(); //size of allFormula ArrayList
 		String currentTag;
 		for(int i=0; i<fsize; i++) { // loop through formulas
 			int tsize = allFormulas.get(i).getTagSize(); //size of tag ArrayList
 			for(int j=0; j<tsize; j++) { // loop through tags
 				currentTag = allFormulas.get(i).getTag(j);    	
 				if(searchTerm == currentTag) {
-					this.formulas.add(formulas.get(i));
+					this.formulas.add(allFormulas.get(i));
 				}
 			}
 		}
@@ -49,9 +49,11 @@ public class Search {
 
 	public static void main(String[] args) {
 		ArrayList<Formula> someFormulas = new ArrayList<Formula>();
+		
 		Variable newVar = new Variable('x');
 		Term newTerm = new Term(5, newVar, 2);
 		Formula newFormula = new Formula();
+		
 		newFormula.setName("Mass Formula");
 		newFormula.setInfo("Information blah blah");
 		newFormula.AddTerm(newTerm);
