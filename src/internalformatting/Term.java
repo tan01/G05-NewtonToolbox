@@ -12,36 +12,41 @@ public class Term implements Serializable{
 	private int coefficient; // a coefficient represented as an int
 	private Variable x; // a variable object
 	private int exponent; // an exponent represented as an int
+	private Unit unit;
 	final private static long serialVersionID = 5752165L;
 
 	/** Constructor
 	 * @param coefficient Value of coefficient
 	 * @param x What the variable is
 	 * @param exponent Value of exponent
+	 * @param unit Unit associated with the term, i.e. Newton, mass, second
 	 */
 	
-	public Term (int coefficient, Variable x, int exponent) {
+	public Term (int coefficient, Variable x, int exponent, Unit unit) {
 		// assign attributes from parameters
 		this.coefficient = coefficient;
 		this.x = x;
 		this.exponent = exponent;
+		this.unit = unit;
 	}
 	
 	/**
-	 * Get methods for coefficient, variable, and exponent
+	 * Get methods for coefficient, variable, exponent, and term
 	 */
 	
 	public int getCoefficient() { return this.coefficient; }
-	public Variable getVariable () { return this.x; }
-	public int getExponent () { return this.exponent; }
+	public Variable getVariable() { return this.x; }
+	public int getExponent() { return this.exponent; }
+	public Unit getUnit() { return this.unit; }
 	
 	/** 
-	 * Set methods for coefficient, variable, and exponent
+	 * Set methods for coefficient, variable, exponent, and term
 	 */
 	
 	public void setCoefficient (int coefficient) { this.coefficient = coefficient; }
 	public void setVariable (Variable x) { this.x = x; }
 	public void setExponent (int exponent) { this.exponent = exponent; }
+	public void setUnit (Unit unit) { this.unit = unit; }
 	
 	/**
 	 * Returns object as a string
