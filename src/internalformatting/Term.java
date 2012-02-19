@@ -15,7 +15,19 @@ public class Term implements Serializable{
 	private Unit unit;
 	final private static long serialVersionUID = 5752165L;
 
+	/** 
+	 * Default Constructor with nulls and zeroes
+	 */
+	
+	public Term () {
+		this.coefficient = 0;
+		this.x = null;
+		this.exponent = 0;
+		this.unit = null;
+	}
+	
 	/** Constructor
+	 * 
 	 * @param coefficient Value of coefficient
 	 * @param x What the variable is
 	 * @param exponent Value of exponent
