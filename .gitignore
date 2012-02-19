@@ -1,3 +1,4 @@
 # ignore all class files.
 *.class
 .classpath
+*.ser
