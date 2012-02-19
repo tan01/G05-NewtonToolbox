@@ -1,6 +1,9 @@
 package userinterface;
 import search.*;
+import internalformatting.*;
+
 import java.io.*;
+import java.util.ArrayList;
 import java.util.Arrays;
 //import java.io.BufferedReader;
 //import java.io.InputStreamReader;
@@ -22,10 +25,16 @@ public class CLI{
 	//Maybe ArrayList?
 	//Need Array "find" method!
 	
-	static String[] comsearch = new String[]{"Search","search","s"};
+	static String[] comsearch = new String[]{"s","search"};
 	static String[] comquit = new String[]{"exit","q","quit",};
 	static String[] comprint = new String[]{"p","print"};
 	static String[] comprintall = new String[]{"print all","p all", "p a"};
+	
+	static ArrayList<Formula> defaultFormulas = new ArrayList<Formula>();
+	//STEALING MAY'S CODE
+	
+	
+	
 	
 	public static boolean inArray(String prompt, String[] comArray){
 		//I know, I know, I should use a binary search algorithm here.
@@ -46,7 +55,12 @@ public class CLI{
 			
 			//Search case
 			if(inArray(uinput,comsearch)){
-				System.out.println("Searching? Haha, no.");
+				System.out.println("Enter search term:");
+				System.out.print(">");
+				uinput = in.readLine().toLowerCase();
+				Search usearch = new Search(defaultFormulas);
+				usearch.searchF(uinput);
+				
 			}
 			
 			//Print case
