@@ -22,8 +22,8 @@ public class Formula extends ArrayList<Term> implements Serializable{
   
   /** default constructor*/
   public Formula(){
-    super(1); //creates an ArrayList of capacity 1
-    this.remove(0);   
+    super(); //creates an ArrayList of capacity 1
+    this.clear();   
 }
   /**
    * 
@@ -31,8 +31,8 @@ public class Formula extends ArrayList<Term> implements Serializable{
    * @param info A String of a formula
    */
   public Formula(String name, String info){
-	  super(1); //creates an ArrayList of capacity 1
-	  this.add(0,null);
+	  super(); //creates an ArrayList of capacity 1
+	  this.clear();
 	  this.name = name;
 	  this.info = info;
   }
