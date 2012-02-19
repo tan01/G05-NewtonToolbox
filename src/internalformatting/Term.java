@@ -31,7 +31,7 @@ public class Term implements Serializable{
 	 * @param coefficient Value of coefficient
 	 * @param x What the variable is
 	 * @param exponent Value of exponent
-	 * @param unit Unit associated with the term, i.e. Newton, mass, second
+	 * @param unit Unit associated with the term, i.e. Newton, kilograms, second
 	 */
 	
 	public Term (int coefficient, Variable x, int exponent, Unit unit) {

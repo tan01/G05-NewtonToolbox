@@ -12,8 +12,8 @@ public class FormulaDatabase extends ArrayList<Formula> implements Serializable
   
   /** default constructor*/
   public FormulaDatabase(){
-    super(1); //creates an Arraylist of capacity 1
-    this.add(0,null);
+    super(); //creates an Arraylist of capacity 1
+    this.clear();
   }
   
   /**
