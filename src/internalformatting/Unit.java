@@ -14,7 +14,7 @@ public class Unit implements Serializable {
 	private String info; //	information about the Unit
 	private String tags; // Unit tags
 	private String typicalForm; // typical form of a Unit i.e. kg instead of g
-
+	final private static long serialVersionID = 7147438L;
 	/** 
 	 * Default constructor with null values
 	 */

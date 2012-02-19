@@ -12,6 +12,7 @@ public class Term implements Serializable{
 	private int coefficient; // a coefficient represented as an int
 	private Variable x; // a variable object
 	private int exponent; // an exponent represented as an int
+	final private static long serialVersionID = 5752165L;
 
 	/** Constructor
 	 * @param coefficient Value of coefficient
