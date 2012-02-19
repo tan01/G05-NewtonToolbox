@@ -89,7 +89,7 @@ public class Search {
 	public static void main(String[] args) {
 		ArrayList<Formula> someFormulas = new ArrayList<Formula>();
 		
-		Variable newVar = new Variable('x');
+		Variable newVar = new Variable("x");
 		
 		Term newTerm = new Term(5, newVar, 2, null);
 		Term newTerm2 = new Term(6, newVar, 3, null);
