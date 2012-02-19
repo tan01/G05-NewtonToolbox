@@ -7,8 +7,7 @@ import java.util.ArrayList;
 
 public class FormulaDatabase extends ArrayList<Formula> implements Serializable
 {
-  
-  @SuppressWarnings("unused")
+
   private static final long serialVersionUID = 4101660L;
   
   /** default constructor*/
