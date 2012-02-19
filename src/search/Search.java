@@ -63,13 +63,16 @@ public class Search {
 		newFormula.addATag("mass");
 		newFormula.addATag("happy");
 		
+		Formula newFormula2 = new Formula();
+		newFormula.setName("Mass Formula 2");
+		newFormula.setInfo("More Info");
+		
 		someFormulas.add(newFormula);
 			
-		System.out.println("blah =)");
+		
+		System.out.println("This is the formula we found by searching for 'mass':");
 		
 		Search searchObject = new Search(someFormulas, "mass");
-		
-//		
 
 		System.out.println(searchObject.searchF().get(0).toString());
 		
