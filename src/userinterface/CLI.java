@@ -1,5 +1,7 @@
 package userinterface;
+import search.*;
 import java.io.*;
+import java.util.Arrays;
 //import java.io.BufferedReader;
 //import java.io.InputStreamReader;
 
@@ -20,23 +22,47 @@ public class CLI{
 	//Maybe ArrayList?
 	//Need Array "find" method!
 	
-//	static String[] comsearch = new String[]{"Search","search"};
-//	static String[] comquit = new String[]{"quit","Quit","Exit","exit"};
-//	static String[] 
+	static String[] comsearch = new String[]{"Search","search","s"};
+	static String[] comquit = new String[]{"quit","exit","q",};
+	static String[] comprint = new String[]{"print","p"};
+	static String[] comprintall = new String[]{"print all","p all", "p a"};
+	
+	public static boolean inArray(String prompt, String[] comArray){
+		//I know, I know, I should use a binary search algorithm here.
+		//Will improve efficiency in a little bit, okay?
+		int truthvalue = Arrays.binarySearch(comArray, prompt);
+		if(truthvalue < 0)
+			return false;
+		else
+			return true;
+	}
 	
 	public static void main(String[] args) throws IOException{
 		String uinput = "";
 		while(!uinput.equals("exit") && !uinput.equals("quit")){
 			System.out.println("Command?");
 			System.out.print(">");
-			uinput = in.readLine();
+			uinput = in.readLine().toLowerCase();
 			
-			if(uinput.toLowerCase().equals("search")){
-			System.out.println("Searching? Haha, no.");
+			//Search case
+			if(inArray(uinput,comsearch)){
+				System.out.println("Searching? Haha, no.");
 			}
 			
-			if(uinput.toLowerCase().equals("exit")){
-			break;
+			//Print case
+			if(inArray(uinput,comprint)){
+				//STUB
+				break;
+			}
+			
+			if(inArray(uinput,comprintall)){
+				//STUB
+				break;
+			}
+			
+			//Quit case
+			if(inArray(uinput,comquit)){
+				break;
 			}
 			
 		}
