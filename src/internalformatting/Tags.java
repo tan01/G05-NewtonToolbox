@@ -13,10 +13,14 @@ import java.util.ArrayList;
  */
 
 public class Tags extends ArrayList<String> implements Serializable{
-  /**
-   * creates an empty Arraylist of tags
-   */
-  public Tags(){
+
+
+	/**
+	 * creates an empty Arraylist of tags
+	 */
+  //default constructor
+	public Tags(){
+
     super(1);// calls superclass's constructor to make and empty ArrayList
 
   }
