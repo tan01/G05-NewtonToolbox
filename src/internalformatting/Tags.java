@@ -11,11 +11,22 @@ import java.util.ArrayList;
  * @author Clayven Anderson
  * @version 2/15/12 for cs48 W12
  */
+
 public class Tags extends ArrayList<String> implements Serializable{
-  Tags(){
+
+
+	/**
+	 * creates an empty Arraylist of tags
+	 */
+  //default constructor
+	public Tags(){
+
     super(1);// calls superclass's constructor to make and empty ArrayList
 
   }
+
+  @SuppressWarnings("unused")
+  final private static long serialVersionID = 1670087L;
   
   /** Appends a new "tag" to the end of the ArrayList 
    * @param newTag New tag to be appended to list
@@ -71,8 +82,6 @@ public class Tags extends ArrayList<String> implements Serializable{
     
   }
  
-    
-    
   
   }
 

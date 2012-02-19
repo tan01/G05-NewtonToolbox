@@ -1,11 +1,14 @@
 package internalformatting;
+
+import java.io.Serializable;
+
 /** Unit is a class to represent units such as "mass," "gram," and "second"
  * @author May Camp
  * @author Michelle Len
  * @version 02/18/2012 for CS 48 Project, W12
  */
 
-public class Unit {
+public class Unit implements Serializable {
 	
 	private String name; // name of the Unit
 	private String info; //	information about the Unit

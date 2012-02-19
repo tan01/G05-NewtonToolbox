@@ -5,7 +5,7 @@ package search;
  * @author May Camp
  * @version 02/18/2012 for CS 48 Project, W12
  */
-import internalformatting.Formula;
+import internalformatting.*;
 
 import java.util.ArrayList;
 
@@ -32,8 +32,8 @@ public class Search {
 	 * 
 	 * @return formulas An array list of formulas
 	 */
-	public ArrayList<Formula> foundFormulas() {
-		int fsize = allFormulas.size(); //size of allFormula ArrayList
+	public ArrayList<Formula> searchF() {
+		int fsize = allFormulas.size()-1; //size of allFormula ArrayList
 		String currentTag;
 		for(int i=0; i<fsize; i++) { // loop through formulas
 			int tsize = allFormulas.get(i).getTagSize(); //size of tag ArrayList
@@ -48,7 +48,26 @@ public class Search {
 	}
 
 	public static void main(String[] args) {
+		ArrayList<Formula> someFormulas = new ArrayList<Formula>();
+		Variable newVar = new Variable('x');
+		Term newTerm = new Term(5, newVar, 2);
+		Formula newFormula = new Formula();
+		newFormula.setName("Mass Formula");
+		newFormula.setInfo("Information blah blah");
+		newFormula.AddTerm(newTerm);
+		newFormula.addATag("random");
+		newFormula.addATag("mass");
+		newFormula.addATag("happy");
 		
+		someFormulas.add(newFormula);
+			
+		System.out.println("blah =)");
+		
+		Search searchObject = new Search(someFormulas, "mass");
+		
+//		
+
+		System.out.println(searchObject.searchF().get(0).toString());
 		
 		
 		

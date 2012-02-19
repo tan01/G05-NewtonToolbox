@@ -1,5 +1,4 @@
 package internalformatting;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -15,24 +14,35 @@ import java.util.ArrayList;
  */
 public class Formula extends ArrayList<Term> implements Serializable{
   
-  private String Name;
+  private String name;
   private String info = "";
-  private Tags Tags = new Tags();
-  private static final long serialVersionID =  15L;
+  private Tags tags = new Tags();
+  @SuppressWarnings("unused")
+  private static final long serialVersionID =  3969121L;
   
   /** default constructor*/
   public Formula(){
-    super(1); //creates an array of capacity 1
-    this.add(0,null);
-    
+    super(1); //creates an ArrayList of capacity 1
+    this.add(0,null);   
 }
+  /**
+   * 
+   * @param name Name of the formula
+   * @param info A String of a formula
+   */
+  public Formula(String name, String info){
+	  super(1); //creates an ArrayList of capacity 1
+	  this.add(0,null);
+	  this.name = name;
+	  this.info = info;
+  }
  
   /**
    * @return the name of the formula
    */
   public String getName()
   {
-    return Name;
+    return name;
   }
 
   /**
@@ -40,7 +50,7 @@ public class Formula extends ArrayList<Term> implements Serializable{
    */
   public void setName(String name)
   {
-    Name = name;
+    this.name = name;
   }
 
   /**
@@ -68,11 +78,11 @@ public class Formula extends ArrayList<Term> implements Serializable{
    */
   public String getTag(int i)
   {
-    return Tags.getTag(i);
+    return tags.getTag(i);
   }
   
   public int getTagSize(){
-    return Tags.getSize();
+    return tags.getSize();
   }
 
   /**
@@ -80,7 +90,7 @@ public class Formula extends ArrayList<Term> implements Serializable{
    */
   public void addATag(String NewTag)
   {
-    Tags.AddTag(NewTag);
+    tags.AddTag(NewTag);
   }
   
   /**

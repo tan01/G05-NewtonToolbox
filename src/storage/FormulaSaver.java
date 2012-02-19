@@ -1,5 +1,4 @@
 package storage;
-import FormulaDatabase;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -19,14 +18,17 @@ public class FormulaSaver
       os.close();
       
     }catch (IOException ex){
-      ex.printStackTrace();+
+      ex.printStackTrace();
     }      
   }
   
   public void LoadForm(){
     try{
       ObjectInputStream is = new ObjectInputStream(new FileInputStream("FormulaDatabase.ser"));
+      FormulaDatabase One = (FormulaDatabase) is.readObject();
       
+    } catch(Exception ex){
+      ex.printStackTrace();
     }
   }
 }
