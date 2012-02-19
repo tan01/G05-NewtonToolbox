@@ -68,8 +68,8 @@ public class Search {
 //	}
 	
 	/**
-	 * @param searchTerm The String term you are searching for in the formulas
-	 * @return formulas An array list of formulas
+	 * @param searchTerm The String term you are searching for in the ArrayList of formulas
+	 * @return formulas An array list of formulas that have the search term
 	 */
 	public ArrayList<Formula> searchF(String searchTerm) {
 		int fsize = allFormulas.size(); //size of allFormula ArrayList
@@ -120,9 +120,9 @@ public class Search {
 		newFormula3.addATag("notMass");
 						
 		
-		someFormulas.add(newFormula);
-		someFormulas.add(newFormula2);
-		someFormulas.add(newFormula3);
+		someFormulas.add(newFormula); //should be 5x^2
+		someFormulas.add(newFormula2); //should be 6x^3 + 7x^4
+		someFormulas.add(newFormula3); //should be 8x^5
 			
 		
 		System.out.println("This is the formula we found by searching for 'mass':");
