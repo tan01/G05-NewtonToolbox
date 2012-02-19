@@ -15,12 +15,12 @@ public class Search {
     //and enter that as the first argument
 
 	private ArrayList<Formula> allFormulas = new ArrayList<Formula>();
-	private String searchTerm="null";
+//	private String searchTerm="null";
 	
 	private ArrayList<Formula> formulas = new ArrayList<Formula>();
 	/**
 	 * Constructor
-	 * @param allFormulas An ArrayList of all the stored formulas
+	 * @param allFormulas An ArrayList of all the stored formulas to search through
 	 */
 	public Search(ArrayList<Formula> allFormulas) {
 		this.allFormulas = allFormulas;
@@ -35,16 +35,19 @@ public class Search {
 //		this.allFormulas = allFormulas;
 //		this.searchTerm = searchTerm;
 //	}
-	
+	/**
+	 * method to change the ArrayLise of formulas you are searching in
+	 * @param allFormulas
+	 */
 	public void setAllFormulas(ArrayList<Formula> allFormulas) {
 		this.allFormulas = allFormulas;
 	}
 	
-	public void setSearchTerm(String searchTerm) {
-		this.searchTerm = searchTerm;
-	}
-	
-	
+//	public void setSearchTerm(String searchTerm) {
+//		this.searchTerm = searchTerm;
+//	}
+//	
+//	
 //	/**
 //	 * Without parameters
 //	 * @return formulas An array list of formulas
@@ -69,7 +72,6 @@ public class Search {
 	 * @return formulas An array list of formulas
 	 */
 	public ArrayList<Formula> searchF(String searchTerm) {
-		this.searchTerm = searchTerm;
 		int fsize = allFormulas.size(); //size of allFormula ArrayList
 		String currentTag;
 		for(int i=0; i<fsize; i++) { // loop through formulas
@@ -118,9 +120,9 @@ public class Search {
 		newFormula3.addATag("notMass");
 						
 		
+		someFormulas.add(newFormula);
 		someFormulas.add(newFormula2);
 		someFormulas.add(newFormula3);
-		someFormulas.add(newFormula);
 			
 		
 		System.out.println("This is the formula we found by searching for 'mass':");
