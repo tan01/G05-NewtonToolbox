@@ -56,7 +56,9 @@ public class Search {
 		
 		newFormula.setName("Mass Formula");
 		newFormula.setInfo("Information blah blah");
+		
 		newFormula.AddTerm(newTerm);
+		
 		newFormula.addATag("random");
 		newFormula.addATag("mass");
 		newFormula.addATag("happy");
