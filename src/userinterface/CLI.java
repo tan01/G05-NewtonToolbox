@@ -23,8 +23,8 @@ public class CLI{
 	//Need Array "find" method!
 	
 	static String[] comsearch = new String[]{"Search","search","s"};
-	static String[] comquit = new String[]{"quit","exit","q",};
-	static String[] comprint = new String[]{"print","p"};
+	static String[] comquit = new String[]{"exit","q","quit",};
+	static String[] comprint = new String[]{"p","print"};
 	static String[] comprintall = new String[]{"print all","p all", "p a"};
 	
 	public static boolean inArray(String prompt, String[] comArray){
