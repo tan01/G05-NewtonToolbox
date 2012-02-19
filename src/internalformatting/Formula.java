@@ -113,7 +113,7 @@ public class Formula extends ArrayList<Term> implements Serializable{
   
   public String toString(){
 	  String result = "";
-	  for(int i=0;i<this.size()-1;i++){
+	  for(int i=0;i<this.size();i++){
 		  result += this.get(i).toString();
 		  result += " + ";
 	  }

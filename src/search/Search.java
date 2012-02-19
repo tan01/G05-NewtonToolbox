@@ -21,10 +21,47 @@ public class Search {
 	/**
 	 * Constructor
 	 * @param allFormulas An ArrayList of all the stored formulas
+	 */
+	public Search(ArrayList<Formula> allFormulas) {
+		this.allFormulas = allFormulas;
+	}
+	
+	/**
+	 * Constructor
+	 * @param allFormulas An ArrayList of all the stored formulas
 	 * @param searchTerm The String term you are searching for in the formulas
 	 */
 	public Search(ArrayList<Formula> allFormulas, String searchTerm) {
 		this.allFormulas = allFormulas;
+		this.searchTerm = searchTerm;
+	}
+	
+	public void setAllFormulas(ArrayList<Formula> allFormulas) {
+		this.allFormulas = allFormulas;
+	}
+	
+	public void setSearchTerm(String searchTerm) {
+		this.searchTerm = searchTerm;
+	}
+	
+	
+	/**
+	 * Without parameters
+	 * @return formulas An array list of formulas
+	 */
+	public ArrayList<Formula> searchF() {
+		int fsize = allFormulas.size(); //size of allFormula ArrayList
+		String currentTag;
+		for(int i=0; i<fsize; i++) { // loop through formulas
+			int tsize = allFormulas.get(i).getTagSize(); //size of tag ArrayList
+			for(int j=0; j<tsize; j++) { // loop through tags
+				currentTag = allFormulas.get(i).getTag(j);    	
+				if(searchTerm == currentTag) {
+					this.formulas.add(allFormulas.get(i));
+				}
+			}
+		}
+		return formulas;
 	}
 	
 	/**
@@ -32,6 +69,7 @@ public class Search {
 	 * @return formulas An array list of formulas
 	 */
 	public ArrayList<Formula> searchF(String searchTerm) {
+		this.searchTerm = searchTerm;
 		int fsize = allFormulas.size(); //size of allFormula ArrayList
 		String currentTag;
 		for(int i=0; i<fsize; i++) { // loop through formulas
@@ -51,8 +89,9 @@ public class Search {
 		
 		Variable newVar = new Variable('x');
 		
-		Term newTerm = new Term(5, newVar, 2);
-		Term newTerm2 = new Term(6, newVar, 3);
+		Term newTerm = new Term(5, newVar, 2, null);
+		Term newTerm2 = new Term(6, newVar, 3, null);
+		Term newTerm3 = new Term(7, newVar, 4, null);
 		
 		Formula newFormula = new Formula();
 		Formula newFormula2 = new Formula();
@@ -67,6 +106,7 @@ public class Search {
 		newFormula2.setName("Mass Formula 2");
 		newFormula2.setInfo("More Info");
 		newFormula2.AddTerm(newTerm2);
+		newFormula2.AddTerm(newTerm3);
 		newFormula2.addATag("blah");
 		newFormula2.addATag("mass");
 		
@@ -76,9 +116,15 @@ public class Search {
 		
 		System.out.println("This is the formula we found by searching for 'mass':");
 		
-		Search searchObject = new Search(someFormulas, "mass");
-
-		System.out.println(searchObject.searchF().get(0).toString());
+		Search searchObject = new Search(someFormulas);
+		ArrayList<Formula> somelist = searchObject.searchF("mass");
+		String Aformula = "";
+		//System.out.println(Aformula);
+		
+		for(int i = 0;i<somelist.size();i++){
+			Aformula = somelist.get(i).toString();
+			System.out.println(Aformula);
+		}
 		
 		
 		
