@@ -13,7 +13,7 @@ public class Term implements Serializable{
 	private Variable x; // a variable object
 	private int exponent; // an exponent represented as an int
 	private Unit unit;
-	final private static long serialVersionID = 5752165L;
+	final private static long serialVersionUID = 5752165L;
 
 	/** Constructor
 	 * @param coefficient Value of coefficient

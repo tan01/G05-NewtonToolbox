@@ -12,7 +12,7 @@ public class Variable implements Serializable{
 
 	private double value; //value of the variable
 	private char var; // variable represented as a char
-	final private static long serialVersionID = 8383008L;
+	final private static long serialVersionUID = 8383008L;
 	
 	/** Constructor	
 	 * @param var A character of what the variable is
