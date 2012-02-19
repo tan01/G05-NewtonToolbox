@@ -1,5 +1,6 @@
 package userinterface;
 import search.*;
+import storage.*;
 import internalformatting.*;
 
 import java.io.*;
@@ -16,7 +17,8 @@ import java.util.Arrays;
 	
 */
 
-public class CLI{
+public class CLI
+{
 	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	
 	//Valid search terms go here.
@@ -34,8 +36,6 @@ public class CLI{
 	//STEALING MAY'S CODE
 	
 	
-	
-	
 	public static boolean inArray(String prompt, String[] comArray){
 		//I know, I know, I should use a binary search algorithm here.
 		//Will improve efficiency in a little bit, okay?
@@ -47,9 +47,10 @@ public class CLI{
 	}
 	
 	public static void main(String[] args) throws IOException{
+		
 		String uinput = "";
 		while(!uinput.equals("exit") && !uinput.equals("quit")){
-			System.out.println("Command?");
+			//System.out.println("Command?");
 			System.out.print(">");
 			uinput = in.readLine().toLowerCase();
 			
@@ -59,9 +60,23 @@ public class CLI{
 				System.out.print(">");
 				uinput = in.readLine().toLowerCase();
 				Search usearch = new Search(defaultFormulas);
-				usearch.searchF(uinput);
 				
+				ArrayList<Formula> somelist = usearch.searchF(uinput);
+				System.out.println("Searching " + "\"" + uinput + "\"...");
+				String Aformula = "";
+				
+				if(somelist.size()<=0)
+					System.out.println("No formula found!");
+				else{
+				
+				for(int i = 0;i<somelist.size();i++){
+					Aformula = somelist.get(i).toString();
+					System.out.println(Aformula);
+				}
+				
+				}
 			}
+				
 			
 			//Print case
 			if(inArray(uinput,comprint)){
@@ -81,5 +96,5 @@ public class CLI{
 			
 		}
 	}
-	
+
 }
