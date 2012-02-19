@@ -92,9 +92,11 @@ public class Search {
 		Term newTerm = new Term(5, newVar, 2, null);
 		Term newTerm2 = new Term(6, newVar, 3, null);
 		Term newTerm3 = new Term(7, newVar, 4, null);
+		Term newTerm4 = new Term(8, newVar,5,null);
 		
 		Formula newFormula = new Formula();
 		Formula newFormula2 = new Formula();
+		Formula newFormula3 = new Formula();
 		
 		newFormula.setName("Mass Formula");
 		newFormula.setInfo("Information blah blah");
@@ -110,8 +112,15 @@ public class Search {
 		newFormula2.addATag("blah");
 		newFormula2.addATag("mass");
 		
-		someFormulas.add(newFormula);
+		newFormula3.setName("No Mass Formula");
+		newFormula3.setInfo("No mass info");
+		newFormula3.AddTerm(newTerm4);
+		newFormula3.addATag("notMass");
+						
+		
 		someFormulas.add(newFormula2);
+		someFormulas.add(newFormula3);
+		someFormulas.add(newFormula);
 			
 		
 		System.out.println("This is the formula we found by searching for 'mass':");
@@ -125,8 +134,6 @@ public class Search {
 			Aformula = somelist.get(i).toString();
 			System.out.println(Aformula);
 		}
-		
-		
 		
 	}
 }
