@@ -126,7 +126,7 @@ public class Search {
 		System.out.println("This is the formula we found by searching for 'mass':");
 		
 		Search searchObject = new Search(someFormulas);
-		ArrayList<Formula> somelist = searchObject.searchF();
+		ArrayList<Formula> somelist = searchObject.searchF("mass");
 		String Aformula = "";
 		//System.out.println(Aformula);
 		
