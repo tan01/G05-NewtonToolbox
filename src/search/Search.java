@@ -22,13 +22,15 @@ public class Search {
 	 * Constructor
 	 * @param allFormulas An ArrayList of all the stored formulas to search through
 	 */
+	public Search(ArrayList<Formula> allFormulas) {
+		this.allFormulas = allFormulas;
+	}
 	
 	/**
 	 * printSearch method: Static method for printing formulas from an ArrayList. Right now it just
 	 * uses the formula's toString() method.
 	 * @param  FormulaArray ArrayList of formulas.
 	 */
-	
 	static public void printSearch(ArrayList<Formula> FormulaArray)
 	{
 		for(int i = 0;i<FormulaArray.size();i++){
@@ -37,9 +39,7 @@ public class Search {
 		}
 	}
 	
-	public Search(ArrayList<Formula> allFormulas) {
-		this.allFormulas = allFormulas;
-	}
+	
 	
 //	/**
 //	 * Constructor
