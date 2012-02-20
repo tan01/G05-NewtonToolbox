@@ -55,10 +55,10 @@ public class FormulaSaver
 		
 		Variable newVar = new Variable("x");
 		
-		Term newTerm = new Term(5, newVar, 2, null);
-		Term newTerm2 = new Term(6, newVar, 3, null);
-		Term newTerm3 = new Term(7, newVar, 4, null);
-		Term newTerm4 = new Term(8, newVar,5,null);
+		Term newTerm = new Term(5.0, newVar, 2, null);
+		Term newTerm2 = new Term(6.0, newVar, 3, null);
+		Term newTerm3 = new Term(7.0, newVar, 4, null);
+		Term newTerm4 = new Term(8.0, newVar,5,null);
 		
 		Formula newFormula = new Formula();
 		Formula newFormula2 = new Formula();
