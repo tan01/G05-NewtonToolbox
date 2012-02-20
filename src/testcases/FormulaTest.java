@@ -45,10 +45,10 @@ public class FormulaTest {
 
 	@Test
 	public void testGetTag() {
-		testFormula.addATag("kinematics");
-		testFormula.addATag("distance");
-		testFormula.addATag("velocity");
-		testFormula.addATag("acceleration");
+		testFormula.addTag("kinematics");
+		testFormula.addTag("distance");
+		testFormula.addTag("velocity");
+		testFormula.addTag("acceleration");
 		assertEquals("kinematics", testFormula.getTag(0));
 		assertEquals("distance", testFormula.getTag(1));
 		assertEquals("velocity", testFormula.getTag(2));
@@ -58,10 +58,10 @@ public class FormulaTest {
 
 	@Test
 	public void testGetTagSize() {
-		testFormula.addATag("kinematics");
-		testFormula.addATag("distance");
-		testFormula.addATag("velocity");
-		testFormula.addATag("acceleration");
+		testFormula.addTag("kinematics");
+		testFormula.addTag("distance");
+		testFormula.addTag("velocity");
+		testFormula.addTag("acceleration");
 		assertEquals(4, testFormula.getTagSize());
 		System.out.println("Tag size is " + testFormula.getTagSize());
 	}

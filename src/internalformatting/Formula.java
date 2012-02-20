@@ -91,7 +91,7 @@ public class Formula extends ArrayList<Term> implements Serializable{
   /**
    * @param tags the tags to set
    */
-  public void addATag(String NewTag)
+  public void addTag(String NewTag)
   {
     tags.addTag(NewTag);
   }

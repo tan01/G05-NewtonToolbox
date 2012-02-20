@@ -123,23 +123,23 @@ public class Search {
 		newFormula.setName("Mass Formula");
 		newFormula.setInfo("Information blah blah");
 		newFormula.addTerm(newTerm);
-		newFormula.addATag("random");
-		newFormula.addATag("mass");
-		newFormula.addATag("happy");
+		newFormula.addTag("random");
+		newFormula.addTag("mass");
+		newFormula.addTag("happy");
 		
 		//formula 2 tags: blah, mass
 		newFormula2.setName("Mass Formula 2");
 		newFormula2.setInfo("More Info");
 		newFormula2.addTerm(newTerm2);
 		newFormula2.addTerm(newTerm3);
-		newFormula2.addATag("blah");
-		newFormula2.addATag("mass");
+		newFormula2.addTag("blah");
+		newFormula2.addTag("mass");
 		
 		//formula 3 tags: notMass
 		newFormula3.setName("No Mass Formula");
 		newFormula3.setInfo("No mass info");
 		newFormula3.addTerm(newTerm4);
-		newFormula3.addATag("notMass");
+		newFormula3.addTag("notMass");
 						
 		
 		someFormulas.add(newFormula); // 5x^2
