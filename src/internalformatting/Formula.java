@@ -118,7 +118,7 @@ public class Formula extends ArrayList<Term> implements Serializable{
 	  String result = "";
 	  for(int i=0;i<this.size();i++){
 		  result += this.get(i).toString();
-		  result += " + ";
+		  result += " ";
 	  }
 	  return result;
   }
