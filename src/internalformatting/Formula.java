@@ -83,7 +83,7 @@ public class Formula extends ArrayList<Component> implements Serializable{
 	 * removes a selected Term (by index) from the Formula
 	 */
 	
-	public void deleteComp(int i) { this.remove(i); }
+	public void deleteTerm(int i) { this.remove(i); }
    
   /** TEMPORARY TOSTRING METHOD
    * NEEDS PROPER UNIT OPERATOR SUPPORT
