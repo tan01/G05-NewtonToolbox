@@ -25,9 +25,10 @@ public class CLI
 	
 	static BufferedReader in = new BufferedReader(new InputStreamReader(System.in));
 	static String[] comsearch = new String[]{"s","search"};
-	static String[] comquit = new String[]{"exit","q","quit",};
+	static String[] comadd = new String[]{"a","add","new"};
 	static String[] comprint = new String[]{"p","print"};
 	static String[] comprintall = new String[]{"print all","p all", "p a"};
+	static String[] comquit = new String[]{"exit","q","quit",};
 	static String[] comhelp = new String[]{"help"};
 	
 	static ArrayList<Formula> defaultFormulas = (ArrayList<Formula>)FormulaSaver.LoadForms();
@@ -58,6 +59,12 @@ public class CLI
 				CLISearch.searchOption(defaultFormulas);
 				}
 				
+			
+			//Add case
+			if(inArray(uinput,comadd)){
+				Formula newFormula = CLIAdd.AddFormula();
+				System.out.println(newFormula.getName());
+			}
 			
 			//Print case
 			if(inArray(uinput,comprint)){

@@ -93,13 +93,13 @@ public class Formula extends ArrayList<Term> implements Serializable{
    */
   public void addATag(String NewTag)
   {
-    tags.AddTag(NewTag);
+    tags.addTag(NewTag);
   }
   
   /**
    * adds a term Object to the formula
    */
-  public void AddTerm(Term newTerm){
+  public void addTerm(Term newTerm){
     this.add(newTerm);
   }
   

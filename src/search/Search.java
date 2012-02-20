@@ -122,7 +122,7 @@ public class Search {
 		//formula 1 tags: random, mass, happy
 		newFormula.setName("Mass Formula");
 		newFormula.setInfo("Information blah blah");
-		newFormula.AddTerm(newTerm);
+		newFormula.addTerm(newTerm);
 		newFormula.addATag("random");
 		newFormula.addATag("mass");
 		newFormula.addATag("happy");
@@ -130,15 +130,15 @@ public class Search {
 		//formula 2 tags: blah, mass
 		newFormula2.setName("Mass Formula 2");
 		newFormula2.setInfo("More Info");
-		newFormula2.AddTerm(newTerm2);
-		newFormula2.AddTerm(newTerm3);
+		newFormula2.addTerm(newTerm2);
+		newFormula2.addTerm(newTerm3);
 		newFormula2.addATag("blah");
 		newFormula2.addATag("mass");
 		
 		//formula 3 tags: notMass
 		newFormula3.setName("No Mass Formula");
 		newFormula3.setInfo("No mass info");
-		newFormula3.AddTerm(newTerm4);
+		newFormula3.addTerm(newTerm4);
 		newFormula3.addATag("notMass");
 						
 		
