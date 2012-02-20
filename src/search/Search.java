@@ -17,7 +17,7 @@ public class Search {
 	private ArrayList<Formula> allFormulas = new ArrayList<Formula>();
 //	private String searchTerm="null";
 	
-	private ArrayList<Formula> formulas = new ArrayList<Formula>();
+	//private ArrayList<Formula> formulas = new ArrayList<Formula>();
 	/**
 	 * Constructor
 	 * @param allFormulas An ArrayList of all the stored formulas to search through
@@ -72,6 +72,7 @@ public class Search {
 	 * @return formulas An array list of formulas that have the search term
 	 */
 	public ArrayList<Formula> searchF(String searchTerm) {
+		ArrayList<Formula> formulas = new ArrayList<Formula>();
 		int fsize = allFormulas.size(); //size of allFormula ArrayList
 		String currentTag;
 		for(int i=0; i<fsize; i++) { // loop through formulas
@@ -79,7 +80,7 @@ public class Search {
 			for(int j=0; j<tsize; j++) { // loop through tags
 				currentTag = allFormulas.get(i).getTag(j);    	
 				if(searchTerm == currentTag) {
-					this.formulas.add(allFormulas.get(i));
+					formulas.add(allFormulas.get(i));
 				}
 			}
 		}
