@@ -14,6 +14,8 @@ public class CLIAdd extends CLI{
 		Formula newFormula = new Formula();
 		System.out.println("Enter name of formula:");
 		System.out.print(">");
+		//Need to restructure this exception handling.
+		//Should be handled by CLI.
 		try{
 			newFormula.setName(in.readLine());
 		}
@@ -31,6 +33,7 @@ public class CLIAdd extends CLI{
 				System.out.println("Enter term as coefficient (double) <SPACE> variable (char) <space> exponent (int):");
 				System.out.print(">");
 				String[] termTerms = input.split(" ");
+				//Default values for term constructor
 				Double coeff = 0.0;
 				Variable var = null;
 				Integer exp = 0;
@@ -41,11 +44,16 @@ public class CLIAdd extends CLI{
 				}else{
 					System.out.println("Error: parameters not passed correctly. Debug values are used.");
 				}
-				Term tempTerm = new Term(coeff,var,exp);
+				//UNIT IS NULL FOR NOW
+				Term tempTerm = new Term(coeff,var,exp, null);
 				newFormula.add(tempTerm);
 			}
 			if(input.equals("operator")){
-			
+				System.out.println("Enter operator: ");
+				System.out.print(">");
+				input = in.readLine();
+				Operator tempOperator = new Operator(input);
+				newFormula.add(tempOperator);
 			}
 		}
 		return newFormula;
