@@ -32,9 +32,7 @@ public class CLI
 	static String[] comquit = new String[]{"exit","q","quit",};
 	static String[] comhelp = new String[]{"help"};
 	
-	static ArrayList<Formula> defaultFormulas = (ArrayList<Formula>)FormulaSaver.LoadForms();
-	//STEALING MAY'S CODE
-	
+	static ArrayList<Formula> defaultFormulas = (ArrayList<Formula>)FormulaSaver.LoadForms();	
 	
 	public static boolean inArray(String prompt, String[] comArray){
 		//I know, I know, I should use a binary search algorithm here.
