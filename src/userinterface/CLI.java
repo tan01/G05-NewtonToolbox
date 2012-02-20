@@ -1,5 +1,6 @@
 package userinterface;
 import search.*;
+import storage.FormulaDatabase;
 import storage.FormulaSaver;
 import internalformatting.*;
 
@@ -63,7 +64,14 @@ public class CLI
 			//Add case
 			if(inArray(uinput,comadd)){
 				Formula newFormula = CLIAdd.AddFormula();
-				System.out.println(newFormula.getName());
+				newFormula.printFormula();
+				System.out.println(newFormula.getAllTags());
+				
+				//CLAYVEN
+				//SAVE THINGS HERE
+				//YOOOOOOOOO
+				//YOOOOOOOOOO
+				//BOKU WAS HIS MOTHERFUCKING NAME
 			}
 			
 			//Print case

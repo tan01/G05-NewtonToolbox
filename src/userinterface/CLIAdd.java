@@ -26,20 +26,21 @@ public class CLIAdd extends CLI{
 		}
 		String input = "";
 		System.out.println("Enter term and/or operator. When finished entering terms, enter 'done'.");
-		System.out.print(">");
 		while(!input.equals("done")){
+			System.out.print(">");
 			input = in.readLine();
 			if(input.equals("term")){
 				System.out.println("Enter term as coefficient (double) <SPACE> variable (char) <space> exponent (int):");
 				System.out.print(">");
+				input = in.readLine();
 				String[] termTerms = input.split(" ");
 				//Default values for term constructor
 				Double coeff = 0.0;
 				Variable var = null;
 				Integer exp = 0;
 				if(termTerms.length==3){
-					coeff = Double.parseDouble(termTerms[1]);
-					var = new Variable(termTerms[2]);
+					coeff = Double.parseDouble(termTerms[0]);
+					var = new Variable(termTerms[1]);
 					exp = Integer.parseInt(termTerms[2]);
 				}else{
 					System.out.println("Error: parameters not passed correctly. Debug values are used.");
@@ -47,6 +48,7 @@ public class CLIAdd extends CLI{
 				//UNIT IS NULL FOR NOW
 				Term tempTerm = new Term(coeff,var,exp, null);
 				newFormula.add(tempTerm);
+				System.out.println("Term added.");
 			}
 			if(input.equals("operator")){
 				System.out.println("Enter operator: ");
@@ -54,8 +56,27 @@ public class CLIAdd extends CLI{
 				input = in.readLine();
 				Operator tempOperator = new Operator(input);
 				newFormula.add(tempOperator);
+				System.out.println("Operator added.");
 			}
 		}
+		
+		//Entering info
+		System.out.println("Enter info:");
+		System.out.print(">");
+		input = in.readLine();
+		newFormula.setInfo(input);
+		
+		//Entering tags
+		//This is broken
+		System.out.println("Enter comma-separated tags:");
+		System.out.print(">");
+		input = in.readLine();
+		String[] tagsTemp = input.split(",");
+		
+		for(int i=0;i<tagsTemp.length;i++){
+			newFormula.addATag(tagsTemp[i]);
+			}
+		
 		return newFormula;
 	}
 	
