@@ -118,4 +118,14 @@ public class Formula extends ArrayList<Term> implements Serializable{
 	  }
 	  return result;
   }
+  /**
+   * prints the formula's name and info 9as well as the formula itself) if a neatly formatted way
+   * (at least it should)
+   */
+  public void printFormula(){
+    System.out.println("name: " + this.getName());
+    System.out.println("info: " + this.getInfo());
+    System.out.println("Formula: " + this.toString());
+  }
+  
 }
