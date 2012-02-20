@@ -54,21 +54,21 @@ public class CLISearch extends CLI{
 		
 		newFormula.setName("Mass Formula");
 		newFormula.setInfo("Information blah blah");
-		newFormula.AddTerm(newTerm);
+		newFormula.addTerm(newTerm);
 		newFormula.addATag("random");
 		newFormula.addATag("mass");
 		newFormula.addATag("happy");
 		
 		newFormula2.setName("Mass Formula 2");
 		newFormula2.setInfo("More Info");
-		newFormula2.AddTerm(newTerm2);
-		newFormula2.AddTerm(newTerm3);
+		newFormula2.addTerm(newTerm2);
+		newFormula2.addTerm(newTerm3);
 		newFormula2.addATag("blah");
 		newFormula2.addATag("mass");
 		
 		newFormula3.setName("No Mass Formula");
 		newFormula3.setInfo("No mass info");
-		newFormula3.AddTerm(newTerm4);
+		newFormula3.addTerm(newTerm4);
 		newFormula3.addATag("notMass");
 						
 		
