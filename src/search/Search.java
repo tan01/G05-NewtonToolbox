@@ -102,19 +102,24 @@ public class Search {
 	}
 
 	public static void main(String[] args) {
+		// new formula ArrayList
 		ArrayList<Formula> someFormulas = new ArrayList<Formula>();
 		
+		//new variable - x
 		Variable newVar = new Variable("x");
 		
-		Term newTerm = new Term(5, newVar, 2, null);
-		Term newTerm2 = new Term(6, newVar, 3, null);
-		Term newTerm3 = new Term(7, newVar, 4, null);
-		Term newTerm4 = new Term(8, newVar,5,null);
+		//new terms to put in formulas
+		Term newTerm = new Term(5, newVar, 2, null); //5x^2
+		Term newTerm2 = new Term(6, newVar, 3, null); //6x^3
+		Term newTerm3 = new Term(7, newVar, 4, null); //7x^4
+		Term newTerm4 = new Term(8, newVar,5,null); //8x^5
 		
+		//new formulas to put in ArrayList of formulas
 		Formula newFormula = new Formula();
 		Formula newFormula2 = new Formula();
 		Formula newFormula3 = new Formula();
 		
+		//formula 1 tags: random, mass, happy
 		newFormula.setName("Mass Formula");
 		newFormula.setInfo("Information blah blah");
 		newFormula.AddTerm(newTerm);
@@ -122,6 +127,7 @@ public class Search {
 		newFormula.addATag("mass");
 		newFormula.addATag("happy");
 		
+		//formula 2 tags: blah, mass
 		newFormula2.setName("Mass Formula 2");
 		newFormula2.setInfo("More Info");
 		newFormula2.AddTerm(newTerm2);
@@ -129,15 +135,16 @@ public class Search {
 		newFormula2.addATag("blah");
 		newFormula2.addATag("mass");
 		
+		//formula 3 tags: notMass
 		newFormula3.setName("No Mass Formula");
 		newFormula3.setInfo("No mass info");
 		newFormula3.AddTerm(newTerm4);
 		newFormula3.addATag("notMass");
 						
 		
-		someFormulas.add(newFormula);
-		someFormulas.add(newFormula2);
-		someFormulas.add(newFormula3);
+		someFormulas.add(newFormula); // 5x^2
+		someFormulas.add(newFormula2); // 6x^3 + 7x^4
+		someFormulas.add(newFormula3); // 8x^5
 			
 		
 		System.out.println("This is the formula we found by searching for 'mass':");

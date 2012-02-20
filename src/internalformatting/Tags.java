@@ -31,7 +31,8 @@ public class Tags extends ArrayList<String> implements Serializable{
 	
 	public void AddTag(String newTag) {
 		this.ensureCapacity(this.size() + 1);
-		this.add(newTag);
+		newTag.toLowerCase();
+		this.add(newTag);;
 	}
 
 	/** removes a specified tag from the list
