@@ -39,8 +39,8 @@ public class Tags extends ArrayList<String> implements Serializable{
 	 */
 	
 	public void deleteTag(String BadTag) {
-		for(int i=0; i>=this.size(); i++ ) {
-			if(this.getTag(i).equals(BadTag) ) {
+		for(int i=0; i<=this.size(); i++ ) {
+			if(this.get(i).equals(BadTag) ) {
 				this.remove(i);
 				break;
 			}
@@ -70,10 +70,10 @@ public class Tags extends ArrayList<String> implements Serializable{
 	public String returnAllTags() {
 		String AllTags = "";
 		if(this.isEmpty() == true ) {
-			AllTags = AllTags + "No tags Availiable";
+			AllTags = AllTags + "No tags Available";
 		}
 		else {
-			for(int i=0; i>=this.size(); i++){
+			for(int i=0; i<this.size(); i++){
 				AllTags = AllTags + " " + this.get(i); //***TODO format this a bit better***
 			}
 		}
