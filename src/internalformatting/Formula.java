@@ -12,7 +12,7 @@ import java.util.ArrayList;
  * @author Clayven Anderson
  * @version 2/15/12 for cs48 W12
  */
-public class Formula extends ArrayList<Term> implements Serializable{
+public class Formula extends ArrayList<Component> implements Serializable{
   
 	private String name;
 	private String info = "";
@@ -77,13 +77,13 @@ public class Formula extends ArrayList<Term> implements Serializable{
 	 * adds a term Object to the formula
 	 */
 	
-	public void AddTerm(Term newTerm){ this.add(newTerm); }
+	public void AddTerm(Component newComp){ this.add(newComp); }
   
 	/** 
 	 * removes a selected Term (by index) from the Formula
 	 */
 	
-	public void deleteTerm(int i) { this.remove(i); }
+	public void deleteComp(int i) { this.remove(i); }
    
   /** TEMPORARY TOSTRING METHOD
    * NEEDS PROPER UNIT OPERATOR SUPPORT

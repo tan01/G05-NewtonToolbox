@@ -5,7 +5,7 @@ package internalformatting;
  * @version 02/19/2012 for CS 48 Project, W12
  */
 
-public class Operator extends Term {
+public class Operator extends Component {
 	
 	private String operator;
 	private static final long serialVersionUID =  1767185L;
@@ -21,6 +21,10 @@ public class Operator extends Term {
 	
 	public Operator(String operator) {
 		this.operator = operator;
+	}
+	
+	byte getType(){
+	  return 1;
 	}
 
 	/**
