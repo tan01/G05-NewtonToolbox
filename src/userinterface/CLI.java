@@ -55,22 +55,8 @@ public class CLI
 			
 			//Search case
 			if(inArray(uinput,comsearch)){
-				System.out.println("Enter search term:");
-				System.out.print(">");
-				uinput = in.readLine().toLowerCase();
-				Search usearch = new Search(defaultFormulas);
-				
-				ArrayList<Formula> somelist = usearch.searchF(uinput);
-				System.out.println("Searching " + "\"" + uinput + "\"...");
-				
-				if(somelist.size()<=0)
-					System.out.println("No formula found!");
-				else{
-				
-				Search.printSearch(somelist);
-				
+				CLISearch.searchOption(defaultFormulas);
 				}
-			}
 				
 			
 			//Print case
@@ -95,5 +81,5 @@ public class CLI
 		}
 
 	}
-	
+
 }
