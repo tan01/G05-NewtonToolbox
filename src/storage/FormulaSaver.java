@@ -2,6 +2,7 @@ package storage;
 
 import internalformatting.*;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -20,7 +21,10 @@ public class FormulaSaver
 {
   public static void SaveForms(FormulaDatabase Forms){
     try{
-      FileOutputStream fs = new FileOutputStream("FormulaDatabase.ser");
+      File dir = new File("data");
+      dir.mkdir();
+      File store = new File("data/" ,"FormulaDatabase.ntb" );
+      FileOutputStream fs = new FileOutputStream(store);
       ObjectOutputStream os = new ObjectOutputStream(fs);
       
       os.writeObject(Forms);
@@ -34,7 +38,7 @@ public class FormulaSaver
   public static  Object LoadForms(){
     FormulaDatabase One = new FormulaDatabase(); 
     try{
-      ObjectInputStream is = new ObjectInputStream(new FileInputStream("FormulaDatabase.ser"));
+      ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/FormulaDatabase.ntb"));
       One = (FormulaDatabase) is.readObject();
       
     } catch(Exception ex){
@@ -69,6 +73,6 @@ public class FormulaSaver
       Formula x = ((ArrayList<Formula>) LoadForms()).get(i);
       System.out.println(x.getName() + " " + x.getInfo() );
     }
-    
-  }
+  }  
+  
 }

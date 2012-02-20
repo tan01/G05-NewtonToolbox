@@ -1,4 +1,4 @@
-# ignore all class files.
-*.class
+# ignore all binaries and serialized data.
 .classpath
-*.ser
+bin/
+data/
