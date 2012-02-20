@@ -1,0 +1,6 @@
+CLI.java Line 70
+Call method for saving the formula. Formula name is "newFormula."
+
+Operator.java
+Needs to check that the string being passed is actually an operator.
+And not something rude.
