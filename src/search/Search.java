@@ -13,7 +13,7 @@ public class Search {
 	// for a one word search term
     //assuming we store all formulas in ArrayList<Formula> 
     //and enter that as the first argument
-
+	
 	private ArrayList<Formula> allFormulas = new ArrayList<Formula>();
 //	private String searchTerm="null";
 	
@@ -22,6 +22,21 @@ public class Search {
 	 * Constructor
 	 * @param allFormulas An ArrayList of all the stored formulas to search through
 	 */
+	
+	/**
+	 * printSearch method: Static method for printing formulas from an ArrayList. Right now it just
+	 * uses the formula's toString() method.
+	 * @param  FormulaArray ArrayList of formulas.
+	 */
+	
+	static public void printSearch(ArrayList<Formula> FormulaArray)
+	{
+		for(int i = 0;i<FormulaArray.size();i++){
+			String FormulaPrint = FormulaArray.get(i).toString();
+			System.out.println(FormulaPrint);
+		}
+	}
+	
 	public Search(ArrayList<Formula> allFormulas) {
 		this.allFormulas = allFormulas;
 	}
@@ -129,13 +144,15 @@ public class Search {
 		
 		Search searchObject = new Search(someFormulas);
 		ArrayList<Formula> somelist = searchObject.searchF("mass");
-		String Aformula = "";
-		//System.out.println(Aformula);
-		
-		for(int i = 0;i<somelist.size();i++){
-			Aformula = somelist.get(i).toString();
-			System.out.println(Aformula);
-		}
+		printSearch(somelist);
+//		String Aformula = "";
+//		//System.out.println(Aformula);
+//		
+//		
+//		for(int i = 0;i<somelist.size();i++){
+//			Aformula = somelist.get(i).toString();
+//			System.out.println(Aformula);
+//		}
 		
 	}
 }
