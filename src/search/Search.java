@@ -93,7 +93,7 @@ public class Search {
 			int tsize = allFormulas.get(i).getTagSize(); //size of tag ArrayList
 			for(int j=0; j<tsize; j++) { // loop through tags
 				currentTag = allFormulas.get(i).getTag(j);    	
-				if(searchTerm == currentTag) {
+				if(searchTerm.equals(currentTag)) {
 					this.formulas.add(allFormulas.get(i));
 				}
 			}

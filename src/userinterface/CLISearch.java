@@ -72,16 +72,9 @@ public class CLISearch extends CLI{
 		newFormula3.addATag("notMass");
 						
 		
-		someFormulas.add(newFormula); //should be 5x^2
-		someFormulas.add(newFormula2); //should be 6x^3 + 7x^4
-		someFormulas.add(newFormula3); //should be 8x^5
-		
-		
-		
-		searchOption(someFormulas);
-		
-		
-		
+		someFormulas.add(newFormula);
+		someFormulas.add(newFormula2);
+		someFormulas.add(newFormula3);
 		
 		
 	}
