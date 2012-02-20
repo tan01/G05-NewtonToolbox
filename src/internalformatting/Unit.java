@@ -36,6 +36,12 @@ public class Unit implements Serializable {
 		this.typicalForm = "unset typical physics form";
 	}
 	
+	public Unit (String unitName, String info) {
+		this.name = unitName;
+		this.info = info;
+		this.typicalForm = "unset typical physics form";
+	}
+	
 	/**
 	 * Get methods for name, info, tags, and typical form
 	 */
