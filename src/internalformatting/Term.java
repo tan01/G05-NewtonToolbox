@@ -9,7 +9,7 @@ import java.io.Serializable;
 
 public class Term implements Serializable{
 	
-	private double coefficient; // a coefficient represented as an int
+	private double coefficient; // a coefficient represented as a double
 	private Variable x; // a variable object
 	private int exponent; // an exponent represented as an int
 	private Unit unit;
