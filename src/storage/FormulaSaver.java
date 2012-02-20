@@ -49,29 +49,61 @@ public class FormulaSaver
   }
   
   public static void main(String[] args){
-    Formula Test1 = new Formula("form1", "info1");
-    Formula Test2 = new Formula("form2", "info2");
-    Formula Test3 = new Formula("form3" ,"info3");
+	  
+	  //May's default formulas
+	  ArrayList<Formula> someFormulas = new ArrayList<Formula>();
+		
+		Variable newVar = new Variable("x");
+		
+		Term newTerm = new Term(5, newVar, 2, null);
+		Term newTerm2 = new Term(6, newVar, 3, null);
+		Term newTerm3 = new Term(7, newVar, 4, null);
+		Term newTerm4 = new Term(8, newVar,5,null);
+		
+		Formula newFormula = new Formula();
+		Formula newFormula2 = new Formula();
+		Formula newFormula3 = new Formula();
+		
+		newFormula.setName("Mass Formula");
+		newFormula.setInfo("Information blah blah");
+		newFormula.AddTerm(newTerm);
+		newFormula.addATag("random");
+		newFormula.addATag("mass");
+		newFormula.addATag("happy");
+		
+		newFormula2.setName("Mass Formula 2");
+		newFormula2.setInfo("More Info");
+		newFormula2.AddTerm(newTerm2);
+		newFormula2.AddTerm(newTerm3);
+		newFormula2.addATag("blah");
+		newFormula2.addATag("mass");
+		
+		newFormula3.setName("No Mass Formula");
+		newFormula3.setInfo("No mass info");
+		newFormula3.AddTerm(newTerm4);
+		newFormula3.addATag("notMass");
+						
+		
+		someFormulas.add(newFormula);
+		someFormulas.add(newFormula2);
+		someFormulas.add(newFormula3);  
     
     FormulaDatabase Base = new FormulaDatabase();
    // FormulaDatabase Res = new FormulaDatabase();
     
-    Base.AddFormula(Test1);
-    Base.AddFormula(Test2);
-    Base.AddFormula(Test3);
+    Base.AddFormula(newFormula);
+    Base.AddFormula(newFormula2);
+    Base.AddFormula(newFormula3);
     
     SaveForms(Base);
     
     Base = null;
-    Test1 = null;
-    Test2 = null;
-    Test3 = null;
     
     //Res = (FormulaDatabase) LoadForms();
     
     for(int i=0; i<=2; i++){
       Formula x = ((ArrayList<Formula>) LoadForms()).get(i);
-      System.out.println(x.getName() + " " + x.getInfo() );
+      System.out.println(x.getName() + " " + x + " " + x.getInfo() + " " + x.getAllTags() );
     }
   }  
   

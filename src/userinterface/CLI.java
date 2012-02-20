@@ -1,5 +1,6 @@
 package userinterface;
 import search.*;
+import storage.FormulaSaver;
 import internalformatting.*;
 
 import java.io.*;
@@ -10,7 +11,6 @@ import java.util.Arrays;
 	User interface for the sake of interfacing with users.
 	@author Jonathan Tan
 	@version 0.0.1 2/18/12
-	
 */
 
 public class CLI
@@ -30,7 +30,7 @@ public class CLI
 	static String[] comprintall = new String[]{"print all","p all", "p a"};
 	static String[] comhelp = new String[]{"help"};
 	
-	static ArrayList<Formula> defaultFormulas = new ArrayList<Formula>();
+	static ArrayList<Formula> defaultFormulas = (ArrayList<Formula>)FormulaSaver.LoadForms();
 	//STEALING MAY'S CODE
 	
 	
