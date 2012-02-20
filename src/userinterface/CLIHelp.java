@@ -25,17 +25,16 @@ public class CLIHelp extends CLI
 		printStringArray(comsearch);
 		System.out.println();
 		
-		//Printing comquit
-		System.out.print("Quit: ");
-		printStringArray(comquit);
-		System.out.println();
-		
 		System.out.print("Print: ");
 		printStringArray(comprint);
 		System.out.println();
 		
 		System.out.print("Print All: ");
 		printStringArray(comprintall);
+		System.out.println();
+		
+		System.out.print("Quit: ");
+		printStringArray(comquit);
 		System.out.println();
 		
 		System.out.print("Help: ");
