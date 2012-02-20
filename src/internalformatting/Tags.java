@@ -29,7 +29,7 @@ public class Tags extends ArrayList<String> implements Serializable{
 	 * @param newTag New tag to be appended to list
 	 */
 	
-	public void AddTag(String newTag) {
+	public void addTag(String newTag) {
 		this.ensureCapacity(this.size() + 1);
 		newTag.toLowerCase();
 		this.add(newTag);;
