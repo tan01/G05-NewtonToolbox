@@ -25,14 +25,20 @@ public class CLIAdd extends CLI{
 			return newFormula;
 		}
 		String input = "";
-		System.out.println("Enter term and/or operator. When finished entering terms, enter 'done'.");
+		//System.out.println("Enter term and/or operator. When finished entering terms, enter 'done' when it says "Enter operator.");
 		while(!input.equals("done")){
-			System.out.print(">");
-			input = in.readLine();
-			if(input.equals("term")){
+			
+			//System.out.print(">");
+			//input = in.readLine();
+			
+			//if(input.equals("term")){
 				System.out.println("Enter term as coefficient (double) <SPACE> variable (char) <space> exponent (int):");
 				System.out.print(">");
 				input = in.readLine();
+				
+				//if(input.equals("done"))
+				//	break;
+				
 				String[] termTerms = input.split(" ");
 				//Default values for term constructor
 				Double coeff = 0.0;
@@ -49,15 +55,20 @@ public class CLIAdd extends CLI{
 				Term tempTerm = new Term(coeff,var,exp, null);
 				newFormula.add(tempTerm);
 				System.out.println("Term added.");
-			}
-			if(input.equals("operator")){
+			//}
+			
+			//if(input.equals("operator")){
 				System.out.println("Enter operator: ");
 				System.out.print(">");
 				input = in.readLine();
+				
+				if(input.equals("done"))
+					break;
+				
 				Operator tempOperator = new Operator(input);
 				newFormula.add(tempOperator);
 				System.out.println("Operator added.");
-			}
+			//}
 		}
 		
 		//Entering info
