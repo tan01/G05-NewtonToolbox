@@ -76,6 +76,7 @@ public class CLISearch extends CLI{
 		someFormulas.add(newFormula2);
 		someFormulas.add(newFormula3);
 		
+		searchOption(someFormulas);
 		
 	}
 	

@@ -84,6 +84,10 @@ public class Formula extends ArrayList<Term> implements Serializable{
     return tags.getSize();
   }
 
+  public String getAllTags(){
+	  return tags.returnAllTags();
+  }
+  
   /**
    * @param tags the tags to set
    */
