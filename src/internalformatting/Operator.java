@@ -17,10 +17,17 @@ public class Operator extends Term {
 	/** Constructor
 	 * 
 	 * @param operator A String of the operator
+	 * Operators consist of: ( ) + - * /
+	 * If input is not part of the above operators, then this.operator is null
 	 */
 	
 	public Operator(String operator) {
-		this.operator = operator;
+		// Operators consist of: ( ) + - * /
+		if ((	operator.equals("(") || operator.equals(")") || operator.equals("+") || 
+				operator.equals("-") || operator.equals("*") || operator.equals("/") 	)) 
+			this.operator = operator;
+		else
+			System.out.println("Invalid Operator");
 	}
 
 	/**
@@ -33,7 +40,16 @@ public class Operator extends Term {
 	 * Set method for operator
 	 */
 	
-	public void setOperator(String operator) { this.operator = operator; }
+	public void setOperator(String operator) { 
+		/** Operators consist of: ( ) + - * /
+		 * If input is not part of the above operators, then this.operator is null
+		 */
+		if ((	operator.equals("(") || operator.equals(")") || operator.equals("+") || 
+				operator.equals("-") || operator.equals("*") || operator.equals("/") 	)) 
+				this.operator = operator;
+		else
+				System.out.println("Invalid Operator");
+	}
 	
 	/**
 	 * Returns object as a string
