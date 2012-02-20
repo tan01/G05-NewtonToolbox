@@ -13,15 +13,30 @@ public class Search {
 	// for a one word search term
     //assuming we store all formulas in ArrayList<Formula> 
     //and enter that as the first argument
-
+	
 	private ArrayList<Formula> allFormulas = new ArrayList<Formula>();
 //	private String searchTerm="null";
 	
-	//private ArrayList<Formula> formulas = new ArrayList<Formula>();
+	private ArrayList<Formula> formulas = new ArrayList<Formula>();
 	/**
 	 * Constructor
 	 * @param allFormulas An ArrayList of all the stored formulas to search through
 	 */
+	
+	/**
+	 * printSearch method: Static method for printing formulas from an ArrayList. Right now it just
+	 * uses the formula's toString() method.
+	 * @param  FormulaArray ArrayList of formulas.
+	 */
+	
+	static public void printSearch(ArrayList<Formula> FormulaArray)
+	{
+		for(int i = 0;i<FormulaArray.size();i++){
+			String FormulaPrint = FormulaArray.get(i).toString();
+			System.out.println(FormulaPrint);
+		}
+	}
+	
 	public Search(ArrayList<Formula> allFormulas) {
 		this.allFormulas = allFormulas;
 	}
@@ -68,11 +83,10 @@ public class Search {
 //	}
 	
 	/**
-	 * @param searchTerm The String term you are searching for in the ArrayList of formulas
-	 * @return formulas An array list of formulas that have the search term
+	 * @param searchTerm The String term you are searching for in the formulas
+	 * @return formulas An array list of formulas
 	 */
 	public ArrayList<Formula> searchF(String searchTerm) {
-		ArrayList<Formula> formulas = new ArrayList<Formula>();
 		int fsize = allFormulas.size(); //size of allFormula ArrayList
 		String currentTag;
 		for(int i=0; i<fsize; i++) { // loop through formulas
@@ -80,7 +94,7 @@ public class Search {
 			for(int j=0; j<tsize; j++) { // loop through tags
 				currentTag = allFormulas.get(i).getTag(j);    	
 				if(searchTerm == currentTag) {
-					formulas.add(allFormulas.get(i));
+					this.formulas.add(allFormulas.get(i));
 				}
 			}
 		}
@@ -121,22 +135,24 @@ public class Search {
 		newFormula3.addATag("notMass");
 						
 		
-		someFormulas.add(newFormula); //should be 5x^2
-		someFormulas.add(newFormula2); //should be 6x^3 + 7x^4
-		someFormulas.add(newFormula3); //should be 8x^5
+		someFormulas.add(newFormula);
+		someFormulas.add(newFormula2);
+		someFormulas.add(newFormula3);
 			
 		
 		System.out.println("This is the formula we found by searching for 'mass':");
 		
 		Search searchObject = new Search(someFormulas);
 		ArrayList<Formula> somelist = searchObject.searchF("mass");
-		String Aformula = "";
-		//System.out.println(Aformula);
-		
-		for(int i = 0;i<somelist.size();i++){
-			Aformula = somelist.get(i).toString();
-			System.out.println(Aformula);
-		}
+		printSearch(somelist);
+//		String Aformula = "";
+//		//System.out.println(Aformula);
+//		
+//		
+//		for(int i = 0;i<somelist.size();i++){
+//			Aformula = somelist.get(i).toString();
+//			System.out.println(Aformula);
+//		}
 		
 	}
 }

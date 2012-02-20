@@ -53,11 +53,6 @@ public class FormulaSaver
     Formula Test2 = new Formula("form2", "info2");
     Formula Test3 = new Formula("form3" ,"info3");
     
-    
-    Test1.addComp;
-    
-    
-    
     FormulaDatabase Base = new FormulaDatabase();
    // FormulaDatabase Res = new FormulaDatabase();
     
