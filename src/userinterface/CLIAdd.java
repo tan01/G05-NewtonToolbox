@@ -74,7 +74,7 @@ public class CLIAdd extends CLI{
 		String[] tagsTemp = input.split(",");
 		
 		for(int i=0;i<tagsTemp.length;i++){
-			newFormula.addATag(tagsTemp[i]);
+			newFormula.addTag(tagsTemp[i]);
 			}
 		
 		return newFormula;
