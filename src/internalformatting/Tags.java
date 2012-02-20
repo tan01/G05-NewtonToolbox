@@ -40,7 +40,7 @@ public class Tags extends ArrayList<String> implements Serializable{
 	
 	public void deleteTag(String BadTag) {
 		for(int i=0; i>=this.size(); i++ ) {
-			if(this.get(i) == BadTag ) {
+			if(this.getTag(i).equals(BadTag) ) {
 				this.remove(i);
 				break;
 			}
@@ -48,7 +48,7 @@ public class Tags extends ArrayList<String> implements Serializable{
 				continue;
 			}
 		}
-    }
+   }
   
 	/** clears all tags*/
 	
