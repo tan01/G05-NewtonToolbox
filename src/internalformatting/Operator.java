@@ -1,6 +1,6 @@
 package internalformatting;
 
-/** Operator is a class to represent an operator such as (, ), +, -, *, /
+/** Operator is a class to represent an operator such as (, ), +, -, *, /, =
  * @author Michelle Len
  * @version 02/19/2012 for CS 48 Project, W12
  */
@@ -17,7 +17,7 @@ public class Operator extends Term {
 	/** Constructor
 	 *
 	 * @param operator A String of the operator
-	 * Operators consist of: ( ) + - * /
+	 * Operators consist of: ( ) + - * / =
 	 * If input is not part of the above operators, then this.operator is null
 	 */
 
@@ -42,11 +42,12 @@ public class Operator extends Term {
 	 */
 
 	public void setOperator(String operator) {
-		/** Operators consist of: ( ) + - * /
+		/** Operators consist of: ( ) + - * / =
 		 * If input is not part of the above operators, then this.operator is null
 		 */
 		if (( operator.equals("(") || operator.equals(")") || operator.equals("+") ||
-				operator.equals("-") || operator.equals("*") || operator.equals("/") ))
+				operator.equals("-") || operator.equals("*") || operator.equals("/") ||
+				operator.equals("=")))
 			this.operator = operator;
 		else
 			System.out.println("Invalid Operator");
