@@ -13,7 +13,7 @@ import java.util.ArrayList;
 /**
  * This class saves and loads the formula database
  * @author Clayven Anderson
- *
+ *@author May Camp (made ALL the formulas stored)
  */
 
 
