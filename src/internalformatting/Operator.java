@@ -24,7 +24,8 @@ public class Operator extends Term {
 	public Operator(String operator) {
 		// Operators consist of: ( ) + - * /
 		if ((	operator.equals("(") || operator.equals(")") || operator.equals("+") || 
-				operator.equals("-") || operator.equals("*") || operator.equals("/") 	)) 
+				operator.equals("-") || operator.equals("*") || operator.equals("/") || 
+				operator.equals("="))) 
 			this.operator = operator;
 		else
 			System.out.println("Invalid Operator");
