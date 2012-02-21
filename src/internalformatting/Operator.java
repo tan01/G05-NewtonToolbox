@@ -22,7 +22,7 @@ public class Operator extends Term {
 	 */
 
 	public Operator(String operator) {
-		// Operators consist of: ( ) + - * /
+		// Operators consist of: ( ) + - * / =
 		if (( operator.equals("(") || operator.equals(")") || operator.equals("+") ||
 				operator.equals("-") || operator.equals("*") || operator.equals("/") ||
 				operator.equals("=")))

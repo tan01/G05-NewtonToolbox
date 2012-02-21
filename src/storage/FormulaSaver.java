@@ -59,6 +59,7 @@ public class FormulaSaver
 		Unit meter = new Unit("meter");
 		Unit liter = new Unit("liter");
 		Unit second = new Unit("second");
+		Unit meterPerSecond = new Unit("meter per second");
 		
 		//unit - gram
 		gram.setInfo("The units of mass.");
@@ -76,20 +77,47 @@ public class FormulaSaver
 		second.setInfo("The units of time.");
 		second.setTypicalForm("s");
 		
-		//new variable - x
+		//unit - meter per second
+		meterPerSecond.setInfo("The units of velocity.");
+		meterPerSecond.setTypicalForm("m/s");
+		
+		//unit
+		
+		//new variables
+		Variable v_av = new Variable("v_(av)");
+		Variable x_1 = new Variable("x_(1)");
+		Variable x_2 = new Variable("x_(2)");
+		Variable t_1 = new Variable("t_(1)");
+		Variable t_2 = new Variable("t_(2)");
+		
 		Variable newVar = new Variable("x");
 
-		//new terms to put in formulas
+		//term - average velocity
+		Term avVelTerm_v_av = new Term(1, v_av, 1, meterPerSecond);
+		Term avVelTerm_x_1 = new Term(1, x_1, 1, meter);
+		Term avVelTerm_x_2 = new Term(1, x_2, 1, meter);
+		Term avVelTerm_t_1 = new Term(1, t_1, 1, second);
+		Term avVelTerm_t_2 = new Term(1, t_2, 1, second);
+		
 		Term newTerm = new Term(5, newVar, 2, null); //5x^2
 		Term newTerm2 = new Term(6, newVar, 3, null); //6x^3
 		Term newTerm3 = new Term(7, newVar, 4, null); //7x^4
 		Term newTerm4 = new Term(8, newVar,5,null); //8x^5
 
 		//new formulas to put in ArrayList of formulas
+		Formula avVelForm = new Formula();
+		
 		Formula newFormula = new Formula();
 		Formula newFormula2 = new Formula();
 		Formula newFormula3 = new Formula();
 
+		//formula - average velocity
+		avVelForm.setName("Average Velocity");
+		avVelForm.setInfo("Average velocity of a particle during a certain time period.");
+		avVelForm.addTerm(avVelTerm_v_av);
+		avVelForm.add("+");
+		avVelForm.addTerm(avVelTerm_x_1);
+		
 		//formula 1 tags: random, mass, happy
 		newFormula.setName("Mass Formula");
 		newFormula.setInfo("Information blah blah");
