@@ -1,10 +1,11 @@
 package userinterface;
 
+import internalformatting.Formula;
+import internalformatting.Term;
+import internalformatting.Variable;
+
 import java.io.IOException;
 import java.util.ArrayList;
-import search.*;
-import storage.*;
-import internalformatting.*;
 
 import search.Search;
 
