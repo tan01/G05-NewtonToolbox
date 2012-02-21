@@ -33,7 +33,7 @@ public class CLI
 	static String[] comquit = new String[]{"exit","q","quit",};
 	static String[] comhelp = new String[]{"help"};
 	
-	static ArrayList<Formula> defaultFormulas = (ArrayList<Formula>)FormulaSaver.loadForms();	
+	static FormulaDatabase defaultFormulas = (FormulaDatabase)FormulaSaver.loadForms();	
 	
 	public static boolean inArray(String prompt, String[] comArray){
 		//I know, I know, I should use a binary search algorithm here.
@@ -65,6 +65,7 @@ public class CLI
 				Formula newFormula = CLIAdd.addFormula();
 				newFormula.printFormula();
 				((FormulaDatabase) defaultFormulas).addFormula(newFormula);
+				FormulaSaver.saveForms(defaultFormulas);
 				System.out.println(newFormula.getAllTags());
 				
 				//CLAYVEN
