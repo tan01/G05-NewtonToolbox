@@ -1,12 +1,13 @@
 package userinterface;
-import search.*;
-import storage.FormulaDatabase;
-import storage.FormulaSaver;
-import internalformatting.*;
+import internalformatting.Formula;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import storage.*;
 /**
 	CLI.java
 	User interface for the sake of interfacing with users.
@@ -63,6 +64,7 @@ public class CLI
 			if(inArray(uinput,comadd)){
 				Formula newFormula = CLIAdd.addFormula();
 				newFormula.printFormula();
+				((FormulaDatabase) defaultFormulas).addFormula(newFormula);
 				System.out.println(newFormula.getAllTags());
 				
 				//CLAYVEN
