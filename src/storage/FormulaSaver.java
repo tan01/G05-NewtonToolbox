@@ -54,6 +54,15 @@ public class FormulaSaver
 		// new formula ArrayList for all formulas and stuff
 		ArrayList<Formula> someFormulas = new ArrayList<Formula>();
 
+		//all operators
+		Operator leftParen = new Operator("(");
+		Operator rightParen = new Operator(")");
+		Operator plus = new Operator("+");
+		Operator minus = new Operator("-");
+		Operator times = new Operator("*");
+		Operator divide = new Operator("/");
+		Operator equals = new Operator("=");
+		
 		// new units
 		Unit gram = new Unit("gram");
 		Unit meter = new Unit("meter");
@@ -81,16 +90,12 @@ public class FormulaSaver
 		meterPerSecond.setInfo("The units of velocity.");
 		meterPerSecond.setTypicalForm("m/s");
 		
-		//unit
-		
 		//new variables
 		Variable v_av = new Variable("v_(av)");
 		Variable x_1 = new Variable("x_(1)");
 		Variable x_2 = new Variable("x_(2)");
 		Variable t_1 = new Variable("t_(1)");
 		Variable t_2 = new Variable("t_(2)");
-		
-		Variable newVar = new Variable("x");
 
 		//term - average velocity
 		Term avVelTerm_v_av = new Term(1, v_av, 1, meterPerSecond);
@@ -98,59 +103,51 @@ public class FormulaSaver
 		Term avVelTerm_x_2 = new Term(1, x_2, 1, meter);
 		Term avVelTerm_t_1 = new Term(1, t_1, 1, second);
 		Term avVelTerm_t_2 = new Term(1, t_2, 1, second);
-		
-		Term newTerm = new Term(5, newVar, 2, null); //5x^2
-		Term newTerm2 = new Term(6, newVar, 3, null); //6x^3
-		Term newTerm3 = new Term(7, newVar, 4, null); //7x^4
-		Term newTerm4 = new Term(8, newVar,5,null); //8x^5
 
 		//new formulas to put in ArrayList of formulas
 		Formula avVelForm = new Formula();
-		
-		Formula newFormula = new Formula();
-		Formula newFormula2 = new Formula();
-		Formula newFormula3 = new Formula();
 
 		//formula - average velocity
+		//v_av = ( x_2 - x_1 ) / ( t_2 - t_1 )
 		avVelForm.setName("Average Velocity");
 		avVelForm.setInfo("Average velocity of a particle during a certain time period.");
 		avVelForm.addTerm(avVelTerm_v_av);
-		avVelForm.add("+");
+		avVelForm.add(equals);
+		avVelForm.add(leftParen);
+		avVelForm.addTerm(avVelTerm_x_2);
+		avVelForm.add(minus);
 		avVelForm.addTerm(avVelTerm_x_1);
+		avVelForm.add(rightParen);
+		avVelForm.add(divide);
+		avVelForm.add(leftParen);
+		avVelForm.addTerm(avVelTerm_t_2);
+		avVelForm.add(minus);
+		avVelForm.addTerm(avVelTerm_t_1);
+		avVelForm.add(rightParen);
 		
-		//formula 1 tags: random, mass, happy
-		newFormula.setName("Mass Formula");
-		newFormula.setInfo("Information blah blah");
-		newFormula.addTerm(newTerm);
-		newFormula.addTag("random");
-		newFormula.addTag("mass");
-		newFormula.addTag("happy");
+		//formula tags - average velocity
+		avVelForm.addTag("average");
+		avVelForm.addTag("velocity");
+		avVelForm.addTag("x_1");
+		avVelForm.addTag("x_2");
+		avVelForm.addTag("t_1");
+		avVelForm.addTag("t_2");
+		avVelForm.addTag("x");
+		avVelForm.addTag("t");
+		avVelForm.addTag("meters");
+		avVelForm.addTag("per");
+		avVelForm.addTag("second");
 
-		//formula 2 tags: blah, mass
-		newFormula2.setName("Mass Formula 2");
-		newFormula2.setInfo("More Info");
-		newFormula2.addTerm(newTerm2);
-		newFormula2.addTerm(newTerm3);
-		newFormula2.addTag("blah");
-		newFormula2.addTag("mass");
-
-		//formula 3 tags: notMass
-		newFormula3.setName("No Mass Formula");
-		newFormula3.setInfo("No mass info");
-		newFormula3.addTerm(newTerm4);
-		newFormula3.addTag("notMass");
-
-
-		someFormulas.add(newFormula); // 5x^2
-		someFormulas.add(newFormula2); // 6x^3 + 7x^4
-		someFormulas.add(newFormula3); // 8x^5 
+		someFormulas.add(avVelForm);
 
 		FormulaDatabase Base = new FormulaDatabase();
 		// FormulaDatabase Res = new FormulaDatabase();
 
-		Base.AddFormula(newFormula);
-		Base.AddFormula(newFormula2);
-		Base.AddFormula(newFormula3);
+		Base.AddFormula(avVelForm);
+		
+		//Base.AddFormula(newFormula);
+		//Base.AddFormula(newFormula2);
+		//Base.AddFormula(newFormula3);
 
 		SaveForms(Base);
 
@@ -158,7 +155,7 @@ public class FormulaSaver
 
 		//Res = (FormulaDatabase) LoadForms();
 
-		for(int i=0; i<=2; i++){
+		for(int i=0; i<=someFormulas.size(); i++){
 			Formula x = ((ArrayList<Formula>) LoadForms()).get(i);
 			System.out.println(x.getName() + " " + x + " " + x.getInfo() + " " + x.getAllTags() );
 		}
