@@ -10,7 +10,7 @@ import internalformatting.*;
 
 public class CLIAdd extends CLI{
 	
-	public static Formula AddFormula() throws IOException{
+	public static Formula addFormula() throws IOException{
 		Formula newFormula = new Formula();
 		System.out.println("Enter name of formula:");
 		System.out.print(">");

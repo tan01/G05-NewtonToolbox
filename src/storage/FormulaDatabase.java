@@ -4,6 +4,12 @@ import internalformatting.Formula;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * This Class acts as storage for all of the formulas in the system
+ * @author Clayven Anderson
+ *
+ */
+
 
 public class FormulaDatabase extends ArrayList<Formula> implements Serializable
 {

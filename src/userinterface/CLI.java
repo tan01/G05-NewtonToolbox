@@ -61,7 +61,7 @@ public class CLI
 			
 			//Add case
 			if(inArray(uinput,comadd)){
-				Formula newFormula = CLIAdd.AddFormula();
+				Formula newFormula = CLIAdd.addFormula();
 				newFormula.printFormula();
 				System.out.println(newFormula.getAllTags());
 				

@@ -35,7 +35,7 @@ public class FormulaSaver
 		}      
 	}
 
-	public static  Object loadForms(){
+	public static  FormulaDatabase loadForms(){
 		FormulaDatabase Database = new FormulaDatabase(); 
 		try{
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/FormulaDatabase.ntb"));
@@ -213,7 +213,7 @@ public class FormulaSaver
 		//Res = (FormulaDatabase) LoadForms();
 
 		for(int i=0; i<someFormulas.size(); i++){
-			Formula Res = ((ArrayList<Formula>) loadForms()).get(i);
+			Formula Res = ((FormulaDatabase) loadForms()).get(i);
 			System.out.println(Res.getName() + " " + Res + " " + Res.getInfo() + " " + Res.getAllTags() );
 		}
 	}  
