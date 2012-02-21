@@ -20,7 +20,7 @@ public class FormulaDatabase extends ArrayList<Formula> implements Serializable
    * Adds a formula object to Arraylist of formulas
    * @param Form the formula to be added to the database
    */
-  public void AddFormula(Formula Form){
+  public void addFormula(Formula Form){
     this.add(Form);
   }
   

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 public class FormulaSaver
 {
-	public static void SaveForms(FormulaDatabase Forms){
+	public static void saveForms(FormulaDatabase Forms){
 		try{
 			File dir = new File("data");
 			dir.mkdir();
@@ -35,7 +35,7 @@ public class FormulaSaver
 		}      
 	}
 
-	public static  Object LoadForms(){
+	public static  Object loadForms(){
 		FormulaDatabase Database = new FormulaDatabase(); 
 		try{
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/FormulaDatabase.ntb"));
@@ -199,22 +199,22 @@ public class FormulaSaver
 		FormulaDatabase Base = new FormulaDatabase();
 		// FormulaDatabase Res = new FormulaDatabase();
 
-		Base.AddFormula(avVelForm);
-		Base.AddFormula(posForm);
+		Base.addFormula(avVelForm);
+		Base.addFormula(posForm);
 		
 		//Base.AddFormula(newFormula);
 		//Base.AddFormula(newFormula2);
 		//Base.AddFormula(newFormula3);
 
-		SaveForms(Base);
+		saveForms(Base);
 
 		Base = null;
 
 		//Res = (FormulaDatabase) LoadForms();
 
-		for(int i=0; i<=someFormulas.size(); i++){
-			Formula x = ((ArrayList<Formula>) LoadForms()).get(i);
-			System.out.println(x.getName() + " " + x + " " + x.getInfo() + " " + x.getAllTags() );
+		for(int i=0; i<someFormulas.size(); i++){
+			Formula Res = ((ArrayList<Formula>) loadForms()).get(i);
+			System.out.println(Res.getName() + " " + Res + " " + Res.getInfo() + " " + Res.getAllTags() );
 		}
 	}  
 
