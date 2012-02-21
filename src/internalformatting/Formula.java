@@ -5,7 +5,6 @@ import java.util.ArrayList;
 /**
  * Formula Class for Newton's Toolbox.
  * Implements the method for representing a physics equation within the system.
- * TODO add necessary interactions with term class
  */
 
 /**

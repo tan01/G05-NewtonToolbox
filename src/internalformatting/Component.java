@@ -8,7 +8,8 @@ package internalformatting;
 abstract public class Component
 {
   /**
-   * Does nothing, just allows the formula class to hold operators and terms 
+   * Does nothing, just allows the formula class to hold operators and terms.
+   * Also alerts us of a possible error
    */
   byte getType(){
     return -1;
