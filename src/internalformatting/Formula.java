@@ -129,6 +129,7 @@ public class Formula extends ArrayList<Term> implements Serializable{
     System.out.println("Name: " + this.getName());
     System.out.println("Info: " + this.getInfo());
     System.out.println("Formula: " + this.toString());
+    System.out.println("Tags: " + this.getAllTags());
   }
   
 }

@@ -28,7 +28,7 @@ public class CLI
 	static String[] comsearch = new String[]{"s","search"};
 	static String[] comadd = new String[]{"a","add","new"};
 	static String[] comprint = new String[]{"p","print"};
-	static String[] comprintall = new String[]{"print all","p all", "p a"};
+	static String[] comprintall = new String[]{"p a", "p all", "print all"};
 	static String[] comquit = new String[]{"exit","q","quit",};
 	static String[] comhelp = new String[]{"help"};
 	
@@ -65,7 +65,6 @@ public class CLI
 				newFormula.printFormula();
 				((FormulaDatabase) defaultFormulas).addFormula(newFormula);
 				FormulaSaver.saveForms(defaultFormulas);
-				System.out.println(newFormula.getAllTags());
 				
 				//CLAYVEN
 				//SAVE THINGS HERE
@@ -81,8 +80,7 @@ public class CLI
 			}
 			
 			if(inArray(uinput,comprintall)){
-				//STUB
-				break;
+				CLIPrint.printAll();
 			}
 			
 			//Quit case
