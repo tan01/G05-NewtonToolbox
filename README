@@ -3,3 +3,7 @@ Solved the saving problem.
 
 Operator.java
 checks for bad operators now
+
+CLI.java
+When this gets loaded, it should do a check to see if there is an existing.ntb it can load.
+If not, it should run FormulaSaver to generate one.
