@@ -16,7 +16,8 @@ import storage.*;
 
 public class CLI
 {
-	
+	//////////REMEMBER TO RUN FORMULA SAVER BEFORE RUNNING THIS!
+	////need to change this necessity^^^
 	
 	//Valid search terms go here.
 	//May end up making a new class for this thing,

@@ -113,6 +113,7 @@ public class FormulaSaver
 		Variable v_0 = new Variable("v_0");
 		Variable t = new Variable("t");
 		Variable a = new Variable("a");
+		Variable v = new Variable("v");
 
 		//term - average velocity
 		Term avVelTerm_v_av = new Term(1, v_av, 1, meterPerSecond);
@@ -128,10 +129,17 @@ public class FormulaSaver
 		Term posTerm_t = new Term(1, t, 1, second);
 		Term posTerm_0_5a = new Term(0.5, a, 1, meterPerSecondSquared);
 		Term posTerm_t2 = new Term(1, t, 2, secondSquared);
+		
+		//term - velocity at constant acceleration
+		Term velTerm_v = new Term(1, v, 1, meterPerSecond);
+		Term velTerm_v_0 = new Term(1, v_0, 1, meterPerSecond);
+		Term velTerm_a = new Term(1, a, 1, meterPerSecondSquared);
+		Term velTerm_t = new Term(1, t, 1, second);
 
 		////new formulas to put in ArrayList of formulas
 		Formula avVelForm = new Formula();
 		Formula posForm = new Formula();
+		Formula velForm = new Formula();
 
 		//formula - average velocity
 		//v_av = ( x_2 - x_1 ) / ( t_2 - t_1 )
@@ -153,8 +161,8 @@ public class FormulaSaver
 		
 		//formula - position with constant acceleration
 		//x = x_0 + v_0 * t + 0.5a * t^2
-		posForm.setName("Position with Average Velocity");
-		posForm.setInfo("Position of a particle at a certain time given initial velocity and constant acceleration, and time.");
+		posForm.setName("Position with Constant Acceleration");
+		posForm.setInfo("Position of a particle at a certain time t, given initial velocity, constant acceleration, and time.");
 		posForm.addTerm(posTerm_x);
 		posForm.add(equals);
 		posForm.addTerm(posTerm_x_0);
@@ -167,6 +175,17 @@ public class FormulaSaver
 		posForm.add(times);
 		posForm.addTerm(posTerm_t2);
 		
+		//formula - velocity with constant acceleration
+		// v = v_0 + a * t
+		velForm.setName("Velocity with Constant Acceleration");
+		velForm.setInfo("Velocity of a particle at a certain time t, given initial velocity, constant acceleration, and time.");
+		velForm.addTerm(velTerm_v);
+		velForm.add(equals);
+		velForm.addTerm(velTerm_v_0);
+		velForm.add(plus);
+		velForm.addTerm(velTerm_a);
+		velForm.add(times);
+		velForm.addTerm(velTerm_t);
 		
 		////formula tags - average velocity
 		avVelForm.addTag("average");
@@ -177,6 +196,7 @@ public class FormulaSaver
 		avVelForm.addTag("t_2");
 		avVelForm.addTag("x");
 		avVelForm.addTag("t");
+		avVelForm.addTag("meter");
 		avVelForm.addTag("meters");
 		avVelForm.addTag("per");
 		avVelForm.addTag("second");
@@ -191,20 +211,29 @@ public class FormulaSaver
 		posForm.addTag("squared");
 		posForm.addTag("meter");
 		posForm.addTag("meters");
+		
+		//formula tags - velocity with constant acceleration
+		velForm.addTag("velocity");
+		velForm.addTag("constant");
+		velForm.addTag("acceleration");
+		velForm.addTag("time");
+		velForm.addTag("initial");
+		velForm.addTag("meter");
+		velForm.addTag("per");
+		velForm.addTag("second");
 
 		//add to ArrayList of Formulas
 		someFormulas.add(avVelForm); 
 		someFormulas.add(posForm);
+		someFormulas.add(velForm);
 
 		FormulaDatabase Base = new FormulaDatabase();
 		// FormulaDatabase Res = new FormulaDatabase();
 
+		///@@@@@ need to make a loop to add all components of ArrayList of formulas in someFormulas
 		Base.addFormula(avVelForm);
 		Base.addFormula(posForm);
-		
-		//Base.AddFormula(newFormula);
-		//Base.AddFormula(newFormula2);
-		//Base.AddFormula(newFormula3);
+		Base.addFormula(velForm);
 
 		saveForms(Base);
 
