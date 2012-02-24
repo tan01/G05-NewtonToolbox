@@ -30,14 +30,8 @@ public class CLISearch extends CLI{
 		ArrayList<Formula> foundFormulas = searchObject.searchF(userInput);
 		System.out.println("Found " + foundFormulas.size() + " formulas:");
 		
-		String AFoundFormula = "";
-		
-		if(foundFormulas.size() > 0) {
-			for(int i = 0;i<foundFormulas.size();i++){
-				AFoundFormula = foundFormulas.get(i).toString();
-				System.out.println(AFoundFormula);
-			}
-		}	
+		Search.printSearch(foundFormulas);
+			
 	}
 	public static void main(String[] args) throws IOException {
 		ArrayList<Formula> someFormulas = new ArrayList<Formula>();

@@ -34,8 +34,8 @@ public class Search {
 	static public void printSearch(ArrayList<Formula> FormulaArray)
 	{
 		for(int i = 0;i<FormulaArray.size();i++){
-			String FormulaPrint = FormulaArray.get(i).toString();
-			System.out.println(FormulaPrint);
+			FormulaArray.get(i).printFormula();
+			System.out.println();
 		}
 	}
 	
