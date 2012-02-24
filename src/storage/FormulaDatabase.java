@@ -16,7 +16,9 @@ public class FormulaDatabase extends ArrayList<Formula> implements Serializable
 
   private static final long serialVersionUID = 4101660L;
   
-  /** default constructor*/
+  /** Generates an arraylist of formula objects
+   */
+  //default constructor
   public FormulaDatabase(){
     super(); //creates an Arraylist of capacity 1
     this.clear();
