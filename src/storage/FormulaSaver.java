@@ -1,6 +1,10 @@
 package storage;
 
-import internalformatting.*;
+import internalformatting.Formula;
+import internalformatting.Operator;
+import internalformatting.Term;
+import internalformatting.Unit;
+import internalformatting.Variable;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,7 +12,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 //import userinterface.CLI;
 
@@ -83,7 +86,6 @@ public class FormulaSaver
 
 		////May's default formulas
 		// new formula ArrayList for all formulas and stuff
-		ArrayList<Formula> someFormulas = new ArrayList<Formula>();
 
 		////all operators
 		Operator leftParen = new Operator("(");
@@ -253,15 +255,9 @@ public class FormulaSaver
 		velForm.addTag("per");
 		velForm.addTag("second");
 
-		//add to ArrayList of Formulas
-		someFormulas.add(avVelForm); 
-		someFormulas.add(posForm);
-		someFormulas.add(velForm);
-
 		FormulaDatabase Base = new FormulaDatabase();
 		// FormulaDatabase Res = new FormulaDatabase();
 
-		///@@@@@ need to make a loop to add all components of ArrayList of formulas in someFormulas
 		Base.addFormula(avVelForm);
 		Base.addFormula(posForm);
 		Base.addFormula(velForm);
