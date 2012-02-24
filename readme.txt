@@ -17,6 +17,12 @@ Usage			1. Run ntb.bat
 				Add:	Add a formula to the database.
 					Type "add" and press [enter].
 					Follow onscreen prompts.
+				Print:	Type "p" or "print" to access print functionality
+					*** NOTE ***
+					THIS FUNCTION IS NOT COMPLETE.
+					CURRENTLY TERMINATES PROGRAM.
+					*** NOTE ***
+
 				Print All: Prints all formulas in database.
 					   Type "p a" or "p all" or "print all" and press [enter].
 				Quit:	Terminates the program.
@@ -26,3 +32,6 @@ Usage			1. Run ntb.bat
 
 			For Linux
 			1. In shell, enter "java -jar ntb.jar" in the directory containing the jar file.
+
+Troubleshooting	:	The jar file was generated in the Java SE 6 runtime environment.
+			Different versions of java may encounter problems.
