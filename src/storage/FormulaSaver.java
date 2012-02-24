@@ -1,6 +1,10 @@
 package storage;
 
-import internalformatting.*;
+import internalformatting.Formula;
+import internalformatting.Operator;
+import internalformatting.Term;
+import internalformatting.Unit;
+import internalformatting.Variable;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -8,12 +12,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 
 //import userinterface.CLI;
 
 /**
- * This class saves and loads the formula database
+ * This class saves and loads the formula database throught the process of serialization
+ * 
  * @author Clayven Anderson
  *@author May Camp (made ALL the formulas stored)
  */
@@ -21,6 +25,11 @@ import java.util.ArrayList;
 
 public class FormulaSaver
 {
+  
+  /**
+   * Serializes a FormulaDatabase object full for formulas to be used later use by the system
+   * @param Forms a FormulaDatabase object that is to be serialized
+   */
 	public static void saveForms(FormulaDatabase Forms){
 		try{
 			File dir = new File("data");
@@ -36,15 +45,18 @@ public class FormulaSaver
 			ex.printStackTrace();
 		}      
 	}
-
+/**
+ * Deserializes the FormulaDatabase object to recover our formulas
+ * @return returns a Deserialized FormulaDatabase object
+ */
 	public static  FormulaDatabase loadForms(){ //throws IOException{
 		FormulaDatabase Database = new FormulaDatabase(); 
-		try{
+		try{ //looks for an existing ntb file
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/FormulaDatabase.ntb"));
 			Database = (FormulaDatabase) is.readObject();
 
 		} catch(Exception ex){
-		  System.out.println("generating default database");
+		  System.out.println("generating default database");//if ntb isn't found; it creates a new one with the main
 		  try
       {
         FormulaSaver.main(null);
@@ -74,7 +86,6 @@ public class FormulaSaver
 
 		////May's default formulas
 		// new formula ArrayList for all formulas and stuff
-		ArrayList<Formula> someFormulas = new ArrayList<Formula>();
 
 		////all operators
 		Operator leftParen = new Operator("(");
@@ -244,15 +255,9 @@ public class FormulaSaver
 		velForm.addTag("per");
 		velForm.addTag("second");
 
-		//add to ArrayList of Formulas
-		someFormulas.add(avVelForm); 
-		someFormulas.add(posForm);
-		someFormulas.add(velForm);
-
 		FormulaDatabase Base = new FormulaDatabase();
 		// FormulaDatabase Res = new FormulaDatabase();
 
-		///@@@@@ need to make a loop to add all components of ArrayList of formulas in someFormulas
 		Base.addFormula(avVelForm);
 		Base.addFormula(posForm);
 		Base.addFormula(velForm);

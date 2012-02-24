@@ -66,12 +66,7 @@ public class CLI
 				newFormula.printFormula();
 				((FormulaDatabase) defaultFormulas).addFormula(newFormula);
 				FormulaSaver.saveForms(defaultFormulas);
-				
-				//CLAYVEN
-				//SAVE THINGS HERE
-				//YOOOOOOOOO
-				//YOOOOOOOOOO
-				//BOKU WAS HIS MOTHERFUCKING NAME
+	
 			}
 			
 			//Print case
