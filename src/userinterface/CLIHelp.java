@@ -10,12 +10,28 @@ package userinterface;
 
 public class CLIHelp extends CLI
 {
+	/**
+	 * printStringArray()
+	 *	Helper printStringArray function.
+	 *	Does exactly what it says on the tin, separated by comma + space.
+	 *	Except for the last element.
+	 *	@param com String[] to print.
+	 */
+
+	
 	static private void printStringArray(String[] com){
 		for(int i=0;i<com.length-1;i++){
 			System.out.print(com[i]+", ");
 		}
 		System.out.print(com[com.length-1]);
 	}
+	
+	/**
+	 * help()
+	 * Prints out valid commands from the static string arrays in the CLI class.
+	 * Should probably put duplicate code in the printStringArray function.
+	 * Want to eventually put all the commands in one array to iterate through.
+	 */
 	
 	static public void help(){
 		System.out.println("Valid commands: ");

@@ -16,8 +16,6 @@ import storage.*;
 
 public class CLI
 {
-	//////////REMEMBER TO RUN FORMULA SAVER BEFORE RUNNING THIS!
-	////need to change this necessity^^^
 	
 	//Valid search terms go here.
 	//May end up making a new class for this thing,
@@ -33,11 +31,10 @@ public class CLI
 	static String[] comquit = new String[]{"exit","q","quit",};
 	static String[] comhelp = new String[]{"help"};
 	
+	//Loads FormulaDatabase from FormulaSaver.
 	static FormulaDatabase defaultFormulas = (FormulaDatabase)FormulaSaver.loadForms();	
 	
 	public static boolean inArray(String prompt, String[] comArray){
-		//I know, I know, I should use a binary search algorithm here.
-		//Will improve efficiency in a little bit, okay?
 		int truthvalue = Arrays.binarySearch(comArray, prompt);
 		if(truthvalue < 0)
 			return false;
@@ -55,12 +52,15 @@ public class CLI
 			uinput = in.readLine().toLowerCase();
 			
 			//Search case
+			//Need to add search argument so user can put like, "search THISTHING"
+			//instead of "search -> THISTHING."
 			if(inArray(uinput,comsearch)){
 				CLISearch.searchOption(defaultFormulas);
 				}
 				
 			
 			//Add case
+			//Tester functionality to see if we can add and save formulas to .ntb.
 			if(inArray(uinput,comadd)){
 				Formula newFormula = CLIAdd.addFormula();
 				newFormula.printFormula();
@@ -70,20 +70,30 @@ public class CLI
 			}
 			
 			//Print case
+			//Doesn't do anything right now!
+			//Need to implement functionality:
+					// Should print search results.
+					// Should be able to print specific categories. Tags?
+					// Invisible tags for categorization?
 			if(inArray(uinput,comprint)){
 				//STUB
 				break;
 			}
 			
+			//Print all case
+			//Prints everything in the .ntb file loaded.
 			if(inArray(uinput,comprintall)){
 				CLIPrint.printAll();
 			}
 			
 			//Quit case
+			//Terminates program.
 			if(inArray(uinput,comquit)){
 				break;
 			}
 			
+			//Help case
+			//Basically prints the static com--- fields.
 			if(inArray(uinput,comhelp)){
 				CLIHelp.help();
 			}

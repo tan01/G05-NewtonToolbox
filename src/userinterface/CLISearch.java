@@ -17,6 +17,7 @@ import search.Search;
  */
 public class CLISearch extends CLI{
 
+	//CLI search, now compartmentalized!
 	public static void searchOption(ArrayList<Formula> allFormulas) throws IOException{
 		
 		Search searchObject = new Search(allFormulas);
@@ -33,6 +34,8 @@ public class CLISearch extends CLI{
 		Search.printSearch(foundFormulas);
 			
 	}
+	
+	//Tester main function: unused.
 	public static void main(String[] args) throws IOException {
 		ArrayList<Formula> someFormulas = new ArrayList<Formula>();
 		
