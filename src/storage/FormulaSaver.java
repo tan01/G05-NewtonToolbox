@@ -10,6 +10,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+//import userinterface.CLI;
+
 /**
  * This class saves and loads the formula database
  * @author Clayven Anderson
@@ -35,20 +37,40 @@ public class FormulaSaver
 		}      
 	}
 
-	public static  FormulaDatabase loadForms(){
+	public static  FormulaDatabase loadForms(){ //throws IOException{
 		FormulaDatabase Database = new FormulaDatabase(); 
 		try{
 			ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/FormulaDatabase.ntb"));
 			Database = (FormulaDatabase) is.readObject();
 
 		} catch(Exception ex){
-			ex.printStackTrace();
+		  System.out.println("generating default database");
+		  try
+      {
+        FormulaSaver.main(null);
+        ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/FormulaDatabase.ntb"));
+        try
+        {
+          Database = (FormulaDatabase) is.readObject();
+        }
+        catch (ClassNotFoundException e)
+        {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+      }
+      catch (IOException e)
+      {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+		  //CLI.main(null);
 		}
 
 		return Database;
 	}
 
-	public static void main(String[] args){
+	public static void main(String[] args) throws IOException{
 
 		////May's default formulas
 		// new formula ArrayList for all formulas and stuff
@@ -241,10 +263,10 @@ public class FormulaSaver
 
 		//Res = (FormulaDatabase) LoadForms();
 
-		for(int i=0; i<someFormulas.size(); i++){
-			Formula Res = ((FormulaDatabase) loadForms()).get(i);
-			System.out.println(Res.getName() + " " + Res + " " + Res.getInfo() + " " + Res.getAllTags() );
-		}
+		//for(int i=0; i<someFormulas.size(); i++){
+		//	Formula Res = ((FormulaDatabase) loadForms()).get(i);
+		//	System.out.println(Res.getName() + " " + Res + " " + Res.getInfo() + " " + Res.getAllTags() );
+		//}
 	}  
 
 }
