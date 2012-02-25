@@ -98,16 +98,22 @@ public class FormulaSaver
 		
 		//// new units
 		Unit gram = new Unit("gram");
+		Unit kilogram = new Unit("kilogram");
 		Unit meter = new Unit("meter");
 		Unit liter = new Unit("liter");
 		Unit second = new Unit("second");
 		Unit meterPerSecond = new Unit("meter per second");
 		Unit meterPerSecondSquared = new Unit("meter per second squared");
 		Unit secondSquared = new Unit("second squared");
+		Unit newton = new Unit("newton");
 		
 		//unit - gram
 		gram.setInfo("The units of mass.");
-		gram.setTypicalForm("kg");
+		gram.setTypicalForm("g");
+		
+		//unit - kilogram
+		kilogram.setInfo("The units of mass.");
+		kilogram.setTypicalForm("kg");
 		
 		//unit - meter
 		meter.setInfo("The units of length.");
@@ -133,6 +139,10 @@ public class FormulaSaver
 		secondSquared.setInfo("The units of time squared.");
 		secondSquared.setTypicalForm("s^2");
 		
+		//unit - newton
+		newton.setInfo("The units of force. Can also be written as kg * m / s^2");
+		newton.setTypicalForm("N");
+		
 		
 		////variables
 		Variable v_av = new Variable("v_(av)");
@@ -147,6 +157,12 @@ public class FormulaSaver
 		Variable t = new Variable("t");
 		Variable a = new Variable("a");
 		Variable v = new Variable("v");
+		
+		Variable F = new Variable("F");
+		Variable m = new Variable("m");
+		
+		Variable w = new Variable("w");
+		Variable g = new Variable("g");
 
 		//term - average velocity
 		Term avVelTerm_v_av = new Term(1, v_av, 1, meterPerSecond);
@@ -168,11 +184,23 @@ public class FormulaSaver
 		Term velTerm_v_0 = new Term(1, v_0, 1, meterPerSecond);
 		Term velTerm_a = new Term(1, a, 1, meterPerSecondSquared);
 		Term velTerm_t = new Term(1, t, 1, second);
+		
+		//term - Newton's second law of motion
+		Term newt2ndLawTerm_F = new Term(1, F, 1, newton);
+		Term newt2ndLawTerm_m = new Term(1, m, 1, kilogram);
+		Term new2ndLawTerm_a = new Term(1, a, 1, meterPerSecond);
+		
+		//term - weight
+		Term weightTerm_w = new Term(1, w, 1, newton);
+		Term weightTerm_m = new Term(1, m, 1, kilogram);
+		Term weightTerm_g = new Term(1, g, 1, meterPerSecond);
 
 		////new formulas to put in ArrayList of formulas
 		Formula avVelForm = new Formula();
 		Formula posForm = new Formula();
 		Formula velForm = new Formula();
+		Formula newt2ndLawForm = new Formula();
+		Formula weightForm = new Formula();
 
 		//formula - average velocity
 		//v_av = ( x_2 - x_1 ) / ( t_2 - t_1 )
@@ -220,6 +248,25 @@ public class FormulaSaver
 		velForm.add(times);
 		velForm.addTerm(velTerm_t);
 		
+		//formula - Newton's second law of motion
+		// F = m * a
+		newt2ndLawForm.setName("Newton's Second Law of Motion");
+		newt2ndLawForm.setInfo("Force at a particular mass and acceleration. If a net external force acts on a body, the body accelerates. The direction of aceleration is the same as the direction of the net force. The mass of the body times the acceleration of the body equals the net force vector.");
+		newt2ndLawForm.addTerm(newt2ndLawTerm_F);
+		newt2ndLawForm.add(equals);
+		newt2ndLawForm.addTerm(newt2ndLawTerm_m);
+		newt2ndLawForm.add(times);
+		newt2ndLawForm.addTerm(new2ndLawTerm_a);
+		
+		//formula - weight
+		weightForm.setName("weight");
+		weightForm.setInfo("weight of a particular mass and gravity");
+		weightForm.addTerm(weightTerm_w);
+		weightForm.add(equals);
+		weightForm.addTerm(weightTerm_m);
+		weightForm.add(times);
+		weightForm.addTerm(weightTerm_g);
+		
 		////formula tags - average velocity
 		avVelForm.addTag("average");
 		avVelForm.addTag("velocity");
@@ -254,6 +301,29 @@ public class FormulaSaver
 		velForm.addTag("meter");
 		velForm.addTag("per");
 		velForm.addTag("second");
+		
+		//formula tags - Newton's second law of motion
+		newt2ndLawForm.addTag("newton");
+		newt2ndLawForm.addTag("second");
+		newt2ndLawForm.addTag("2nd");
+		newt2ndLawForm.addTag("law");
+		newt2ndLawForm.addTag("motion");
+		newt2ndLawForm.addTag("force");
+		newt2ndLawForm.addTag("mass");
+		newt2ndLawForm.addTag("acceleration");
+		newt2ndLawForm.addTag("kilograms");
+		newt2ndLawForm.addTag("meters");
+		newt2ndLawForm.addTag("squared");
+		
+		//formula tags - weight
+		weightForm.addTag("weight");
+		weightForm.addTag("mass");
+		weightForm.addTag("gravity");
+		weightForm.addTag("newton");
+		weightForm.addTag("kilogram");
+		weightForm.addTag("meter");
+		weightForm.addTag("second");
+		weightForm.addTag("squared");
 
 		FormulaDatabase Base = new FormulaDatabase();
 		// FormulaDatabase Res = new FormulaDatabase();
@@ -261,6 +331,7 @@ public class FormulaSaver
 		Base.addFormula(avVelForm);
 		Base.addFormula(posForm);
 		Base.addFormula(velForm);
+		Base.addFormula(newt2ndLawForm);
 
 		saveForms(Base);
 
