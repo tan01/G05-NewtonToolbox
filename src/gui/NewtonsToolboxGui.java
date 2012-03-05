@@ -6,6 +6,14 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
+//for textbox?
+import java.awt.TextArea;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+import java.awt.event.WindowAdapter;
+
 /**
  * Gui will be the gui used for our Newton's Toolbox project (EDIT DESCRIPTION LATER K THX)
  *  
@@ -37,6 +45,7 @@ public class NewtonsToolboxGui {
 	 
 	    	// Displays the frame
 	    	frame.setVisible(true);	
+	    	
 	    }
 	    
 	    /**
