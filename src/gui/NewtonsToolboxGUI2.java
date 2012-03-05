@@ -27,14 +27,13 @@ import java.awt.event.WindowAdapter;
 //Forms = Formulas
 public class NewtonsToolboxGUI2 {
 	private JFrame frame;
-	private NewtonsToolboxPanel topPanel;
-	private NewtonsToolboxPanel middlePanel;
-	private NewtonsToolboxPanel bottomPanel;
 	private NewtonsToolboxPanel panel;
 	
+	//search bar
+	//JTextField searchBar = new JTextField(50);
+	JTextArea searchBar = new JTextArea(1,50);
 	
-	JTextField searchBar = new JTextField(30);
-	TextArea searchResults = new TextArea();
+	JTextArea searchResults = new JTextArea(15,57);
 	private JButton searchButton = new JButton("Search");
 	private JButton printFormsButton = new JButton("Print Formulas");
 	private JButton solveFormsButton = new JButton("Solve Formulas");
@@ -45,29 +44,24 @@ public class NewtonsToolboxGUI2 {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(720,480);
 		
-		topPanel = new NewtonsToolboxPanel();
-		middlePanel = new NewtonsToolboxPanel();
-		bottomPanel = new NewtonsToolboxPanel();
+
 		panel = new NewtonsToolboxPanel();
-		
-		frame.getContentPane().add(BorderLayout.CENTER, topPanel);
-		frame.getContentPane().add(BorderLayout.CENTER, middlePanel);
-		frame.getContentPane().add(BorderLayout.CENTER, bottomPanel);
+	
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
 		
 		
 		//need searchBar action listener
-		topPanel.add(searchBar);
+		panel.add(searchBar);
 		
-		topPanel.add(searchButton);
+		panel.add(searchButton);
 		
-		middlePanel.add(searchResults);
+		panel.add(searchResults);
 		
-		bottomPanel.add(printFormsButton);
+		panel.add(printFormsButton);
 		
-		bottomPanel.add(solveFormsButton);
+		panel.add(solveFormsButton);
 		
-		bottomPanel.add(addFormsButton);
+		panel.add(addFormsButton);
 		
 		
 		frame.setVisible(true);
