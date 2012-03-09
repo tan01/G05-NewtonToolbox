@@ -27,7 +27,6 @@ import java.awt.event.WindowAdapter;
 //Forms = Formulas
 public class NewtonsToolboxGUI2 {
 	private JFrame frame;
-	private NewtonsToolboxPanel panel;
 	private NewtonsToolboxPanel topPanel;
 	private NewtonsToolboxPanel middlePanel;
 	private NewtonsToolboxPanel bottomPanel;
@@ -48,7 +47,6 @@ public class NewtonsToolboxGUI2 {
 		frame.setSize(720,480);
 		
 
-		panel = new NewtonsToolboxPanel();
 		topPanel = new NewtonsToolboxPanel();
 		middlePanel = new NewtonsToolboxPanel();
 		bottomPanel = new NewtonsToolboxPanel();
