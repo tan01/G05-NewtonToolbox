@@ -31,6 +31,20 @@ public class Term implements Serializable{
 	 * @param coefficient A double value of coefficient
 	 * @param x What the variable is
 	 * @param exponent An int value of exponent
+	 */
+	
+	public Term (double coefficient, Variable x, int exponent) {
+		// assign attributes from parameters
+		this.coefficient = coefficient;
+		this.x = x;
+		this.exponent = exponent;
+	}
+		
+	/** Constructor
+	 * 
+	 * @param coefficient A double value of coefficient
+	 * @param x What the variable is
+	 * @param exponent An int value of exponent
 	 * @param unit A Unit object associated with the term, see Unit class
 	 */
 	

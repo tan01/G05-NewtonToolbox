@@ -12,6 +12,9 @@ public class Variable implements Serializable{
 
 	private double value; //value of the variable
 	private String var; // variable represented as a char
+	private String info = "";
+	private Tags tags = new Tags();
+	private Unit unit;
 	final private static long serialVersionUID = 8383008L;
 	
 	/** Constructor	
