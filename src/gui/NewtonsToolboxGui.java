@@ -28,7 +28,7 @@ public class NewtonsToolboxGui {
 	  
 		
 		/**
-		 * Creates the JFrame, initializes JCheckBoxes, champions, and the JPanel and adds those to the JFrame
+		 * Creates the JFrame, and the JPanel
 		 */
 	    public void go() {
 	    	
