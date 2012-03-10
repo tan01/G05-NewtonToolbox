@@ -58,18 +58,36 @@ public class NewtonsToolboxGui {
 	    	panel = new NewtonsToolboxPanel();
 	    	
 	    	//THIS IS HOW YOU ADD BUTTONS TO THE BACKGROUND PANEL
-	    	JPanel content = new JPanel(new BorderLayout());
-	    	content.setBounds(780,50,50,50);
+	    	JPanel quitPanel = new JPanel(new BorderLayout());
+	    	quitPanel.setOpaque(false);
+	    	quitPanel.setBounds(780,50,50,50);
 	    	
 	    	JButton quitButton = new JButton("X");
 	    	quitButton.addActionListener(new quitListener());
 	    		
-	    	content.add(quitButton);
-	    	panel.add(content);
+	    	quitPanel.add(quitButton);
+	    	panel.add(quitPanel);
+	    	
+	    	//controlPanel - main controls
+	    	JPanel controlPanel = new JPanel();
+	    	controlPanel.setOpaque(false);
+	    	controlPanel.setBounds(130,490,600,50);
+	    	panel.add(controlPanel);
+	    	
+	    	//controlPanel - buttons
+	    	JButton searchButton = new JButton("Search");
+	    	JButton searchFormsButton = new JButton("Search Formulas");
+	    	JButton printFormsButton = new JButton("Print Formulas");
+	    	JButton solveFormsButton = new JButton("Solve Formulas");
+	    	JButton addFormsButton = new JButton("Add Formulas");
+	    	
+	    	controlPanel.add(searchFormsButton);
+			controlPanel.add(printFormsButton);
+			controlPanel.add(solveFormsButton);
+			controlPanel.add(addFormsButton);
 	    	
 	    	// Adding the Border Layout
 	    	frame.getContentPane().add(BorderLayout.CENTER, panel);
-	    	
 	    	
 	    	//SHAPE
 	    	Quadrilateral blueQuadrilateral = new Quadrilateral();
@@ -80,6 +98,8 @@ public class NewtonsToolboxGui {
     		
     		AWTUtilities.setWindowShape(frame, blueQuadrilateral);
     		
+    		//Makes frame draggable.
+    		//Has a ghosting problem on some machines.
     		frame.addMouseListener(new MouseAdapter() {
     		      public void mousePressed(MouseEvent e) {
     		        point.x = e.getX();
@@ -137,21 +157,21 @@ public class NewtonsToolboxGui {
 	    		g2d.drawPolygon(blueQuadrilateral);
 	    		g2d.fillPolygon(blueQuadrilateral);
 	   
-	    		// Draws the Inner Lighter Blue Quadrilateral
-	    		Quadrilateral lighterBlueQuadrilateral = new Quadrilateral();
-	    		lighterBlueQuadrilateral.addPoint((int)(0.062500*this.getWidth()), (int)(0.093750*this.getHeight())); //  1/32(W) & 15/16(H)
-	    		lighterBlueQuadrilateral.addPoint((int)(0.718750*this.getWidth()), (int)(0.093750*this.getHeight())); // 23/32(W) & 15/16(H)
-	    		lighterBlueQuadrilateral.addPoint((int)(0.703125*this.getWidth()), (int)(0.250000*this.getHeight())); // 45/64(W) &  1/4 (H)
-	    		lighterBlueQuadrilateral.addPoint((int)(0.093750*this.getWidth()), (int)(0.281250*this.getHeight())); //  1/16(W) &  9/32(H)
-	    		g2d.setColor(new Color(0x66CCFF));	// Web-safe Color. Can change if you guys don't like it.
-	    		g2d.drawPolygon(lighterBlueQuadrilateral);
-	    		g2d.fillPolygon(lighterBlueQuadrilateral);
-	    		
-	    		
-	    		// Color is set to White for Search Box
-	    		g2d.setColor(Color.WHITE);
-	    		g2d.fillRect((int)(0.0937500*this.getWidth()), (int)(0.1250000*this.getHeight()),  //  3/32 (W) &  1/8  (H)
-	    				     (int)(0.6015625*this.getWidth()), (int)(0.1015625*this.getHeight())); // 77/128(W) & 13/128(H)
+//	    		// Draws the Inner Lighter Blue Quadrilateral
+//	    		Quadrilateral lighterBlueQuadrilateral = new Quadrilateral();
+//	    		lighterBlueQuadrilateral.addPoint((int)(0.062500*this.getWidth()), (int)(0.093750*this.getHeight())); //  1/32(W) & 15/16(H)
+//	    		lighterBlueQuadrilateral.addPoint((int)(0.718750*this.getWidth()), (int)(0.093750*this.getHeight())); // 23/32(W) & 15/16(H)
+//	    		lighterBlueQuadrilateral.addPoint((int)(0.703125*this.getWidth()), (int)(0.250000*this.getHeight())); // 45/64(W) &  1/4 (H)
+//	    		lighterBlueQuadrilateral.addPoint((int)(0.093750*this.getWidth()), (int)(0.281250*this.getHeight())); //  1/16(W) &  9/32(H)
+//	    		g2d.setColor(new Color(0x66CCFF));	// Web-safe Color. Can change if you guys don't like it.
+//	    		g2d.drawPolygon(lighterBlueQuadrilateral);
+//	    		g2d.fillPolygon(lighterBlueQuadrilateral);
+//	    		
+//	    		
+//	    		// Color is set to White for Search Box
+//	    		g2d.setColor(Color.WHITE);
+//	    		g2d.fillRect((int)(0.0937500*this.getWidth()), (int)(0.1250000*this.getHeight()),  //  3/32 (W) &  1/8  (H)
+//	    				     (int)(0.6015625*this.getWidth()), (int)(0.1015625*this.getHeight())); // 77/128(W) & 13/128(H)
 	    	}
 	    	
 	    }
@@ -165,6 +185,7 @@ public class NewtonsToolboxGui {
 	    
 	    // I'm sticking this Main here so I can Ctrl+F11 and view what's drawn
 		public static void main (String[] args) {
+			
 			NewtonsToolboxGui gui = new NewtonsToolboxGui();
 			gui.go();
 		}
