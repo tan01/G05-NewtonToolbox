@@ -98,7 +98,7 @@ public class Formula extends ArrayList<Component> implements Serializable{
   /**
    * adds a term Object to the formula
    */
-  public void addTerm(Term newTerm){
+  public void addTerm(Component newTerm){
     this.add(newTerm);
   }
   
