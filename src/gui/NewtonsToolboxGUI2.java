@@ -20,6 +20,17 @@ import java.awt.event.WindowAdapter;
 import java.awt.event.MouseMotionAdapter;
 import java.awt.event.MouseAdapter;
 
+import internalformatting.Formula;
+import internalformatting.Term;
+import internalformatting.Variable;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import search.Search;
+import storage.FormulaDatabase;
+import storage.Saver;
+
 
 /**
  * Another GUI to learn a bit about gui making,
@@ -73,6 +84,7 @@ public class NewtonsToolboxGUI2{
 		bottomPanel.add(solveFormsButton);
 		bottomPanel.add(addFormsButton);
 		
+		
 		searchButton.addActionListener(new searchButtonListener());
 		frame.setVisible(true);
 		
@@ -89,7 +101,15 @@ public class NewtonsToolboxGUI2{
     //Button Listener Classes:
     class searchButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			searchButton.setText("I've been clicked!");
+			String userInput = searchBar.getText();
+			FormulaDatabase defaultFormulas = (FormulaDatabase)Saver.loadForms();
+			Search searchObject = new Search(defaultFormulas);
+			ArrayList<Formula> foundFormulas = searchObject.searchF(userInput);
+			String stringOfFormulas = foundFormulas.toString();
+			
+			searchResults.setText("You searched for: " + userInput + "\n" +
+					"Found " + foundFormulas.size() + " formulas:\n" +
+					stringOfFormulas);
 		}
 	}
     
