@@ -5,6 +5,7 @@ import com.sun.awt.AWTUtilities;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Point;
@@ -58,20 +59,35 @@ public class NewtonsToolboxGui {
 	    	panel = new NewtonsToolboxPanel();
 	    	
 	    	//THIS IS HOW YOU ADD BUTTONS TO THE BACKGROUND PANEL
+	    	//Create a new panel
+	    	//Use the setBounds(int x, int y, int width, int height); method to set the size of the panel
+	    	//Then append it to the main panel panel.
 	    	JPanel quitPanel = new JPanel(new BorderLayout());
 	    	quitPanel.setOpaque(false);
-	    	quitPanel.setBounds(780,50,50,50);
+	    	quitPanel.setBounds(780,50,50,25);
 	    	
-	    	JButton quitButton = new JButton("X");
+	    	JButton quitButton = new JButton("x");
 	    	quitButton.addActionListener(new quitListener());
 	    		
 	    	quitPanel.add(quitButton);
 	    	panel.add(quitPanel);
 	    	
+	    	//Minimize button
+	    	JPanel minimizePanel = new JPanel(new BorderLayout());
+	    	minimizePanel.setOpaque(false);
+	    	//I know it's too small right now, I'll fix it later.
+	    	minimizePanel.setBounds(755,50,25,25);
+	    	
+	    	JButton minimizeButton = new JButton("_");
+	    	minimizeButton.addActionListener(new minimizeListener());
+	    		
+	    	minimizePanel.add(minimizeButton);
+	    	panel.add(minimizePanel);
+	    	
 	    	//controlPanel - main controls
 	    	JPanel controlPanel = new JPanel();
 	    	controlPanel.setOpaque(false);
-	    	controlPanel.setBounds(130,490,600,50);
+	    	controlPanel.setBounds(130,490,600,35);
 	    	panel.add(controlPanel);
 	    	
 	    	//controlPanel - buttons
@@ -180,6 +196,12 @@ public class NewtonsToolboxGui {
 	    class quitListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
+			}
+		}
+	    
+	    class minimizeListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				frame.setState(Frame.ICONIFIED);
 			}
 		}
 	    

@@ -40,6 +40,14 @@ public class FormulaDatabase extends ArrayList<Formula> implements Serializable
     this.remove(i);
   }
   /**
+   * returns a formula at a specified index
+   * @param i index of the desired formula
+   * @return the for formula located at index i
+   */
+  public Formula getFormula(int i){
+    return this.get(i);
+  }
+  /**
    * return the size of the database as an int
    * @return size of the Database
    */

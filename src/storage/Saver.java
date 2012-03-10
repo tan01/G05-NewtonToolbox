@@ -142,6 +142,57 @@ public class Saver
     return Database;
   }
 	
+  
+  
+  
+  
+  /**
+   * Serializes a FormulaSheet object full for formulas to be used later use by the user
+   * @param Forms a FormulaSheet object that is to be serialized
+   */
+  public static void saveSheet(FormulaSheet sheet){
+    try{
+      File dir = new File("data");
+      if(dir.exists()== false){
+        dir.mkdir();
+     }
+      File store = new File("data/" , sheet.getName()+".ntb" );
+      FileOutputStream fs = new FileOutputStream(store);
+      ObjectOutputStream os = new ObjectOutputStream(fs);
+
+      os.writeObject(sheet);
+      os.close();
+
+    }catch (IOException ex){
+      ex.printStackTrace();
+    }      
+  }
+/**
+ * Deserializes a FormulaSheet object to recover a user generated formula sheet
+ * @return returns a Deserialized FormulaSheet object
+ */
+  public static  FormulaDatabase loadSheet(String name){ //throws IOException{
+    FormulaSheet sheet = new FormulaSheet(); 
+    try{ //looks for an existing ntb file
+      ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/" + name +".ntb"));
+      sheet = (FormulaSheet) is.readObject();
+
+    } catch(Exception ex){
+    System.out.println("formula sheet not found");//if ntb isn't found;
+    }
+     
+    return sheet;
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 	public static void generateVarData() throws IOException{
 	  
 	  Variable v_av = new Variable("v_(av)");
@@ -450,6 +501,7 @@ public class Saver
 	public static void main(String args[]){
 	  loadVars();
 	  loadForms();
+	  loadSheet("doesnt exist");
 	  
 	}
 }
