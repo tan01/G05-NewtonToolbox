@@ -11,7 +11,7 @@ import java.util.ArrayList;
  * @author Clayven Anderson
  * @version 2/15/12 for cs48 W12
  */
-public class Formula extends ArrayList<Term> implements Serializable{
+public class Formula extends ArrayList<Component> implements Serializable{
   
   private String name;
   private String info = "";

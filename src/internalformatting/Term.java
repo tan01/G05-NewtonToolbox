@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @version 02/18/2012 for CS 48 Project, W12
  */
 
-public class Term implements Serializable{
+public class Term extends Component implements Serializable{
 	
 	private double coefficient; // a coefficient represented as a double
 	private Variable x; // a variable object

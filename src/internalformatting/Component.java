@@ -5,8 +5,7 @@ package internalformatting;
  * @author Clayven Anderson
  *
  */
-abstract public class Component
-{
+abstract public class Component {
   /**
    * Does nothing, just allows the formula class to hold operators and terms.
    * Also alerts us of a possible error
@@ -15,5 +14,4 @@ abstract public class Component
     return -1;
   }
   
-
 }
