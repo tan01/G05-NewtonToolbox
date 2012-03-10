@@ -10,10 +10,26 @@ import java.awt.RenderingHints;
 import java.awt.TextArea;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowAdapter;
+import java.awt.event.MouseMotionAdapter;
+import java.awt.event.MouseAdapter;
+
+import internalformatting.Formula;
+import internalformatting.Term;
+import internalformatting.Variable;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
+import search.Search;
+import storage.FormulaDatabase;
+import storage.Saver;
 
 
 /**
@@ -25,7 +41,7 @@ import java.awt.event.WindowAdapter;
  *
  */
 //Forms = Formulas
-public class NewtonsToolboxGUI2 {
+public class NewtonsToolboxGUI2{
 	private JFrame frame;
 	private NewtonsToolboxPanel topPanel;
 	private NewtonsToolboxPanel middlePanel;
@@ -68,7 +84,11 @@ public class NewtonsToolboxGUI2 {
 		bottomPanel.add(solveFormsButton);
 		bottomPanel.add(addFormsButton);
 		
+		
+		searchButton.addActionListener(new searchButtonListener());
 		frame.setVisible(true);
+		
+		
 	}
 	public class NewtonsToolboxPanel extends JPanel {
 		// Included to suppress Eclipse Warning
@@ -77,6 +97,22 @@ public class NewtonsToolboxGUI2 {
     	
 
 	}
+	
+    //Button Listener Classes:
+    class searchButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String userInput = searchBar.getText();
+			FormulaDatabase defaultFormulas = (FormulaDatabase)Saver.loadForms();
+			Search searchObject = new Search(defaultFormulas);
+			ArrayList<Formula> foundFormulas = searchObject.searchF(userInput);
+			String stringOfFormulas = foundFormulas.toString();
+			
+			searchResults.setText("You searched for: " + userInput + "\n" +
+					"Found " + foundFormulas.size() + " formulas:\n" +
+					stringOfFormulas);
+		}
+	}
+    
 	
 	public static void main(String[] args) {
 		
