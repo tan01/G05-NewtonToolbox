@@ -12,6 +12,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
@@ -59,9 +61,12 @@ public class NewtonsToolboxGUI2{
 	private JButton addFormsButton = new JButton("Add Formulas");
 	
 	public void go() {
+	
 		frame = new JFrame("Newton's Toolbox");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(720,480);
+		
+		KeyboardListener keyboardListener = new KeyboardListener();
 		
 
 		topPanel = new NewtonsToolboxPanel();
@@ -119,6 +124,35 @@ public class NewtonsToolboxGUI2{
 					stringOfFormulas);
 		}
 	}
+    
+    class KeyboardListener implements KeyListener {
+
+		@Override
+		public void keyPressed(KeyEvent key) {
+			// TODO Auto-generated method stub
+			if(key.getCode()== KeyEvent.VK_ENTER) {
+				
+			
+			}
+			
+		}
+
+		@Override
+		public void keyReleased(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void keyTyped(KeyEvent arg0) {
+			// TODO Auto-generated method stub
+			
+		}
+    	
+    	
+    	
+    }
+    
     
 	
 	public static void main(String[] args) {
