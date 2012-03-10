@@ -23,7 +23,7 @@ import java.io.ObjectOutputStream;
  */
 
 
-public class FormulaSaver
+public class Saver
 {
   
   /**
@@ -33,7 +33,9 @@ public class FormulaSaver
 	public static void saveForms(FormulaDatabase Forms){
 		try{
 			File dir = new File("data");
-			dir.mkdir();
+			if(dir.exists()== false){
+        dir.mkdir();
+     }
 			File store = new File("data/" ,"FormulaDatabase.ntb" );
 			FileOutputStream fs = new FileOutputStream(store);
 			ObjectOutputStream os = new ObjectOutputStream(fs);
@@ -56,10 +58,10 @@ public class FormulaSaver
 			Database = (FormulaDatabase) is.readObject();
 
 		} catch(Exception ex){
-		  System.out.println("generating default database");//if ntb isn't found; it creates a new one with the main
+	  System.out.println("generating default formula database");//if ntb isn't found; it creates a new one with the main
 		  try
       {
-        FormulaSaver.main(null);
+        generateFormData();
         ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/FormulaDatabase.ntb"));
         try
         {
@@ -82,7 +84,107 @@ public class FormulaSaver
 		return Database;
 	}
 
-	public static void main(String[] args) throws IOException{
+	 /**
+   * Serializes a FormulaDatabase object full for formulas to be used later use by the system
+   * @param Forms a FormulaDatabase object that is to be serialized
+   */
+  public static void saveVars(VariableDatabase Vars){
+    try{
+      File dir = new File("data");
+      if(dir.exists()== false){
+         dir.mkdir();
+      }
+      File store = new File("data/" ,"VariableDatabase.ntb" );
+      FileOutputStream fs = new FileOutputStream(store);
+      ObjectOutputStream os = new ObjectOutputStream(fs);
+
+      os.writeObject(Vars);
+      os.close();
+
+    }catch (IOException ex){
+      ex.printStackTrace();
+    }      
+  }
+/**
+ * Deserializes the FormulaDatabase object to recover our formulas
+ * @return returns a Deserialized FormulaDatabase object
+ */
+  public static  VariableDatabase loadVars(){ //throws IOException{
+    VariableDatabase Database = new VariableDatabase(); 
+    try{ //looks for an existing ntb file
+      ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/VariableDatabase.ntb"));
+      Database = (VariableDatabase) is.readObject();
+
+    } catch(Exception ex){
+     System.out.println("generating default variable database");//if ntb isn't found; it creates a new one with the main
+      try
+      {
+        generateVarData();
+        ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/VariableDatabase.ntb"));
+        try
+        {
+          Database = (VariableDatabase) is.readObject();
+        }
+        catch (ClassNotFoundException e)
+        {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+      }
+      catch (IOException e)
+      {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+      //CLI.main(null);
+    }
+
+    return Database;
+  }
+	
+	public static void generateVarData() throws IOException{
+	  
+	  Variable v_av = new Variable("v_(av)");
+    Variable x_1 = new Variable("x_(1)");
+    Variable x_2 = new Variable("x_(2)");
+    Variable t_1 = new Variable("t_(1)");
+    Variable t_2 = new Variable("t_(2)");
+    
+    Variable x = new Variable("x");
+    Variable x_0 = new Variable("x_0");
+    Variable v_0 = new Variable("v_0");
+    Variable t = new Variable("t");
+    Variable a = new Variable("a");
+    Variable v = new Variable("v");
+    
+    Variable F = new Variable("F");
+    Variable m = new Variable("m");
+    
+    Variable w = new Variable("w");
+    Variable g = new Variable("g");
+    
+    VariableDatabase VBase = new VariableDatabase();
+    
+    VBase.addVariable(v_av);
+    VBase.addVariable(x_1);
+    VBase.addVariable(x_2);
+    VBase.addVariable(t_1);
+    VBase.addVariable(t_2);
+    VBase.addVariable(x);
+    VBase.addVariable(x_0);
+    VBase.addVariable(v_0);
+    VBase.addVariable(t);
+    VBase.addVariable(a);
+    VBase.addVariable(v);
+    VBase.addVariable(F);
+    VBase.addVariable(m);
+    VBase.addVariable(w);
+    VBase.addVariable(g);
+    
+    saveVars(VBase);
+	}
+	
+	public static void generateFormData() throws IOException{
 
 		////May's default formulas
 		// new formula ArrayList for all formulas and stuff
@@ -345,4 +447,9 @@ public class FormulaSaver
 		//}
 	}  
 
+	public static void main(String args[]){
+	  loadVars();
+	  loadForms();
+	  
+	}
 }

@@ -32,7 +32,7 @@ public class CLI
 	static String[] comhelp = new String[]{"help"};
 	
 	//Loads FormulaDatabase from FormulaSaver.
-	static FormulaDatabase defaultFormulas = (FormulaDatabase)FormulaSaver.loadForms();	
+	static FormulaDatabase defaultFormulas = (FormulaDatabase)Saver.loadForms();	
 	
 	public static boolean inArray(String prompt, String[] comArray){
 		int truthvalue = Arrays.binarySearch(comArray, prompt);
@@ -65,7 +65,7 @@ public class CLI
 				Formula newFormula = CLIAdd.addFormula();
 				newFormula.printFormula();
 				((FormulaDatabase) defaultFormulas).addFormula(newFormula);
-				FormulaSaver.saveForms(defaultFormulas);
+				Saver.saveForms(defaultFormulas);
 	
 			}
 			

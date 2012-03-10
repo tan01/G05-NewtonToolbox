@@ -9,48 +9,64 @@ import java.io.Serializable;
  */
 
 public class Variable implements Serializable{
-
-	private double value; //value of the variable
 	private String var; // variable represented as a char
+	private double value; //value of the variable
+	private String info = "";
+	private Unit unit;
+	private Tags tags = new Tags();
 	final private static long serialVersionUID = 8383008L;
 	
-	/** Constructor	
-	 * @param var A character of what the variable is
+	/** Constructor	to make a Variable with just a string to represent it
+	 * @param var  A short String representation of the variable
 	 */
-
 	public Variable (String var) {
 		// assign attributes from parameters
 		this.var = var;
 	}
 
-	/** Constructor
-	 * @param var A character of what the variable is
-	 * @param value A double of what the value of the variable is
+	/** Constructor with variable and value
+	 * @param var    A short String representation of the variable
+	 * @param value  A double representing the variable value
 	 */
-
 	public Variable (String var, double value){
 		this.var = var;
 		this.value = value;
 	}
 	
-	/**
-	 * Get the variable character and value
- 	 */
+	/** Constructor
+	 * @param var
+	 * @param info
+	 */
+	public Variable (String var, String info) {
+	this.var = var;
+	this.info = info;
+	}
+	/** Constructor
+	 * @param var
+	 * @param info
+	 * @param tags
+	 */
+	public Variable (String var, String info, Tags tags) {
+		this.var = var;
+		this.info = info;
+		this.tags = tags;
+		}
 	
 	public String getVar () { return this.var; }
 	public double getValue() { return this.value; }
-	
-	/**
-	 * set the variable character and value
-	 */
+	public String getInfo() { return this.info; }
+	public Unit getUnit() { return this.unit; }
+	public Tags getTags() { return this.tags; }
 	
 	public void setVar (String var) { this.var = var; }
 	public void setValue (double value) { this.value = value; }
-
-	/**
-	 * Returns object as a string
-	 */
+	public void setInfo (String info) { this.info = info; }
+	public void setUnit(Unit unit) { this.unit = unit; }
+	public void setTags(Tags tags) { this.tags = tags; }
 	
+	/**
+	 * @return var  Variable as a string
+	 */
 	public String toString() {
 		return var;
 	} // do we need this method?

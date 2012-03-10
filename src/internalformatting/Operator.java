@@ -1,15 +1,16 @@
 package internalformatting;
 
+import java.io.Serializable;
+
 /** Operator is a class to represent an operator such as (, ), +, -, *, /, =
  * @author Michelle Len
  * @version 02/19/2012 for CS 48 Project, W12
  */
 
-public class Operator extends Term {
+public class Operator extends Component implements Serializable {
 
+	private static final long serialVersionUID = -7891223541546645626L;
 	private String operator;
-	private static final long serialVersionUID = 1767185L;
-
 	public Operator() {
 		super();
 	}

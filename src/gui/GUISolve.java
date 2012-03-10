@@ -25,7 +25,7 @@ import java.awt.event.WindowAdapter;
  *
  */
 //Forms = Formulas
-public class NewtonsToolboxGUI2 {
+public class GUISolve {
 	private JFrame frame;
 	private NewtonsToolboxPanel topPanel;
 	private NewtonsToolboxPanel middlePanel;
@@ -36,7 +36,7 @@ public class NewtonsToolboxGUI2 {
 	JTextArea searchBar = new JTextArea(1,50);
 	
 	JTextArea searchResults = new JTextArea(20,57);
-	private JButton searchButton = new JButton("Search");
+
 	private JButton searchFormsButton = new JButton("Search Formulas");
 	private JButton printFormsButton = new JButton("Print Formulas");
 	private JButton solveFormsButton = new JButton("Solve Formulas");
@@ -58,8 +58,7 @@ public class NewtonsToolboxGUI2 {
 		
 		
 		//need searchBar action listener
-		topPanel.add(searchBar);
-		topPanel.add(searchButton);
+
 		
 		middlePanel.add(searchResults);
 		
@@ -80,7 +79,7 @@ public class NewtonsToolboxGUI2 {
 	
 	public static void main(String[] args) {
 		
-		NewtonsToolboxGUI2 gui = new NewtonsToolboxGUI2();
+		GUISolve gui = new GUISolve();
 		gui.go();
 	}
 	

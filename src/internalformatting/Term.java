@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @version 02/18/2012 for CS 48 Project, W12
  */
 
-public class Term implements Serializable{
+public class Term extends Component implements Serializable{
 	
 	private double coefficient; // a coefficient represented as a double
 	private Variable x; // a variable object
@@ -18,7 +18,6 @@ public class Term implements Serializable{
 	/** 
 	 * Default Constructor with nulls and zeroes
 	 */
-	
 	public Term () {
 		this.coefficient = 0.0;
 		this.x = null;
@@ -31,9 +30,21 @@ public class Term implements Serializable{
 	 * @param coefficient A double value of coefficient
 	 * @param x What the variable is
 	 * @param exponent An int value of exponent
+	 */
+	public Term (double coefficient, Variable x, int exponent) {
+		// assign attributes from parameters
+		this.coefficient = coefficient;
+		this.x = x;
+		this.exponent = exponent;
+	}
+		
+	/** Constructor
+	 * 
+	 * @param coefficient A double value of coefficient
+	 * @param x What the variable is
+	 * @param exponent An int value of exponent
 	 * @param unit A Unit object associated with the term, see Unit class
 	 */
-	
 	public Term (double coefficient, Variable x, int exponent, Unit unit) {
 		// assign attributes from parameters
 		this.coefficient = coefficient;
@@ -45,7 +56,6 @@ public class Term implements Serializable{
 	/**
 	 * Get methods for coefficient, variable, exponent, and term
 	 */
-	
 	public double getCoefficient() { return this.coefficient; }
 	public Variable getVariable() { return this.x; }
 	public int getExponent() { return this.exponent; }
@@ -54,7 +64,6 @@ public class Term implements Serializable{
 	/** 
 	 * Set methods for coefficient, variable, exponent, and term
 	 */
-	
 	public void setCoefficient (double coefficient) { this.coefficient = coefficient; }
 	public void setVariable (Variable x) { this.x = x; }
 	public void setExponent (int exponent) { this.exponent = exponent; }
@@ -63,7 +72,6 @@ public class Term implements Serializable{
 	/**
 	 * Returns object as a string
 	 */
-	
 	public String toString() {
 		if (this.coefficient == 1 && this.exponent == 1)
 			return "" + x;
