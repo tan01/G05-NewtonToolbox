@@ -9,6 +9,7 @@ import java.io.Serializable;
 
 public class Operator extends Component implements Serializable {
 
+	private static final long serialVersionUID = -7891223541546645626L;
 	private String operator;
 	public Operator() {
 		super();
