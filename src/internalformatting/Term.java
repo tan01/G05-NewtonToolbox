@@ -18,7 +18,6 @@ public class Term extends Component implements Serializable{
 	/** 
 	 * Default Constructor with nulls and zeroes
 	 */
-	
 	public Term () {
 		this.coefficient = 0.0;
 		this.x = null;
@@ -32,7 +31,6 @@ public class Term extends Component implements Serializable{
 	 * @param x What the variable is
 	 * @param exponent An int value of exponent
 	 */
-	
 	public Term (double coefficient, Variable x, int exponent) {
 		// assign attributes from parameters
 		this.coefficient = coefficient;
@@ -47,7 +45,6 @@ public class Term extends Component implements Serializable{
 	 * @param exponent An int value of exponent
 	 * @param unit A Unit object associated with the term, see Unit class
 	 */
-	
 	public Term (double coefficient, Variable x, int exponent, Unit unit) {
 		// assign attributes from parameters
 		this.coefficient = coefficient;
@@ -59,7 +56,6 @@ public class Term extends Component implements Serializable{
 	/**
 	 * Get methods for coefficient, variable, exponent, and term
 	 */
-	
 	public double getCoefficient() { return this.coefficient; }
 	public Variable getVariable() { return this.x; }
 	public int getExponent() { return this.exponent; }
@@ -68,7 +64,6 @@ public class Term extends Component implements Serializable{
 	/** 
 	 * Set methods for coefficient, variable, exponent, and term
 	 */
-	
 	public void setCoefficient (double coefficient) { this.coefficient = coefficient; }
 	public void setVariable (Variable x) { this.x = x; }
 	public void setExponent (int exponent) { this.exponent = exponent; }
@@ -77,7 +72,6 @@ public class Term extends Component implements Serializable{
 	/**
 	 * Returns object as a string
 	 */
-	
 	public String toString() {
 		if (this.coefficient == 1 && this.exponent == 1)
 			return "" + x;
