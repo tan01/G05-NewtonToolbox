@@ -1,3 +1,4 @@
+package gui;
 import java.awt.TextArea;
 import java.awt.Frame;
 
