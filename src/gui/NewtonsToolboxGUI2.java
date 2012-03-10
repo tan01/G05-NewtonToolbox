@@ -105,10 +105,17 @@ public class NewtonsToolboxGUI2{
 			FormulaDatabase defaultFormulas = (FormulaDatabase)Saver.loadForms();
 			Search searchObject = new Search(defaultFormulas);
 			ArrayList<Formula> foundFormulas = searchObject.searchF(userInput);
-			String stringOfFormulas = foundFormulas.toString();
+			
+			String oldStringOfFormulas = foundFormulas.toString();
+			
+			String stringOfFormulas = "";
+			searchResults.setLineWrap(true);
+			for(int i=0; i<foundFormulas.size();i++) {
+				stringOfFormulas = stringOfFormulas + foundFormulas.get(i).allInfoToString() + "\n \n";
+			}
 			
 			searchResults.setText("You searched for: " + userInput + "\n" +
-					"Found " + foundFormulas.size() + " formulas:\n" +
+					"Found " + foundFormulas.size() + " formulas:\n\n" +
 					stringOfFormulas);
 		}
 	}
