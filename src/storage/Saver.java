@@ -240,8 +240,10 @@ public class Saver
     return sheet;
   }
   
-
-  
+  /**
+   * generates a new VariableDatabase in case on is not found
+   * @throws IOException
+   */
 	public static void generateVarData() throws IOException{
 	  
 	  Variable v_av = new Variable("v_(av)");
@@ -284,6 +286,10 @@ public class Saver
     saveVars(VBase);
 	}
 	
+	/**
+	 * generates a default unit Database in case on is not found
+	 * @throws IOException
+	 */
 	public static void generateUnitData() throws IOException{
 	  
 ////new units
@@ -347,6 +353,10 @@ public class Saver
    saveUnits(UBase);
 	}
 	
+	/**
+	 * generate a default formulaDatabase in case one is not found
+	 * @throws IOException
+	 */
 	public static void generateFormData() throws IOException{
 
 		////May's default formulas
