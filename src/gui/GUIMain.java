@@ -1,6 +1,8 @@
 package gui;
 import javax.swing.*;
 
+import storage.*;
+
 import com.sun.awt.AWTUtilities;
 
 import java.awt.BorderLayout;
@@ -45,6 +47,12 @@ public class GUIMain {
 	  
 		// Dynamic content panel
 		private JPanel contentPanel = new JPanel();
+		
+		//These are the databases from which all modules can refer to.
+		//Use GUIMain.<your>Database
+		public static FormulaDatabase FORMULAS = (FormulaDatabase)Saver.loadForms();
+		public static VariableDatabase VARIABLES = (VariableDatabase)Saver.loadVars();
+		public static UnitDatabase UNITS = (UnitDatabase)Saver.loadUnits();
 		
 		/**
 		 * Creates the JFrame, and the JPanel
