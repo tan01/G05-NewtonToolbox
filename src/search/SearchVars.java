@@ -1,7 +1,7 @@
 package search;
 /**
- * SearchVars is a class to SearchVars through terms
- * of variable class with the SearchVars terms entered by the user
+ * SearchVars is a class to search through terms
+ * of variable class with the search terms entered by the user
  * @author May Camp
  * @version 02/18/2012 for CS 48 Project, W12
  */
@@ -10,17 +10,16 @@ import internalformatting.*;
 import java.util.ArrayList;
 
 public class SearchVars {
-	// for a one word SearchVars term
+	// for a one word search term
     //assuming we store all Variables in ArrayList<Variable> 
     //and enter that as the first argument
 	
 	private ArrayList<Variable> allVariables = new ArrayList<Variable>();
-//	private String SearchVarsTerm="null";
 	
 	private ArrayList<Variable> variables = new ArrayList<Variable>();
 	/**
 	 * Constructor
-	 * @param allVariables An ArrayList of all the stored variables to SearchVars through
+	 * @param allVariables An ArrayList of all the stored variables to search through
 	 */
 	public SearchVars(ArrayList<Variable> allVariables) {
 		this.allVariables = allVariables;
@@ -50,7 +49,7 @@ public class SearchVars {
 //		this.SearchVarsTerm = SearchVarsTerm;
 //	}
 	/**
-	 * method to change the ArrayLise of variables you are SearchVarsing in
+	 * method to change the ArrayLise of variables you are searching in
 	 * @param allVariables
 	 */
 	public void setAllVariables(ArrayList<Variable> allVariables) {
@@ -82,17 +81,17 @@ public class SearchVars {
 //	}
 	
 	/**
-	 * @param SearchVarsTerm The String term you are SearchVarsing for in the variables
+	 * @param searchTerm The String term you are searching for in the variables
 	 * @return variables An array list of variables
 	 */
-	public ArrayList<Variable> SearchVarsF(String SearchVarsTerm) {
+	public ArrayList<Variable> SearchVarsF(String searchTerm) {
 		int fsize = allVariables.size(); //size of allVariable ArrayList
 		String currentTag;
 		for(int i=0; i<fsize; i++) { // loop through variables
 			int tsize = allVariables.get(i).getTagSize(); //size of tag ArrayList
 			for(int j=0; j<tsize; j++) { // loop through tags
 				currentTag = allVariables.get(i).getTag(j);    	
-				if(SearchVarsTerm.equals(currentTag)) {
+				if(searchTerm.equals(currentTag)) {
 					this.variables.add(allVariables.get(i));
 				}
 			}
@@ -146,7 +145,7 @@ public class SearchVars {
 //		someVariables.add(newFormula3); // 8x^5
 //			
 //		
-//		System.out.println("This is the variable we found by SearchVarsing for 'mass':");
+//		System.out.println("This is the variable we found by searching for 'mass':");
 //		
 //		SearchVars SearchVarsObject = new SearchVars(someVariables);
 //		ArrayList<Formula> somelist = SearchVarsObject.SearchVarsF("mass");
