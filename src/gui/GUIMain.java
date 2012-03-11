@@ -48,7 +48,7 @@ public class GUIMain {
 	private static Point point = new Point();
 
 	// Declare our private variables
-	private JFrame frame;
+	public static JFrame frame;
 	private NewtonsToolboxPanel panel;
 
 	// Dynamic content panel
@@ -290,7 +290,7 @@ public class GUIMain {
 	}
 
 	/* Calls updateUI on all sub-components of the JFrame */
-	private void updateUI() {
+	public static void updateUI() {
 		SwingUtilities.updateComponentTreeUI(frame);
 	}
 
