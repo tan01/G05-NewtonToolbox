@@ -1,8 +1,5 @@
 package gui;
-import gui.GUIMain.NewtonsToolboxPanel;
-
 import javax.swing.*;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -20,23 +17,23 @@ import java.awt.event.WindowAdapter;
 
 
 /**
- * Another GUI to learn a bit about gui making,
- * and to make a slightly different way to format
- * what we want in our GUI
- * 
- * @author May Camp 
+ * GUIPrint
+ * Prints all formulas in database. I guess.
+ * @author Jonathan Tan
+ *
  */
 //Forms = Formulas
 public class GUIPrint extends JPanel{
-  
-  private static final long serialVersionUID = 70326229467967L;
-	private NewtonsToolboxPanel topPanel;
-	private NewtonsToolboxPanel middlePanel;
-	private NewtonsToolboxPanel bottomPanel;
-	
-	private JScrollPane scroller;
-  JTextArea searchResults = new JTextArea(25,57);
-
-	
-	
+	JTextArea infoField = new JTextArea(27,57);
+	public GUIPrint(){
+	infoField.setLineWrap(true);
+	infoField.setWrapStyleWord(true);
+	infoField.setEditable(false);
+	String stringOfFormulas = "";
+	for(int i=0; i<GUIMain.FORMULAS.size();i++) {
+		stringOfFormulas = stringOfFormulas + GUIMain.FORMULAS.get(i).allInfoToString() + "\n \n";
+	}
+	infoField.setText(stringOfFormulas);
+	add(infoField);
+	}
 }
