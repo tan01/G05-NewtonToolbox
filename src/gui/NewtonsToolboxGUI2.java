@@ -12,6 +12,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
@@ -48,8 +50,8 @@ public class NewtonsToolboxGUI2{
 	private NewtonsToolboxPanel bottomPanel;
 	
 	//search bar
-	//JTextField searchBar = new JTextField(50);
-	JTextArea searchBar = new JTextArea(1,50);
+	JTextField searchBar = new JTextField(50);
+	//JTextArea searchBar = new JTextArea(1,50);
 	
 	JTextArea searchResults = new JTextArea(20,57);
 	private JButton searchButton = new JButton("Search");
@@ -74,6 +76,16 @@ public class NewtonsToolboxGUI2{
 		
 		
 		//need searchBar action listener
+		searchBar.addKeyListener(
+				new KeyAdapter(){
+					public void keyPressed(KeyEvent key){
+						if(key.getKeyCode()==KeyEvent.VK_ENTER){
+							printSearchToTextArea();
+						}
+					}
+				}
+				);
+		
 		topPanel.add(searchBar);
 		topPanel.add(searchButton);
 		
@@ -90,6 +102,27 @@ public class NewtonsToolboxGUI2{
 		
 		
 	}
+	
+	//THIS SHOULD BE IN THE GUISEARCH MODULE
+	public void printSearchToTextArea(){
+		String userInput = searchBar.getText();
+		FormulaDatabase defaultFormulas = (FormulaDatabase)Saver.loadForms();
+		Search searchObject = new Search(defaultFormulas);
+		ArrayList<Formula> foundFormulas = searchObject.searchF(userInput);
+		
+		String stringOfFormulas = "";
+		searchResults.setLineWrap(true);
+		for(int i=0; i<foundFormulas.size();i++) {
+			stringOfFormulas = stringOfFormulas + foundFormulas.get(i).allInfoToString() + "\n \n";
+		}
+		
+		searchResults.setText("You searched for: " + userInput + "\n" +
+				"Found " + foundFormulas.size() + " formulas:\n\n" +
+				stringOfFormulas);
+		//Search is done, clears the search bar.
+		searchBar.setText("");
+	}
+	
 	public class NewtonsToolboxPanel extends JPanel {
 		// Included to suppress Eclipse Warning
     	private static final long serialVersionUID = 1L;
@@ -101,22 +134,7 @@ public class NewtonsToolboxGUI2{
     //Button Listener Classes:
     class searchButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			String userInput = searchBar.getText();
-			FormulaDatabase defaultFormulas = (FormulaDatabase)Saver.loadForms();
-			Search searchObject = new Search(defaultFormulas);
-			ArrayList<Formula> foundFormulas = searchObject.searchF(userInput);
-			
-			String oldStringOfFormulas = foundFormulas.toString();
-			
-			String stringOfFormulas = "";
-			searchResults.setLineWrap(true);
-			for(int i=0; i<foundFormulas.size();i++) {
-				stringOfFormulas = stringOfFormulas + foundFormulas.get(i).allInfoToString() + "\n \n";
-			}
-			
-			searchResults.setText("You searched for: " + userInput + "\n" +
-					"Found " + foundFormulas.size() + " formulas:\n\n" +
-					stringOfFormulas);
+			printSearchToTextArea();
 		}
 	}
     

@@ -65,19 +65,19 @@ public class NewtonsToolboxGui {
 	    	JPanel quitPanel = new JPanel(new BorderLayout());
 	    	quitPanel.setOpaque(false);
 	    	quitPanel.setBounds(780,50,50,25);
-	    	
+
 	    	JButton quitButton = new JButton("x");
 	    	quitButton.addActionListener(new quitListener());
-	    		
+
 	    	quitPanel.add(quitButton);
 	    	panel.add(quitPanel);
-	    	
+
 	    	//Minimize button
 	    	JPanel minimizePanel = new JPanel(new BorderLayout());
 	    	minimizePanel.setOpaque(false);
 	    	//I know it's too small right now, I'll fix it later.
 	    	minimizePanel.setBounds(755,50,25,25);
-	    	
+
 	    	JButton minimizeButton = new JButton("_");
 	    	minimizeButton.addActionListener(new minimizeListener());
 	    		
