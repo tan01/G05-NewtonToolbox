@@ -110,13 +110,14 @@ public class GUISearch extends JPanel{
 		searchResults.setText("You searched for: " + userInput + "\n" +
 				"Found " + foundFormulas.size() + " formulas:\n\n" +
 				stringOfFormulas);
-		//Search is done, clears the search bar.
+		//Search is done, clears the search bar.6352
+		
 		searchBar.setText("");
 	}
 	
 	public class NewtonsToolboxPanel extends JPanel {
 		// Included to suppress Eclipse Warning
-    	private static final long serialVersionUID = 1L;
+    	private static final long serialVersionUID = 5135127L;
 
     	
 

@@ -24,6 +24,7 @@ public class VariableDatabase extends ArrayList<Variable> implements Serializabl
    * @param Var the variable to be added to the database
    */
   public void addVariable(Variable Var){
+    this.ensureCapacity(this.size() + 1);
     this.add(Var);
   }
   
