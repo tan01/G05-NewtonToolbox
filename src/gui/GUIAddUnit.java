@@ -1,88 +1,129 @@
 package gui;
-import javax.swing.*;
+import internalformatting.Formula;
+
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-
-//for textbox?
-import java.awt.TextArea;
-import java.awt.Color;
-import java.awt.Font;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowAdapter;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ScrollPaneConstants;
+
+import search.Search;
+import storage.FormulaDatabase;
+import storage.Saver;
 
 /**
- * Another GUI to learn a bit about gui making,
- * and to make a slightly different way to format
- * what we want in our GUI
- * 
+ * GUIAddUnit used to search for formulas from the formula database * 
  * @author May Camp
- *
  */
 //Forms = Formulas
-public class GUIAddUnit {
-	private JFrame frame;
+public class GUIAddUnit extends JPanel{
+	private static final long serialVersionUID = 9044967744683200942L;
 	private NewtonsToolboxPanel topPanel;
 	private NewtonsToolboxPanel middlePanel;
-	private NewtonsToolboxPanel bottomPanel;
-	
+
 	//search bar
-	//JTextField searchBar = new JTextField(50);
-	JTextArea searchBar = new JTextArea(1,50);
-	
-	JTextArea searchResults = new JTextArea(20,57);
+	JTextField nameField = new JTextField(50);
+	JTextField formatField = new JTextField(50);
+	JTextArea infoTextArea = new JTextArea(5,50);
+	JTextField tagsField = new JTextField(50);
 
-	private JButton searchFormsButton = new JButton("Search Formulas");
-	private JButton printFormsButton = new JButton("Print Formulas");
-	private JButton solveFormsButton = new JButton("Solve Formulas");
-	private JButton addFormsButton = new JButton("Add Formulas");
-	
-	public void go() {
-		frame = new JFrame("Newton's Toolbox");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(720,480);
-		
+	private JScrollPane scroller;
+	private JLabel nameLabel;
+	private JLabel formatLabel;
+	private JLabel infoLabel;
+	private JLabel tagsLabel;
+	private JButton addUnitButton = new JButton("Add Unit");
 
+	public GUIAddUnit() {
+		setSize(720,480);
+
+		//panels
 		topPanel = new NewtonsToolboxPanel();
 		middlePanel = new NewtonsToolboxPanel();
-		bottomPanel = new NewtonsToolboxPanel();
-	
-		frame.getContentPane().add(BorderLayout.NORTH, topPanel);
-		frame.getContentPane().add(BorderLayout.CENTER, middlePanel);
-		frame.getContentPane().add(BorderLayout.SOUTH, bottomPanel);
-		
-		
-		//need searchBar action listener
 
-		
-		middlePanel.add(searchResults);
-		
-		bottomPanel.add(searchFormsButton);
-		bottomPanel.add(printFormsButton);
-		bottomPanel.add(solveFormsButton);
-		bottomPanel.add(addFormsButton);
-		
-		frame.setVisible(true);
+		//wrap words and lines and make sure you can't edit it
+		infoTextArea.setLineWrap(true);
+		infoTextArea.setWrapStyleWord(true);
+		infoTextArea.setEditable(false);
+
+		//scroller
+		scroller = new JScrollPane(infoTextArea);
+		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+
+		add(BorderLayout.NORTH, topPanel);
+		add(BorderLayout.CENTER, middlePanel);
+
+
+		//need searchBar action listener
+//		searchBar.addKeyListener(
+//				new KeyAdapter(){
+//					public void keyPressed(KeyEvent key){
+//						if(key.getKeyCode()==KeyEvent.VK_ENTER){
+//							printSearchToTextArea();
+//						}
+//					}
+//				}
+//				);
+
+		topPanel.add(nameLabel);
+		topPanel.add(nameField);
+		topPanel.add(formatLabel);
+		topPanel.add(formatField);
+		topPanel.add(infoLabel);
+		topPanel.add(scroller);//infoTextArea is inside scroller
+		topPanel.add(tagsLabel);
+		topPanel.add(tagsField);
+
+		topPanel.add(addUnitButton);
+
+		middlePanel.add(scroller);
+
+
+//		searchButton.addActionListener(new searchButtonListener());
+
+
 	}
+
+	//THIS SHOULD BE IN THE GUIAddUnit MODULE
+//	public void printSearchToTextArea(){
+//		String userInput = searchBar.getText().toLowerCase();
+//		FormulaDatabase defaultFormulas = (FormulaDatabase)Saver.loadForms();
+//		Search searchObject = new Search(defaultFormulas);
+//		ArrayList<Formula> foundFormulas = searchObject.searchF(userInput);
+//
+//		String stringOfFormulas = "";
+//		for(int i=0; i<foundFormulas.size();i++) {
+//			stringOfFormulas = stringOfFormulas + foundFormulas.get(i).allInfoToString() + "\n \n";
+//		}
+//
+//		searchResults.setText("You searched for: " + userInput + "\n" +
+//				"Found " + foundFormulas.size() + " formulas:\n\n" +
+//				stringOfFormulas);
+//		//Search is done, clears the search bar.
+//		searchBar.setText("");
+//	}
+
 	public class NewtonsToolboxPanel extends JPanel {
 		// Included to suppress Eclipse Warning
-    	private static final long serialVersionUID = 1L;
-
-    	
-
+		private static final long serialVersionUID = -3226654973851691774L;
 	}
-	
-	public static void main(String[] args) {
-		
-		GUIAddUnit gui = new GUIAddUnit();
-		gui.go();
+
+	//Button Listener Classes:
+	class addUnitButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			//////////DO STUFF
+		}
 	}
-	
-	
-	
+
+
 }
