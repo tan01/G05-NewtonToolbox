@@ -28,6 +28,7 @@ public class FormulaDatabase extends ArrayList<Formula> implements Serializable
    * @param Form the formula to be added to the database
    */
   public void addFormula(Formula Form){
+    this.ensureCapacity(this.size() + 1);
     this.add(Form);
   }
   

@@ -25,6 +25,7 @@ private static final long serialVersionUID = 7363265L;
    * @param Var the variable to be added to the database
    */
   public void addUnit(Unit Uni){
+    this.ensureCapacity(this.size() + 1);
     this.add(Uni);
   }
   
