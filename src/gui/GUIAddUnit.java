@@ -65,15 +65,15 @@ public class GUIAddUnit extends JPanel{
 
 
 		//need searchBar action listener
-		searchBar.addKeyListener(
-				new KeyAdapter(){
-					public void keyPressed(KeyEvent key){
-						if(key.getKeyCode()==KeyEvent.VK_ENTER){
-							printSearchToTextArea();
-						}
-					}
-				}
-				);
+//		searchBar.addKeyListener(
+//				new KeyAdapter(){
+//					public void keyPressed(KeyEvent key){
+//						if(key.getKeyCode()==KeyEvent.VK_ENTER){
+//							printSearchToTextArea();
+//						}
+//					}
+//				}
+//				);
 
 		topPanel.add(nameLabel);
 		topPanel.add(nameField);
@@ -89,29 +89,29 @@ public class GUIAddUnit extends JPanel{
 		middlePanel.add(scroller);
 
 
-		searchButton.addActionListener(new searchButtonListener());
+//		searchButton.addActionListener(new searchButtonListener());
 
 
 	}
 
 	//THIS SHOULD BE IN THE GUIAddUnit MODULE
-	public void printSearchToTextArea(){
-		String userInput = searchBar.getText().toLowerCase();
-		FormulaDatabase defaultFormulas = (FormulaDatabase)Saver.loadForms();
-		Search searchObject = new Search(defaultFormulas);
-		ArrayList<Formula> foundFormulas = searchObject.searchF(userInput);
-
-		String stringOfFormulas = "";
-		for(int i=0; i<foundFormulas.size();i++) {
-			stringOfFormulas = stringOfFormulas + foundFormulas.get(i).allInfoToString() + "\n \n";
-		}
-
-		searchResults.setText("You searched for: " + userInput + "\n" +
-				"Found " + foundFormulas.size() + " formulas:\n\n" +
-				stringOfFormulas);
-		//Search is done, clears the search bar.
-		searchBar.setText("");
-	}
+//	public void printSearchToTextArea(){
+//		String userInput = searchBar.getText().toLowerCase();
+//		FormulaDatabase defaultFormulas = (FormulaDatabase)Saver.loadForms();
+//		Search searchObject = new Search(defaultFormulas);
+//		ArrayList<Formula> foundFormulas = searchObject.searchF(userInput);
+//
+//		String stringOfFormulas = "";
+//		for(int i=0; i<foundFormulas.size();i++) {
+//			stringOfFormulas = stringOfFormulas + foundFormulas.get(i).allInfoToString() + "\n \n";
+//		}
+//
+//		searchResults.setText("You searched for: " + userInput + "\n" +
+//				"Found " + foundFormulas.size() + " formulas:\n\n" +
+//				stringOfFormulas);
+//		//Search is done, clears the search bar.
+//		searchBar.setText("");
+//	}
 
 	public class NewtonsToolboxPanel extends JPanel {
 		// Included to suppress Eclipse Warning
