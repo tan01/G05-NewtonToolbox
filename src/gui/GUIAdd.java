@@ -1,12 +1,9 @@
 package gui;
 import java.awt.BorderLayout;
-import java.awt.Panel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.SwingUtilities;
 
 /**
  * GUI for displaying a few buttons for adding
@@ -25,8 +22,6 @@ public class GUIAdd extends JPanel {
 	private JButton createUnitButton = new JButton("Create Unit");
 	private JButton createVariableButton = new JButton("Create Variable");
 	private JButton createFormulaButton = new JButton("Create Formula");
-
-	private JPanel panel;
 
 	public GUIAdd() {
 
