@@ -267,21 +267,14 @@ public class GUIMain {
 	    
 	    class printListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
-				JPanel quitPanel2 = new JPanel(new BorderLayout());
-				quitPanel2.setBounds(450,450,50,50);
-		    	JButton quitButton2 = new JButton("x");
-
-		    	quitPanel2.add(BorderLayout.CENTER,quitButton2);
-		    	panel.add(quitPanel2);
-		    	panel.repaint();
-			}
+				changeContent(new GUIPrint());
 		}
 	    
 	    class solveListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				
 				//TEMPORARY
-				changeContent(new GUIAddUnit());
+				changeContent(new GUIAdd());
 			}
 		}
 	    
