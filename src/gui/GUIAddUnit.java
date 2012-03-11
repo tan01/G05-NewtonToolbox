@@ -103,10 +103,10 @@ public class GUIAddUnit extends JPanel{
 //				}
 //				);
 		
-		nameLabel.setText("Name: ");
-		formatLabel.setText("Format: ");
-		infoLabel.setText("Info: ");
-		tagsLabel.setText("Tags(separated by ','): ");
+		nameLabel.setText("Name (like 'meter'):     ");
+		formatLabel.setText("Format (like 'm'):           ");
+		infoLabel.setText("Info:                                     ");
+		tagsLabel.setText("Tags (separated by ','): ");
 
 		namePanel.add(nameLabel);
 		namePanel.add(nameField);
@@ -130,7 +130,7 @@ public class GUIAddUnit extends JPanel{
 		
 
 
-//		searchButton.addActionListener(new searchButtonListener());
+		addUnitButton.addActionListener(new addUnitButtonListener());
 
 
 	}
@@ -173,6 +173,10 @@ public class GUIAddUnit extends JPanel{
 			for(int i=0;i<tagsTemp.length;i++){
 				newUnit.addTag(tagsTemp[i].toLowerCase());
 				}
+			nameField.setText("");
+			formatField.setText("");
+			infoTextArea.setText("");
+			tagsTextArea.setText("");
 		}
 	}
 
