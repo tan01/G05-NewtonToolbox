@@ -121,6 +121,7 @@ public class GUIMain {
 		JToggleButton solveFormsButton = new JToggleButton("Solve Formulas");
 		solveFormsButton.addActionListener(new solveListener());
 		JToggleButton addFormsButton = new JToggleButton("Add Formulas");
+		addFormsButton.addActionListener(new addListener());
 
 		//cpButtons - button group for buttons on the controlPanel.
 		ButtonGroup cpButtons = new ButtonGroup();
@@ -279,8 +280,11 @@ public class GUIMain {
 
 	class solveListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-
-			//TEMPORARY
+		}
+	}
+	
+	class addListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
 			changeContent(new GUIAdd());
 		}
 	}
