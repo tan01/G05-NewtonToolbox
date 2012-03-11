@@ -70,5 +70,42 @@ public class Variable implements Serializable{
 	public String toString() {
 		return var;
 	} // do we need this method?
+	
+	/**
+	 * returns the "tag" at position i in the tags Array list
+	 * @return the tags
+	 * @param i i is the index of the desired tag
+	 */
+	public String getTag(int i)
+	{
+		return tags.getTag(i);
+	}
+
+	public int getTagSize(){
+		return tags.getSize();
+	}
+
+	public String getAllTags(){
+		return tags.returnAllTags();
+	}
+
+	/**
+	 * @param tags the tags to set
+	 */
+	public void addTag(String NewTag)
+	{
+		tags.addTag(NewTag);
+	}
+
+	/**
+	 * prints the formula's name and info (as well as the formula itself) if a neatly formatted way
+	 * (at least it should)
+	 */
+	public void printVariable(){
+		System.out.println("Name: " + this.getVar());
+		System.out.println("Units: " + this.getUnit());
+		System.out.println("Info: " + this.getInfo());
+		System.out.println("Tags: " + this.getAllTags());
+	}
 
 } // class Variable

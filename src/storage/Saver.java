@@ -172,7 +172,7 @@ public class Saver
   public static  UnitDatabase loadUnits(){ //throws IOException{
     UnitDatabase Database = new UnitDatabase(); 
     try{ //looks for an existing ntb file
-      ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/VariableDatabase.ntb"));
+      ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/UnitDatabase.ntb"));
       Database = (UnitDatabase) is.readObject();
 
     } catch(Exception ex){
