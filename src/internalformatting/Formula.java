@@ -99,6 +99,7 @@ public class Formula extends ArrayList<Component> implements Serializable{
 	 * adds a term Object to the formula
 	 */
 	public void addTerm(Component newTerm){
+	  this.ensureCapacity(this.size() + 1);
 		this.add(newTerm);
 	}
 
