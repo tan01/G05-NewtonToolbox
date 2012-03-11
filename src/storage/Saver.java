@@ -16,10 +16,11 @@ import java.io.ObjectOutputStream;
 //import userinterface.CLI;
 
 /**
- * This class saves and loads the formula database throught the process of serialization
+ * This class saves and loads all of our data objects through the process of serialization
  * 
  * @author Clayven Anderson
  *@author May Camp (made ALL the formulas stored)
+ *
  */
 
 
@@ -143,7 +144,63 @@ public class Saver
   }
 	
   
-  
+  /**
+   * Serializes a UnitDatabase object
+   * @param Units a UnitDatabase object
+   */
+  public static void saveUnits(UnitDatabase Units){
+    try{
+      File dir = new File("data");
+      if(dir.exists()== false){
+         dir.mkdir();
+      }
+      File store = new File("data/" ,"UnitDatabase.ntb" );
+      FileOutputStream fs = new FileOutputStream(store);
+      ObjectOutputStream os = new ObjectOutputStream(fs);
+
+      os.writeObject(Units);
+      os.close();
+
+    }catch (IOException ex){
+      ex.printStackTrace();
+    }      
+  }
+/**
+ * Deserializes the UnitDatabase object to recover our Units
+ * @return returns a Deserialized UnitDatabase object
+ */
+  public static  UnitDatabase loadUnits(){ //throws IOException{
+    UnitDatabase Database = new UnitDatabase(); 
+    try{ //looks for an existing ntb file
+      ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/VariableDatabase.ntb"));
+      Database = (UnitDatabase) is.readObject();
+
+    } catch(Exception ex){
+     System.out.println("generating default unit database");//if ntb isn't found; it creates a new one with the main
+      try
+      {
+        generateUnitData();
+        ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/UnitDatabase.ntb"));
+        try
+        {
+          Database = (UnitDatabase) is.readObject();
+        }
+        catch (ClassNotFoundException e)
+        {
+          // TODO Auto-generated catch block
+          e.printStackTrace();
+        }
+      }
+      catch (IOException e)
+      {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+      //CLI.main(null);
+    }
+
+    return Database;
+  }
   
   
   /**
@@ -171,7 +228,7 @@ public class Saver
  * Deserializes a FormulaSheet object to recover a user generated formula sheet
  * @return returns a Deserialized FormulaSheet object
  */
-  public static  FormulaDatabase loadSheet(String name){ //throws IOException{
+  public static  FormulaSheet loadSheet(String name){ //throws IOException{
     FormulaSheet sheet = new FormulaSheet(); 
     try{ //looks for an existing ntb file
       ObjectInputStream is = new ObjectInputStream(new FileInputStream("data/" + name +".ntb"));
@@ -184,15 +241,10 @@ public class Saver
     return sheet;
   }
   
-  
-  
-  
-  
-  
-  
-  
-  
-  
+  /**
+   * generates a new VariableDatabase in case on is not found
+   * @throws IOException
+   */
 	public static void generateVarData() throws IOException{
 	  
 	  Variable v_av = new Variable("v_(av)");
@@ -235,6 +287,77 @@ public class Saver
     saveVars(VBase);
 	}
 	
+	/**
+	 * generates a default unit Database in case on is not found
+	 * @throws IOException
+	 */
+	public static void generateUnitData() throws IOException{
+	  
+////new units
+   Unit gram = new Unit("gram");
+   Unit kilogram = new Unit("kilogram");
+   Unit meter = new Unit("meter");
+   Unit liter = new Unit("liter");
+   Unit second = new Unit("second");
+   Unit meterPerSecond = new Unit("meter per second");
+   Unit meterPerSecondSquared = new Unit("meter per second squared");
+   Unit secondSquared = new Unit("second squared");
+   Unit newton = new Unit("newton");
+   
+   //unit - gram
+   gram.setInfo("The units of mass.");
+   gram.setTypicalForm("g");
+   
+   //unit - kilogram
+   kilogram.setInfo("The units of mass.");
+   kilogram.setTypicalForm("kg");
+   
+   //unit - meter
+   meter.setInfo("The units of length.");
+   meter.setTypicalForm("m");
+   
+   //unit - liter
+   liter.setInfo("The units of volume.");
+   liter.setTypicalForm("l");
+   
+   //unit - second
+   second.setInfo("The units of time.");
+   second.setTypicalForm("s");
+   
+   //unit - meter per second
+   meterPerSecond.setInfo("The units of velocity.");
+   meterPerSecond.setTypicalForm("m/s");
+   
+   //unit - meter per second squared
+   meterPerSecondSquared.setInfo("The units of acceleration.");
+   meterPerSecondSquared.setTypicalForm("m/s^2");
+   
+   //unit - second squared
+   secondSquared.setInfo("The units of time squared.");
+   secondSquared.setTypicalForm("s^2");
+   
+   //unit - newton
+   newton.setInfo("The units of force. Can also be written as kg * m / s^2");
+   newton.setTypicalForm("N");
+	  
+   UnitDatabase UBase = new UnitDatabase();
+   
+   UBase.addUnit(gram);
+   UBase.addUnit(kilogram);
+   UBase.addUnit(liter);
+   UBase.addUnit(meter);
+   UBase.addUnit(meterPerSecond);
+   UBase.addUnit(meterPerSecondSquared);
+   UBase.addUnit(secondSquared);
+   UBase.addUnit(newton);
+   
+   saveUnits(UBase);
+	}
+	
+	/**
+	 * generate a default formulaDatabase in case one is not found
+	 * @throws IOException
+	 */
 	public static void generateFormData() throws IOException{
 
 		////May's default formulas
@@ -501,6 +624,7 @@ public class Saver
 	public static void main(String args[]){
 	  loadVars();
 	  loadForms();
+	  loadUnits();
 	  loadSheet("doesnt exist");
 	  
 	}

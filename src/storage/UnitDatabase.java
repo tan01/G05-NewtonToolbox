@@ -1,20 +1,21 @@
 package storage;
 
-import internalformatting.Variable;
+import internalformatting.Unit;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+
 
 /**
  * An arraylist of unit objects that serves as a database for NewtonsToolbox
  * @author Clayven Anderson
  * 
  */
-public class VariableDatabase extends ArrayList<Variable> implements Serializable
+public class UnitDatabase extends ArrayList<Unit> implements Serializable
 {
-  private static final long serialVersionUID = 6746579L;
+private static final long serialVersionUID = 7363265L;
   
-  public VariableDatabase(){
+  public UnitDatabase(){
     super(); //creates an Arraylist of capacity 1
     this.clear();
   }
@@ -23,24 +24,24 @@ public class VariableDatabase extends ArrayList<Variable> implements Serializabl
    * Adds a Variable object to Arraylist of Variables
    * @param Var the variable to be added to the database
    */
-  public void addVariable(Variable Var){
-    this.add(Var);
+  public void addUnit(Unit Uni){
+    this.add(Uni);
   }
   
   /**
-   * returns a Variable at a specified index
-   * @param i index of the desired variable
+   * returns a Unit at a specified index
+   * @param i index of the desired unit
    * @return the for variable located at index i
    */
-  public Variable getVariable (int i){
+  public Unit getUnit (int i){
     return this.get(i);
   }
   
   /**
-   * removes the variable at  index i
-   * @param i the index of the variable to be removed
+   * removes the unit at  index i
+   * @param i the index of the unit to be removed
    */
-  public void rmVariable(int i){
+  public void rmUnit(int i){
     this.remove(i);
   }
   /**

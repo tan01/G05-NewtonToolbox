@@ -43,6 +43,8 @@ public class GUIMain {
 		private JFrame frame;
 		private NewtonsToolboxPanel panel;
 	  
+		// Dynamic content panel
+		private JPanel contentPanel = new JPanel();
 		
 		/**
 		 * Creates the JFrame, and the JPanel
@@ -58,13 +60,18 @@ public class GUIMain {
 	    	// Declaring and creating a panel
 	    	panel = new NewtonsToolboxPanel();
 	    	
+	    	//Adds invisible dummy panel;
+	    	contentPanel.setOpaque(false);
+	    	contentPanel.setBounds(0,0,0,0);
+	    	panel.add(contentPanel);
+	    	
 	    	//THIS IS HOW YOU ADD BUTTONS TO THE BACKGROUND PANEL
 	    	//Create a new panel
 	    	//Use the setBounds(int x, int y, int width, int height); method to set the size of the panel
 	    	//Then append it to the main panel panel.
 	    	JPanel quitPanel = new JPanel(new BorderLayout());
 	    	quitPanel.setOpaque(false);
-	    	quitPanel.setBounds(780,50,50,25);
+	    	quitPanel.setBounds(830,20,50,25);
 
 	    	JButton quitButton = new JButton("x");
 	    	quitButton.addActionListener(new quitListener());
@@ -76,7 +83,7 @@ public class GUIMain {
 	    	JPanel minimizePanel = new JPanel(new BorderLayout());
 	    	minimizePanel.setOpaque(false);
 	    	//I know it's too small right now, I'll fix it later.
-	    	minimizePanel.setBounds(755,50,25,25);
+	    	minimizePanel.setBounds(805,20,25,25);
 
 	    	JButton minimizeButton = new JButton("_");
 	    	minimizeButton.addActionListener(new minimizeListener());
@@ -87,13 +94,14 @@ public class GUIMain {
 	    	//controlPanel - main controls
 	    	JPanel controlPanel = new JPanel();
 	    	controlPanel.setOpaque(false);
-	    	controlPanel.setBounds(130,490,600,35);
+	    	controlPanel.setBounds(130,520,600,35);
 	    	panel.add(controlPanel);
 	    	
 	    	//controlPanel - buttons
-	    	JButton searchButton = new JButton("Search");
 	    	JButton searchFormsButton = new JButton("Search Formulas");
+	    	searchFormsButton.addActionListener(new searchListener());
 	    	JButton printFormsButton = new JButton("Print Formulas");
+	    	printFormsButton.addActionListener(new printListener());
 	    	JButton solveFormsButton = new JButton("Solve Formulas");
 	    	JButton addFormsButton = new JButton("Add Formulas");
 	    	
@@ -108,8 +116,8 @@ public class GUIMain {
 	    	//SHAPE
 	    	Quadrilateral blueQuadrilateral = new Quadrilateral();
     		blueQuadrilateral.addPoint((int)(0.03125*frame.getWidth()), (int)(0.06250*frame.getHeight())); //  1/32(W) &  1/16(H)
-    		blueQuadrilateral.addPoint((int)(0.96875*frame.getWidth()), (int)(0.03125*frame.getHeight())); // 31/32(W) &  1/32(H)
-    		blueQuadrilateral.addPoint((int)(0.90625*frame.getWidth()), (int)(0.96875*frame.getHeight())); // 29/32(W) & 31/32(H)
+    		blueQuadrilateral.addPoint((int)(frame.getWidth()),         (int)(0)); // 32/32(W) &  0/32(H)
+    		blueQuadrilateral.addPoint((int)(0.90625*frame.getWidth()), (int)(frame.getHeight())); // 29/32(W) & 32/32(H)
     		blueQuadrilateral.addPoint((int)(0.06250*frame.getWidth()), (int)(0.93750*frame.getHeight())); //  1/16(W) & 15/16(H)
     		
     		AWTUtilities.setWindowShape(frame, blueQuadrilateral);
@@ -135,6 +143,14 @@ public class GUIMain {
 	    	frame.setVisible(true);	
 	    	
 	    	
+	    }
+	    
+	    public void changeContent (JPanel newPanel){
+	    	panel.remove(contentPanel);
+	    	contentPanel = newPanel;
+	    	contentPanel.setBounds(80,60,720,480);
+	    	panel.add(contentPanel);
+	    	panel.repaint();
 	    }
 	    
 	    /**
@@ -166,13 +182,23 @@ public class GUIMain {
 	    		// Draws the Outer Blue Quadrilateral
 	    		Quadrilateral blueQuadrilateral = new Quadrilateral();
 	    		blueQuadrilateral.addPoint((int)(0.03125*this.getWidth()), (int)(0.06250*this.getHeight())); //  1/32(W) &  1/16(H)
-	    		blueQuadrilateral.addPoint((int)(0.96875*this.getWidth()), (int)(0.03125*this.getHeight())); // 31/32(W) &  1/32(H)
-	    		blueQuadrilateral.addPoint((int)(0.90625*this.getWidth()), (int)(0.96875*this.getHeight())); // 29/32(W) & 31/32(H)
+	    		blueQuadrilateral.addPoint((int)(this.getWidth()),         (int)(0)); // 32/32(W) &  1/32(H)
+	    		blueQuadrilateral.addPoint((int)(0.90625*this.getWidth()), (int)(this.getHeight())); // 29/32(W) & 32/32(H)
 	    		blueQuadrilateral.addPoint((int)(0.06250*this.getWidth()), (int)(0.93750*this.getHeight())); //  1/16(W) & 15/16(H)
 	    		g2d.setColor(new Color(0x3399CC));	// Web-safe Color. Can change if you guys don't like it.
 	    		g2d.drawPolygon(blueQuadrilateral);
 	    		g2d.fillPolygon(blueQuadrilateral);
 	   
+	    		//Scratch code
+//	    		Quadrilateral blueQuadrilateral = new Quadrilateral();
+//	    		blueQuadrilateral.addPoint((int)(0.03125*this.getWidth()), (int)(0.06250*this.getHeight())); //  1/32(W) &  1/16(H)
+//	    		blueQuadrilateral.addPoint((int)(0.96875*this.getWidth()), (int)(0.03125*this.getHeight())); // 31/32(W) &  1/32(H)
+//	    		blueQuadrilateral.addPoint((int)(0.90625*this.getWidth()), (int)(0.96875*this.getHeight())); // 29/32(W) & 31/32(H)
+//	    		blueQuadrilateral.addPoint((int)(0.06250*this.getWidth()), (int)(0.93750*this.getHeight())); //  1/16(W) & 15/16(H)
+//	    		g2d.setColor(new Color(0x3399CC));	// Web-safe Color. Can change if you guys don't like it.
+//	    		g2d.drawPolygon(blueQuadrilateral);
+//	    		g2d.fillPolygon(blueQuadrilateral);
+	    		
 //	    		// Draws the Inner Lighter Blue Quadrilateral
 //	    		Quadrilateral lighterBlueQuadrilateral = new Quadrilateral();
 //	    		lighterBlueQuadrilateral.addPoint((int)(0.062500*this.getWidth()), (int)(0.093750*this.getHeight())); //  1/32(W) & 15/16(H)
@@ -202,6 +228,25 @@ public class GUIMain {
 	    class minimizeListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				frame.setState(Frame.ICONIFIED);
+			}
+		}
+	    
+	    class searchListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				changeContent(new GUISearch());
+			}
+		}
+	    
+	    class printListener implements ActionListener {
+			public void actionPerformed(ActionEvent e) {
+				JPanel quitPanel2 = new JPanel(new BorderLayout());
+		    	quitPanel2.setOpaque(false);
+
+		    	JButton quitButton = new JButton("x");
+		    	quitButton.addActionListener(new quitListener());
+
+		    	quitPanel2.add(quitButton);
+		    	changeContent(quitPanel2);
 			}
 		}
 	    
