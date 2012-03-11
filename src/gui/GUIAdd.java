@@ -52,6 +52,7 @@ public class GUIAdd extends JPanel {
 	class createUnitButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			middlePanel.removeAll();
+			GUIMain.updateUI();
 			middlePanel.add(new GUIAddUnit());
 		}
 	}
@@ -59,6 +60,7 @@ public class GUIAdd extends JPanel {
 	class createVariableButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			middlePanel.removeAll();
+			GUIMain.updateUI();
 			middlePanel.add(new GUIAddVariable());
 		}
 	}
@@ -66,6 +68,7 @@ public class GUIAdd extends JPanel {
 	class createFormulaButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			middlePanel.removeAll();
+			GUIMain.updateUI();
 			middlePanel.add(new GUIAddFormula());
 		}
 	}
