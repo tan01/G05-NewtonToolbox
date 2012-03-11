@@ -17,6 +17,7 @@ public class SearchVars {
 	private ArrayList<Variable> allVariables = new ArrayList<Variable>();
 	
 	private ArrayList<Variable> variables = new ArrayList<Variable>();
+	
 	/**
 	 * Constructor
 	 * @param allVariables An ArrayList of all the stored variables to search through
@@ -49,7 +50,7 @@ public class SearchVars {
 //		this.SearchVarsTerm = SearchVarsTerm;
 //	}
 	/**
-	 * method to change the ArrayLise of variables you are searching in
+	 * method to change the ArrayList of variables you are searching in
 	 * @param allVariables
 	 */
 	public void setAllVariables(ArrayList<Variable> allVariables) {
@@ -84,7 +85,7 @@ public class SearchVars {
 	 * @param searchTerm The String term you are searching for in the variables
 	 * @return variables An array list of variables
 	 */
-	public ArrayList<Variable> SearchVarsF(String searchTerm) {
+	public ArrayList<Variable> SearchV(String searchTerm) {
 		int fsize = allVariables.size(); //size of allVariable ArrayList
 		String currentTag;
 		for(int i=0; i<fsize; i++) { // loop through variables
