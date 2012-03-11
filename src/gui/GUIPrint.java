@@ -1,5 +1,8 @@
 package gui;
+import gui.GUIMain.NewtonsToolboxPanel;
+
 import javax.swing.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -21,68 +24,19 @@ import java.awt.event.WindowAdapter;
  * and to make a slightly different way to format
  * what we want in our GUI
  * 
- * @author May Camp
- *
+ * @author May Camp 
  */
 //Forms = Formulas
-public class GUIPrint {
-	private JFrame frame;
+public class GUIPrint extends JPanel{
+  
+  private static final long serialVersionUID = 70326229467967L;
 	private NewtonsToolboxPanel topPanel;
 	private NewtonsToolboxPanel middlePanel;
 	private NewtonsToolboxPanel bottomPanel;
 	
-	//search bar
-	//JTextField searchBar = new JTextField(50);
-	JTextArea searchBar = new JTextArea(1,50);
-	
-	JTextArea searchResults = new JTextArea(20,57);
+	private JScrollPane scroller;
+  JTextArea searchResults = new JTextArea(25,57);
 
-	private JButton searchFormsButton = new JButton("Search Formulas");
-	private JButton printFormsButton = new JButton("Print Formulas");
-	private JButton solveFormsButton = new JButton("Solve Formulas");
-	private JButton addFormsButton = new JButton("Add Formulas");
-	
-	public void go() {
-		frame = new JFrame("Newton's Toolbox");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(720,480);
-		
-
-		topPanel = new NewtonsToolboxPanel();
-		middlePanel = new NewtonsToolboxPanel();
-		bottomPanel = new NewtonsToolboxPanel();
-	
-		frame.getContentPane().add(BorderLayout.NORTH, topPanel);
-		frame.getContentPane().add(BorderLayout.CENTER, middlePanel);
-		frame.getContentPane().add(BorderLayout.SOUTH, bottomPanel);
-		
-		
-		//need searchBar action listener
-
-		
-		middlePanel.add(searchResults);
-		
-		bottomPanel.add(searchFormsButton);
-		bottomPanel.add(printFormsButton);
-		bottomPanel.add(solveFormsButton);
-		bottomPanel.add(addFormsButton);
-		
-		frame.setVisible(true);
-	}
-	public class NewtonsToolboxPanel extends JPanel {
-		// Included to suppress Eclipse Warning
-    	private static final long serialVersionUID = 1L;
-
-    	
-
-	}
-	
-	public static void main(String[] args) {
-		
-		GUIPrint gui = new GUIPrint();
-		gui.go();
-	}
-	
 	
 	
 }
