@@ -53,7 +53,7 @@ public class GUIMain {
 	    	
 	    	// Initialize our frame and set the size
 	    	frame = new JFrame("Newton's Toolbox");
-	    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE) ;
+	    	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    	frame.setSize(900,600);
 	    	frame.setUndecorated(true);
 	    	
@@ -62,8 +62,10 @@ public class GUIMain {
 	    	
 	    	//Adds invisible dummy panel;
 	    	contentPanel.setOpaque(false);
-	    	contentPanel.setBounds(0,0,0,0);
 	    	panel.add(contentPanel);
+	    	
+	    	//Default menu state
+	    	//changeContent(new GUISearch());
 	    	
 	    	//THIS IS HOW YOU ADD BUTTONS TO THE BACKGROUND PANEL
 	    	//Create a new panel
@@ -148,9 +150,11 @@ public class GUIMain {
 	    public void changeContent (JPanel newPanel){
 	    	panel.remove(contentPanel);
 	    	contentPanel = newPanel;
+	    	System.out.println("Components changed: "+contentPanel.getComponentCount());
 	    	contentPanel.setBounds(80,60,720,480);
 	    	panel.add(contentPanel);
-	    	panel.repaint();
+	    	updateUI();
+	    	
 	    }
 	    
 	    /**
@@ -216,7 +220,7 @@ public class GUIMain {
 //	    				     (int)(0.6015625*this.getWidth()), (int)(0.1015625*this.getHeight())); // 77/128(W) & 13/128(H)
 	    	}
 	    	
-	    }
+	    }//NewtonToolBoxPanel Delimit
 	    
 	    //Button Listener Classes:
 	    class quitListener implements ActionListener {
@@ -240,14 +244,18 @@ public class GUIMain {
 	    class printListener implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				JPanel quitPanel2 = new JPanel(new BorderLayout());
-		    	quitPanel2.setOpaque(false);
+				quitPanel2.setBounds(450,450,50,50);
+		    	JButton quitButton2 = new JButton("x");
 
-		    	JButton quitButton = new JButton("x");
-		    	quitButton.addActionListener(new quitListener());
-
-		    	quitPanel2.add(quitButton);
-		    	changeContent(quitPanel2);
+		    	quitPanel2.add(BorderLayout.CENTER,quitButton2);
+		    	panel.add(quitPanel2);
+		    	panel.repaint();
 			}
+		}
+	    
+	    /* Calls updateUI on all sub-components of the JFrame */
+		private void updateUI() {
+			SwingUtilities.updateComponentTreeUI(frame);
 		}
 	    
 	    // I'm sticking this Main here so I can Ctrl+F11 and view what's drawn

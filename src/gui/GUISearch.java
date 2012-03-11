@@ -61,16 +61,15 @@ public class GUISearch extends JPanel{
 	private JButton addFormsButton = new JButton("Add Formulas");
 	
 	public GUISearch() {
+		//setOpaque(false);
 		setSize(720,480);
 		
 
 		topPanel = new NewtonsToolboxPanel();
 		middlePanel = new NewtonsToolboxPanel();
-		bottomPanel = new NewtonsToolboxPanel();
 	
 		add(BorderLayout.NORTH, topPanel);
 		add(BorderLayout.CENTER, middlePanel);
-		add(BorderLayout.SOUTH, bottomPanel);
 		
 		
 		//need searchBar action listener
@@ -88,11 +87,6 @@ public class GUISearch extends JPanel{
 		topPanel.add(searchButton);
 		
 		middlePanel.add(searchResults);
-		
-		bottomPanel.add(searchFormsButton);
-		bottomPanel.add(printFormsButton);
-		bottomPanel.add(solveFormsButton);
-		bottomPanel.add(addFormsButton);
 		
 		
 		searchButton.addActionListener(new searchButtonListener());
