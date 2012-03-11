@@ -85,7 +85,7 @@ public class GUISearch extends JPanel{
 	//THIS SHOULD BE IN THE GUISEARCH MODULE
 	public void printSearchToTextArea(){
 		String userInput = searchBar.getText().toLowerCase();
-		FormulaDatabase defaultFormulas = (FormulaDatabase)Saver.loadForms();
+		FormulaDatabase defaultFormulas = GUIMain.FORMULAS;
 		Search searchObject = new Search(defaultFormulas);
 		ArrayList<Formula> foundFormulas = searchObject.searchF(userInput);
 

@@ -41,9 +41,12 @@ public class GUIAddUnit extends JPanel{
 	JTextField nameField = new JTextField(40);
 	JTextField formatField = new JTextField(40);
 	JTextArea infoTextArea = new JTextArea(5,40);
-	JTextField tagsField = new JTextField(40);
+	JTextArea tagsTextArea = new JTextArea(5,40);
 
 	private JScrollPane scroller;
+	private JScrollPane scroller2;
+	
+	
 	private JLabel nameLabel = new JLabel();
 	private JLabel formatLabel = new JLabel();
 	private JLabel infoLabel = new JLabel();
@@ -73,8 +76,20 @@ public class GUIAddUnit extends JPanel{
 		scroller = new JScrollPane(infoTextArea);
 		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		
+		//scroller2
+		scroller2 = new JScrollPane(tagsTextArea);
+		scroller2.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scroller2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		add(BorderLayout.NORTH, topPanel);
+		
+		topPanel.setOpaque(false);
+		namePanel.setOpaque(false);
+		formatPanel.setOpaque(false);
+		infoPanel.setOpaque(false);
+		tagsPanel.setOpaque(false);
+		addUnitButtonPanel.setOpaque(false);
 		
 
 		//need searchBar action listener
@@ -88,10 +103,10 @@ public class GUIAddUnit extends JPanel{
 //				}
 //				);
 		
-		nameLabel.setText("Name: ");
-		formatLabel.setText("Format: ");
-		infoLabel.setText("Info: ");
-		tagsLabel.setText("Tags: ");
+		nameLabel.setText("Name (like 'meter'):     ");
+		formatLabel.setText("Format (like 'm'):           ");
+		infoLabel.setText("Info:                                     ");
+		tagsLabel.setText("Tags (separated by ','): ");
 
 		namePanel.add(nameLabel);
 		namePanel.add(nameField);
@@ -103,7 +118,7 @@ public class GUIAddUnit extends JPanel{
 		infoPanel.add(scroller);//infoTextArea is inside scroller
 		
 		tagsPanel.add(tagsLabel);
-		tagsPanel.add(tagsField);
+		tagsPanel.add(scroller2);
 
 		addUnitButtonPanel.add(addUnitButton);
 		
@@ -115,7 +130,7 @@ public class GUIAddUnit extends JPanel{
 		
 
 
-//		searchButton.addActionListener(new searchButtonListener());
+		addUnitButton.addActionListener(new addUnitButtonListener());
 
 
 	}
@@ -147,18 +162,21 @@ public class GUIAddUnit extends JPanel{
 	//Button Listener Classes:
 	class addUnitButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			//////////DO STUFF
 			String unitName = nameField.getText();
 			String unitFormat = formatField.getText();
 			String unitInfo = infoTextArea.getText();
-			
-			Tags unitTags = new Tags();
-			
+			String[] tagsTemp = tagsTextArea.getText().split(",");
 			
 			Unit newUnit = new Unit(unitName);
 			newUnit.setTypicalForm(unitFormat);
 			newUnit.setInfo(unitInfo);
-			
+			for(int i=0;i<tagsTemp.length;i++){
+				newUnit.addTag(tagsTemp[i].toLowerCase());
+				}
+			nameField.setText("");
+			formatField.setText("");
+			infoTextArea.setText("");
+			tagsTextArea.setText("");
 		}
 	}
 
