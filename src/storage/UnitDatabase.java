@@ -5,6 +5,12 @@ import internalformatting.Unit;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+
+/**
+ * An arraylist of unit objects that serves as a database for NewtonsToolbox
+ * @author Clayven Anderson
+ * 
+ */
 public class UnitDatabase extends ArrayList<Unit> implements Serializable
 {
 private static final long serialVersionUID = 7363265L;

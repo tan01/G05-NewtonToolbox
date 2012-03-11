@@ -16,10 +16,11 @@ import java.io.ObjectOutputStream;
 //import userinterface.CLI;
 
 /**
- * This class saves and loads the formula database throught the process of serialization
+ * This class saves and loads all of our data objects through the process of serialization
  * 
  * @author Clayven Anderson
  *@author May Camp (made ALL the formulas stored)
+ *
  */
 
 
