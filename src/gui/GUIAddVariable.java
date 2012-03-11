@@ -25,7 +25,7 @@ import java.awt.event.WindowAdapter;
  *
  */
 //Forms = Formulas
-public class GUIAddVariable {
+public class GUIAddVariable extends JPanel {
 	private JFrame frame;
 	private NewtonsToolboxPanel topPanel;
 	private NewtonsToolboxPanel middlePanel;

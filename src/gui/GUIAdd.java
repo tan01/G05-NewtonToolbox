@@ -1,5 +1,7 @@
 package gui;
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -34,11 +36,38 @@ public class GUIAdd extends JPanel {
 		middlePanel.add(createVariableButton);
 		middlePanel.add(createFormulaButton);
 		
+		createUnitButton.addActionListener(new createUnitButtonListener());
+		createVariableButton.addActionListener(new createVariableButtonListener());
+		createFormulaButton.addActionListener(new createFormulaButtonListener());
+		
 	}
 	
 	public class NewtonsToolboxPanel extends JPanel {
 		// Included to suppress Eclipse Warning
 		private static final long serialVersionUID = 5110086507916942106L;
+	}
+	
+	// I'll just leave the action listeners like this for now, until
+	// GUI AddUnit, AddVariable, and AddFormula work.
+	class createUnitButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			middlePanel.removeAll();
+			middlePanel.add(new GUIAddUnit());
+		}
+	}
+	
+	class createVariableButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			middlePanel.removeAll();
+			middlePanel.add(new GUIAddVariable());
+		}
+	}
+	
+	class createFormulaButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			middlePanel.removeAll();
+			middlePanel.add(new GUIAddFormula());
+		}
 	}
 	
 } // class GUIAdd
