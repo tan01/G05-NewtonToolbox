@@ -149,9 +149,14 @@ public class GUIMain {
     		        frame.setLocation(p.x + e.getX() - point.x, p.y + e.getY() - point.y);
     		      }
     		    });
-	    	
-	    	// Displays the frame
     		
+    		// Decorations
+    		JLabel titlegraphic = new JLabel(new ImageIcon("img/ntbtitle.png"));
+    		titlegraphic.setBounds(40,50,251,96);
+    		titlegraphic.setVisible(true);
+    		panel.add(titlegraphic);
+    		
+    		// Displays the frame
 	    	frame.setVisible(true);	
 	    	
 	    	
