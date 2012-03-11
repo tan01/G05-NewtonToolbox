@@ -152,6 +152,7 @@ public class GUIMain {
 	    	contentPanel = newPanel;
 	    	System.out.println("Components changed: "+contentPanel.getComponentCount());
 	    	contentPanel.setBounds(80,60,720,480);
+	    	contentPanel.setOpaque(false);
 	    	panel.add(contentPanel);
 	    	updateUI();
 	    	

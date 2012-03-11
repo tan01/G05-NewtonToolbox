@@ -37,7 +37,6 @@ public class GUISearch extends JPanel{
 	private JButton searchButton = new JButton("Search");
 
 	public GUISearch() {
-		setOpaque(false);
 		setSize(720,480);
 
 		//panels
