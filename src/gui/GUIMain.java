@@ -100,18 +100,27 @@ public class GUIMain {
 	    	panel.add(controlPanel);
 	    	
 	    	//controlPanel - buttons
-	    	JButton searchFormsButton = new JButton("Search Formulas");
+	    	JToggleButton searchFormsButton = new JToggleButton("Search Formulas");
 	    	searchFormsButton.addActionListener(new searchListener());
-	    	JButton printFormsButton = new JButton("Print Formulas");
+	    	JToggleButton printFormsButton = new JToggleButton("Print Formulas");
 	    	printFormsButton.addActionListener(new printListener());
-	    	JButton solveFormsButton = new JButton("Solve Formulas");
-	    	JButton addFormsButton = new JButton("Add Formulas");
+	    	JToggleButton solveFormsButton = new JToggleButton("Solve Formulas");
+	    	JToggleButton addFormsButton = new JToggleButton("Add Formulas");
 	    	
-	    	controlPanel.add(searchFormsButton);
+	    	//cpButtons - button group for buttons on the controlPanel.
+	    	ButtonGroup cpButtons = new ButtonGroup();
+	    	
+	    	cpButtons.add(searchFormsButton);
+			cpButtons.add(printFormsButton);
+			cpButtons.add(solveFormsButton);
+			cpButtons.add(addFormsButton);
+			
+			//Adding buttons to controlPanel.
+			controlPanel.add(searchFormsButton);
 			controlPanel.add(printFormsButton);
 			controlPanel.add(solveFormsButton);
 			controlPanel.add(addFormsButton);
-	    	
+			
 	    	// Adding the Border Layout
 	    	frame.getContentPane().add(BorderLayout.CENTER, panel);
 	    	
