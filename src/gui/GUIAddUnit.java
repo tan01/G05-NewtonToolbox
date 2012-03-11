@@ -1,5 +1,7 @@
 package gui;
 import internalformatting.Formula;
+import internalformatting.Tags;
+import internalformatting.Unit;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
@@ -8,6 +10,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,32 +31,43 @@ import storage.Saver;
 public class GUIAddUnit extends JPanel{
 	private static final long serialVersionUID = 9044967744683200942L;
 	private NewtonsToolboxPanel topPanel;
-	private NewtonsToolboxPanel middlePanel;
+	private NewtonsToolboxPanel namePanel;
+	private NewtonsToolboxPanel formatPanel;
+	private NewtonsToolboxPanel infoPanel;
+	private NewtonsToolboxPanel tagsPanel;
+	private NewtonsToolboxPanel addUnitButtonPanel;
 
 	//search bar
-	JTextField nameField = new JTextField(50);
-	JTextField formatField = new JTextField(50);
-	JTextArea infoTextArea = new JTextArea(5,50);
-	JTextField tagsField = new JTextField(50);
+	JTextField nameField = new JTextField(40);
+	JTextField formatField = new JTextField(40);
+	JTextArea infoTextArea = new JTextArea(5,40);
+	JTextField tagsField = new JTextField(40);
 
 	private JScrollPane scroller;
-	private JLabel nameLabel;
-	private JLabel formatLabel;
-	private JLabel infoLabel;
-	private JLabel tagsLabel;
+	private JLabel nameLabel = new JLabel();
+	private JLabel formatLabel = new JLabel();
+	private JLabel infoLabel = new JLabel();
+	private JLabel tagsLabel = new JLabel();
 	private JButton addUnitButton = new JButton("Add Unit");
 
 	public GUIAddUnit() {
-		setSize(720,480);
+		setSize(300,480);
 
 		//panels
 		topPanel = new NewtonsToolboxPanel();
-		middlePanel = new NewtonsToolboxPanel();
+		namePanel = new NewtonsToolboxPanel();
+		formatPanel = new NewtonsToolboxPanel();
+		infoPanel = new NewtonsToolboxPanel();
+		tagsPanel = new NewtonsToolboxPanel();
+		addUnitButtonPanel = new NewtonsToolboxPanel();
+		
+		topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.Y_AXIS));		
+		
+		topPanel.setSize(200,200);
 
 		//wrap words and lines and make sure you can't edit it
 		infoTextArea.setLineWrap(true);
 		infoTextArea.setWrapStyleWord(true);
-		infoTextArea.setEditable(false);
 
 		//scroller
 		scroller = new JScrollPane(infoTextArea);
@@ -61,8 +75,7 @@ public class GUIAddUnit extends JPanel{
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		add(BorderLayout.NORTH, topPanel);
-		add(BorderLayout.CENTER, middlePanel);
-
+		
 
 		//need searchBar action listener
 //		searchBar.addKeyListener(
@@ -74,19 +87,32 @@ public class GUIAddUnit extends JPanel{
 //					}
 //				}
 //				);
+		
+		nameLabel.setText("Name: ");
+		formatLabel.setText("Format: ");
+		infoLabel.setText("Info: ");
+		tagsLabel.setText("Tags: ");
 
-		topPanel.add(nameLabel);
-		topPanel.add(nameField);
-		topPanel.add(formatLabel);
-		topPanel.add(formatField);
-		topPanel.add(infoLabel);
-		topPanel.add(scroller);//infoTextArea is inside scroller
-		topPanel.add(tagsLabel);
-		topPanel.add(tagsField);
+		namePanel.add(nameLabel);
+		namePanel.add(nameField);
+		
+		formatPanel.add(formatLabel);
+		formatPanel.add(formatField);
+		
+		infoPanel.add(infoLabel);
+		infoPanel.add(scroller);//infoTextArea is inside scroller
+		
+		tagsPanel.add(tagsLabel);
+		tagsPanel.add(tagsField);
 
-		topPanel.add(addUnitButton);
-
-		middlePanel.add(scroller);
+		addUnitButtonPanel.add(addUnitButton);
+		
+		topPanel.add(namePanel);
+		topPanel.add(formatPanel);
+		topPanel.add(infoPanel);
+		topPanel.add(tagsPanel);
+		topPanel.add(addUnitButtonPanel);
+		
 
 
 //		searchButton.addActionListener(new searchButtonListener());
@@ -122,6 +148,17 @@ public class GUIAddUnit extends JPanel{
 	class addUnitButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			//////////DO STUFF
+			String unitName = nameField.getText();
+			String unitFormat = formatField.getText();
+			String unitInfo = infoTextArea.getText();
+			
+			Tags unitTags = new Tags();
+			
+			
+			Unit newUnit = new Unit(unitName);
+			newUnit.setTypicalForm(unitFormat);
+			newUnit.setInfo(unitInfo);
+			
 		}
 	}
 
