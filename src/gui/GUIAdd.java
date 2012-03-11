@@ -1,88 +1,44 @@
 package gui;
-import javax.swing.*;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-
-//for textbox?
-import java.awt.TextArea;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowAdapter;
-
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
- * Another GUI to learn a bit about gui making,
- * and to make a slightly different way to format
- * what we want in our GUI
+ * GUI for displaying a few buttons for adding
+ * and creating buttons.
  * 
  * @author May Camp
+ * @author Michelle Len
  *
  */
-//Forms = Formulas
-public class GUIAdd {
-	private JFrame frame;
-	private NewtonsToolboxPanel topPanel;
+public class GUIAdd extends JPanel {
+
+	private static final long serialVersionUID = -5200304895970513817L;
+
 	private NewtonsToolboxPanel middlePanel;
-	private NewtonsToolboxPanel bottomPanel;
-	
-	//search bar
-	//JTextField searchBar = new JTextField(50);
-	JTextArea searchBar = new JTextArea(1,50);
-	
-	JTextArea searchResults = new JTextArea(20,57);
 
-	private JButton searchFormsButton = new JButton("Search Formulas");
-	private JButton printFormsButton = new JButton("Print Formulas");
-	private JButton solveFormsButton = new JButton("Solve Formulas");
-	private JButton addFormsButton = new JButton("Add Formulas");
-	
-	public void go() {
-		frame = new JFrame("Newton's Toolbox");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(720,480);
+	private JButton createUnitButton = new JButton("Create Unit");
+	private JButton createVariableButton = new JButton("Create Variable");
+	private JButton createFormulaButton = new JButton("Create Formula");
+
+	public GUIAdd() {
+
+		setSize(720,480);
 		
-
-		topPanel = new NewtonsToolboxPanel();
 		middlePanel = new NewtonsToolboxPanel();
-		bottomPanel = new NewtonsToolboxPanel();
-	
-		frame.getContentPane().add(BorderLayout.NORTH, topPanel);
-		frame.getContentPane().add(BorderLayout.CENTER, middlePanel);
-		frame.getContentPane().add(BorderLayout.SOUTH, bottomPanel);
-		
-		
-		//need searchBar action listener
 
+		add(BorderLayout.CENTER, middlePanel);
+
+		//need action listeners
+		middlePanel.add(createUnitButton);
+		middlePanel.add(createVariableButton);
+		middlePanel.add(createFormulaButton);
 		
-		middlePanel.add(searchResults);
-		
-		bottomPanel.add(searchFormsButton);
-		bottomPanel.add(printFormsButton);
-		bottomPanel.add(solveFormsButton);
-		bottomPanel.add(addFormsButton);
-		
-		frame.setVisible(true);
 	}
+	
 	public class NewtonsToolboxPanel extends JPanel {
 		// Included to suppress Eclipse Warning
-    	private static final long serialVersionUID = 1L;
-
-    	
-
+		private static final long serialVersionUID = 5110086507916942106L;
 	}
 	
-	public static void main(String[] args) {
-		
-		GUIAdd gui = new GUIAdd();
-		gui.go();
-	}
-	
-	
-	
-}
+} // class GUIAdd
