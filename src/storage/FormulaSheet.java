@@ -2,6 +2,11 @@ package storage;
 
 import java.io.Serializable;
 
+/**
+ * An arraylist object that serves the purpose of a cheat sheet for exams
+ * @author Clayven Anderson
+ * 
+ */
 public class FormulaSheet extends FormulaDatabase implements Serializable
 {
   private String name; 

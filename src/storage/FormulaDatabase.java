@@ -10,7 +10,6 @@ import java.util.ArrayList;
  *
  */
 
-
 public class FormulaDatabase extends ArrayList<Formula> implements Serializable
 {
 
