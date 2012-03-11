@@ -13,6 +13,7 @@ public class Unit implements Serializable {
 	private String name; // name of the Unit
 	private String info; //	information about the Unit
 	private String typicalForm; // typical form of a Unit i.e. kg instead of g
+	private Tags tags = new Tags();
 	final private static long serialVersionUID = 7147438L;
 	
 	/** 
@@ -51,5 +52,38 @@ public class Unit implements Serializable {
 	public void setName(String n) { this.name = n; }
 	public void setInfo(String i) { this.info = i; }
 	public void setTypicalForm(String tf) { this.typicalForm = tf; }
+	
+	
+	/**
+   * returns the "tag" at position i in the tags Array list
+   * @return the tags
+   * @param i i is the index of the desired tag
+   */
+  public String getTag(int i)
+  {
+    return tags.getTag(i);
+  }
+/**
+ * returns size of tag array associated with the unit
+ * @return
+ */
+  public int getTagSize(){
+    return tags.getSize();
+  }
+/**
+ * returns all tags associated with unit
+ * @return
+ */
+  public String getAllTags(){
+    return tags.returnAllTags();
+  }
+
+  /**
+   * @param tags the tags to set
+   */
+  public void addTag(String NewTag)
+  {
+    tags.addTag(NewTag);
+  }
 	
 } // class Unit
