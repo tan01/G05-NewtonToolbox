@@ -152,7 +152,7 @@ public class GUIMain {
     		
     		// Decorations
     		JLabel titlegraphic = new JLabel(new ImageIcon("img/ntbtitle.png"));
-    		titlegraphic.setBounds(40,50,251,96);
+    		titlegraphic.setBounds(530,23,265,20);
     		titlegraphic.setVisible(true);
     		panel.add(titlegraphic);
     		
