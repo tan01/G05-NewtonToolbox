@@ -84,6 +84,7 @@ public class GUIAddUnit extends JPanel{
 
 		add(BorderLayout.NORTH, topPanel);
 		
+		setOpaque(false);
 		topPanel.setOpaque(false);
 		namePanel.setOpaque(false);
 		formatPanel.setOpaque(false);

@@ -27,6 +27,8 @@ public class GUIAdd extends JPanel {
 
 		setSize(720,480);
 		
+		
+		
 		middlePanel = new NewtonsToolboxPanel();
 
 		add(BorderLayout.CENTER, middlePanel);
@@ -35,6 +37,8 @@ public class GUIAdd extends JPanel {
 		middlePanel.add(createUnitButton);
 		middlePanel.add(createVariableButton);
 		middlePanel.add(createFormulaButton);
+		
+		middlePanel.setOpaque(false);
 		
 		createUnitButton.addActionListener(new createUnitButtonListener());
 		createVariableButton.addActionListener(new createVariableButtonListener());
