@@ -1,5 +1,6 @@
 package gui;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 
@@ -12,7 +13,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-
 
 /**
  * Another GUI to learn a bit about gui making,
@@ -56,6 +56,14 @@ public class GUIAddVariable extends JPanel {
 
 		setSize(720,480);
 		setOpaque(false);
+		setBackground(new Color(0x3399CC));
+		
+		middlePanel = new NewtonsToolboxPanel();
+		middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));
+		middlePanel.setSize(720, 480);
+		middlePanel.setOpaque(false);
+		middlePanel.setBackground(new Color(0x3399CC));
+		add(BorderLayout.NORTH, middlePanel);
 
 		nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		nameLabel.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -90,20 +98,15 @@ public class GUIAddVariable extends JPanel {
 		addVariableButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		addVariableButton.setAlignmentY(Component.CENTER_ALIGNMENT);
 
-		// Scrollbar for the Info JTextArea
+		// Scroll-bar for the Info JTextArea
 		infoScrollbar = new JScrollPane(infoTextArea);
 		infoScrollbar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		infoScrollbar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-		// Scrollbar for the Info JTextArea
+		// Scroll-bar for the Info JTextArea
 		tagScrollbar = new JScrollPane(tagTextArea);
 		tagScrollbar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		tagScrollbar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-
-		middlePanel = new NewtonsToolboxPanel();
-		middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));
-		middlePanel.setSize(720, 480);
-		add(BorderLayout.NORTH, middlePanel);
 
 		namePanel   = new NewtonsToolboxPanel();
 		formatPanel = new NewtonsToolboxPanel();
@@ -113,6 +116,39 @@ public class GUIAddVariable extends JPanel {
 		
 		addVariableButtonPanel = new NewtonsToolboxPanel();
 
+		namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.X_AXIS));
+		namePanel.setBackground(new Color(0x3399CC));
+		formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.X_AXIS));
+		formatPanel.setBackground(new Color(0x3399CC));
+		unitPanel.setLayout(new BoxLayout(unitPanel, BoxLayout.X_AXIS));
+		unitPanel.setBackground(new Color(0x3399CC));
+		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.X_AXIS));
+		infoPanel.setBackground(new Color(0x3399CC));
+		tagPanel.setLayout(new BoxLayout(tagPanel, BoxLayout.X_AXIS));
+		tagPanel.setBackground(new Color(0x3399CC));
+		
+		addVariableButtonPanel.setLayout(new BoxLayout(addVariableButtonPanel, BoxLayout.X_AXIS));
+		addVariableButtonPanel.setBackground(new Color(0x3399CC));
+
+		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+		
+		
+		/*nameLabel.setOpaque(false);
+		formatLabel.setOpaque(false);
+		unitLabel.setOpaque(false);
+		infoLabel.setOpaque(false);
+		tagLabel.setOpaque(false);
+		addVariableButton.setOpaque(false);
+*/
+		/*nameTextField.setOpaque(false);
+		formatTextField.setOpaque(false);
+		unitTextField.setOpaque(false);
+		infoTextArea.setOpaque(false);
+		tagTextArea.setOpaque(false);
+		
+		infoScrollbar.setOpaque(false);
+		tagScrollbar.setOpaque(false);*/
+		
 		namePanel.setOpaque(false);
 		formatPanel.setOpaque(false);
 		unitPanel.setOpaque(false);
@@ -120,15 +156,8 @@ public class GUIAddVariable extends JPanel {
 		tagPanel.setOpaque(false);
 		
 		addVariableButtonPanel.setOpaque(false);
-
-		namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.X_AXIS));
-		formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.X_AXIS));
-		unitPanel.setLayout(new BoxLayout(unitPanel, BoxLayout.X_AXIS));
-		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.X_AXIS));
-		tagPanel.setLayout(new BoxLayout(tagPanel, BoxLayout.X_AXIS));
 		
-		addVariableButtonPanel.setLayout(new BoxLayout(addVariableButtonPanel, BoxLayout.X_AXIS));
-
+		
 		// NEED A TON OF ACTION LISTENERS
 
 		namePanel.add(nameLabel);
