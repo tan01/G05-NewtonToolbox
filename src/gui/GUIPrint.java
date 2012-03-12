@@ -1,5 +1,6 @@
 package gui;
 import javax.swing.*;
+
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -29,11 +30,38 @@ public class GUIPrint extends JPanel{
 	infoField.setLineWrap(true);
 	infoField.setWrapStyleWord(true);
 	infoField.setEditable(false);
-	String stringOfFormulas = "";
+	//Scroller
+	JScrollPane scroller = new JScrollPane(infoField);
+	scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+	scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+	String writeBuffer = "";
+	
+	writeBuffer +="[FORMULAS] \n";
+	
 	for(int i=0; i<GUIMain.FORMULAS.size();i++) {
-		stringOfFormulas = stringOfFormulas + GUIMain.FORMULAS.get(i).allInfoToString() + "\n \n";
+		writeBuffer = writeBuffer + GUIMain.FORMULAS.get(i).allInfoToString() + "\n \n";
 	}
-	infoField.setText(stringOfFormulas);
-	add(infoField);
+	
+	writeBuffer +="[VARIABLES] \n";
+	
+	for(int i=0; i<GUIMain.VARIABLES.size();i++) {
+		writeBuffer = writeBuffer + 
+				GUIMain.VARIABLES.get(i).getVar() + "   Units: " +
+				GUIMain.VARIABLES.get(i).getUnit() + "\n" + "Info: " +
+				GUIMain.VARIABLES.get(i).getInfo() + "\n" + "Tags: " +
+				GUIMain.VARIABLES.get(i).getTags() + "\n\n";
+	}
+	
+	writeBuffer +="[UNITS] \n";
+	
+	for(int i=0; i<GUIMain.UNITS.size();i++) {
+		writeBuffer = writeBuffer + 
+				GUIMain.UNITS.get(i).getName() + "\n" + "Info: " +
+				GUIMain.UNITS.get(i).getInfo() + "\n" + "Tags: " +
+				GUIMain.UNITS.get(i).getAllTags() + "\n\n";
+	}
+	
+	infoField.append(writeBuffer);
+	add(scroller);
 	}
 }

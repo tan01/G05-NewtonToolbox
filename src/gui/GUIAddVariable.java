@@ -1,6 +1,5 @@
 package gui;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 
@@ -68,7 +67,6 @@ public class GUIAddVariable extends JPanel {
 		//might want to change color of units JComboBox, as it is a gray-ish color
 
 		setSize(720,480);
-		//setBackground(new Color(0x3399CC));
 		
 		UnitDatabase defaultUnits = (UnitDatabase)Saver.loadUnits();
 		JComboBox unitComboBox = new JComboBox();
@@ -79,7 +77,6 @@ public class GUIAddVariable extends JPanel {
 		middlePanel = new NewtonsToolboxPanel();
 		middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));
 		middlePanel.setSize(720, 480);
-		//middlePanel.setBackground(new Color(0x3399CC));
 		add(BorderLayout.NORTH, middlePanel);
 
 		nameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -102,12 +99,9 @@ public class GUIAddVariable extends JPanel {
 
 		formatTextField.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		formatTextField.setAlignmentY(Component.CENTER_ALIGNMENT);
-
 		
 		unitComboBox.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		unitComboBox.setAlignmentY(Component.CENTER_ALIGNMENT);
-//		unitTextField.setAlignmentX(Component.RIGHT_ALIGNMENT);
-//		unitTextField.setAlignmentY(Component.CENTER_ALIGNMENT);
 
 		infoTextArea.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		infoTextArea.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -137,18 +131,12 @@ public class GUIAddVariable extends JPanel {
 		addVariableButtonPanel = new NewtonsToolboxPanel();
 
 		namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.X_AXIS));
-		//namePanel.setBackground(new Color(0x3399CC));
 		formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.X_AXIS));
-		//formatPanel.setBackground(new Color(0x3399CC));
 		unitPanel.setLayout(new BoxLayout(unitPanel, BoxLayout.X_AXIS));
-		//unitPanel.setBackground(new Color(0x3399CC));
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.X_AXIS));
-		//infoPanel.setBackground(new Color(0x3399CC));
 		tagPanel.setLayout(new BoxLayout(tagPanel, BoxLayout.X_AXIS));
-		//tagPanel.setBackground(new Color(0x3399CC));
 		
 		addVariableButtonPanel.setLayout(new BoxLayout(addVariableButtonPanel, BoxLayout.X_AXIS));
-		//addVariableButtonPanel.setBackground(new Color(0x3399CC));
 		
 		//wrap words and lines and make sure you can't edit it
 		infoTextArea.setLineWrap(true);
@@ -157,8 +145,6 @@ public class GUIAddVariable extends JPanel {
 		tagTextArea.setLineWrap(true);
 		tagTextArea.setWrapStyleWord(true);
 		
-		// NEED A TON OF ACTION LISTENERS (actually, only need one, there's only one button)
-
 		namePanel.add(nameLabel);
 		namePanel.add(Box.createRigidArea(new Dimension(12,0)));
 		namePanel.add(nameTextField);
@@ -169,7 +155,6 @@ public class GUIAddVariable extends JPanel {
 
 		unitPanel.add(unitLabel);
 		unitPanel.add(Box.createRigidArea(new Dimension(16,0)));
-//		unitPanel.add(unitTextField);
 		unitPanel.add(unitComboBox);
 
 		infoPanel.add(infoLabel);
@@ -189,25 +174,8 @@ public class GUIAddVariable extends JPanel {
 		middlePanel.add(tagPanel);
 		middlePanel.add(addVariableButtonPanel);
 		
-		// @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 		setOpaque(false);
 		middlePanel.setOpaque(false);//THIS THING makes it not opaque
-		
-//		nameLabel.setOpaque(false);
-//		formatLabel.setOpaque(false);
-//		unitLabel.setOpaque(false);
-//		infoLabel.setOpaque(false);
-//		tagLabel.setOpaque(false);
-//		addVariableButton.setOpaque(false);
-
-		//nameTextField.setOpaque(false);
-		//formatTextField.setOpaque(false);
-		//unitTextField.setOpaque(false);
-		//infoTextArea.setOpaque(false);
-		//tagTextArea.setOpaque(false);
-		
-		//infoScrollbar.setOpaque(false);
-		//tagScrollbar.setOpaque(false);
 		
 		namePanel.setOpaque(false);
 		formatPanel.setOpaque(false);
