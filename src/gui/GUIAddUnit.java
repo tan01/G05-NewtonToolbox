@@ -94,18 +94,6 @@ public class GUIAddUnit extends JPanel{
 		tagsPanel.setOpaque(false);
 		addUnitButtonPanel.setOpaque(false);
 		
-
-		//need searchBar action listener
-//		searchBar.addKeyListener(
-//				new KeyAdapter(){
-//					public void keyPressed(KeyEvent key){
-//						if(key.getKeyCode()==KeyEvent.VK_ENTER){
-//							printSearchToTextArea();
-//						}
-//					}
-//				}
-//				);
-		
 		nameLabel.setText("Name (like 'meter'):     ");
 		formatLabel.setText("Format (like 'm'):           ");
 		infoLabel.setText("Info:                                     ");
@@ -131,10 +119,9 @@ public class GUIAddUnit extends JPanel{
 		topPanel.add(tagsPanel);
 		topPanel.add(addUnitButtonPanel);
 		
-
-
 		addUnitButton.addActionListener(new addUnitButtonListener());
-
+		//Sets the addUnitButton to default so you can hit enter in a text field and it'll make with the magic.
+		GUIMain.frame.getRootPane().setDefaultButton(addUnitButton);
 
 	}
 
