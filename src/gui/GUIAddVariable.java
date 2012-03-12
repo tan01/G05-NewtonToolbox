@@ -56,6 +56,7 @@ public class GUIAddVariable extends JPanel {
 	private JScrollPane infoScrollbar;
 	private JScrollPane tagScrollbar;
 
+	private JButton createUnitButton = new JButton("Create Unit");
 	private JButton addVariableButton = new JButton("Add Variable");
 
 	public GUIAddVariable() {
@@ -97,6 +98,9 @@ public class GUIAddVariable extends JPanel {
 
 		unitComboBox.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		unitComboBox.setAlignmentY(Component.CENTER_ALIGNMENT);
+		
+		createUnitButton.setAlignmentX(RIGHT_ALIGNMENT);
+		createUnitButton.setAlignmentY(CENTER_ALIGNMENT);
 
 		infoTextArea.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		infoTextArea.setAlignmentY(Component.CENTER_ALIGNMENT);
@@ -145,6 +149,7 @@ public class GUIAddVariable extends JPanel {
 		unitPanel.add(unitLabel);
 		unitPanel.add(Box.createRigidArea(new Dimension(16,0)));
 		unitPanel.add(unitComboBox);
+		unitPanel.add(createUnitButton);
 
 		infoPanel.add(infoLabel);
 		infoPanel.add(Box.createRigidArea(new Dimension(24,0)));
@@ -199,6 +204,14 @@ public class GUIAddVariable extends JPanel {
 			unitTextField.setText("");
 			infoTextArea.setText("");
 			tagTextArea.setText("");
+		}
+	}
+	
+	class createUnitButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			middlePanel.removeAll();
+			GUIMain.updateUI();
+			middlePanel.add(new GUIAddUnit());
 		}
 	}
 
