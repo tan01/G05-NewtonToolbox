@@ -22,6 +22,7 @@ import javax.swing.ScrollPaneConstants;
 import search.Search;
 import storage.FormulaDatabase;
 import storage.Saver;
+import userinterface.CLIAdd;
 
 /**
  * GUIAddUnit used to search for formulas from the formula database * 
@@ -174,6 +175,8 @@ public class GUIAddUnit extends JPanel{
 			for(int i=0;i<tagsTemp.length;i++){
 				newUnit.addTag(tagsTemp[i].toLowerCase());
 				}
+
+			
 			nameField.setText("");
 			formatField.setText("");
 			infoTextArea.setText("");
