@@ -36,9 +36,9 @@ import storage.Saver;
 //Forms = Formulas
 public class GUISearch extends JPanel{
 	private static final long serialVersionUID = 9044967744683200942L;
-	private NewtonsToolboxPanel topPanel;
-	private NewtonsToolboxPanel middlePanel;
-	private NewtonsToolboxPanel rightPanel;
+	private JPanel topPanel;
+	private JPanel middlePanel;
+	private JPanel rightPanel;
 	
 	//search bar
 	JTextField searchBar = new JTextField(50);
@@ -61,9 +61,9 @@ public class GUISearch extends JPanel{
 		setSize(720,480);
 
 		//panels
-		topPanel = new NewtonsToolboxPanel();
-		middlePanel = new NewtonsToolboxPanel();
-		rightPanel = new NewtonsToolboxPanel();
+		topPanel = new JPanel();
+		middlePanel = new JPanel();
+		rightPanel = new JPanel();
 		//rightPanel.setPreferredSize(new Dimension(100,600));
 		
 		topPanel.setOpaque(false);
@@ -193,11 +193,6 @@ public class GUISearch extends JPanel{
 			//Search is done, clears the search bar.
 			searchBar.setText("");
 			}
-	}
-	
-	public class NewtonsToolboxPanel extends JPanel {
-		// Included to suppress Eclipse Warning
-		private static final long serialVersionUID = -3226654973851691774L;
 	}
 
 	//Button Listener Classes:
