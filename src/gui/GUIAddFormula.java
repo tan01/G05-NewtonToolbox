@@ -1,12 +1,10 @@
 package gui;
-import gui.GUIAddUnit.addUnitButtonListener;
 import internalformatting.Formula;
 import internalformatting.Operator;
 import internalformatting.Term;
-import internalformatting.Unit;
 
 import java.awt.BorderLayout;
-import java.awt.Component;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
@@ -26,8 +24,6 @@ import javax.swing.ScrollPaneConstants;
 
 import storage.FormulaDatabase;
 import storage.Saver;
-import storage.UnitDatabase;
-import storage.VariableDatabase;
 
 /**
  * Another GUI to learn a bit about gui making,
@@ -169,6 +165,9 @@ public class GUIAddFormula extends JPanel {
 		infoPanel.setLayout(flow);
 		tagPanel.setLayout(flow);
 		addFormButtonPanel.setLayout(center);
+		
+		termPanel.setBackground(new Color(0x66CCFF));
+		addToCurrFormPanel.setBackground(new Color(0x66CCFF));
 
 		currFormTextArea.setLineWrap(true);
 
@@ -190,11 +189,11 @@ public class GUIAddFormula extends JPanel {
 		currFormPanel.add(currFormLabel);
 		currFormPanel.add(Box.createRigidArea(new Dimension(8,0)));
 		currFormPanel.add(currFormScrollbar);
-
+		
 		termPanel.add(opPanel);
-		termPanel.add(Box.createRigidArea(new Dimension(20,0)));
+		termPanel.add(Box.createRigidArea(new Dimension(15,0)));
 		termPanel.add(termLabel);
-		termPanel.add(Box.createRigidArea(new Dimension(30,0)));
+		termPanel.add(Box.createRigidArea(new Dimension(25,0)));
 		//term contains op, coeff, var, exp, addToCurrFormButton
 		termPanel.add(coeffPanel);
 		termPanel.add(varPanel);
@@ -216,12 +215,11 @@ public class GUIAddFormula extends JPanel {
 		varPanel.add(varLabel);
 		varPanel.add(Box.createRigidArea(new Dimension(5,0)));
 		varPanel.add(varComboBox);
-		varPanel.add(Box.createRigidArea(new Dimension(11,0)));
+		varPanel.add(Box.createRigidArea(new Dimension(10,0)));
 		
 		expPanel.add(expLabel);
 		expPanel.add(Box.createRigidArea(new Dimension(5,0)));
 		expPanel.add(expTextField);
-		expPanel.add(Box.createRigidArea(new Dimension(15,0)));
 
 		infoPanel.add(infoLabel);
 		infoPanel.add(Box.createRigidArea(new Dimension(80,0)));
@@ -246,11 +244,11 @@ public class GUIAddFormula extends JPanel {
 		middlePanel.setOpaque(false);//THIS THING makes it not opaque
 		
 		opPanel.setOpaque(false);
-		termPanel.setOpaque(false);
+//		termPanel.setOpaque(false);
 		coeffPanel.setOpaque(false);
 		varPanel.setOpaque(false);
 		expPanel.setOpaque(false);
-		addToCurrFormPanel.setOpaque(false);
+//		addToCurrFormPanel.setOpaque(false);
 		
 		namePanel.setOpaque(false);
 		currFormPanel.setOpaque(false);
