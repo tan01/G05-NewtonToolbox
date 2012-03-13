@@ -108,4 +108,15 @@ public class Variable implements Serializable{
 		System.out.println("Tags: " + this.getAllTags());
 	}
 
+	public String allInfoToString(){
+		String allInfo = "";
+
+		allInfo = allInfo + "Name: "    + this.getVar() + "\n";
+		allInfo = allInfo + "Info: "    + this.getInfo() + "\n";
+		allInfo = allInfo + "Unit: "    + this.getUnit() + "\n";
+		allInfo = allInfo + "Tags: "    + this.getAllTags() + "\n";
+
+		return allInfo;
+	}
+	
 } // class Variable

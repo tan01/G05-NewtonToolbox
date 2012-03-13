@@ -89,11 +89,22 @@ public class Unit implements Serializable {
   public String toString(){
 	  return this.name;
   }
-	public void printUnit(){
-		System.out.println("Name: " + this.getName());
-		System.out.println("Format: " + this.getTypicalForm());
-		System.out.println("Info: " + this.getInfo());
-		System.out.println("Tags: " + this.getAllTags());
+  public void printUnit(){
+	  System.out.println("Name: " + this.getName());
+	  System.out.println("Format: " + this.getTypicalForm());
+	  System.out.println("Info: " + this.getInfo());
+	  System.out.println("Tags: " + this.getAllTags());
+  }
+
+  public String allInfoToString(){
+		String allInfo = "";
+
+		allInfo = allInfo + "Name: "    + this.getName() + "\n";
+		allInfo = allInfo + "Form: "    + this.getTypicalForm() + "\n";
+		allInfo = allInfo + "Info: "    + this.getInfo() + "\n";
+		allInfo = allInfo + "Tags: "    + this.getAllTags() + "\n";
+
+		return allInfo;
 	}
 	
 } // class Unit

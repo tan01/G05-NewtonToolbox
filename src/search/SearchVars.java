@@ -85,7 +85,7 @@ public class SearchVars {
 	 * @param searchTerm The String term you are searching for in the variables
 	 * @return variables An array list of variables
 	 */
-	public ArrayList<Variable> SearchV(String searchTerm) {
+	public ArrayList<Variable> searchV(String searchTerm) {
 		int fsize = allVariables.size(); //size of allVariable ArrayList
 		String currentTag;
 		for(int i=0; i<fsize; i++) { // loop through variables

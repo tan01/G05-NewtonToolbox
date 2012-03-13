@@ -86,7 +86,7 @@ public class SearchUnits {
 	 * @param searchTerm The String term you are searching for in the units
 	 * @return units An array list of units
 	 */
-	public ArrayList<Unit> searchF(String searchTerm) {
+	public ArrayList<Unit> searchU(String searchTerm) {
 		int fsize = allUnits.size(); //size of allUnit ArrayList
 		String currentTag;
 		for(int i=0; i<fsize; i++) { // loop through units
