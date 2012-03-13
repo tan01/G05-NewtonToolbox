@@ -1,8 +1,11 @@
 package gui;
 
 import gui.GUISearch.NewtonsToolboxPanel;
+import gui.GUISearch.searchButtonListener;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -18,7 +21,7 @@ public class GUILoadSheet extends JPanel
   private NewtonsToolboxPanel middlePanel;
   
   
-//search bar
+  //search bar
   JTextField loadBar = new JTextField(50);
 
   private JScrollPane scroller;
@@ -27,6 +30,8 @@ public class GUILoadSheet extends JPanel
   
   public GUILoadSheet(){
     setSize(720,480);
+    
+    this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
     
   //panels
     topPanel = new NewtonsToolboxPanel();
@@ -55,6 +60,8 @@ public class GUILoadSheet extends JPanel
     topPanel.add(loadButton);
 
     middlePanel.add(scroller);
+    
+    loadButton.addActionListener(new loadButtonListener());
   }
   
   public class NewtonsToolboxPanel extends JPanel {
@@ -62,4 +69,12 @@ public class GUILoadSheet extends JPanel
     private static final long serialVersionUID = 965858862357885585L;
   }
   
+  class loadButtonListener implements ActionListener {
+    public void actionPerformed(ActionEvent e) {
+      middlePanel.removeAll();
+      GUIMain.updateUI();
+      middlePanel.add(new GUINewSheet());
+    }
+  
+  }   
 }
