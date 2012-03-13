@@ -51,11 +51,6 @@ public class GUIAdd extends JPanel {
 		
 	}
 	
-	public class NewtonsToolboxPanel extends JPanel {
-		// Included to suppress Eclipse Warning
-		private static final long serialVersionUID = 5110086507916942106L;
-	}
-	
 	// I'll just leave the action listeners like this for now, until
 	// GUI AddUnit, AddVariable, and AddFormula work.
 	class createUnitButtonListener implements ActionListener {

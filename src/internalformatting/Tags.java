@@ -75,7 +75,7 @@ public class Tags extends ArrayList<String> implements Serializable{
 		}
 		else {
 			for(int i=0; i<this.size(); i++){
-				AllTags = AllTags + " " + this.get(i); //***TODO format this a bit better***
+				AllTags = AllTags + " | " + this.get(i); //***TODO format this a bit better***
 			}
 		}
 		return AllTags;
@@ -84,5 +84,18 @@ public class Tags extends ArrayList<String> implements Serializable{
 	public int getSize() {
 		return this.size();
 	}
+	
+	public static Tags convertToTags(String tagString) {
+		tagString.replaceAll( ", " , "," );
+		tagString.replaceAll( " " , "," );
+		String[] tagsTemp = tagString.split(",");
+		Tags formattedTags = new Tags();
+		for(int i=0;i<tagsTemp.length;i++){
+			formattedTags.add(tagsTemp[i]);
+		}
+		return formattedTags;
+	}
+	
+	
  
 } // class Tags
