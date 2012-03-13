@@ -18,13 +18,13 @@ public class Operator extends Component implements Serializable {
 	/** Constructor
 	 *
 	 * @param operator A String of the operator
-	 * Operators consist of: ( ) + - * / =
+	 * Operators consist of: [a space] ( ) + - * / =
 	 * If input is not part of the above operators, then this.operator is null
 	 */
 
 	public Operator(String operator) {
 		// Operators consist of: ( ) + - * / =
-		if (( operator.equals("(") || operator.equals(")") || operator.equals("+") ||
+		if (( operator.equals(" ") || operator.equals("(") || operator.equals(")") || operator.equals("+") ||
 				operator.equals("-") || operator.equals("*") || operator.equals("/") ||
 				operator.equals("=")))
 			this.operator = operator;
@@ -46,7 +46,7 @@ public class Operator extends Component implements Serializable {
 		/** Operators consist of: ( ) + - * / =
 		 * If input is not part of the above operators, then this.operator is null
 		 */
-		if (( operator.equals("(") || operator.equals(")") || operator.equals("+") ||
+		if (( operator.equals(" ") || operator.equals("(") || operator.equals(")") || operator.equals("+") ||
 				operator.equals("-") || operator.equals("*") || operator.equals("/") ||
 				operator.equals("=")))
 			this.operator = operator;
