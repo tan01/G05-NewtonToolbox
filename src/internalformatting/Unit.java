@@ -86,6 +86,9 @@ public class Unit implements Serializable {
     tags.addTag(NewTag);
   }
   
+  public String toString(){
+	  return this.name;
+  }
 	public void printUnit(){
 		System.out.println("Name: " + this.getName());
 		System.out.println("Format: " + this.getTypicalForm());
