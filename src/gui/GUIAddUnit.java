@@ -1,4 +1,5 @@
 package gui;
+import internalformatting.Tags;
 import internalformatting.Unit;
 
 import java.awt.BorderLayout;
@@ -166,13 +167,13 @@ public class GUIAddUnit extends JPanel {
 			String unitName = nameField.getText();
 			String unitFormat = formatField.getText();
 			String unitInfo = infoTextArea.getText();
-			String[] tagsTemp = tagsTextArea.getText().split(",");
+			Tags tagsTemp = Tags.convertToTags(tagsTextArea.getText());
 
 			Unit newUnit = new Unit(unitName);
 			newUnit.setTypicalForm(unitFormat);
 			newUnit.setInfo(unitInfo);
-			for(int i=0;i<tagsTemp.length;i++){
-				newUnit.addTag(tagsTemp[i].toLowerCase());
+			for(int i=0;i<tagsTemp.size();i++){
+				newUnit.addTag(tagsTemp.get(i));
 			}
 			((UnitDatabase)GUIMain.UNITS).addUnit(newUnit);
 			Saver.saveUnits(GUIMain.UNITS);
