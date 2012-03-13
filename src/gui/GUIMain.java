@@ -280,6 +280,7 @@ public class GUIMain {
 
 	class solveListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
+		  changeContent(new GUIFormulaSheet());
 		}
 	}
 	
