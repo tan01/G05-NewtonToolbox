@@ -32,4 +32,22 @@ public class FormulaSheet extends FormulaDatabase implements Serializable
   public String getName(){
     return this.name;
   }
+  /**
+   * 
+   * @return
+   */
+  public String printSheet()
+  {
+    if(this == null){
+      return("Sheet Not Found");
+    }
+    String formInfo = "";
+    
+    for(int i=0; i > this.size();i++){
+     formInfo = formInfo + this.get(i).allInfoToString() + "\n";
+      
+    }
+    return formInfo;
+  }
+  
 }

@@ -3,11 +3,22 @@ package gui;
 import gui.GUISearch.NewtonsToolboxPanel;
 import gui.GUISearch.searchButtonListener;
 
+import internalformatting.Formula;
+import internalformatting.Operator;
+import internalformatting.Term;
+import internalformatting.Unit;
+import internalformatting.Variable;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.*;
+
+import storage.FormulaDatabase;
+import storage.FormulaSheet;
+import storage.Saver;
 
 /**
  * 
@@ -71,10 +82,10 @@ public class GUILoadSheet extends JPanel
   
   class loadButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-      middlePanel.removeAll();
-      GUIMain.updateUI();
-      middlePanel.add(new GUINewSheet());
+      String userInput = loadBar.getText();
+     loadResults.append(Saver.loadSheet(userInput).printSheet());
+  
+      }  
     }
   
-  }   
-}
+  }
