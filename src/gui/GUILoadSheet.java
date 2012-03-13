@@ -83,7 +83,8 @@ public class GUILoadSheet extends JPanel
   class loadButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
       String userInput = loadBar.getText();
-     loadResults.append(Saver.loadSheet(userInput).printSheet());
+      FormulaSheet rec = Saver.loadSheet(userInput);
+     loadResults.append(rec.printSheet());
   
       }  
     }

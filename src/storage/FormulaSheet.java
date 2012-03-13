@@ -44,10 +44,29 @@ public class FormulaSheet extends FormulaDatabase implements Serializable
     String formInfo = "";
     
     for(int i=0; i > this.size();i++){
-     formInfo = formInfo + this.get(i).allInfoToString() + "\n";
+     formInfo = formInfo + this.get(i)+"\n";
       
     }
     return formInfo;
+   
+  }
+  
+  
+  public static void main(String[] args){
+    FormulaDatabase el = Saver.loadForms();
+    el = Saver.loadForms();
+    
+    FormulaSheet test = new FormulaSheet();
+    
+    for(int i=0; i > 3; i++){
+      test.add(el.getFormula(i));
+    }
+    
+    
+    test.setName("blah");
+    Saver.saveSheet(test);
+    
+    test.printSheet();
   }
   
 }
