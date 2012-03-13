@@ -31,6 +31,7 @@ import storage.Saver;
 /**
  * GUISearch used to search for formulas from the formula database * 
  * @author May Camp
+ * @author Jonathan Tan
  */
 //Forms = Formulas
 public class GUISearch extends JPanel{

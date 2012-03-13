@@ -52,7 +52,7 @@ public class GUIMain {
 	private NewtonsToolboxPanel panel;
 
 	// Dynamic content panel
-	private JPanel contentPanel = new JPanel();
+	private JComponent contentPanel = new JPanel();
 
 	//These are the databases from which all modules can refer to.
 	//Use GUIMain.<your>Database
@@ -188,6 +188,17 @@ public class GUIMain {
 
 	}
 
+	public void changeContent (JScrollPane newPanel){
+		panel.remove(contentPanel);
+		contentPanel = newPanel;
+		System.out.println("Components changed: "+contentPanel.getComponentCount());
+		contentPanel.setBounds(80,60,720,480);
+		contentPanel.setOpaque(false);
+		panel.add(contentPanel);
+		updateUI();
+
+	}
+	
 	/**
 	 * 
 	 * @author Michelle Len
