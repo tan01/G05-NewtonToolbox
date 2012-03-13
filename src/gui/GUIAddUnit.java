@@ -43,7 +43,7 @@ public class GUIAddUnit extends JPanel {
 
 	private JTextField nameField   = new JTextField(50);
 	private JTextField formatField = new JTextField(50);
-	private JTextArea infoTextArea = new JTextArea(15, 49);
+	private JTextArea infoTextArea = new JTextArea(14, 49);
 	private JTextArea tagsTextArea = new JTextArea(4, 49);
 
 	private JScrollPane scroller;
