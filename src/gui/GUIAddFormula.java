@@ -1,7 +1,15 @@
 package gui;
+import gui.GUIAddUnit.addUnitButtonListener;
+import internalformatting.Formula;
+import internalformatting.Operator;
+import internalformatting.Unit;
+
 import java.awt.BorderLayout;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -43,7 +51,7 @@ public class GUIAddFormula extends JPanel {
 	private NewtonsToolboxPanel expPanel;
 	private NewtonsToolboxPanel infoPanel;
 	private NewtonsToolboxPanel tagPanel;
-	private NewtonsToolboxPanel addFormulaButtonPanel;
+	private NewtonsToolboxPanel addFormButtonPanel;
 
 	private JLabel nameLabel   = new JLabel("Name: ");
 	private JLabel currFormLabel = new JLabel("Current Formula: ");
@@ -70,17 +78,45 @@ public class GUIAddFormula extends JPanel {
 	private JScrollPane tagScrollbar;
 	
 	private JButton addToCurrFormButton = new JButton("Add Op & Term");
-	private JButton addVarButton = new JButton("Create Variable");
 	private JButton addFormButton = new JButton("Add Formula");
+	
+	private JComboBox<String> opComboBox;
+	private JComboBox<String> varComboBox;
+	
+	////all operators
+	Operator blank = new Operator(" ");
+	Operator leftParen = new Operator("(");
+	Operator rightParen = new Operator(")");
+	Operator plus = new Operator("+");
+	Operator minus = new Operator("-");
+	Operator times = new Operator("*");
+	Operator divide = new Operator("/");
+	Operator equals = new Operator("=");
+	ArrayList<Operator> allOps = new ArrayList<Operator>();
+	
 
 	public GUIAddFormula() {
 		setSize(720,480);
 		
+		allOps.add(blank);
+		allOps.add(leftParen);
+		allOps.add(rightParen);
+		allOps.add(plus);
+		allOps.add(minus);
+		allOps.add(times);
+		allOps.add(divide);
+		allOps.add(equals);
+		
+		//for operator drop down menu
+		opComboBox = new JComboBox<String>();
+		for(int i=0;i<allOps.size();i++){
+			opComboBox.addItem(allOps.get(i).getOperator());
+		}
+		
 		//for variable drop down menu
-		VariableDatabase defaultVariables = (VariableDatabase)Saver.loadVars();
-		JComboBox variableComboBox = new JComboBox();
-		for(int i=0;i<defaultVariables.getSize();i++){
-			variableComboBox.addItem(defaultVariables.get(i).getVar());
+		varComboBox = new JComboBox<String>();
+		for(int j=0;j<GUIMain.VARIABLES.getSize();j++){
+			varComboBox.addItem(GUIMain.VARIABLES.get(j).getVar());
 		}
 		
 		middlePanel = new NewtonsToolboxPanel();
@@ -125,13 +161,13 @@ public class GUIAddFormula extends JPanel {
 		tagTextArea.setAlignmentX(Component.RIGHT_ALIGNMENT);
 		tagTextArea.setAlignmentY(Component.CENTER_ALIGNMENT);		
 		
-		variableComboBox.setAlignmentX(Component.RIGHT_ALIGNMENT);
-		variableComboBox.setAlignmentY(Component.CENTER_ALIGNMENT);
+		opComboBox.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		opComboBox.setAlignmentY(Component.CENTER_ALIGNMENT);
+		varComboBox.setAlignmentX(Component.RIGHT_ALIGNMENT);
+		varComboBox.setAlignmentY(Component.CENTER_ALIGNMENT);
 
 		addToCurrFormButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		addToCurrFormButton.setAlignmentY(Component.CENTER_ALIGNMENT);
-		addVarButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-		addVarButton.setAlignmentY(Component.CENTER_ALIGNMENT);
 		addFormButton.setAlignmentX(Component.CENTER_ALIGNMENT);
 		addFormButton.setAlignmentY(Component.CENTER_ALIGNMENT);
 		
@@ -160,7 +196,7 @@ public class GUIAddFormula extends JPanel {
 		expPanel   = new NewtonsToolboxPanel();
 		infoPanel   = new NewtonsToolboxPanel();
 		tagPanel    = new NewtonsToolboxPanel();
-		addFormulaButtonPanel = new NewtonsToolboxPanel();
+		addFormButtonPanel = new NewtonsToolboxPanel();
 
 		namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.X_AXIS));
 		currFormPanel.setLayout(new BoxLayout(currFormPanel, BoxLayout.X_AXIS));
@@ -171,11 +207,14 @@ public class GUIAddFormula extends JPanel {
 		expPanel.setLayout(new BoxLayout(expPanel, BoxLayout.X_AXIS));
 		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.X_AXIS));
 		tagPanel.setLayout(new BoxLayout(tagPanel, BoxLayout.X_AXIS));
-		addFormulaButtonPanel.setLayout(new BoxLayout(addFormulaButtonPanel, BoxLayout.X_AXIS));
+		addFormButtonPanel.setLayout(new BoxLayout(addFormButtonPanel, BoxLayout.X_AXIS));
+		
+		currFormTextArea.setLineWrap(true);
 		
 		//wrap words and lines and make sure you can't edit it
 		currFormTextArea.setLineWrap(true);
 		currFormTextArea.setWrapStyleWord(true);
+		currFormTextArea.setEditable(false);
 		//wrap words and lines and make sure you can't edit it
 		infoTextArea.setLineWrap(true);
 		infoTextArea.setWrapStyleWord(true);
@@ -197,7 +236,6 @@ public class GUIAddFormula extends JPanel {
 		//term contains op, coeff, var, exp, addToCurrFormButton
 		termPanel.add(coeffPanel);
 		termPanel.add(varPanel);
-		termPanel.add(addVarButton);
 		termPanel.add(expPanel);
 		
 		addToCurrFormPanel.add(addToCurrFormButton);
@@ -205,7 +243,7 @@ public class GUIAddFormula extends JPanel {
 		//out of order
 		opPanel.add(opLabel);
 		opPanel.add(Box.createRigidArea(new Dimension(4,0)));
-		opPanel.add(opTextField);
+		opPanel.add(opComboBox);
 		
 		coeffPanel.add(coeffLabel);
 		coeffPanel.add(Box.createRigidArea(new Dimension(12,0)));
@@ -213,7 +251,7 @@ public class GUIAddFormula extends JPanel {
 
 		varPanel.add(varLabel);
 		varPanel.add(Box.createRigidArea(new Dimension(16,0)));
-		varPanel.add(variableComboBox);
+		varPanel.add(varComboBox);
 		
 		expPanel.add(expLabel);
 		expPanel.add(Box.createRigidArea(new Dimension(12,0)));
@@ -227,7 +265,7 @@ public class GUIAddFormula extends JPanel {
 		tagPanel.add(Box.createRigidArea(new Dimension(17,0)));
 		tagPanel.add(tagScrollbar);
 		
-		addFormulaButtonPanel.add(addFormButton);
+		addFormButtonPanel.add(addFormButton);
 
 		middlePanel.add(namePanel);
 		middlePanel.add(currFormPanel);
@@ -236,7 +274,7 @@ public class GUIAddFormula extends JPanel {
 		middlePanel.add(addToCurrFormPanel);
 		middlePanel.add(infoPanel);
 		middlePanel.add(tagPanel);
-		middlePanel.add(addFormulaButtonPanel);
+		middlePanel.add(addFormButtonPanel);
 		
 		setOpaque(false);
 		middlePanel.setOpaque(false);//THIS THING makes it not opaque
@@ -247,12 +285,102 @@ public class GUIAddFormula extends JPanel {
 		infoPanel.setOpaque(false);
 		tagPanel.setOpaque(false);
 		
-		addFormulaButtonPanel.setOpaque(false);
+		addFormButtonPanel.setOpaque(false);
+		
+		addToCurrFormButton.addActionListener(new addToCurrFormButtonListener());
+		addFormButton.addActionListener(new addFormButtonListener());
 
 	}
 	public class NewtonsToolboxPanel extends JPanel {
 		// Included to suppress Eclipse Warning
 		private static final long serialVersionUID = 2571010965858865585L;
 	}
+	//Button Listener Classes:
+	class addToCurrFormButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			currFormTextArea.append ( allOps.get(opComboBox.getSelectedIndex()).toString() + " ");
+			
+			currFormTextArea.append (coeffTextField.getText() );
+			currFormTextArea.append ( GUIMain.VARIABLES.get(varComboBox.getSelectedIndex()).toString() + " ");
+			currFormTextArea.append ( " ^ " );
+			currFormTextArea.append ( expTextField.getText() + " ");
+			
+			
 
+			
+			
+//			String formFormat = formatTextField.getText();
+//			String unitInfo = infoTextArea.getText();
+//			String[] tagsTemp = tagsTextArea.getText().split(",");
+//			
+//			Formula newForm = new Formula(formName);
+//			newUnit.setTypicalForm(unitFormat);
+//			newUnit.setInfo(unitInfo);
+//			for(int i=0;i<tagsTemp.length;i++){
+//				newUnit.addTag(tagsTemp[i].toLowerCase());
+//				}
+//			((UnitDatabase)GUIMain.UNITS).addUnit(newUnit);
+//			Saver.saveUnits(GUIMain.UNITS);
+//			
+//			nameField.setText("");
+//			formatField.setText("");
+//			infoTextArea.setText("");
+//			tagsTextArea.setText("");
+		}
+	}
+	
+	//Button Listener Classes:
+	class addVarButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String formName = nameTextField.getText();
+			String formOp = opTextField.getText();
+			
+//			String formFormat = formatTextField.getText();
+//			String unitInfo = infoTextArea.getText();
+//			String[] tagsTemp = tagsTextArea.getText().split(",");
+//			
+//			Formula newForm = new Formula(formName);
+//			newUnit.setTypicalForm(unitFormat);
+//			newUnit.setInfo(unitInfo);
+//			for(int i=0;i<tagsTemp.length;i++){
+//				newUnit.addTag(tagsTemp[i].toLowerCase());
+//				}
+//			((UnitDatabase)GUIMain.UNITS).addUnit(newUnit);
+//			Saver.saveUnits(GUIMain.UNITS);
+//			
+//			nameField.setText("");
+//			formatField.setText("");
+//			infoTextArea.setText("");
+//			tagsTextArea.setText("");
+		}
+	}
+	
+	//Button Listener Classes:
+	class addFormButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+			String formName = nameTextField.getText();
+			String formOp = opTextField.getText();
+			
+//			String formFormat = formatTextField.getText();
+//			String unitInfo = infoTextArea.getText();
+//			String[] tagsTemp = tagsTextArea.getText().split(",");
+//			
+//			Formula newForm = new Formula(formName);
+//			newUnit.setTypicalForm(unitFormat);
+//			newUnit.setInfo(unitInfo);
+//			for(int i=0;i<tagsTemp.length;i++){
+//				newUnit.addTag(tagsTemp[i].toLowerCase());
+//				}
+//			((UnitDatabase)GUIMain.UNITS).addUnit(newUnit);
+//			Saver.saveUnits(GUIMain.UNITS);
+//			
+//			nameField.setText("");
+//			formatField.setText("");
+//			infoTextArea.setText("");
+//			tagsTextArea.setText("");
+		}
+	}
+	
 }
+
+
