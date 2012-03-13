@@ -30,6 +30,7 @@ import storage.VariableDatabase;
  * 
  * @author May Camp
  * @author Michelle Len
+ * @author Jonathan Tan
  */
 public class GUIAddVariable extends JPanel {
 
@@ -59,6 +60,8 @@ public class GUIAddVariable extends JPanel {
 	private JButton createUnitButton = new JButton("Create Unit");
 	private JButton addVariableButton = new JButton("Add Variable");
 
+	private JComboBox unitComboBox;
+	
 	public GUIAddVariable() {
 
 		//////////////NOTE TO SELF
@@ -70,10 +73,9 @@ public class GUIAddVariable extends JPanel {
 
 		setSize(720,480);
 
-		UnitDatabase defaultUnits = (UnitDatabase)Saver.loadUnits();
-		JComboBox unitComboBox = new JComboBox();
-		for(int i=0;i<defaultUnits.getSize();i++){
-			unitComboBox.addItem(defaultUnits.get(i).getName());
+		unitComboBox = new JComboBox();
+		for(int i=0;i<GUIMain.UNITS.getSize();i++){
+			unitComboBox.addItem(GUIMain.UNITS.get(i).getName());
 		}
 
 		middlePanel = new NewtonsToolboxPanel();
@@ -175,6 +177,8 @@ public class GUIAddVariable extends JPanel {
 		infoPanel.setOpaque(false);
 		tagPanel.setOpaque(false);
 
+		addVariableButton.addActionListener(new addVariableButtonListener());
+		
 		addVariableButtonPanel.setOpaque(false);
 
 	}
@@ -188,12 +192,12 @@ public class GUIAddVariable extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String variableName = nameTextField.getText();
 			String variableInfo = infoTextArea.getText();
-			String variableUnit = unitTextField.getText();
+			//String variableUnit = unitTextField.getText();
 			String[] tagsTemp = tagTextArea.getText().split(",");
 
 			Variable newVariable = new Variable(variableName);
 			newVariable.setInfo(variableInfo);
-			newVariable.setUnit(new Unit(variableUnit));
+			newVariable.setUnit(GUIMain.UNITS.get(unitComboBox.getSelectedIndex()));
 			for(int i=0;i<tagsTemp.length;i++){
 				newVariable.addTag(tagsTemp[i].toLowerCase());
 			}
