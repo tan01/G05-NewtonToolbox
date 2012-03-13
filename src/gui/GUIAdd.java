@@ -35,6 +35,7 @@ public class GUIAdd extends JPanel {
 		add(BorderLayout.CENTER, middlePanel);
 
 		JPanel actionPanel = new JPanel();
+		actionPanel.setOpaque(false);
 		
 		actionPanel.add(createUnitButton);
 		actionPanel.add(createVariableButton);
