@@ -71,7 +71,7 @@ public class GUIAddVariable extends JPanel {
 		setSize(720,480);
 
 		UnitDatabase defaultUnits = (UnitDatabase)Saver.loadUnits();
-		JComboBox<String> unitComboBox = new JComboBox<String>();
+		JComboBox unitComboBox = new JComboBox();
 		for(int i=0;i<defaultUnits.getSize();i++){
 			unitComboBox.addItem(defaultUnits.get(i).getName());
 		}
