@@ -610,15 +610,6 @@ public class Saver
 		Base.addFormula(newt2ndLawForm);
 
 		saveForms(Base);
-
-		Base = null;
-
-		//Res = (FormulaDatabase) LoadForms();
-
-		//for(int i=0; i<someFormulas.size(); i++){
-		//	Formula Res = ((FormulaDatabase) loadForms()).get(i);
-		//	System.out.println(Res.getName() + " " + Res + " " + Res.getInfo() + " " + Res.getAllTags() );
-		//}
 	}  
 
 	public static void main(String args[]){
