@@ -1,6 +1,5 @@
 package gui;
 
-import gui.GUISearch.NewtonsToolboxPanel;
 import gui.GUISearch.searchButtonListener;
 
 import internalformatting.Formula;
@@ -28,8 +27,8 @@ import storage.Saver;
 public class GUILoadSheet extends JPanel
 {
   private static final long serialVersionUID = 354678202967285l;
-  private NewtonsToolboxPanel topPanel;
-  private NewtonsToolboxPanel middlePanel;
+  private JPanel topPanel;
+  private JPanel middlePanel;
   
   
   //search bar
@@ -45,8 +44,8 @@ public class GUILoadSheet extends JPanel
     this.setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
     
   //panels
-    topPanel = new NewtonsToolboxPanel();
-    middlePanel = new NewtonsToolboxPanel();
+    topPanel = new JPanel();
+    middlePanel = new JPanel();
     
     
     topPanel.setOpaque(false);
@@ -75,10 +74,6 @@ public class GUILoadSheet extends JPanel
     loadButton.addActionListener(new loadButtonListener());
   }
   
-  public class NewtonsToolboxPanel extends JPanel {
-    // Included to suppress Eclipse Warning
-    private static final long serialVersionUID = 965858862357885585L;
-  }
   
   class loadButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
