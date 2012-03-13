@@ -90,7 +90,7 @@ public class GUIMain {
 		quitPanel.setOpaque(false);
 		quitPanel.setBounds(830,20,50,25);
 
-		JButton quitButton = new JButton("x");
+		imgButton quitButton = new imgButton("quitButton");
 		quitButton.addActionListener(new quitListener());
 
 		quitPanel.add(quitButton);
@@ -101,9 +101,9 @@ public class GUIMain {
 		minimizePanel.setOpaque(false);
 		minimizePanel.setBounds(805,20,25,25);
 
-		JButton minimizeButton = new JButton("_");
+		imgButton minimizeButton = new imgButton("minimizeButton");
 		minimizeButton.addActionListener(new minimizeListener());
-		minimizeButton.setMargin(new Insets(0,0,0,0));
+		//minimizeButton.setMargin(new Insets(0,0,0,0));
 
 		minimizePanel.add(minimizeButton);
 		panel.add(minimizePanel);
