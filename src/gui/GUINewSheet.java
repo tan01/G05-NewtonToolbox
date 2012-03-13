@@ -1,6 +1,8 @@
 package gui;
 
-public class GUINewSheet
+import javax.swing.JPanel;
+
+public class GUINewSheet extends JPanel
 {
 
 }
