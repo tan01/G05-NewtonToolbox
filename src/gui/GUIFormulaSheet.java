@@ -1,5 +1,4 @@
 package gui;
-import gui.GUIAdd.NewtonsToolboxPanel;
 import gui.GUIAdd.createUnitButtonListener;
 
 import javax.swing.*;
@@ -22,7 +21,7 @@ import java.awt.event.WindowAdapter;
 
 
 /**
- * The GUI for the formula sheet funtion
+ * The GUI for the formula sheet function
  * 
  * @author Clayven Anderson
  *
@@ -32,7 +31,7 @@ public class GUIFormulaSheet extends JPanel{
   
   private static final long serialVersionUID = 257392854603458L;
   
-  private NewtonsToolboxPanel middlePanel;
+  private JPanel middlePanel;
 
   private JButton newFormulaSheetButton = new JButton("Create Formula Sheet");
   private JButton loadFormulaButton = new JButton("Load Formula Sheet");
@@ -43,7 +42,7 @@ public class GUIFormulaSheet extends JPanel{
 	  setSize(720,480);
 	  
 
-    middlePanel = new NewtonsToolboxPanel();
+    middlePanel = new JPanel();
 
     add(BorderLayout.CENTER, middlePanel);
 
@@ -55,11 +54,6 @@ public class GUIFormulaSheet extends JPanel{
     
     newFormulaSheetButton.addActionListener(new newFormulaButtonListener());
     loadFormulaButton.addActionListener(new loadFormulaButtonListener());
-	}
-	
-	public class NewtonsToolboxPanel extends JPanel {
-    // Included to suppress Eclipse Warning
-    private static final long serialVersionUID = 7839012864693597L;	
 	}
 	
 	 class newFormulaButtonListener implements ActionListener {

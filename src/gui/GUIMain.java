@@ -311,6 +311,25 @@ public class GUIMain {
 	public static void main (String[] args) {
 
 		GUIMain gui = new GUIMain();
+		
+		//System look and feel
+//		try {
+//			// Set System L&F
+//			UIManager.setLookAndFeel(
+//					UIManager.getSystemLookAndFeelClassName());
+//		} 
+//		catch (UnsupportedLookAndFeelException e) {
+//			// handle exception
+//		}
+//		catch (ClassNotFoundException e) {
+//			// handle exception
+//		}
+//		catch (InstantiationException e) {
+//			// handle exception
+//		}
+//		catch (IllegalAccessException e) {
+//			// handle exception
+//		}
 		gui.go();
 	}
 
