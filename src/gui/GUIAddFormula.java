@@ -321,7 +321,16 @@ public class GUIAddFormula extends JPanel {
 	class addFormButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			String formName = nameTextField.getText();
-			String formOp = opTextField.getText();
+			String formInfo = infoTextArea.getText();
+			String[] formTags = tagTextArea.getText().split(",");
+			
+			newFormula.setName(formName);
+			newFormula.setInfo(formInfo);
+			for(int i=0;i<formTags.length;i++){
+				newFormula.addTag(formTags[i].toLowerCase());
+			}
+			((FormulaDatabase)GUIMain.FORMULAS).addFormula(newFormula);
+			Saver.saveForms(GUIMain.FORMULAS);
 
 			//			String formFormat = formatTextField.getText();
 			//			String unitInfo = infoTextArea.getText();
