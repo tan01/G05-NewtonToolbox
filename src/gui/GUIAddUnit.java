@@ -30,17 +30,12 @@ public class GUIAddUnit extends JPanel {
 
 	private NewtonsToolboxPanel middlePanel;
 
-	private NewtonsToolboxPanel topButtonPanel;
 	private NewtonsToolboxPanel namePanel;
 	private NewtonsToolboxPanel formatPanel;
 	private NewtonsToolboxPanel infoPanel;
 	private NewtonsToolboxPanel tagsPanel;
 	private NewtonsToolboxPanel addUnitButtonPanel;
 	
-	private JButton createUnitButton     = new JButton("Create Unit");
-	private JButton createVariableButton = new JButton("Create Variable");
-	private JButton createFormulaButton  = new JButton("Create Formula");
-
 	private JLabel nameLabel   = new JLabel("Name (like 'meter'): ");
 	private JLabel formatLabel = new JLabel("Format (like 'm'): ");
 	private JLabel infoLabel   = new JLabel("Info: ");
@@ -60,9 +55,7 @@ public class GUIAddUnit extends JPanel {
 
 		setSize(720,480);
 
-		// Setting flow layouts so that certain components will either center
-		// align or align left
-		FlowLayout center = new FlowLayout(FlowLayout.CENTER, 5, 5);
+		// Setting flow layout so can align center
 		FlowLayout flow = new FlowLayout(FlowLayout.LEFT, 5, 5);
 		
 		middlePanel = new NewtonsToolboxPanel();
@@ -82,16 +75,12 @@ public class GUIAddUnit extends JPanel {
 		scroller2.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		//panels
-		topButtonPanel = new NewtonsToolboxPanel();
-		
 		namePanel   = new NewtonsToolboxPanel();
 		formatPanel = new NewtonsToolboxPanel();
 		infoPanel   = new NewtonsToolboxPanel();
 		tagsPanel   = new NewtonsToolboxPanel();
 		
 		addUnitButtonPanel = new NewtonsToolboxPanel();
-		
-		topButtonPanel.setLayout(center);
 		
 		namePanel.setLayout  (flow);
 		formatPanel.setLayout(flow);
@@ -108,7 +97,6 @@ public class GUIAddUnit extends JPanel {
 
 		// set all opaque-ness to FALSE.
 		setOpaque(false);
-		topButtonPanel.setOpaque(false);
 		middlePanel.setOpaque(false);
 		namePanel.setOpaque(false);
 		formatPanel.setOpaque(false);
@@ -117,10 +105,6 @@ public class GUIAddUnit extends JPanel {
 		addUnitButtonPanel.setOpaque(false);
 
 		// Adding labels and such to panels, and separating them with a "box"
-		topButtonPanel.add(createUnitButton);
-		topButtonPanel.add(createVariableButton);
-		topButtonPanel.add(createFormulaButton);
-		
 		namePanel.add(nameLabel);
 		namePanel.add(Box.createRigidArea(new Dimension(28,0)));
 		namePanel.add(nameField);
@@ -140,17 +124,12 @@ public class GUIAddUnit extends JPanel {
 		addUnitButtonPanel.add(addUnitButton);
 
 		// Finally, add all panels to the panels~
-		middlePanel.add(topButtonPanel);
 		middlePanel.add(namePanel);
 		middlePanel.add(formatPanel);
 		middlePanel.add(infoPanel);
 		middlePanel.add(tagsPanel);
 		middlePanel.add(addUnitButtonPanel);
 
-		createUnitButton.addActionListener(new createUnitButtonListener());
-		createVariableButton.addActionListener(new createVariableButtonListener());
-		createFormulaButton.addActionListener(new createFormulaButtonListener());
-		
 		addUnitButton.addActionListener(new addUnitButtonListener());
 		//Sets the addUnitButton to default so you can hit enter in a text field and it'll make with the magic.
 		GUIMain.frame.getRootPane().setDefaultButton(addUnitButton);
@@ -181,30 +160,6 @@ public class GUIAddUnit extends JPanel {
 		private static final long serialVersionUID = -3226654973851691774L;
 	}
 
-	class createUnitButtonListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			middlePanel.removeAll();
-			GUIMain.updateUI();
-			middlePanel.add(new GUIAddUnit());
-		}
-	}
-	
-	class createVariableButtonListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			middlePanel.removeAll();
-			GUIMain.updateUI();
-			middlePanel.add(new GUIAddVariable());
-		}
-	}
-	
-	class createFormulaButtonListener implements ActionListener {
-		public void actionPerformed(ActionEvent e) {
-			middlePanel.removeAll();
-			GUIMain.updateUI();
-			middlePanel.add(new GUIAddFormula());
-		}
-	}
-	
 	//Button Listener Classes:
 	class addUnitButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {

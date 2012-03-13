@@ -10,6 +10,7 @@ import java.awt.Color;
 import java.awt.Frame;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.RenderingHints;
 
@@ -52,7 +53,7 @@ public class GUIMain {
 	private NewtonsToolboxPanel panel;
 
 	// Dynamic content panel
-	private JPanel contentPanel = new JPanel();
+	private JComponent contentPanel = new JPanel();
 
 	//These are the databases from which all modules can refer to.
 	//Use GUIMain.<your>Database
@@ -98,11 +99,11 @@ public class GUIMain {
 		//Minimize button
 		JPanel minimizePanel = new JPanel(new BorderLayout());
 		minimizePanel.setOpaque(false);
-		//I know it's too small right now, I'll fix it later.
 		minimizePanel.setBounds(805,20,25,25);
 
 		JButton minimizeButton = new JButton("_");
 		minimizeButton.addActionListener(new minimizeListener());
+		minimizeButton.setMargin(new Insets(0,0,0,0));
 
 		minimizePanel.add(minimizeButton);
 		panel.add(minimizePanel);
@@ -114,13 +115,13 @@ public class GUIMain {
 		panel.add(controlPanel);
 
 		//controlPanel - buttons
-		JToggleButton searchFormsButton = new JToggleButton("Search Formulas");
+		JToggleButton searchFormsButton = new JToggleButton("Search");
 		searchFormsButton.addActionListener(new searchListener());
-		JToggleButton printFormsButton = new JToggleButton("Print Formulas");
+		JToggleButton printFormsButton = new JToggleButton("Print All");
 		printFormsButton.addActionListener(new printListener());
-		JToggleButton solveFormsButton = new JToggleButton("Solve Formulas");
+		JToggleButton solveFormsButton = new JToggleButton("Formula Sheet");
 		solveFormsButton.addActionListener(new solveListener());
-		JToggleButton addFormsButton = new JToggleButton("Add Formulas");
+		JToggleButton addFormsButton = new JToggleButton("Add");
 		addFormsButton.addActionListener(new addListener());
 
 		//cpButtons - button group for buttons on the controlPanel.
@@ -188,6 +189,17 @@ public class GUIMain {
 
 	}
 
+	public void changeContent (JScrollPane newPanel){
+		panel.remove(contentPanel);
+		contentPanel = newPanel;
+		System.out.println("Components changed: "+contentPanel.getComponentCount());
+		contentPanel.setBounds(80,60,720,480);
+		contentPanel.setOpaque(false);
+		panel.add(contentPanel);
+		updateUI();
+
+	}
+	
 	/**
 	 * 
 	 * @author Michelle Len

@@ -11,13 +11,14 @@ import javax.swing.JPanel;
  * 
  * @author May Camp
  * @author Michelle Len
+ * @author Jonathan Tan
  *
  */
 public class GUIAdd extends JPanel {
 
 	private static final long serialVersionUID = -5200304895970513817L;
 
-	private NewtonsToolboxPanel middlePanel;
+	private JPanel middlePanel;
 
 	private JButton createUnitButton = new JButton("Create Unit");
 	private JButton createVariableButton = new JButton("Create Variable");
@@ -29,14 +30,18 @@ public class GUIAdd extends JPanel {
 		
 		
 		
-		middlePanel = new NewtonsToolboxPanel();
+		middlePanel = new JPanel();
 
 		add(BorderLayout.CENTER, middlePanel);
 
-		//need action listeners
-		middlePanel.add(createUnitButton);
-		middlePanel.add(createVariableButton);
-		middlePanel.add(createFormulaButton);
+		JPanel actionPanel = new JPanel();
+		actionPanel.setOpaque(false);
+		
+		actionPanel.add(createUnitButton);
+		actionPanel.add(createVariableButton);
+		actionPanel.add(createFormulaButton);
+		
+		add(BorderLayout.NORTH,actionPanel);
 		
 		middlePanel.setOpaque(false);
 		
@@ -55,25 +60,28 @@ public class GUIAdd extends JPanel {
 	// GUI AddUnit, AddVariable, and AddFormula work.
 	class createUnitButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			middlePanel.removeAll();
+			remove(middlePanel);
 			GUIMain.updateUI();
-			middlePanel.add(new GUIAddUnit());
+			middlePanel = new GUIAddUnit();
+			add(BorderLayout.CENTER,middlePanel);
 		}
 	}
 	
 	class createVariableButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			middlePanel.removeAll();
+			remove(middlePanel);
 			GUIMain.updateUI();
-			middlePanel.add(new GUIAddVariable());
+			middlePanel = new GUIAddVariable();
+			add(BorderLayout.CENTER,middlePanel);
 		}
 	}
 	
 	class createFormulaButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			middlePanel.removeAll();
+			remove(middlePanel);
 			GUIMain.updateUI();
-			middlePanel.add(new GUIAddFormula());
+			middlePanel = new GUIAddFormula();
+			add(BorderLayout.CENTER,middlePanel);
 		}
 	}
 	
