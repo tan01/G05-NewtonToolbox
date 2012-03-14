@@ -62,9 +62,9 @@ public class GUIAddFormula extends JPanel {
 	private JLabel tagLabel    = new JLabel("Tags: ");
 
 	private JTextField nameTextField   = new JTextField(52);
-	private JTextField opTextField = new JTextField(5); //change to down later
+//	private JTextField opTextField = new JTextField(5); //change to down later
 	private JTextField coeffTextField = new JTextField(5);
-	private JTextField varTextField   = new JTextField(51); // change to drop down later
+//	private JTextField varTextField   = new JTextField(51); // change to drop down later
 	private JTextField expTextField = new JTextField(4);
 
 	private JTextArea currFormTextArea = new JTextArea(3, 51); //used in scroll later
@@ -320,24 +320,14 @@ public class GUIAddFormula extends JPanel {
 			expTextField.setText("");
 			infoTextArea.setText("");
 			tagTextArea.setText("");
-
-			//			String formFormat = formatTextField.getText();
-			//			String unitInfo = infoTextArea.getText();
-			//			String[] tagsTemp = tagsTextArea.getText().split(",");
-			//			
-			//			Formula newForm = new Formula(formName);
-			//			newUnit.setTypicalForm(unitFormat);
-			//			newUnit.setInfo(unitInfo);
-			//			for(int i=0;i<tagsTemp.length;i++){
-			//				newUnit.addTag(tagsTemp[i].toLowerCase());
-			//				}
-			//			((UnitDatabase)GUIMain.UNITS).addUnit(newUnit);
-			//			Saver.saveUnits(GUIMain.UNITS);
-			//			
-			//			nameField.setText("");
-			//			formatField.setText("");
-			//			infoTextArea.setText("");
-			//			tagsTextArea.setText("");
+			
+			//DELETE THE NEW FORMULA SO THAT WE CAN PUT NEW INFORMATION IN IT!
+			//IT IS TEMPORARY!
+//			newFormula.setName(null);
+//			newFormula.setInfo(null);
+//			for(int j=0; j<newFormula.size(); j++){
+//				newFormula.deleteTerm(j);	
+//			}??????
 		}
 	}
 
