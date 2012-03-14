@@ -36,7 +36,9 @@ import java.awt.event.MouseAdapter;
 
 
 /**
- * Gui will be the gui used for our Newton's Toolbox project (EDIT DESCRIPTION LATER K THX)
+ * This is the main, front page of the GUI for Newton's Toolbox.
+ * From here, you can access four other screens:
+ * Search, Print, Solve, Add
  *  
  * @author Michelle Len
  * @author Jonathan Tan
@@ -177,7 +179,10 @@ public class GUIMain {
 
 
 	}
-
+/**
+ * To change the panel shown
+ * @param newPanel
+ */
 	public void changeContent (JPanel newPanel){
 		panel.remove(contentPanel);
 		contentPanel = newPanel;
@@ -187,7 +192,10 @@ public class GUIMain {
 		updateUI();
 
 	}
-
+/**
+ * 
+ * @param newPanel
+ */
 	public void changeContent (JScrollPane newPanel){
 		panel.remove(contentPanel);
 		contentPanel = newPanel;
