@@ -1,6 +1,13 @@
 package internalformatting;
+import java.awt.image.BufferedImage;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import javax.swing.JLabel;
+
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
 
 /**
  * Formula Class for Newton's Toolbox.
@@ -147,5 +154,34 @@ public class Formula extends ArrayList<Component> implements Serializable{
 
 		return allInfo;
 	}
+	
+	/**
+	 * toLaTeX() returns this formula with LaTeX formatting.
+	 */
+	public String toLaTeX(){
+		//PLACEHOLDER - INCOMPLETE
+		String LaTeXString = "";
+		for(int i=0;i<this.size();i++){
+			LaTeXString += this.get(i).toLaTeX();
+		}
+		System.out.println(LaTeXString);
+		return LaTeXString;
+	}
+	
+	//Can't get this to work.
+	public BufferedImage toLaTeXImage() {
+		TeXFormula fomule = new TeXFormula("x = a_0 + \\cfrac{1}{a_1 + \\cfrac{1}{a_2 + \\cfrac{1}{a_3 + a_4}}}");
+		TeXIcon ti = fomule.createTeXIcon(TeXConstants.STYLE_DISPLAY, 40);
+		BufferedImage b = new BufferedImage(ti.getIconWidth(), ti
+				.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);
+		return b;
+	}
 
+	public TeXIcon toLaTeXIcon() {
+		TeXFormula fomule = new TeXFormula(toLaTeX());
+				TeXIcon ti = fomule.createTeXIcon(TeXConstants.STYLE_DISPLAY, 24);
+		BufferedImage b = new BufferedImage(ti.getIconWidth(), ti.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);
+		ti.paintIcon(new JLabel(), b.getGraphics(), 0, 0);
+		return ti;
+	}
 }

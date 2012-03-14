@@ -181,7 +181,6 @@ public class GUIMain {
 	public void changeContent (JPanel newPanel){
 		panel.remove(contentPanel);
 		contentPanel = newPanel;
-		System.out.println("Components changed: "+contentPanel.getComponentCount());
 		contentPanel.setBounds(80,60,720,480);
 		contentPanel.setOpaque(false);
 		panel.add(contentPanel);

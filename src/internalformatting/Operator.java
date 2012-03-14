@@ -62,4 +62,22 @@ public class Operator extends Component implements Serializable {
 		return operator;
 	}
 
+	public String toLaTeX() {
+		String LaTeXOperator = " ";
+		//I dream of switch cases.
+		if(operator.equals("="))
+			LaTeXOperator = "=";
+		if(operator.equals("+"))
+			LaTeXOperator = "+";
+		if(operator.equals("-"))
+			LaTeXOperator = "-";
+		if(operator.equals("/"))
+			LaTeXOperator = "/";
+		if(operator.equals("("))
+			LaTeXOperator = "(";
+		if(operator.equals(")"))
+			LaTeXOperator = ")";
+		return LaTeXOperator;
+	}
+
 } // class Operator
