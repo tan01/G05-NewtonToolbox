@@ -1,6 +1,7 @@
 package gui;
 import internalformatting.Formula;
 import internalformatting.Operator;
+import internalformatting.Tags;
 import internalformatting.Term;
 
 import java.awt.BorderLayout;
@@ -319,12 +320,15 @@ public class GUIAddFormula extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String formName = nameTextField.getText();
 			String formInfo = infoTextArea.getText();
-			String[] formTags = tagTextArea.getText().split(",");
+//			String[] formTags = tagTextArea.getText().split(",");
+			Tags formTags = Tags.convertToTags(tagTextArea.getText());
+
+			
 			
 			newFormula.setName(formName);
 			newFormula.setInfo(formInfo);
-			for(int i=0;i<formTags.length;i++){
-				newFormula.addTag(formTags[i].toLowerCase());
+			for(int i=0;i<formTags.size();i++){
+				newFormula.addTag(formTags.get(i));
 			}
 			((FormulaDatabase)GUIMain.FORMULAS).addFormula(newFormula);
 			Saver.saveForms(GUIMain.FORMULAS);
