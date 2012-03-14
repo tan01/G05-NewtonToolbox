@@ -61,15 +61,15 @@ public class GUIAddFormula extends JPanel {
 	private JLabel infoLabel   = new JLabel("Info: ");
 	private JLabel tagLabel    = new JLabel("Tags: ");
 
-	private JTextField nameTextField   = new JTextField(52);
+	private JTextField nameTextField   = new JTextField(53);
 //	private JTextField opTextField = new JTextField(5); //change to down later
 	private JTextField coeffTextField = new JTextField(5);
-//	private JTextField varTextField   = new JTextField(51); // change to drop down later
+//	private JTextField varTextField   = new JTextField(52); // change to drop down later
 	private JTextField expTextField = new JTextField(4);
 
-	private JTextArea currFormTextArea = new JTextArea(3, 51); //used in scroll later
-	private JTextArea infoTextArea     = new JTextArea(7, 51); //used in scroll later
-	private JTextArea tagTextArea      = new JTextArea(4, 51); //used in scroll later
+	private JTextArea currFormTextArea = new JTextArea(3, 52); //used in scroll later
+	private JTextArea infoTextArea     = new JTextArea(7, 52); //used in scroll later
+	private JTextArea tagTextArea      = new JTextArea(3, 52); //used in scroll later
 
 	private JScrollPane currFormScrollbar;
 	private JScrollPane infoScrollbar;
@@ -95,7 +95,7 @@ public class GUIAddFormula extends JPanel {
 	Formula newFormula = new Formula();
 
 	public GUIAddFormula() {
-		setSize(720,480);
+		setSize(730,480);
 
 		FlowLayout flow = new FlowLayout(FlowLayout.LEFT, 5, 5);
 		FlowLayout center = new FlowLayout(FlowLayout.CENTER, 5, 5);
@@ -122,7 +122,6 @@ public class GUIAddFormula extends JPanel {
 
 		middlePanel = new JPanel();
 		middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));
-		//middlePanel.setSize(720, 480);
 		add(BorderLayout.CENTER, middlePanel);
 
 		// Scroll-bar for the currForm JTextArea
@@ -140,16 +139,16 @@ public class GUIAddFormula extends JPanel {
 		tagScrollbar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		tagScrollbar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
-		namePanel   = new JPanel();
+		namePanel     = new JPanel();
 		currFormPanel = new JPanel();
-		opPanel   = new JPanel();
-		termPanel   = new JPanel();
-		coeffPanel   = new JPanel();
-		varPanel   = new JPanel();
+		opPanel       = new JPanel();
+		termPanel     = new JPanel();
+		coeffPanel    = new JPanel();
+		varPanel      = new JPanel();
 		addToCurrFormPanel = new JPanel();
-		expPanel   = new JPanel();
-		infoPanel   = new JPanel();
-		tagPanel    = new JPanel();
+		expPanel      = new JPanel();
+		infoPanel     = new JPanel();
+		tagPanel      = new JPanel();
 		addFormButtonPanel = new JPanel();
 
 		namePanel.setLayout(flow);
@@ -165,7 +164,7 @@ public class GUIAddFormula extends JPanel {
 		tagPanel.setLayout(flow);
 		addFormButtonPanel.setLayout(center);
 		
-		opPanel.setBackground(new Color(0x66CCFF));
+		opPanel.setBackground(new Color(0xCCFFFF));
 		termPanel.setBackground(new Color(0x66CCFF));
 		addToCurrFormPanel.setBackground(new Color(0x66CCFF));
 
@@ -175,10 +174,8 @@ public class GUIAddFormula extends JPanel {
 		currFormTextArea.setLineWrap(true);
 		currFormTextArea.setWrapStyleWord(true);
 		currFormTextArea.setEditable(false);
-		//wrap words and lines and make sure you can't edit it
 		infoTextArea.setLineWrap(true);
 		infoTextArea.setWrapStyleWord(true);
-		//wrap words and lines and make sure you can't edit it
 		tagTextArea.setLineWrap(true);
 		tagTextArea.setWrapStyleWord(true);
 
@@ -192,15 +189,14 @@ public class GUIAddFormula extends JPanel {
 		
 		opPanel.add(opLabel);
 		opPanel.add(opLabel);
-		opPanel.add(Box.createRigidArea(new Dimension(5,0)));
+		opPanel.add(Box.createRigidArea(new Dimension(53,0)));
 		opPanel.add(opComboBox);
-		opPanel.add(Box.createRigidArea(new Dimension(10,0)));
+		opPanel.add(Box.createRigidArea(new Dimension(371,0)));
 		opPanel.add(addOpToFormButton);
 		
-		termPanel.add(Box.createRigidArea(new Dimension(15,0)));
 		termPanel.add(termLabel);
-		termPanel.add(Box.createRigidArea(new Dimension(25,0)));
-		//term contains op, coeff, var, exp, addToCurrFormButton
+		termPanel.add(Box.createRigidArea(new Dimension(69,0)));
+		// Term contains op, coeff, var, exp, addToCurrFormButton
 		termPanel.add(coeffPanel);
 		termPanel.add(varPanel);
 		termPanel.add(expPanel);
@@ -210,17 +206,12 @@ public class GUIAddFormula extends JPanel {
 		
 
 		coeffPanel.add(coeffLabel);
-		coeffPanel.add(Box.createRigidArea(new Dimension(5,0)));
 		coeffPanel.add(coeffTextField);
-		coeffPanel.add(Box.createRigidArea(new Dimension(10,0)));
 
 		varPanel.add(varLabel);
-		varPanel.add(Box.createRigidArea(new Dimension(5,0)));
 		varPanel.add(varComboBox);
-		varPanel.add(Box.createRigidArea(new Dimension(10,0)));
 		
 		expPanel.add(expLabel);
-		expPanel.add(Box.createRigidArea(new Dimension(5,0)));
 		expPanel.add(expTextField);
 
 		infoPanel.add(infoLabel);
