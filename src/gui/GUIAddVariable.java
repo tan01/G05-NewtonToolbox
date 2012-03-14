@@ -42,15 +42,16 @@ public class GUIAddVariable extends JPanel {
 	private JPanel tagPanel;
 	private JPanel addVariableButtonPanel;
 
-	private JLabel nameLabel   = new JLabel("Name (like 'x'): ");
+	// INCORPORATED TWO-LINED LABELS - MICHELLE
+	private JLabel nameLabel   = new JLabel("<HTML>Name <BR>(like 'x'): </HTML>");
 	private JLabel unitLabel   = new JLabel("Units: ");
 	private JLabel infoLabel   = new JLabel("Info: ");
-	private JLabel tagLabel    = new JLabel("Tags: ");
+	private JLabel tagLabel    = new JLabel("<HTML>Tags <BR>(separated by ','): </HTML>");
 
-	private JTextField nameTextField   = new JTextField(58);
-	private JTextField unitTextField   = new JTextField(57);
-	private JTextArea infoTextArea     = new JTextArea(14, 57);
-	private JTextArea tagTextArea      = new JTextArea(4, 57);
+	private JTextField nameTextField   = new JTextField(52);
+	private JTextField unitTextField   = new JTextField(51);
+	private JTextArea infoTextArea     = new JTextArea(13, 51);
+	private JTextArea tagTextArea      = new JTextArea(4, 51);
 
 	private JScrollPane infoScrollbar;
 	private JScrollPane tagScrollbar;
@@ -109,19 +110,19 @@ public class GUIAddVariable extends JPanel {
 		tagTextArea.setWrapStyleWord(true);
 
 		namePanel.add(nameLabel);
-		namePanel.add(Box.createRigidArea(new Dimension(12,0)));
+		namePanel.add(Box.createRigidArea(new Dimension(58,0)));
 		namePanel.add(nameTextField);
 
 		unitPanel.add(unitLabel);
-		unitPanel.add(Box.createRigidArea(new Dimension(16,0)));
+		unitPanel.add(Box.createRigidArea(new Dimension(69,0)));
 		unitPanel.add(unitComboBox);
 
 		infoPanel.add(infoLabel);
-		infoPanel.add(Box.createRigidArea(new Dimension(24,0)));
+		infoPanel.add(Box.createRigidArea(new Dimension(77,0)));
 		infoPanel.add(infoScrollbar);
 
 		tagPanel.add(tagLabel);
-		tagPanel.add(Box.createRigidArea(new Dimension(17,0)));
+		tagPanel.add(Box.createRigidArea(new Dimension(7,0)));
 		tagPanel.add(tagScrollbar);
 
 		addVariableButtonPanel.add(addVariableButton);
