@@ -37,15 +37,15 @@ public class GUIAddUnit extends JPanel {
 	private NewtonsToolboxPanel tagsPanel;
 	private NewtonsToolboxPanel addUnitButtonPanel;
 	
-	private JLabel nameLabel   = new JLabel("Name (like 'meter'): ");
-	private JLabel formatLabel = new JLabel("Format (like 'm'): ");
+	private JLabel nameLabel   = new JLabel("<HTML>Name <BR>(like 'meter'): </HTML>");
+	private JLabel formatLabel = new JLabel("<HTML>Format <BR>(like 'm'): </HTML>");
 	private JLabel infoLabel   = new JLabel("Info: ");
-	private JLabel tagsLabel   = new JLabel("Tags (separated by ','): ");
+	private JLabel tagsLabel   = new JLabel("<HTML>Tags <BR>(separated by ','): </HTML>");
 
-	private JTextField nameField   = new JTextField(50);
-	private JTextField formatField = new JTextField(50);
-	private JTextArea infoTextArea = new JTextArea(14, 49);
-	private JTextArea tagsTextArea = new JTextArea(4, 49);
+	private JTextField nameField   = new JTextField(51);
+	private JTextField formatField = new JTextField(51);
+	private JTextArea infoTextArea = new JTextArea(13, 50);
+	private JTextArea tagsTextArea = new JTextArea(4, 50);
 
 	private JScrollPane scroller;
 	private JScrollPane scroller2;
@@ -107,15 +107,15 @@ public class GUIAddUnit extends JPanel {
 
 		// Adding labels and such to panels, and separating them with a "box"
 		namePanel.add(nameLabel);
-		namePanel.add(Box.createRigidArea(new Dimension(28,0)));
+		namePanel.add(Box.createRigidArea(new Dimension(33,0)));
 		namePanel.add(nameField);
 
 		formatPanel.add(formatLabel);
-		formatPanel.add(Box.createRigidArea(new Dimension(44,0)));
+		formatPanel.add(Box.createRigidArea(new Dimension(56,0)));
 		formatPanel.add(formatField);
 
 		infoPanel.add(infoLabel);
-		infoPanel.add(Box.createRigidArea(new Dimension(114,0)));
+		infoPanel.add(Box.createRigidArea(new Dimension(80,0)));
 		infoPanel.add(scroller);//infoTextArea is inside scroller
 
 		tagsPanel.add(tagsLabel);

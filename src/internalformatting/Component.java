@@ -14,4 +14,9 @@ abstract public class Component {
     return -1;
   }
   
+  /**
+   * Mandates that every component needs to be able to convert itself to LaTeX format.
+   * @author Jonathan Tan
+   */
+  abstract public String toLaTeX();
 }

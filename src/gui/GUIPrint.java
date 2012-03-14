@@ -1,8 +1,14 @@
 package gui;
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.Style;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+import javax.swing.text.StyledDocument;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.RenderingHints;
@@ -16,6 +22,15 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowAdapter;
 
+import java.awt.image.BufferedImage;
+
+import org.scilab.forge.jlatexmath.TeXConstants;
+import org.scilab.forge.jlatexmath.TeXFormula;
+import org.scilab.forge.jlatexmath.TeXIcon;
+
+import java.awt.image.BufferedImage;
+
+import java.awt.image.BufferedImage;
 
 /**
  * GUIPrint
@@ -25,43 +40,137 @@ import java.awt.event.WindowAdapter;
  */
 //Forms = Formulas
 public class GUIPrint extends JPanel{
-	JTextArea infoField = new JTextArea(27,57);
+
+	private JTextPane output = new JTextPane();
+	private StyledDocument doc = output.getStyledDocument();
+
 	public GUIPrint(){
-	infoField.setLineWrap(true);
-	infoField.setWrapStyleWord(true);
-	infoField.setEditable(false);
-	//Scroller
-	JScrollPane scroller = new JScrollPane(infoField);
-	scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-	scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-	String writeBuffer = "";
-	
-	writeBuffer +="[FORMULAS] \n";
-	
-	for(int i=0; i<GUIMain.FORMULAS.size();i++) {
-		writeBuffer = writeBuffer + GUIMain.FORMULAS.get(i).allInfoToString() + "\n \n";
+		//formatting text pane
+		addStylesToDocument(doc);
+		output.setPreferredSize(new Dimension(706,450));
+
+		//Scroller
+		JScrollPane scroller = new JScrollPane(output);
+		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+		String writeBuffer = "";
+
+		//FORMULA HEADER
+		//		writeBuffer ="[FORMULAS] \n";
+		//		try{
+		//			doc.insertString(doc.getLength(),writeBuffer,doc.getStyle("bold"));
+		//			}catch(BadLocationException ble){
+		//				System.err.println("Couldn't insert text into text pane.");
+		//			}
+		output.insertIcon(new ImageIcon("img/formulaheader.png"));
+		//This is retarded.
+		//There has to be a better way to force newlines in a TextPane.
+		//I fucking hate TextPanes.
+		try{
+			doc.insertString(doc.getLength(),"\n",doc.getStyle("regular"));
+		}catch(BadLocationException ble){
+			System.err.println("Couldn't insert text into text pane.");
+		}
+
+		for(int i=0; i<GUIMain.FORMULAS.size();i++) {
+			output.insertIcon(GUIMain.FORMULAS.get(i).toLaTeXIcon());
+			writeBuffer = "\n" + GUIMain.FORMULAS.get(i).allInfoToString() + "\n \n";
+			try{
+				doc.insertString(doc.getLength(),writeBuffer,doc.getStyle("regular"));
+			}catch(BadLocationException ble){
+				System.err.println("Couldn't insert text into text pane.");
+			}
+		}
+
+
+		//VARIABLE HEADER
+		output.insertIcon(new ImageIcon("img/varheader.png"));
+		//This is retarded.
+		//There has to be a better way to force newlines in a TextPane.
+		//I fucking hate TextPanes.
+		try{
+			doc.insertString(doc.getLength(),"\n",doc.getStyle("regular"));
+		}catch(BadLocationException ble){
+			System.err.println("Couldn't insert text into text pane.");
+		}
+
+
+		for(int i=0; i<GUIMain.VARIABLES.size();i++) {
+			writeBuffer =
+					GUIMain.VARIABLES.get(i).getVar() + "   Units: " +
+							GUIMain.VARIABLES.get(i).getUnit() + "\n" + "Info: " +
+							GUIMain.VARIABLES.get(i).getInfo() + "\n" + "Tags: " +
+							GUIMain.VARIABLES.get(i).getTags() + "\n\n";
+			try{
+				doc.insertString(doc.getLength(),writeBuffer,doc.getStyle("regular"));
+			}catch(BadLocationException ble){
+				System.err.println("Couldn't insert text into text pane.");
+			}
+		}
+
+
+		//UNIT HEADER
+		output.insertIcon(new ImageIcon("img/unitheader.png"));
+		//This is retarded.
+		//There has to be a better way to force newlines in a TextPane.
+		//I fucking hate TextPanes.
+		try{
+			doc.insertString(doc.getLength(),"\n",doc.getStyle("regular"));
+		}catch(BadLocationException ble){
+			System.err.println("Couldn't insert text into text pane.");
+		}
+
+
+		for(int i=0; i<GUIMain.UNITS.size();i++) {
+			writeBuffer =
+					GUIMain.UNITS.get(i).getName() + "\n" + "Info: " +
+							GUIMain.UNITS.get(i).getInfo() + "\n" + "Tags: " +
+							GUIMain.UNITS.get(i).getAllTags() + "\n\n";
+			try{
+				doc.insertString(doc.getLength(),writeBuffer,doc.getStyle("regular"));
+			}catch(BadLocationException ble){
+				System.err.println("Couldn't insert text into text pane.");
+			}
+		}
+
+		add(scroller);
 	}
-	
-	writeBuffer +="[VARIABLES] \n";
-	
-	for(int i=0; i<GUIMain.VARIABLES.size();i++) {
-		writeBuffer = writeBuffer + 
-				GUIMain.VARIABLES.get(i).getVar() + "   Units: " +
-				GUIMain.VARIABLES.get(i).getUnit() + "\n" + "Info: " +
-				GUIMain.VARIABLES.get(i).getInfo() + "\n" + "Tags: " +
-				GUIMain.VARIABLES.get(i).getTags() + "\n\n";
+
+	private void addStylesToDocument(StyledDocument doc) {
+		//Taken right out of the TextSamplerDemo from Oracle.
+		//Initialize some styles.
+		Style def = StyleContext.getDefaultStyleContext().
+				getStyle(StyleContext.DEFAULT_STYLE);
+
+		Style regular = doc.addStyle("regular", def);
+		StyleConstants.setFontFamily(def, "SansSerif");
+
+		Style s = doc.addStyle("italic", regular);
+		StyleConstants.setItalic(s, true);
+
+		s = doc.addStyle("bold", regular);
+		StyleConstants.setBold(s, true);
+
+		s = doc.addStyle("small", regular);
+		StyleConstants.setFontSize(s, 10);
+
+		s = doc.addStyle("large", regular);
+		StyleConstants.setFontSize(s, 16);
+
 	}
-	
-	writeBuffer +="[UNITS] \n";
-	
-	for(int i=0; i<GUIMain.UNITS.size();i++) {
-		writeBuffer = writeBuffer + 
-				GUIMain.UNITS.get(i).getName() + "\n" + "Info: " +
-				GUIMain.UNITS.get(i).getInfo() + "\n" + "Tags: " +
-				GUIMain.UNITS.get(i).getAllTags() + "\n\n";
-	}
-	
-	infoField.append(writeBuffer);
-	add(scroller);
-	}
+
+	//Part of my old idea to add this to the TextPane as a StyledDocument.
+	//	private void addFormulaIconToDocument(StyledDocument doc, int i) {
+	//	//LaTeX support goes here
+	//		Style def = StyleContext.getDefaultStyleContext().
+	//                getStyle(StyleContext.DEFAULT_STYLE);
+	//		Style regular = doc.addStyle("regular", def);
+	//		
+	//		Style s = doc.addStyle("icon",regular);
+	//		ImageIcon formulaIcon = new ImageIcon(GUIMain.FORMULAS.get(i).toLaTeXImage());
+	//		if (formulaIcon != null) {
+	//			StyleConstants.setIcon(s, formulaIcon);
+	//		}
+	//		
+	//	}
 }

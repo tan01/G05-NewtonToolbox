@@ -36,7 +36,9 @@ import java.awt.event.MouseAdapter;
 
 
 /**
- * Gui will be the gui used for our Newton's Toolbox project (EDIT DESCRIPTION LATER K THX)
+ * This is the main, front page of the GUI for Newton's Toolbox.
+ * From here, you can access four other screens:
+ * Search, Print, Solve, Add
  *  
  * @author Michelle Len
  * @author Jonathan Tan
@@ -90,7 +92,7 @@ public class GUIMain {
 		quitPanel.setOpaque(false);
 		quitPanel.setBounds(830,20,50,25);
 
-		JButton quitButton = new JButton("x");
+		imgButton quitButton = new imgButton("quitButton");
 		quitButton.addActionListener(new quitListener());
 
 		quitPanel.add(quitButton);
@@ -101,9 +103,9 @@ public class GUIMain {
 		minimizePanel.setOpaque(false);
 		minimizePanel.setBounds(805,20,25,25);
 
-		JButton minimizeButton = new JButton("_");
+		imgButton minimizeButton = new imgButton("minimizeButton");
 		minimizeButton.addActionListener(new minimizeListener());
-		minimizeButton.setMargin(new Insets(0,0,0,0));
+		//minimizeButton.setMargin(new Insets(0,0,0,0));
 
 		minimizePanel.add(minimizeButton);
 		panel.add(minimizePanel);
@@ -177,18 +179,23 @@ public class GUIMain {
 
 
 	}
-
+/**
+ * To change the panel shown
+ * @param newPanel
+ */
 	public void changeContent (JPanel newPanel){
 		panel.remove(contentPanel);
 		contentPanel = newPanel;
-		System.out.println("Components changed: "+contentPanel.getComponentCount());
 		contentPanel.setBounds(80,60,720,480);
 		contentPanel.setOpaque(false);
 		panel.add(contentPanel);
 		updateUI();
 
 	}
-
+/**
+ * 
+ * @param newPanel
+ */
 	public void changeContent (JScrollPane newPanel){
 		panel.remove(contentPanel);
 		contentPanel = newPanel;

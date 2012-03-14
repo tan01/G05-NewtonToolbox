@@ -1,4 +1,5 @@
 package gui;
+import internalformatting.Tags;
 import internalformatting.Variable;
 
 import java.awt.BorderLayout;
@@ -42,15 +43,16 @@ public class GUIAddVariable extends JPanel {
 	private JPanel tagPanel;
 	private JPanel addVariableButtonPanel;
 
-	private JLabel nameLabel   = new JLabel("Name: ");
+	// INCORPORATED TWO-LINED LABELS - MICHELLE
+	private JLabel nameLabel   = new JLabel("<HTML>Name <BR>(like 'x'): </HTML>");
 	private JLabel unitLabel   = new JLabel("Units: ");
 	private JLabel infoLabel   = new JLabel("Info: ");
-	private JLabel tagLabel    = new JLabel("Tags: ");
+	private JLabel tagLabel    = new JLabel("<HTML>Tags <BR>(separated by ','): </HTML>");
 
-	private JTextField nameTextField   = new JTextField(58);
-	private JTextField unitTextField   = new JTextField(57);
-	private JTextArea infoTextArea     = new JTextArea(14, 57);
-	private JTextArea tagTextArea      = new JTextArea(4, 57);
+	private JTextField nameTextField   = new JTextField(52);
+	private JTextField unitTextField   = new JTextField(51);
+	private JTextArea infoTextArea     = new JTextArea(13, 51);
+	private JTextArea tagsTextArea      = new JTextArea(4, 51);
 
 	private JScrollPane infoScrollbar;
 	private JScrollPane tagScrollbar;
@@ -60,13 +62,6 @@ public class GUIAddVariable extends JPanel {
 	private JComboBox<String> unitComboBox;
 	
 	public GUIAddVariable() {
-
-		//////////////NOTE TO SELF
-		//need to add a scrollpanel to the units drop down units thing (JComboBox)
-		//need to make action listener for button at bottom to save variables
-		//need to delete unneeded setOpaque thing
-		//need to reorganize
-		//might want to change color of units JComboBox, as it is a gray-ish color
 
 		setSize(720,480);
 		
@@ -90,7 +85,7 @@ public class GUIAddVariable extends JPanel {
 		infoScrollbar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		// Scroll-bar for the Info JTextArea
-		tagScrollbar = new JScrollPane(tagTextArea);
+		tagScrollbar = new JScrollPane(tagsTextArea);
 		tagScrollbar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		tagScrollbar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -112,23 +107,23 @@ public class GUIAddVariable extends JPanel {
 		infoTextArea.setLineWrap(true);
 		infoTextArea.setWrapStyleWord(true);
 		//wrap words and lines and make sure you can't edit it
-		tagTextArea.setLineWrap(true);
-		tagTextArea.setWrapStyleWord(true);
+		tagsTextArea.setLineWrap(true);
+		tagsTextArea.setWrapStyleWord(true);
 
 		namePanel.add(nameLabel);
-		namePanel.add(Box.createRigidArea(new Dimension(12,0)));
+		namePanel.add(Box.createRigidArea(new Dimension(58,0)));
 		namePanel.add(nameTextField);
 
 		unitPanel.add(unitLabel);
-		unitPanel.add(Box.createRigidArea(new Dimension(16,0)));
+		unitPanel.add(Box.createRigidArea(new Dimension(69,0)));
 		unitPanel.add(unitComboBox);
 
 		infoPanel.add(infoLabel);
-		infoPanel.add(Box.createRigidArea(new Dimension(24,0)));
+		infoPanel.add(Box.createRigidArea(new Dimension(77,0)));
 		infoPanel.add(infoScrollbar);
 
 		tagPanel.add(tagLabel);
-		tagPanel.add(Box.createRigidArea(new Dimension(17,0)));
+		tagPanel.add(Box.createRigidArea(new Dimension(7,0)));
 		tagPanel.add(tagScrollbar);
 
 		addVariableButtonPanel.add(addVariableButton);
@@ -158,13 +153,14 @@ public class GUIAddVariable extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String variableName = nameTextField.getText();
 			String variableInfo = infoTextArea.getText();
-			String[] tagsTemp = tagTextArea.getText().split(",");
-
+			
+			Tags tagsTemp = Tags.convertToTags(tagsTextArea.getText());
+			
 			Variable newVariable = new Variable(variableName);
 			newVariable.setInfo(variableInfo);
 			newVariable.setUnit(GUIMain.UNITS.get(unitComboBox.getSelectedIndex()));
-			for(int i=0;i<tagsTemp.length;i++){
-				newVariable.addTag(tagsTemp[i].toLowerCase());
+			for(int i=0;i<tagsTemp.size();i++){
+				newVariable.addTag(tagsTemp.get(i));
 			}
 			((VariableDatabase)GUIMain.VARIABLES).addVariable(newVariable);
 			Saver.saveVars(GUIMain.VARIABLES);
@@ -172,7 +168,7 @@ public class GUIAddVariable extends JPanel {
 			nameTextField.setText("");
 			unitTextField.setText("");
 			infoTextArea.setText("");
-			tagTextArea.setText("");
+			tagsTextArea.setText("");
 		}
 	}
 	
