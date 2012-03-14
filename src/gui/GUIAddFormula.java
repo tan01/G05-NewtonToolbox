@@ -266,20 +266,34 @@ public class GUIAddFormula extends JPanel {
 	//Button Listener Classes:
 	class addToCurrFormButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			currFormTextArea.append ( allOps.get(opComboBox.getSelectedIndex()).toString() + " ");
-			currFormTextArea.append (coeffTextField.getText() );
-			currFormTextArea.append ( GUIMain.VARIABLES.get(varComboBox.getSelectedIndex()).toString() + " ");
-			currFormTextArea.append ( " ^ " );
-			currFormTextArea.append ( expTextField.getText() + " ");
+//			currFormTextArea.append ( allOps.get(opComboBox.getSelectedIndex()).toString() + " ");
+//			currFormTextArea.append (coeffTextField.getText() );
+//			currFormTextArea.append ( GUIMain.VARIABLES.get(varComboBox.getSelectedIndex()).toString() + " ");
+//			currFormTextArea.append ( " ^ " );
+//			currFormTextArea.append ( expTextField.getText() + " ");
 
 			//to save term in newFormula
 			String coeffString = coeffTextField.getText();
 			String expString2 = expTextField.getText();
 			int coeff = Integer.parseInt(coeffString);
 			int exp = Integer.parseInt(expString2);
+			
+			//need way not enter a variable like as just a constant, or if just adding operator
 			Term newTerm = new Term( coeff, GUIMain.VARIABLES.get(varComboBox.getSelectedIndex()), exp);
-			newFormula.addTerm( allOps.get(opComboBox.getSelectedIndex()) );
+			
+			//if first option selected (which is blank), then do not add an operator to the formula.
+			if(opComboBox.getSelectedIndex() != 0) {
+				newFormula.addTerm( allOps.get(opComboBox.getSelectedIndex()) );
+			}
 			newFormula.addTerm( newTerm );
+			String formulaString = newFormula.toString();
+			currFormTextArea.setText(formulaString);
+			
+			opComboBox.setSelectedIndex(4);
+			coeffTextField.setText("");
+			varComboBox.setSelectedIndex(0);
+			expTextField.setText("");
+			
 		}
 	}
 
@@ -297,6 +311,15 @@ public class GUIAddFormula extends JPanel {
 			}
 			((FormulaDatabase)GUIMain.FORMULAS).addFormula(newFormula);
 			Saver.saveForms(GUIMain.FORMULAS);
+			
+			nameTextField.setText("");
+			currFormTextArea.setText("");
+			opComboBox.setSelectedIndex(0);
+			coeffTextField.setText("");
+			varComboBox.setSelectedIndex(0);
+			expTextField.setText("");
+			infoTextArea.setText("");
+			tagTextArea.setText("");
 
 			//			String formFormat = formatTextField.getText();
 			//			String unitInfo = infoTextArea.getText();
