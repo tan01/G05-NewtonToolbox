@@ -38,23 +38,23 @@ public class GUIAddFormula extends JPanel {
 	private static final long serialVersionUID = 6187284211221392126L;
 
 	private JPanel middlePanel;
-
+	
 	private JPanel namePanel;
 	private JPanel currFormPanel;
-	private JPanel opPanel;
+	private JPanel opPanel; //operator
 	private JPanel termPanel;
-	private JPanel coeffPanel;
-	private JPanel varPanel;
-	private JPanel addToCurrFormPanel;
-	private JPanel expPanel;
-	private JPanel infoPanel;
+	private JPanel coeffPanel; //coefficient
+	private JPanel varPanel; //variable
+	private JPanel addToCurrFormPanel; //add op, coeff, var, exp to current formula panel
+	private JPanel expPanel; //exponent
+	private JPanel infoPanel; //information
 	private JPanel tagPanel;
-	private JPanel addFormButtonPanel;
+	private JPanel addFormButtonPanel; //formula
 
 	private JLabel nameLabel   = new JLabel("Name: ");
 	private JLabel currFormLabel = new JLabel("Current Formula: ");
 	private JLabel opLabel = new JLabel("Operator:");
-	private JLabel termLabel = new JLabel("Term:");
+	private JLabel termLabel = new JLabel("Term:"); //term includes op,coeff,var,exp
 	private JLabel coeffLabel = new JLabel("Coefficient:");
 	private JLabel varLabel   = new JLabel("Variables:");
 	private JLabel expLabel = new JLabel("Exponent:");
@@ -75,14 +75,14 @@ public class GUIAddFormula extends JPanel {
 	private JScrollPane infoScrollbar;
 	private JScrollPane tagScrollbar;
 
-	private JButton addToCurrFormButton = new JButton("Add Op & Term");
+	private JButton addOpToFormButton = new JButton("Add Operator to Formula");
+	private JButton addTermToFormButton = new JButton("Add Term to Formula");
 	private JButton addFormButton = new JButton("Add Formula");
 
 	private JComboBox<String> opComboBox;
 	private JComboBox<String> varComboBox;
 
 	////all operators
-	Operator blank = new Operator(" ");
 	Operator leftParen = new Operator("(");
 	Operator rightParen = new Operator(")");
 	Operator plus = new Operator("+");
@@ -100,7 +100,6 @@ public class GUIAddFormula extends JPanel {
 		FlowLayout flow = new FlowLayout(FlowLayout.LEFT, 5, 5);
 		FlowLayout center = new FlowLayout(FlowLayout.CENTER, 5, 5);
 		
-		allOps.add(blank);
 		allOps.add(leftParen);
 		allOps.add(rightParen);
 		allOps.add(plus);
@@ -166,6 +165,7 @@ public class GUIAddFormula extends JPanel {
 		tagPanel.setLayout(flow);
 		addFormButtonPanel.setLayout(center);
 		
+		opPanel.setBackground(new Color(0x66CCFF));
 		termPanel.setBackground(new Color(0x66CCFF));
 		addToCurrFormPanel.setBackground(new Color(0x66CCFF));
 
@@ -190,7 +190,13 @@ public class GUIAddFormula extends JPanel {
 		currFormPanel.add(Box.createRigidArea(new Dimension(8,0)));
 		currFormPanel.add(currFormScrollbar);
 		
-		termPanel.add(opPanel);
+		opPanel.add(opLabel);
+		opPanel.add(opLabel);
+		opPanel.add(Box.createRigidArea(new Dimension(5,0)));
+		opPanel.add(opComboBox);
+		opPanel.add(Box.createRigidArea(new Dimension(10,0)));
+		opPanel.add(addOpToFormButton);
+		
 		termPanel.add(Box.createRigidArea(new Dimension(15,0)));
 		termPanel.add(termLabel);
 		termPanel.add(Box.createRigidArea(new Dimension(25,0)));
@@ -198,14 +204,10 @@ public class GUIAddFormula extends JPanel {
 		termPanel.add(coeffPanel);
 		termPanel.add(varPanel);
 		termPanel.add(expPanel);
+		termPanel.add(addTermToFormButton);
 
-		addToCurrFormPanel.add(addToCurrFormButton);
-
-		//out of order
-		opPanel.add(opLabel);
-		opPanel.add(Box.createRigidArea(new Dimension(5,0)));
-		opPanel.add(opComboBox);
-		opPanel.add(Box.createRigidArea(new Dimension(10,0)));
+//		addToCurrFormPanel.add(addTermToFormButton);
+		
 
 		coeffPanel.add(coeffLabel);
 		coeffPanel.add(Box.createRigidArea(new Dimension(5,0)));
@@ -233,7 +235,7 @@ public class GUIAddFormula extends JPanel {
 
 		middlePanel.add(namePanel);
 		middlePanel.add(currFormPanel);
-		//middlePanel.add(opPanel);
+		middlePanel.add(opPanel);
 		middlePanel.add(termPanel);
 		middlePanel.add(addToCurrFormPanel);
 		middlePanel.add(infoPanel);
@@ -243,7 +245,7 @@ public class GUIAddFormula extends JPanel {
 		setOpaque(false);
 		middlePanel.setOpaque(false);//THIS THING makes it not opaque
 		
-		opPanel.setOpaque(false);
+//		opPanel.setOpaque(false);
 //		termPanel.setOpaque(false);
 		coeffPanel.setOpaque(false);
 		varPanel.setOpaque(false);
@@ -258,13 +260,14 @@ public class GUIAddFormula extends JPanel {
 		
 		addFormButtonPanel.setOpaque(false);
 
-		addToCurrFormButton.addActionListener(new addToCurrFormButtonListener());
+		addOpToFormButton.addActionListener(new addOpToFormButtonListener());
+		addTermToFormButton.addActionListener(new addTermToFormButtonListener());
 		addFormButton.addActionListener(new addFormButtonListener());
 
 	}
 
 	//Button Listener Classes:
-	class addToCurrFormButtonListener implements ActionListener {
+	class addOpToFormButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 //			currFormTextArea.append ( allOps.get(opComboBox.getSelectedIndex()).toString() + " ");
 //			currFormTextArea.append (coeffTextField.getText() );
@@ -272,26 +275,49 @@ public class GUIAddFormula extends JPanel {
 //			currFormTextArea.append ( " ^ " );
 //			currFormTextArea.append ( expTextField.getText() + " ");
 
-			//to save term in newFormula
+			//to save operator in newFormula
+			newFormula.addTerm( allOps.get(opComboBox.getSelectedIndex()) );
+			
+			//set current formula box
+			String formulaString = newFormula.toString();
+			currFormTextArea.setText(formulaString);
+			
+			//clear fields
+			opComboBox.setSelectedIndex(2);
+
+			
+		}
+	}
+	
+	//Button Listener Classes:
+	class addTermToFormButtonListener implements ActionListener {
+		public void actionPerformed(ActionEvent e) {
+//			currFormTextArea.append ( allOps.get(opComboBox.getSelectedIndex()).toString() + " ");
+//			currFormTextArea.append (coeffTextField.getText() );
+//			currFormTextArea.append ( GUIMain.VARIABLES.get(varComboBox.getSelectedIndex()).toString() + " ");
+//			currFormTextArea.append ( " ^ " );
+//			currFormTextArea.append ( expTextField.getText() + " ");
+
+			//convert coefficients and exponents into integers
 			String coeffString = coeffTextField.getText();
 			String expString2 = expTextField.getText();
 			int coeff = Integer.parseInt(coeffString);
 			int exp = Integer.parseInt(expString2);
 			
-			//need way not enter a variable like as just a constant, or if just adding operator
+			//make a new term
 			Term newTerm = new Term( coeff, GUIMain.VARIABLES.get(varComboBox.getSelectedIndex()), exp);
 			
-			//if first option selected (which is blank), then do not add an operator to the formula.
-			if(opComboBox.getSelectedIndex() != 0) {
-				newFormula.addTerm( allOps.get(opComboBox.getSelectedIndex()) );
-			}
+			//add new term to formula
 			newFormula.addTerm( newTerm );
+			
+			//set current formula text box
 			String formulaString = newFormula.toString();
 			currFormTextArea.setText(formulaString);
 			
-			opComboBox.setSelectedIndex(4);
+			//clear fields
+			opComboBox.setSelectedIndex(2);
 			coeffTextField.setText("");
-			varComboBox.setSelectedIndex(0);
+//			varComboBox.setSelectedIndex(0);
 			expTextField.setText("");
 			
 		}
@@ -321,13 +347,8 @@ public class GUIAddFormula extends JPanel {
 			infoTextArea.setText("");
 			tagTextArea.setText("");
 			
-			//DELETE THE NEW FORMULA SO THAT WE CAN PUT NEW INFORMATION IN IT!
-			//IT IS TEMPORARY!
-//			newFormula.setName(null);
-//			newFormula.setInfo(null);
-//			for(int j=0; j<newFormula.size(); j++){
-//				newFormula.deleteTerm(j);	
-//			}??????
+			//so user can create a new formula directly after finishing the past one
+			newFormula = new Formula();
 		}
 	}
 
