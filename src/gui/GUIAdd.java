@@ -26,9 +26,8 @@ public class GUIAdd extends JPanel {
 
 	public GUIAdd() {
 
+		setLayout(new BorderLayout());
 		setSize(720,480);
-		
-		
 		
 		middlePanel = new JPanel();
 
