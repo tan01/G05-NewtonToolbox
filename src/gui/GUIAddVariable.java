@@ -1,4 +1,5 @@
 package gui;
+import internalformatting.Tags;
 import internalformatting.Variable;
 
 import java.awt.BorderLayout;
@@ -51,7 +52,7 @@ public class GUIAddVariable extends JPanel {
 	private JTextField nameTextField   = new JTextField(52);
 	private JTextField unitTextField   = new JTextField(51);
 	private JTextArea infoTextArea     = new JTextArea(13, 51);
-	private JTextArea tagTextArea      = new JTextArea(4, 51);
+	private JTextArea tagsTextArea      = new JTextArea(4, 51);
 
 	private JScrollPane infoScrollbar;
 	private JScrollPane tagScrollbar;
@@ -84,7 +85,7 @@ public class GUIAddVariable extends JPanel {
 		infoScrollbar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
 		// Scroll-bar for the Info JTextArea
-		tagScrollbar = new JScrollPane(tagTextArea);
+		tagScrollbar = new JScrollPane(tagsTextArea);
 		tagScrollbar.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		tagScrollbar.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 
@@ -106,8 +107,8 @@ public class GUIAddVariable extends JPanel {
 		infoTextArea.setLineWrap(true);
 		infoTextArea.setWrapStyleWord(true);
 		//wrap words and lines and make sure you can't edit it
-		tagTextArea.setLineWrap(true);
-		tagTextArea.setWrapStyleWord(true);
+		tagsTextArea.setLineWrap(true);
+		tagsTextArea.setWrapStyleWord(true);
 
 		namePanel.add(nameLabel);
 		namePanel.add(Box.createRigidArea(new Dimension(58,0)));
@@ -152,13 +153,14 @@ public class GUIAddVariable extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String variableName = nameTextField.getText();
 			String variableInfo = infoTextArea.getText();
-			String[] tagsTemp = tagTextArea.getText().split(",");
-
+			
+			Tags tagsTemp = Tags.convertToTags(tagsTextArea.getText());
+			
 			Variable newVariable = new Variable(variableName);
 			newVariable.setInfo(variableInfo);
 			newVariable.setUnit(GUIMain.UNITS.get(unitComboBox.getSelectedIndex()));
-			for(int i=0;i<tagsTemp.length;i++){
-				newVariable.addTag(tagsTemp[i].toLowerCase());
+			for(int i=0;i<tagsTemp.size();i++){
+				newVariable.addTag(tagsTemp.get(i));
 			}
 			((VariableDatabase)GUIMain.VARIABLES).addVariable(newVariable);
 			Saver.saveVars(GUIMain.VARIABLES);
@@ -166,7 +168,7 @@ public class GUIAddVariable extends JPanel {
 			nameTextField.setText("");
 			unitTextField.setText("");
 			infoTextArea.setText("");
-			tagTextArea.setText("");
+			tagsTextArea.setText("");
 		}
 	}
 	
