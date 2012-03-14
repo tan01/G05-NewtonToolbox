@@ -59,7 +59,7 @@ public class GUIAddFormula extends JPanel {
 	private JLabel varLabel   = new JLabel("Variables:");
 	private JLabel expLabel = new JLabel("Exponent:");
 	private JLabel infoLabel   = new JLabel("Info: ");
-	private JLabel tagLabel    = new JLabel("Tags: ");
+	private JLabel tagLabel    = new JLabel("<HTML>Tags <BR>(separated by ','): </HTML>");
 
 	private JTextField nameTextField   = new JTextField(53);
 //	private JTextField opTextField = new JTextField(5); //change to down later
@@ -95,7 +95,7 @@ public class GUIAddFormula extends JPanel {
 	Formula newFormula = new Formula();
 
 	public GUIAddFormula() {
-		setSize(730,480);
+		setSize(775,480);
 
 		FlowLayout flow = new FlowLayout(FlowLayout.LEFT, 5, 5);
 		FlowLayout center = new FlowLayout(FlowLayout.CENTER, 5, 5);
@@ -180,22 +180,22 @@ public class GUIAddFormula extends JPanel {
 		tagTextArea.setWrapStyleWord(true);
 
 		namePanel.add(nameLabel);
-		namePanel.add(Box.createRigidArea(new Dimension(67,0)));
+		namePanel.add(Box.createRigidArea(new Dimension(62,0)));
 		namePanel.add(nameTextField);
 
 		currFormPanel.add(currFormLabel);
-		currFormPanel.add(Box.createRigidArea(new Dimension(8,0)));
+		currFormPanel.add(Box.createRigidArea(new Dimension(3,0)));
 		currFormPanel.add(currFormScrollbar);
 		
 		opPanel.add(opLabel);
 		opPanel.add(opLabel);
-		opPanel.add(Box.createRigidArea(new Dimension(53,0)));
+		opPanel.add(Box.createRigidArea(new Dimension(48,0)));
 		opPanel.add(opComboBox);
 		opPanel.add(Box.createRigidArea(new Dimension(371,0)));
 		opPanel.add(addOpToFormButton);
 		
 		termPanel.add(termLabel);
-		termPanel.add(Box.createRigidArea(new Dimension(69,0)));
+		termPanel.add(Box.createRigidArea(new Dimension(64,0)));
 		// Term contains op, coeff, var, exp, addToCurrFormButton
 		termPanel.add(coeffPanel);
 		termPanel.add(varPanel);
@@ -215,11 +215,11 @@ public class GUIAddFormula extends JPanel {
 		expPanel.add(expTextField);
 
 		infoPanel.add(infoLabel);
-		infoPanel.add(Box.createRigidArea(new Dimension(80,0)));
+		infoPanel.add(Box.createRigidArea(new Dimension(75,0)));
 		infoPanel.add(infoScrollbar);
 
 		tagPanel.add(tagLabel);
-		tagPanel.add(Box.createRigidArea(new Dimension(73,0)));
+		tagPanel.add(Box.createRigidArea(new Dimension(5,0)));
 		tagPanel.add(tagScrollbar);
 
 		addFormButtonPanel.add(addFormButton);
