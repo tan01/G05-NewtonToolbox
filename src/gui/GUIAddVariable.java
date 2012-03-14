@@ -42,7 +42,7 @@ public class GUIAddVariable extends JPanel {
 	private JPanel tagPanel;
 	private JPanel addVariableButtonPanel;
 
-	private JLabel nameLabel   = new JLabel("Name: ");
+	private JLabel nameLabel   = new JLabel("Name (like 'x'): ");
 	private JLabel unitLabel   = new JLabel("Units: ");
 	private JLabel infoLabel   = new JLabel("Info: ");
 	private JLabel tagLabel    = new JLabel("Tags: ");
@@ -60,13 +60,6 @@ public class GUIAddVariable extends JPanel {
 	private JComboBox<String> unitComboBox;
 	
 	public GUIAddVariable() {
-
-		//////////////NOTE TO SELF
-		//need to add a scrollpanel to the units drop down units thing (JComboBox)
-		//need to make action listener for button at bottom to save variables
-		//need to delete unneeded setOpaque thing
-		//need to reorganize
-		//might want to change color of units JComboBox, as it is a gray-ish color
 
 		setSize(720,480);
 		
