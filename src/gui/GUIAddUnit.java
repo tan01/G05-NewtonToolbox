@@ -37,7 +37,7 @@ public class GUIAddUnit extends JPanel {
 	private NewtonsToolboxPanel infoPanel;
 	private NewtonsToolboxPanel tagsPanel;
 	private NewtonsToolboxPanel addUnitButtonPanel;
-	
+
 	private JLabel nameLabel   = new JLabel("<HTML>Name <BR>(like 'meter'): </HTML>");
 	private JLabel formatLabel = new JLabel("<HTML>Format <BR>(like 'm'): </HTML>");
 	private JLabel infoLabel   = new JLabel("Info: ");
@@ -78,14 +78,14 @@ public class GUIAddUnit extends JPanel {
 		formatPanel = new NewtonsToolboxPanel();
 		infoPanel   = new NewtonsToolboxPanel();
 		tagsPanel   = new NewtonsToolboxPanel();
-		
+
 		addUnitButtonPanel = new NewtonsToolboxPanel();
-		
+
 		namePanel.setLayout  (new BoxLayout(namePanel, BoxLayout.X_AXIS));
 		formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.X_AXIS));
 		infoPanel.setLayout  (new BoxLayout(infoPanel, BoxLayout.X_AXIS));
 		tagsPanel.setLayout  (new BoxLayout(tagsPanel, BoxLayout.X_AXIS));
-		
+
 		addUnitButtonPanel.setLayout (new BoxLayout(addUnitButtonPanel, BoxLayout.X_AXIS));
 
 		//wrap words and lines and make sure you can't edit it
@@ -121,7 +121,7 @@ public class GUIAddUnit extends JPanel {
 		tagsPanel.add(scroller2);
 
 		addUnitButtonPanel.add(addUnitButton);
-		
+
 
 		// Finally, add all panels to the panels~
 		middlePanel.add(namePanel);
@@ -168,31 +168,55 @@ public class GUIAddUnit extends JPanel {
 	class addUnitButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			String unitName = nameField.getText();			
-				
-			//custom title, warning icon
-			JOptionPane.showMessageDialog(middlePanel,
-			    "You didn't enter in a Name.",
-			    "You're an idiot.",
-			    JOptionPane.WARNING_MESSAGE);
-			}
-			
 			String unitFormat = formatField.getText();
 			String unitInfo = infoTextArea.getText();
-			Tags tagsTemp = Tags.convertToTags(tagsTextArea.getText());
+			String unitTagsString = tagsTextArea.getText();
 
-			Unit newUnit = new Unit(unitName);
-			newUnit.setTypicalForm(unitFormat);
-			newUnit.setInfo(unitInfo);
-			for(int i=0;i<tagsTemp.size();i++){
-				newUnit.addTag(tagsTemp.get(i));
+			if(!(unitName.equals("") || unitFormat.equals("") ||
+					unitInfo.equals("") || unitTagsString.equals(""))) {
+
+				Tags tagsTemp = Tags.convertToTags(unitTagsString);
+
+				Unit newUnit = new Unit(unitName);
+				newUnit.setTypicalForm(unitFormat);
+				newUnit.setInfo(unitInfo);
+				for(int i=0;i<tagsTemp.size();i++){
+					newUnit.addTag(tagsTemp.get(i));
+				}
+				((UnitDatabase)GUIMain.UNITS).addUnit(newUnit);
+				Saver.saveUnits(GUIMain.UNITS);
+
+				nameField.setText("");
+				formatField.setText("");
+				infoTextArea.setText("");
+				tagsTextArea.setText("");
 			}
-			((UnitDatabase)GUIMain.UNITS).addUnit(newUnit);
-			Saver.saveUnits(GUIMain.UNITS);
-
-			nameField.setText("");
-			formatField.setText("");
-			infoTextArea.setText("");
-			tagsTextArea.setText("");
+			if(unitName.equals("")){
+				JOptionPane.showMessageDialog(middlePanel,
+						"You didn't enter in a Name.",
+						"You're an idiot.",
+						JOptionPane.WARNING_MESSAGE);
+			}
+			if(unitFormat.equals("")){
+				JOptionPane.showMessageDialog(middlePanel,
+						"You didn't enter in a Format.",
+						"You're an idiot.",
+						JOptionPane.WARNING_MESSAGE);
+			}
+			if(unitInfo.equals("")){
+				JOptionPane.showMessageDialog(middlePanel,
+						"You didn't enter in any Info.",
+						"You're an idiot.",
+						JOptionPane.WARNING_MESSAGE);
+			}
+			if(unitTagsString.equals("")){
+				JOptionPane.showMessageDialog(middlePanel,
+						"You didn't enter in any Tags.",
+						"You're an idiot.",
+						JOptionPane.WARNING_MESSAGE);
+			}
+			
+			
 		}
 	}
 
