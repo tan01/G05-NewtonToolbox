@@ -1,11 +1,5 @@
 package storage;
 
-import internalformatting.Formula;
-import internalformatting.Operator;
-import internalformatting.Term;
-import internalformatting.Unit;
-import internalformatting.Variable;
-
 import java.io.Serializable;
 
 /**
