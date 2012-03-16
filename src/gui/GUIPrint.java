@@ -41,9 +41,13 @@ import storage.Saver;
 //Forms = Formulas
 public class GUIPrint extends JPanel{
 
+	private static final long serialVersionUID = 4873979511500578495L;
 	private JPanel contentPanel = new JPanel();
 	private JTextPane output = new JTextPane();
 	private StyledDocument doc = output.getStyledDocument();
+	private JScrollPane scroller = new JScrollPane(output);
+	
+	private GUIPrint thisReference = this;
 
 	public GUIPrint(){
 		//formatting text pane
@@ -51,7 +55,6 @@ public class GUIPrint extends JPanel{
 		output.setPreferredSize(new Dimension(706,450));
 		
 		//Scroller
-		JScrollPane scroller = new JScrollPane(output);
 		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		String writeBuffer = "";
@@ -79,7 +82,7 @@ public class GUIPrint extends JPanel{
 			infoLabel formulaLabel = new infoLabel(GUIMain.FORMULAS.get(i).toLaTeXIcon(),i);
 			output.insertComponent(formulaLabel);
 			formulaLabel.addMouseListener(formulaLabel);
-			writeBuffer = "\n" + GUIMain.FORMULAS.get(i).allInfoToString() + "\n \n";
+			writeBuffer = "\n" + GUIMain.FORMULAS.get(i).getName() + "\n \n";
 			try{
 				doc.insertString(doc.getLength(),writeBuffer,doc.getStyle("regular"));
 			}catch(BadLocationException ble){
@@ -142,6 +145,10 @@ public class GUIPrint extends JPanel{
 		contentPanel.add(scroller);
 		add(contentPanel);
 	}
+	
+	private void PrintAll(){
+		
+	}
 
 	private void addStylesToDocument(StyledDocument doc) {
 		//Taken right out of the TextSamplerDemo from Oracle.
@@ -181,6 +188,12 @@ public class GUIPrint extends JPanel{
 	//		
 	//	}
 	
+	public void back(){
+		contentPanel.removeAll();
+		contentPanel.add(scroller);
+		GUIMain.updateUI();
+	}
+	
 	/**
 	 * infoLabel inner class allows the JLabel to be used as its own MouseListener, so that
 	 * it can replace this panel with the appropriate info page when clicked, or take other action.
@@ -190,6 +203,7 @@ public class GUIPrint extends JPanel{
 	 */
 	public class infoLabel extends JLabel implements MouseListener{
 		
+		private static final long serialVersionUID = 8846844615910775776L;
 		public int index;
 		
 		public infoLabel(Icon image, int i){
@@ -199,7 +213,7 @@ public class GUIPrint extends JPanel{
 		
 		public void mouseClicked(MouseEvent arg0) {
 
-			GUIInfoPane formulaInfo = new GUIInfoPane(index);
+			GUIInfoPane formulaInfo = new GUIInfoPane(index,thisReference);
 			formulaInfo.setSize(720,480);
 			contentPanel.removeAll();
 			contentPanel.add(formulaInfo);
@@ -218,5 +232,8 @@ public class GUIPrint extends JPanel{
 		@Override
 		public void mouseReleased(MouseEvent arg0) {}
 		
+		
+		
 	}//class delimit
+	
 }
