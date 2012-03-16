@@ -1,5 +1,6 @@
 package gui;
 import internalformatting.Tags;
+import internalformatting.Unit;
 import internalformatting.Variable;
 
 import java.awt.BorderLayout;
@@ -157,15 +158,25 @@ public class GUIAddVariable extends JPanel {
 			String variableTagsString = tagsTextArea.getText();
 
 			if(!(variableName.equals("") || variableInfo.equals("") ||
-					variableTagsString.equals(""))){	
+					variableTagsString.equals(""))) {	
+				
 				Tags tagsTemp = Tags.convertToTags(variableTagsString);
 
 				Variable newVariable = new Variable(variableName);
 				newVariable.setInfo(variableInfo);
-				newVariable.setUnit(GUIMain.UNITS.get(unitComboBox.getSelectedIndex()));
+				
+				Unit newUnit = GUIMain.UNITS.get(unitComboBox.getSelectedIndex());
+				
+				newVariable.setUnit(newUnit);
 				for(int i=0;i<tagsTemp.size();i++){
 					newVariable.addTag(tagsTemp.get(i));
 				}
+				
+				// Add unit tags to variable
+				for(int i=0; i<newUnit.getTagSize(); i++) {
+					newVariable.addTag(newUnit.getTag(i));
+				}
+				
 				((VariableDatabase)GUIMain.VARIABLES).addVariable(newVariable);
 				Saver.saveVars(GUIMain.VARIABLES);
 
@@ -173,6 +184,9 @@ public class GUIAddVariable extends JPanel {
 				unitTextField.setText("");
 				infoTextArea.setText("");
 				tagsTextArea.setText("");
+				
+
+
 			}else {
 				String errorMessage = "You left something blank:\n";
 				if(variableName.equals(""))
