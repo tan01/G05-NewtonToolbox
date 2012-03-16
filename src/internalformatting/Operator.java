@@ -21,7 +21,6 @@ public class Operator extends Component implements Serializable {
 	 * Operators consist of: [a space] ( ) + - * / =
 	 * If input is not part of the above operators, then this.operator is null
 	 */
-
 	public Operator(String operator) {
 		// Operators consist of: ( ) + - * / =
 		if (( operator.equals(" ") || operator.equals("(") || operator.equals(")") || operator.equals("+") ||
@@ -32,16 +31,18 @@ public class Operator extends Component implements Serializable {
 			System.out.println("Invalid Operator");
 	}
 
+	byte getType(){
+		return 0;
+	}
+
 	/**
 	 * Get method for operator
 	 */
-
 	public String getOperator() { return this.operator; }
 
 	/**
 	 * Set method for operator
 	 */
-
 	public void setOperator(String operator) {
 		/** Operators consist of: ( ) + - * / =
 		 * If input is not part of the above operators, then this.operator is null
@@ -57,14 +58,9 @@ public class Operator extends Component implements Serializable {
 	/**
 	 * Returns object as a string
 	 */
-
 	public String toString() {
 		return operator;
 	}
-	
-	byte getType(){
-	    return 0;
-	  }
 
 	public String toLaTeX() {
 		String LaTeXOperator = " ";

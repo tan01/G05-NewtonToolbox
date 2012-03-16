@@ -8,7 +8,7 @@ import java.io.Serializable;
  */
 
 public class Term extends Component implements Serializable{
-	
+
 	private double coefficient; // a coefficient represented as a double
 	private Variable x; // a variable object
 	private int exponent; // an exponent represented as an int
@@ -24,7 +24,7 @@ public class Term extends Component implements Serializable{
 		this.exponent = 0;
 		this.unit = null;
 	}
-	
+
 	/** Constructor
 	 * 
 	 * @param coefficient A double value of coefficient
@@ -37,7 +37,7 @@ public class Term extends Component implements Serializable{
 		this.x = x;
 		this.exponent = exponent;
 	}
-		
+
 	/** Constructor
 	 * 
 	 * @param coefficient A double value of coefficient
@@ -52,7 +52,9 @@ public class Term extends Component implements Serializable{
 		this.exponent = exponent;
 		this.unit = unit;
 	}
-	
+
+	byte getType(){return 1;}
+
 	/**
 	 * Get methods for coefficient, variable, exponent, and term
 	 */
@@ -60,7 +62,7 @@ public class Term extends Component implements Serializable{
 	public Variable getVariable() { return this.x; }
 	public int getExponent() { return this.exponent; }
 	public Unit getUnit() { return this.unit; }
-	
+
 	/** 
 	 * Set methods for coefficient, variable, exponent, and term
 	 */
@@ -68,7 +70,7 @@ public class Term extends Component implements Serializable{
 	public void setVariable (Variable x) { this.x = x; }
 	public void setExponent (int exponent) { this.exponent = exponent; }
 	public void setUnit (Unit unit) { this.unit = unit; }
-	
+
 	/**
 	 * Returns object as a string
 	 */
@@ -82,11 +84,7 @@ public class Term extends Component implements Serializable{
 		else 
 			return "" + coefficient + x + "^" + exponent;
 	} // Do we need a toString method?
-	
-	byte getType(){
-	    return 1;
-	  }
-	
+
 	public String toLaTeX() {
 		//PLACEHOLDER
 		String LaTeXTerm = "{" + this.x +"}";
@@ -94,5 +92,5 @@ public class Term extends Component implements Serializable{
 			LaTeXTerm += "^" + exponent;
 		return LaTeXTerm;
 	}
-	
+
 } // class Term
