@@ -10,7 +10,9 @@ import java.awt.event.ActionListener;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -119,6 +121,7 @@ public class GUIAddUnit extends JPanel {
 		tagsPanel.add(scroller2);
 
 		addUnitButtonPanel.add(addUnitButton);
+		
 
 		// Finally, add all panels to the panels~
 		middlePanel.add(namePanel);
@@ -129,7 +132,7 @@ public class GUIAddUnit extends JPanel {
 		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(tagsPanel);
 		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
-		middlePanel.add(addUnitButtonPanel);
+		middlePanel.add(addUnitButtonPanel);	
 
 		addUnitButton.addActionListener(new addUnitButtonListener());
 		//Sets the addUnitButton to default so you can hit enter in a text field and it'll make with the magic.
@@ -164,7 +167,15 @@ public class GUIAddUnit extends JPanel {
 	//Button Listener Classes:
 	class addUnitButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
-			String unitName = nameField.getText();
+			String unitName = nameField.getText();			
+				
+			//custom title, warning icon
+			JOptionPane.showMessageDialog(middlePanel,
+			    "You didn't enter in a Name.",
+			    "You're an idiot.",
+			    JOptionPane.WARNING_MESSAGE);
+			}
+			
 			String unitFormat = formatField.getText();
 			String unitInfo = infoTextArea.getText();
 			Tags tagsTemp = Tags.convertToTags(tagsTextArea.getText());
