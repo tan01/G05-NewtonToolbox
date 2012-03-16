@@ -10,6 +10,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -87,7 +88,7 @@ public class GUINewSheet extends JPanel
     bottomPanel.add(saveButton);
     
     saveButton.addActionListener(new saveButtonListener());
-    addFormulaButton.addActionListener(new addFormulaButtonListener());
+    addFormulaButton.addActionListener( new addFormButtonListener());
     
   }
   
@@ -102,16 +103,29 @@ public class GUINewSheet extends JPanel
   class saveButtonListener implements ActionListener{
     public void actionPerformed(ActionEvent e) {
       String userInput = nameBar.getText();
-      userSheet.setName(userInput);
-      Saver.saveSheet(userSheet);
+      if(!(userInput.equals(""))){
+        userSheet.setName(userInput);
+        Saver.saveSheet(userSheet);
+        sheetTextArea.setText("Formula Sheet Saved");
+      }
+      else{
+         String errorMessage = "You left name blank\n";
+         
+         JOptionPane.showMessageDialog(middlePanel,
+             errorMessage,
+             "Error",
+             JOptionPane.WARNING_MESSAGE);
+      }
+    }
   }
 
-    class addFormulaButtonListener implements ActionListener{
+    class addFormButtonListener implements ActionListener{
       public void actionPerformed(ActionEvent e) {
-        userSheet.addFormula( );
+        userSheet.addFormula(GUIMain.FORMULAS.get((formComboBox.getSelectedIndex())) );
+        setTextBox(userSheet);
     }
   
-}
-}
-}
+    }
+  }
+ 
   
