@@ -10,6 +10,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -96,7 +97,12 @@ public class GUILoadSheet extends JPanel {
 		String userInput = loadBar.getText();
 		FormulaSheet recovered = Saver.loadSheet(userInput);
 		if (recovered.getName().equals("")) {
-			loadResults.append("sheet not found\n");
+		  String errorMessage = "Sheet Not Found.\n";
+      
+      JOptionPane.showMessageDialog(middlePanel,
+          errorMessage,
+          "Error",
+          JOptionPane.WARNING_MESSAGE);
 		}
 		else {
 			display = display + "Formula Sheet: " + recovered.getName() + "\n\n";
