@@ -57,7 +57,7 @@ public class GUIMain {
 	public static FormulaDatabase FORMULAS   = (FormulaDatabase)Saver.loadForms();
 	public static VariableDatabase VARIABLES = (VariableDatabase)Saver.loadVars();
 	public static UnitDatabase UNITS         = (UnitDatabase)Saver.loadUnits();
-
+	
 	/**
 	 * Creates the JFrame, and the JPanel
 	 */
@@ -275,6 +275,9 @@ public class GUIMain {
 	public static void main (String[] args) {
 		GUIMain gui = new GUIMain();
 		gui.go();
+		for(int i=0; i<GUIMain.FORMULAS.size();i++) {
+			GUIMain.FORMULAS.get(i).toLaTeXIcon();
+		}
 	}
 
 }

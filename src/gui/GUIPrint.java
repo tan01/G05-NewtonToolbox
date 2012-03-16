@@ -41,6 +41,7 @@ import storage.Saver;
 //Forms = Formulas
 public class GUIPrint extends JPanel{
 
+	private JPanel contentPanel = new JPanel();
 	private JTextPane output = new JTextPane();
 	private StyledDocument doc = output.getStyledDocument();
 
@@ -137,7 +138,9 @@ public class GUIPrint extends JPanel{
 			}
 		}
 
-		add(scroller);
+		contentPanel.setOpaque(false);
+		contentPanel.add(scroller);
+		add(contentPanel);
 	}
 
 	private void addStylesToDocument(StyledDocument doc) {
@@ -195,9 +198,12 @@ public class GUIPrint extends JPanel{
 		}
 		
 		public void mouseClicked(MouseEvent arg0) {
-			System.out.println(GUIMain.FORMULAS.get(index).getName() + " was removed.");
-			GUIMain.FORMULAS.rmFormula(index);
-			Saver.saveForms(GUIMain.FORMULAS);
+
+			GUIInfoPane formulaInfo = new GUIInfoPane(index);
+			formulaInfo.setSize(720,480);
+			contentPanel.removeAll();
+			contentPanel.add(formulaInfo);
+			GUIMain.updateUI();
 		}
 
 		@Override
