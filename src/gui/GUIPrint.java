@@ -18,6 +18,8 @@ import java.awt.TextArea;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.event.WindowAdapter;
@@ -28,9 +30,7 @@ import org.scilab.forge.jlatexmath.TeXConstants;
 import org.scilab.forge.jlatexmath.TeXFormula;
 import org.scilab.forge.jlatexmath.TeXIcon;
 
-import java.awt.image.BufferedImage;
-
-import java.awt.image.BufferedImage;
+import storage.Saver;
 
 /**
  * GUIPrint
@@ -73,7 +73,9 @@ public class GUIPrint extends JPanel{
 		}
 
 		for(int i=0; i<GUIMain.FORMULAS.size();i++) {
-			output.insertIcon(GUIMain.FORMULAS.get(i).toLaTeXIcon());
+			infoLabel formulaLabel = new infoLabel(GUIMain.FORMULAS.get(i).toLaTeXIcon(),i);
+			output.insertComponent(formulaLabel);
+			formulaLabel.addMouseListener(formulaLabel);
 			writeBuffer = "\n" + GUIMain.FORMULAS.get(i).allInfoToString() + "\n \n";
 			try{
 				doc.insertString(doc.getLength(),writeBuffer,doc.getStyle("regular"));
@@ -173,4 +175,39 @@ public class GUIPrint extends JPanel{
 	//		}
 	//		
 	//	}
+	
+	/**
+	 * infoLabel inner class allows the JLabel to be used as its own MouseListener, so that
+	 * it can replace this panel with the appropriate info page when clicked, or take other action.
+	 * @author Jonny
+	 * @version WIP
+	 */
+	public class infoLabel extends JLabel implements MouseListener{
+		
+		public int index;
+		
+		public infoLabel(Icon image, int i){
+			super(image);
+			index = i;
+		}
+		
+		public void mouseClicked(MouseEvent arg0) {
+			System.out.println(GUIMain.FORMULAS.get(index).getName() + "was removed.");
+			GUIMain.FORMULAS.rmFormula(index);
+			Saver.saveForms(GUIMain.FORMULAS);
+		}
+
+		@Override
+		public void mouseEntered(MouseEvent arg0) {}
+
+		@Override
+		public void mouseExited(MouseEvent arg0) {}
+
+		@Override
+		public void mousePressed(MouseEvent arg0) {}
+
+		@Override
+		public void mouseReleased(MouseEvent arg0) {}
+		
+	}//class delimit
 }
