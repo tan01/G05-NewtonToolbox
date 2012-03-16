@@ -89,6 +89,10 @@ public class Formula extends ArrayList<Component> implements Serializable{
 	public int getTagSize(){
 		return tags.getSize();
 	}
+	
+	public Tags getTags() { return this.tags; }
+	
+	public void setTags(Tags tags) { this.tags = tags; }
 
 	public String getAllTags(){
 		return tags.returnAllTags();
