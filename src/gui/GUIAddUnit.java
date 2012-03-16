@@ -4,7 +4,6 @@ import internalformatting.Unit;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -56,9 +55,6 @@ public class GUIAddUnit extends JPanel {
 
 		setSize(720,480);
 
-		// Setting flow layout so can align center
-		FlowLayout flow = new FlowLayout(FlowLayout.LEFT, 5, 5);
-		
 		middlePanel = new NewtonsToolboxPanel();
 		middlePanel.setLayout(new BoxLayout(middlePanel, BoxLayout.Y_AXIS));		
 		middlePanel.setSize(720,480);
@@ -83,10 +79,10 @@ public class GUIAddUnit extends JPanel {
 		
 		addUnitButtonPanel = new NewtonsToolboxPanel();
 		
-		namePanel.setLayout  (flow);
-		formatPanel.setLayout(flow);
-		infoPanel.setLayout  (flow);
-		tagsPanel.setLayout  (flow);
+		namePanel.setLayout  (new BoxLayout(namePanel, BoxLayout.X_AXIS));
+		formatPanel.setLayout(new BoxLayout(formatPanel, BoxLayout.X_AXIS));
+		infoPanel.setLayout  (new BoxLayout(infoPanel, BoxLayout.X_AXIS));
+		tagsPanel.setLayout  (new BoxLayout(tagsPanel, BoxLayout.X_AXIS));
 		
 		addUnitButtonPanel.setLayout (new BoxLayout(addUnitButtonPanel, BoxLayout.X_AXIS));
 
@@ -126,9 +122,13 @@ public class GUIAddUnit extends JPanel {
 
 		// Finally, add all panels to the panels~
 		middlePanel.add(namePanel);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(formatPanel);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(infoPanel);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(tagsPanel);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(addUnitButtonPanel);
 
 		addUnitButton.addActionListener(new addUnitButtonListener());
