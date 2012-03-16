@@ -83,6 +83,10 @@ public class Term extends Component implements Serializable{
 			return "" + coefficient + x + "^" + exponent;
 	} // Do we need a toString method?
 	
+	byte getType(){
+	    return 1;
+	  }
+	
 	public String toLaTeX() {
 		//PLACEHOLDER
 		String LaTeXTerm = "{" + this.x +"}";
