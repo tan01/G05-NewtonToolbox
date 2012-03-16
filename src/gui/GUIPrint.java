@@ -179,6 +179,7 @@ public class GUIPrint extends JPanel{
 	/**
 	 * infoLabel inner class allows the JLabel to be used as its own MouseListener, so that
 	 * it can replace this panel with the appropriate info page when clicked, or take other action.
+	 * Right now, it deletes the formula.
 	 * @author Jonny
 	 * @version WIP
 	 */
@@ -192,7 +193,7 @@ public class GUIPrint extends JPanel{
 		}
 		
 		public void mouseClicked(MouseEvent arg0) {
-			System.out.println(GUIMain.FORMULAS.get(index).getName() + "was removed.");
+			System.out.println(GUIMain.FORMULAS.get(index).getName() + " was removed.");
 			GUIMain.FORMULAS.rmFormula(index);
 			Saver.saveForms(GUIMain.FORMULAS);
 		}
