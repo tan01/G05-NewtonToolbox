@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
@@ -52,6 +53,11 @@ public class GUIAdd extends JPanel {
 
 		middlePanel.setOpaque(false);
 		
+		// Setting Button icons
+		createUnitButton.setSelectedIcon(new ImageIcon("img/buttons/createUnitButton.png"));
+		createVariableButton.setSelectedIcon(new ImageIcon("img/buttons/createVariableButton.png"));
+		createFormulaButton.setSelectedIcon(new ImageIcon("img/buttons/createFormulaButton.png"));
+		
 		//creating button group
 		ButtonGroup topButtons = new ButtonGroup();
 		topButtons.add(createUnitButton);
@@ -71,6 +77,9 @@ public class GUIAdd extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			remove(middlePanel);
 			GUIMain.updateUI();
+			createUnitButton.setSelected(true);
+			createVariableButton.setSelected(false);
+			createFormulaButton.setSelected(false);
 			middlePanel = new GUIAddUnit();
 			add(BorderLayout.CENTER,middlePanel);
 		}
@@ -81,6 +90,9 @@ public class GUIAdd extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			remove(middlePanel);
 			GUIMain.updateUI();
+			createUnitButton.setSelected(false);
+			createVariableButton.setSelected(true);
+			createFormulaButton.setSelected(false);
 			middlePanel = new GUIAddVariable();
 			add(BorderLayout.CENTER,middlePanel);
 		}
@@ -91,6 +103,9 @@ public class GUIAdd extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			remove(middlePanel);
 			GUIMain.updateUI();
+			createUnitButton.setSelected(false);
+			createVariableButton.setSelected(false);
+			createFormulaButton.setSelected(true);
 			middlePanel = new GUIAddFormula();
 			add(BorderLayout.CENTER,middlePanel);
 		}
