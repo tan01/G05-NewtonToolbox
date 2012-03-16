@@ -112,7 +112,10 @@ public class Tags extends ArrayList<String> implements Serializable{
 		}
 		else {
 			for(int i=0; i<this.size(); i++){
-				AllTags = AllTags + this.get(i) + ","; //***TODO format this a bit better***
+				AllTags = AllTags + this.get(i); //***TODO format this a bit better***
+				if(!(i==this.size())) {
+					AllTags = AllTags + ",";
+				}
 			}
 		}
 		return AllTags;

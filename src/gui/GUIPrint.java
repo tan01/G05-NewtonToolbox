@@ -48,12 +48,14 @@ public class GUIPrint extends JPanel{
 		//formatting text pane
 		addStylesToDocument(doc);
 		output.setPreferredSize(new Dimension(706,450));
-
+		
 		//Scroller
 		JScrollPane scroller = new JScrollPane(output);
 		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		String writeBuffer = "";
+		
+		
 
 		//FORMULA HEADER
 		//		writeBuffer ="[FORMULAS] \n";
