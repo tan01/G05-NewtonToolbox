@@ -19,7 +19,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JToggleButton;
 import javax.swing.SwingUtilities;
 
 import storage.FormulaDatabase;
@@ -57,6 +56,11 @@ public class GUIMain {
 	public static FormulaDatabase FORMULAS   = (FormulaDatabase)Saver.loadForms();
 	public static VariableDatabase VARIABLES = (VariableDatabase)Saver.loadVars();
 	public static UnitDatabase UNITS         = (UnitDatabase)Saver.loadUnits();
+	
+	imgButton searchButton = new imgButton("searchButton");
+	imgButton printAllButton = new imgButton("printAllButton");
+	imgButton formulaSheetButton = new imgButton("formulaSheetButton");
+	imgButton addButton = new imgButton("addButton");
 	
 	/**
 	 * Creates the JFrame, and the JPanel
@@ -112,23 +116,17 @@ public class GUIMain {
 		panel.add(controlPanel);
 
 		// controlPanel - buttons
-		imgButton searchButton = new imgButton("searchButton");
-		searchButton.addActionListener(new searchListener());
-		imgButton printAllButton = new imgButton("printAllButton");
-		printAllButton.addActionListener(new printListener());
-		imgButton formulaSheetButton = new imgButton("formulaSheetButton");
-		formulaSheetButton.addActionListener(new solveListener());
-		imgButton addButton = new imgButton("addButton");
-		addButton.addActionListener(new addListener());
+		searchButton.setSelectedIcon(new ImageIcon("img/buttons/searchButtonRollover.png"));
+		printAllButton.setSelectedIcon(new ImageIcon("img/buttons/printAllButtonRollover.png"));
+		formulaSheetButton.setSelectedIcon(new ImageIcon("img/buttons/formulaSheetButtonRollover.png"));
+		addButton.setSelectedIcon(new ImageIcon("img/buttons/addButtonRollover.png"));
 		
-//		JToggleButton searchFormsButton = new JToggleButton("Search");
-//		searchFormsButton.addActionListener(new searchListener());
-//		JToggleButton printFormsButton  = new JToggleButton("Print All");
-//		printFormsButton.addActionListener(new printListener());
-//		JToggleButton solveFormsButton  = new JToggleButton("Formula Sheet");
-//		solveFormsButton.addActionListener(new solveListener());
-//		JToggleButton addFormsButton    = new JToggleButton("Add");
-//		addFormsButton.addActionListener(new addListener());
+		//add action listeners to buttons
+		searchButton.addActionListener(new searchListener());
+		printAllButton.addActionListener(new printListener());
+		formulaSheetButton.addActionListener(new sheetListener());
+		addButton.addActionListener(new addListener());
+
 
 		// cpButtons - button group for buttons on the controlPanel.
 		ButtonGroup cpButtons = new ButtonGroup();
@@ -136,23 +134,13 @@ public class GUIMain {
 		cpButtons.add(printAllButton);
 		cpButtons.add(formulaSheetButton);
 		cpButtons.add(addButton);
-		
-//		cpButtons.add(searchFormsButton);
-//		cpButtons.add(printFormsButton);
-//		cpButtons.add(solveFormsButton);
-//		cpButtons.add(addFormsButton);
 
 		// Adding buttons to controlPanel.
 		controlPanel.add(searchButton);
 		controlPanel.add(printAllButton);
 		controlPanel.add(formulaSheetButton);
-		controlPanel.add(addButton);
+		controlPanel.add(addButton);		
 		
-//		controlPanel.add(searchFormsButton);
-//		controlPanel.add(printFormsButton);
-//		controlPanel.add(solveFormsButton);
-//		controlPanel.add(addFormsButton);
-
 		// Adding the Border Layout
 		frame.getContentPane().add(BorderLayout.CENTER, panel);
 
@@ -264,24 +252,40 @@ public class GUIMain {
 	class searchListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			changeContent(new GUISearch());
+			searchButton.setSelected(true);
+			printAllButton.setSelected(false);
+			formulaSheetButton.setSelected(false);
+			addButton.setSelected(false);
 		}
 	}
 
 	class printListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			changeContent(new GUIPrint());
+			searchButton.setSelected(false);
+			printAllButton.setSelected(true);
+			formulaSheetButton.setSelected(false);
+			addButton.setSelected(false);
 		}
 	}
 
-	class solveListener implements ActionListener {
+	class sheetListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			changeContent(new GUIFormulaSheet());
+			searchButton.setSelected(false);
+			printAllButton.setSelected(false);
+			formulaSheetButton.setSelected(true);
+			addButton.setSelected(false);
 		}
 	}
 
 	class addListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			changeContent(new GUIAdd());
+			searchButton.setSelected(false);
+			printAllButton.setSelected(false);
+			formulaSheetButton.setSelected(false);
+			addButton.setSelected(true);
 		}
 	}
 
