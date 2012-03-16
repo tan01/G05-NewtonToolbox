@@ -1,34 +1,23 @@
 package gui;
-import javax.swing.*;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextPane;
+import javax.swing.ScrollPaneConstants;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.text.StyledDocument;
-
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.RenderingHints;
-
-//for textbox?
-import java.awt.TextArea;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
-import java.awt.event.WindowAdapter;
-
-import java.awt.image.BufferedImage;
-
-import org.scilab.forge.jlatexmath.TeXConstants;
-import org.scilab.forge.jlatexmath.TeXFormula;
-import org.scilab.forge.jlatexmath.TeXIcon;
 
 import storage.Saver;
 
@@ -108,12 +97,17 @@ public class GUIPrint extends JPanel{
 					GUIMain.VARIABLES.get(i).getVar() + "   Units: " +
 							GUIMain.VARIABLES.get(i).getUnit() + "\n" + "Info: " +
 							GUIMain.VARIABLES.get(i).getInfo() + "\n" + "Tags: " +
-							GUIMain.VARIABLES.get(i).getTags() + "\n\n";
+							GUIMain.VARIABLES.get(i).getTags() + "\n";
+			
 			try{
 				doc.insertString(doc.getLength(),writeBuffer,doc.getStyle("regular"));
+				genericDeleteButton del = new genericDeleteButton(i,(byte) 1);
+				output.insertComponent(del);
+				doc.insertString(doc.getLength(),"\n\n",doc.getStyle("regular"));
 			}catch(BadLocationException ble){
 				System.err.println("Couldn't insert text into text pane.");
 			}
+			
 		}
 
 
@@ -133,21 +127,21 @@ public class GUIPrint extends JPanel{
 			writeBuffer =
 					GUIMain.UNITS.get(i).getName() + "\n" + "Info: " +
 							GUIMain.UNITS.get(i).getInfo() + "\n" + "Tags: " +
-							GUIMain.UNITS.get(i).getAllTags() + "\n\n";
+							GUIMain.UNITS.get(i).getAllTags() + "\n";
 			try{
 				doc.insertString(doc.getLength(),writeBuffer,doc.getStyle("regular"));
+				genericDeleteButton del = new genericDeleteButton(i,(byte) 0);
+				output.insertComponent(del);
+				doc.insertString(doc.getLength(),"\n\n",doc.getStyle("regular"));
 			}catch(BadLocationException ble){
 				System.err.println("Couldn't insert text into text pane.");
 			}
+			
 		}
 
 		contentPanel.setOpaque(false);
 		contentPanel.add(scroller);
 		add(contentPanel);
-	}
-	
-	private void PrintAll(){
-		
 	}
 
 	private void addStylesToDocument(StyledDocument doc) {
@@ -234,6 +228,42 @@ public class GUIPrint extends JPanel{
 		
 		
 		
-	}//class delimit
+	}//infolabel class delimit
+	
+	public class genericDeleteButton extends JButton implements ActionListener{
+
+		private static final long serialVersionUID = -1546008546894170764L;
+		public int index;
+		//Units is 0
+		//Variables is 1
+		public byte type;
+		
+		private final byte UNIT = 0;
+		private final byte VAR = 1;
+		
+		public genericDeleteButton(int i, byte type){
+			super("Delete");
+			index = i;
+			this.type = type;
+			addActionListener(this);
+		}
+
+		public void actionPerformed(ActionEvent arg0) {
+			if(type==UNIT){
+			System.out.println(GUIMain.UNITS.get(index).getName() + " was removed.");
+			GUIMain.UNITS.rmUnit(index);
+			Saver.saveUnits(GUIMain.UNITS);
+			}
+			
+			if(type==VAR){
+				System.out.println(GUIMain.VARIABLES.get(index).getVar() + " was removed.");
+				GUIMain.VARIABLES.rmVariable(index);
+				Saver.saveVars(GUIMain.VARIABLES);
+				}
+		}
+		
+		
+		
+	}
 	
 }

@@ -2,6 +2,7 @@ package gui;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,6 +26,7 @@ import storage.Saver;
  */
 public class GUIInfoPane extends JPanel{
 	
+	private static final long serialVersionUID = 5140672486667781254L;
 	Font bonnie = new Font("AR BONNIE", Font.BOLD, 30);
 	int whichFormula;
 	GUIPrint referrer = null;
@@ -36,6 +38,7 @@ public class GUIInfoPane extends JPanel{
 		
 		//Layout
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+		setPreferredSize(new Dimension(700,440));
 		setOpaque(false);
 		
 		//Title Label
@@ -52,7 +55,11 @@ public class GUIInfoPane extends JPanel{
 		
 		//The Rest of the Info:
 		JTextArea supInfo = new JTextArea();
+		supInfo.setLineWrap(true);
+		supInfo.setWrapStyleWord(true);
+		supInfo.setEditable(false);
 		supInfo.append(GUIMain.FORMULAS.get(formulaIndex).allInfoToString());
+		supInfo.append("LaTeX: " + GUIMain.FORMULAS.get(formulaIndex).toLaTeX());
 		add(supInfo);
 		//A bit of formatting
 		
