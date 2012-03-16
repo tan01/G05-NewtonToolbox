@@ -190,32 +190,21 @@ public class GUIAddUnit extends JPanel {
 				formatField.setText("");
 				infoTextArea.setText("");
 				tagsTextArea.setText("");
-			}
-			if(unitName.equals("")){
+			} else {
+				String errorMessage = "You left something blank:\n";
+				if(unitName.equals(""))
+					errorMessage += "-Name\n";
+				if(unitFormat.equals(""))
+					errorMessage += "-Format\n";
+				if(unitInfo.equals(""))
+					errorMessage += "-Info\n";
+				if(unitTagsString.equals(""))
+					errorMessage += "-Tags\n";
 				JOptionPane.showMessageDialog(middlePanel,
-						"You didn't enter in a Name.",
-						"You're an idiot.",
+						errorMessage,
+						"Error",
 						JOptionPane.WARNING_MESSAGE);
 			}
-			if(unitFormat.equals("")){
-				JOptionPane.showMessageDialog(middlePanel,
-						"You didn't enter in a Format.",
-						"You're an idiot.",
-						JOptionPane.WARNING_MESSAGE);
-			}
-			if(unitInfo.equals("")){
-				JOptionPane.showMessageDialog(middlePanel,
-						"You didn't enter in any Info.",
-						"You're an idiot.",
-						JOptionPane.WARNING_MESSAGE);
-			}
-			if(unitTagsString.equals("")){
-				JOptionPane.showMessageDialog(middlePanel,
-						"You didn't enter in any Tags.",
-						"You're an idiot.",
-						JOptionPane.WARNING_MESSAGE);
-			}
-			
 			
 		}
 	}

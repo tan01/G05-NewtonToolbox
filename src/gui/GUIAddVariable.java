@@ -12,6 +12,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -153,8 +154,11 @@ public class GUIAddVariable extends JPanel {
 		public void actionPerformed(ActionEvent e) {
 			String variableName = nameTextField.getText();
 			String variableInfo = infoTextArea.getText();
+			String variableTagsString = tagsTextArea.getText();
 			
-			Tags tagsTemp = Tags.convertToTags(tagsTextArea.getText());
+		if(!(variableName.equals("") || variableInfo.equals("") ||
+				variableTagsString.equals(""))){	
+			Tags tagsTemp = Tags.convertToTags(variableTagsString);
 			
 			Variable newVariable = new Variable(variableName);
 			newVariable.setInfo(variableInfo);
@@ -169,6 +173,26 @@ public class GUIAddVariable extends JPanel {
 			unitTextField.setText("");
 			infoTextArea.setText("");
 			tagsTextArea.setText("");
+		}
+		if(variableName.equals("")){
+			JOptionPane.showMessageDialog(middlePanel,
+					"You didn't enter in a Name.",
+					"You're an idiot.",
+					JOptionPane.WARNING_MESSAGE);
+		}
+		if(variableInfo.equals("")){
+			JOptionPane.showMessageDialog(middlePanel,
+					"You didn't enter in any Info.",
+					"You're an idiot.",
+					JOptionPane.WARNING_MESSAGE);
+		}
+		if(variableTagsString.equals("")){
+			JOptionPane.showMessageDialog(middlePanel,
+					"You didn't enter in any Tags.",
+					"You're an idiot.",
+					JOptionPane.WARNING_MESSAGE);
+		}
+			
 		}
 	}
 	
