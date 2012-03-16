@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import javax.swing.JToggleButton;
 
 /**
  * GUI for displaying a few buttons for adding
