@@ -10,6 +10,7 @@ import javax.swing.JButton;
  * needs corresponding images in the img folder.
  * 		img/buttons/<name>.png
  * 		img/buttons/<name>Pressed.png
+ * 		img/buttons/<name>Rollover.png
  * Automatically creates an button that is just an image.
  * @author Jonny
  *
@@ -28,6 +29,9 @@ public class imgButton extends JButton{
 		setIcon(new ImageIcon("img/buttons/" + name + ".png"));
 		try{
 			setPressedIcon(new ImageIcon("img/buttons/" + name + "Pressed.png"));
+		}catch(Exception ex){}
+		try{
+			setRolloverIcon(new ImageIcon("img/buttons/" + name + "Rollover.png"));
 		}catch(Exception ex){}
 		setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
 		setHorizontalAlignment(JButton.LEADING);
