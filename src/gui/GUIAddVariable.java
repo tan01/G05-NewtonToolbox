@@ -60,11 +60,11 @@ public class GUIAddVariable extends JPanel {
 	private JButton addVariableButton = new JButton("Add Variable");
 
 	private JComboBox<String> unitComboBox;
-	
+
 	public GUIAddVariable() {
 
 		setSize(720,480);
-		
+
 		// unitComboBox is the drop-down menu for Units
 		unitComboBox = new JComboBox<String>();
 		for(int i=0;i<GUIMain.UNITS.getSize();i++){
@@ -144,7 +144,7 @@ public class GUIAddVariable extends JPanel {
 		tagPanel.setOpaque(false);
 
 		addVariableButton.addActionListener(new addVariableButtonListener());
-		
+
 		addVariableButtonPanel.setOpaque(false);
 
 	}
@@ -155,47 +155,41 @@ public class GUIAddVariable extends JPanel {
 			String variableName = nameTextField.getText();
 			String variableInfo = infoTextArea.getText();
 			String variableTagsString = tagsTextArea.getText();
-			
-		if(!(variableName.equals("") || variableInfo.equals("") ||
-				variableTagsString.equals(""))){	
-			Tags tagsTemp = Tags.convertToTags(variableTagsString);
-			
-			Variable newVariable = new Variable(variableName);
-			newVariable.setInfo(variableInfo);
-			newVariable.setUnit(GUIMain.UNITS.get(unitComboBox.getSelectedIndex()));
-			for(int i=0;i<tagsTemp.size();i++){
-				newVariable.addTag(tagsTemp.get(i));
-			}
-			((VariableDatabase)GUIMain.VARIABLES).addVariable(newVariable);
-			Saver.saveVars(GUIMain.VARIABLES);
 
-			nameTextField.setText("");
-			unitTextField.setText("");
-			infoTextArea.setText("");
-			tagsTextArea.setText("");
-		}
-		if(variableName.equals("")){
-			JOptionPane.showMessageDialog(middlePanel,
-					"You didn't enter in a Name.",
-					"You're an idiot.",
-					JOptionPane.WARNING_MESSAGE);
-		}
-		if(variableInfo.equals("")){
-			JOptionPane.showMessageDialog(middlePanel,
-					"You didn't enter in any Info.",
-					"You're an idiot.",
-					JOptionPane.WARNING_MESSAGE);
-		}
-		if(variableTagsString.equals("")){
-			JOptionPane.showMessageDialog(middlePanel,
-					"You didn't enter in any Tags.",
-					"You're an idiot.",
-					JOptionPane.WARNING_MESSAGE);
-		}
-			
+			if(!(variableName.equals("") || variableInfo.equals("") ||
+					variableTagsString.equals(""))){	
+				Tags tagsTemp = Tags.convertToTags(variableTagsString);
+
+				Variable newVariable = new Variable(variableName);
+				newVariable.setInfo(variableInfo);
+				newVariable.setUnit(GUIMain.UNITS.get(unitComboBox.getSelectedIndex()));
+				for(int i=0;i<tagsTemp.size();i++){
+					newVariable.addTag(tagsTemp.get(i));
+				}
+				((VariableDatabase)GUIMain.VARIABLES).addVariable(newVariable);
+				Saver.saveVars(GUIMain.VARIABLES);
+
+				nameTextField.setText("");
+				unitTextField.setText("");
+				infoTextArea.setText("");
+				tagsTextArea.setText("");
+			}else {
+				String errorMessage = "You left something blank:\n";
+				if(variableName.equals(""))
+					errorMessage += "-Name\n";
+				if(variableInfo.equals(""))
+					errorMessage += "-Info\n";
+				if(variableTagsString.equals(""))
+					errorMessage += "-Tags\n";
+				JOptionPane.showMessageDialog(middlePanel,
+						errorMessage,
+						"Error",
+						JOptionPane.WARNING_MESSAGE);
+			}
+
 		}
 	}
-	
+
 	class createUnitButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			middlePanel.removeAll();
