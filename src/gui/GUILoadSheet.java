@@ -35,7 +35,7 @@ public class GUILoadSheet extends JPanel
   JTextField loadBar = new JTextField(50);
 
   private JScrollPane scroller;
-  JTextArea loadResults = new JTextArea(25,57);
+  JTextArea loadResults = new JTextArea(23,57);
   private JButton loadButton = new JButton("Load");
   
   public GUILoadSheet(){
@@ -77,14 +77,21 @@ public class GUILoadSheet extends JPanel
   
   class loadButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
+      String display ="";
       String userInput = loadBar.getText();
-      FormulaSheet rec = Saver.loadSheet(userInput);
-      if(rec.getName().equals("NewFormulaSheet")){
+      FormulaSheet recovered = Saver.loadSheet(userInput);
+     if(recovered.getName().equals("")){
         loadResults.append("sheet not found\n");
       }
-      loadResults.append(rec.printSheet());
-  
+     else{
+       display = display + recovered.getName() + "\n";
+       for(int i=0; i < recovered.size() ;i++){
+         display = display + recovered.get(i).allInfoToString() + "\n";
+       }
+       loadResults.setText(display);
+     }
+     
       }  
-    }
-  
   }
+  
+}

@@ -33,9 +33,11 @@ public class GUIFormulaSheet extends JPanel{
   
   private JPanel middlePanel;
 
-  private JButton newFormulaSheetButton = new JButton("Create Formula Sheet");
-  private JButton loadFormulaButton = new JButton("Load Formula Sheet");
-   
+  private JToggleButton newFormulaSheetButton = new JToggleButton("Create Formula Sheet");
+  private JToggleButton loadFormulaButton = new JToggleButton("Load Formula Sheet");
+
+  ButtonGroup topButtons = new ButtonGroup();
+
   
 	public GUIFormulaSheet() {
 		setLayout(new BorderLayout());
@@ -47,8 +49,12 @@ public class GUIFormulaSheet extends JPanel{
     add(BorderLayout.CENTER, middlePanel);
     add(BorderLayout.NORTH, topPanel);
     
+    topButtons.add(newFormulaSheetButton);
+    topButtons.add(loadFormulaButton);
+    
     topPanel.add(newFormulaSheetButton);
     topPanel.add(loadFormulaButton);
+    
     
     middlePanel.setOpaque(false);
     topPanel.setOpaque(false);

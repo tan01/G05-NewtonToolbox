@@ -2,8 +2,11 @@ package gui;
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JToggleButton;
 
 /**
  * GUI for displaying a few buttons for adding
@@ -22,9 +25,9 @@ public class GUIAdd extends JPanel {
 	private JPanel middlePanel;
 
 	// Declaring and initializing our buttons
-	private JButton createUnitButton     = new JButton("Create Unit");
-	private JButton createVariableButton = new JButton("Create Variable");
-	private JButton createFormulaButton  = new JButton("Create Formula");
+	private JToggleButton createUnitButton     = new JToggleButton("Create Unit");
+	private JToggleButton createVariableButton = new JToggleButton("Create Variable");
+	private JToggleButton createFormulaButton  = new JToggleButton("Create Formula");
 
 	public GUIAdd() {
 
@@ -49,7 +52,13 @@ public class GUIAdd extends JPanel {
 		add(BorderLayout.CENTER, middlePanel);
 
 		middlePanel.setOpaque(false);
-
+		
+		//creating button group
+		ButtonGroup topButtons = new ButtonGroup();
+		topButtons.add(createUnitButton);
+		topButtons.add(createVariableButton);
+		topButtons.add(createFormulaButton);
+		
 		createUnitButton.addActionListener(new createUnitButtonListener());
 		createVariableButton.addActionListener(new createVariableButtonListener());
 		createFormulaButton.addActionListener(new createFormulaButtonListener());

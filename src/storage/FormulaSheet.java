@@ -1,5 +1,11 @@
 package storage;
 
+import internalformatting.Formula;
+import internalformatting.Operator;
+import internalformatting.Term;
+import internalformatting.Unit;
+import internalformatting.Variable;
+
 import java.io.Serializable;
 
 /**
@@ -14,7 +20,7 @@ public class FormulaSheet extends FormulaDatabase implements Serializable
   
   public FormulaSheet(){
     super();
-    this.name ="NewFormulaSheet" ;
+    this.name ="" ;
   }
   
   /**
@@ -49,20 +55,22 @@ public class FormulaSheet extends FormulaDatabase implements Serializable
   }
   
   
+  
+  
   public static void main(String[] args){
-    FormulaDatabase el = Saver.loadForms();
+      FormulaDatabase src = Saver.loadForms();
+      FormulaSheet des = new FormulaSheet();
+      
+      for(int i=0; i < 2; i++){
+        System.out.println("loop:" + i);
+        des.addFormula(src.get(i));
+        System.out.println(des.get(i).allInfoToString());
+      }
+      
+      des.setName("test");
+      Saver.saveSheet(des);
     
-    FormulaSheet test = new FormulaSheet();
-    
-    for(int i=0; i < 3; i++){
-      test.addFormula(el.getFormula(i));
-    }
-    
-    
-    test.setName("blah");
-    Saver.saveSheet(test);
-    System.out.print("im running");
-    test.printSheet();
   }
+  
   
 }
