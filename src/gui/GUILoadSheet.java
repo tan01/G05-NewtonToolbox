@@ -103,7 +103,7 @@ public class GUILoadSheet extends JPanel
       loadResults.append("sheet not found\n");
     }
    else{
-     display = display + recovered.getName() + "\n";
+     display = display + "Formula Sheet: " + recovered.getName() + "\n\n";
      for(int i=0; i < recovered.size() ;i++){
        display = display + recovered.get(i).allInfoToString() + "\n";
      }
