@@ -38,13 +38,10 @@ public class FormulaSheet extends FormulaDatabase implements Serializable
    */
   public String printSheet()
   {
-    if(this == null){
-      return("Sheet Not Found");
-    }
     String formInfo = "";
     
-    for(int i=0; i > this.size();i++){
-     formInfo = formInfo + this.get(i)+"\n";
+    for(int i=0; i < this.size();i++){
+     formInfo = formInfo + this.get(i).allInfoToString() +"\n";
       
     }
     return formInfo;
@@ -54,18 +51,17 @@ public class FormulaSheet extends FormulaDatabase implements Serializable
   
   public static void main(String[] args){
     FormulaDatabase el = Saver.loadForms();
-    el = Saver.loadForms();
     
     FormulaSheet test = new FormulaSheet();
     
-    for(int i=0; i > 3; i++){
-      test.add(el.getFormula(i));
+    for(int i=0; i < 3; i++){
+      test.addFormula(el.getFormula(i));
     }
     
     
     test.setName("blah");
     Saver.saveSheet(test);
-    
+    System.out.print("im running");
     test.printSheet();
   }
   
