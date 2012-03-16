@@ -4,7 +4,6 @@ import internalformatting.Unit;
 import internalformatting.Variable;
 
 import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -15,99 +14,104 @@ import java.util.ArrayList;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.JCheckBox;
 import javax.swing.ScrollPaneConstants;
 
 import search.Search;
 import search.SearchUnits;
 import search.SearchVars;
-import storage.FormulaDatabase;
-import storage.Saver;
 
 /**
  * GUISearch used to search for formulas from the formula database * 
  * @author May Camp
  * @author Jonathan Tan
  */
-//Forms = Formulas
-public class GUISearch extends JPanel{
+public class GUISearch extends JPanel {
+
 	private static final long serialVersionUID = 9044967744683200942L;
+
+	// Declaring panels
 	private JPanel topPanel;
 	private JPanel middlePanel;
 	private JPanel rightPanel;
-	
-	//search bar
-	JTextField searchBar = new JTextField(50);
 
+	// Search bar and search results
+	private JTextField searchBar    = new JTextField(50);
+	private JTextArea searchResults = new JTextArea(25,57);
+	private JButton searchButton    = new JButton("Search");
+
+	// Scroll-bar for results
 	private JScrollPane scroller;
-	JTextArea searchResults = new JTextArea(25,57);
-	private JButton searchButton = new JButton("Search");
 
-	//Search criterion
+	// Search criterion
 	public boolean searchFormula = true;
 	public boolean searchVar = false;
 	public boolean searchUnit = false;
-	
-	//check boxes go here
+
+	// Check boxes go here
 	JCheckBox formulaBox = new JCheckBox("Form");
-	JCheckBox varBox = new JCheckBox("Vars");
-	JCheckBox unitBox = new JCheckBox("Unit");
-	
+	JCheckBox varBox     = new JCheckBox("Vars");
+	JCheckBox unitBox    = new JCheckBox("Unit");
+
 	public GUISearch() {
+
 		setSize(720,480);
 
-		//panels
+		// Initializing all panels
 		topPanel = new JPanel();
 		middlePanel = new JPanel();
 		rightPanel = new JPanel();
-		//rightPanel.setPreferredSize(new Dimension(100,600));
-		
+
+		// Setting all panels' opacities to false
 		topPanel.setOpaque(false);
 		middlePanel.setOpaque(false);
 		rightPanel.setOpaque(false);
 
-		//wrap words and lines and make sure you can't edit it
+		// Wrap words and lines and make sure you can't edit it
 		searchResults.setLineWrap(true);
 		searchResults.setWrapStyleWord(true);
 		searchResults.setEditable(false);
 
-		//scroller
+		// Adding searchResults to the ScrollPane
 		scroller = new JScrollPane(searchResults);
 		scroller.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 		scroller.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		
-		add(BorderLayout.NORTH, topPanel);
+
+		// Adding the panels to a BorderLayout
+		add(BorderLayout.NORTH,  topPanel);
 		add(BorderLayout.CENTER, middlePanel);
-		add(BorderLayout.EAST, rightPanel);
+		add(BorderLayout.EAST,   rightPanel);
 
 
-		//need searchBar action listener
+		// Need searchBar action listener
 		searchBar.addKeyListener(
-				new KeyAdapter(){
-					public void keyPressed(KeyEvent key){
-						if(key.getKeyCode()==KeyEvent.VK_ENTER){
+				new KeyAdapter() {
+					public void keyPressed(KeyEvent key) {
+						if (key.getKeyCode()==KeyEvent.VK_ENTER) {
 							printSearchToTextArea();
 						}
 					}
 				}
 				);
 
-		//right panel contains checkboxes
-		rightPanel.setLayout(new BoxLayout(rightPanel,BoxLayout.Y_AXIS));
-		JCheckBox formulaBox = new JCheckBox("Form",true);
+		// Right panel contains check-boxes
+		rightPanel.setLayout(new BoxLayout(rightPanel, BoxLayout.Y_AXIS));
+
+		// Initializing all JCheckBoxes
+		JCheckBox formulaBox = new JCheckBox("Form", true);
+		JCheckBox varBox     = new JCheckBox("Vars");
+		JCheckBox unitBox    = new JCheckBox("Unit");
+
+		// Set opacities of check-boxes to false
 		formulaBox.setOpaque(false);
-		formulaBox.addItemListener(new formListener());
-		JCheckBox varBox = new JCheckBox("Vars");
 		varBox.setOpaque(false);
-		varBox.addItemListener(new varListener());
-		JCheckBox unitBox = new JCheckBox("Unit");
 		unitBox.setOpaque(false);
-		unitBox.addItemListener(new unitListener());
-		
+
+		// Adding widgets to all of the panels
 		topPanel.add(searchBar);
 		topPanel.add(searchButton);
 
@@ -116,83 +120,88 @@ public class GUISearch extends JPanel{
 		rightPanel.add(formulaBox);
 		rightPanel.add(varBox);
 		rightPanel.add(unitBox);
-		
+
+		// Adding Listener to the Search Button
 		searchButton.addActionListener(new searchButtonListener());
 
+		// Adding Listeners to the CheckBoxes
+		formulaBox.addItemListener(new formListener());
+		varBox.addItemListener(new varListener());
+		unitBox.addItemListener(new unitListener());
 
 	}
-	
-	//THIS SHOULD BE IN THE GUISEARCH MODULE
+
+	// THIS SHOULD BE IN THE GUISEARCH MODULE
 	public void printSearchToTextArea(){
-		//clear previous search
+		// Clear previous search
 		String userInput = searchBar.getText().toLowerCase();
 		searchResults.setText("You searched for: " + userInput + "\n");
-		
-		if(searchFormula){
-		Search searchObject = new Search(GUIMain.FORMULAS);
-		ArrayList<Formula> foundFormulas = searchObject.searchF(userInput);
-		String writeBuffer = "";
-		
-		for(int i=0; i<foundFormulas.size();i++) {
-			writeBuffer = writeBuffer + foundFormulas.get(i).allInfoToString() + "\n \n";
+
+		if (searchFormula) {
+			Search searchObject = new Search(GUIMain.FORMULAS);
+			ArrayList<Formula> foundFormulas = searchObject.searchF(userInput);
+			String writeBuffer = "";
+
+			for (int i=0; i<foundFormulas.size(); i++) {
+				writeBuffer = writeBuffer + foundFormulas.get(i).allInfoToString() + "\n \n";
+			}
+
+			searchResults.append("Found " + foundFormulas.size());
+			searchResults.append(" formula");
+			if (foundFormulas.size()!=1)
+				searchResults.append("e");
+			if (foundFormulas.size()!=0)
+				searchResults.append(": ");
+			else
+				searchResults.append(".");
+			searchResults.append("\n\n" + writeBuffer);
+			// Search is done, clears the search bar.
+			searchBar.setText("");
 		}
 
-		searchResults.append("Found " + foundFormulas.size());
-		searchResults.append(" formula");
-		if(foundFormulas.size()!=1)
-			searchResults.append("e");
-		if(foundFormulas.size()!=0)
-			searchResults.append(": ");
-		else
-			searchResults.append(".");
-		searchResults.append("\n\n" + writeBuffer);
-		//Search is done, clears the search bar.
-		searchBar.setText("");
-		}
-		
-		if(searchVar){
+		if (searchVar) {
 			SearchVars searchObject = new SearchVars(GUIMain.VARIABLES);
 			ArrayList<Variable> foundVars = searchObject.searchV(userInput);
 			String writeBuffer = "";
-			
-			for(int i=0; i<foundVars.size();i++) {
+
+			for (int i=0; i<foundVars.size(); i++) {
 				writeBuffer = writeBuffer + foundVars.get(i).allInfoToString() + "\n \n";
 			}
 
 			searchResults.append("Found " + foundVars.size());
 			searchResults.append(" variable");
-			if(foundVars.size()!=1)
+			if (foundVars.size()!=1)
 				searchResults.append("s");
-			if(foundVars.size()!=0)
+			if (foundVars.size()!=0)
 				searchResults.append(": ");
 			else
 				searchResults.append(".");
 			searchResults.append("\n\n" + writeBuffer);
-			//Search is done, clears the search bar.
+			// Search is done, clears the search bar.
 			searchBar.setText("");
-			}
-		
-		if(searchUnit){
+		}
+
+		if (searchUnit) {
 			SearchUnits searchObject = new SearchUnits(GUIMain.UNITS);
 			ArrayList<Unit> foundUnits = searchObject.searchU(userInput);
 			String writeBuffer = "";
-			
-			for(int i=0; i<foundUnits.size();i++) {
+
+			for (int i=0; i<foundUnits.size(); i++) {
 				writeBuffer = writeBuffer + foundUnits.get(i).allInfoToString() + "\n \n";
 			}
 
 			searchResults.append("Found " + foundUnits.size());
 			searchResults.append(" unit");
-			if(foundUnits.size()!=1)
+			if (foundUnits.size()!=1)
 				searchResults.append("s");
-			if(foundUnits.size()!=0)
+			if (foundUnits.size()!=0)
 				searchResults.append(": ");
 			else
 				searchResults.append(".");
 			searchResults.append("\n\n" + writeBuffer);
-			//Search is done, clears the search bar.
+			// Search is done, clears the search bar.
 			searchBar.setText("");
-			}
+		}
 	}
 
 	//Button Listener Classes:
@@ -211,7 +220,7 @@ public class GUISearch extends JPanel{
 				searchFormula = false;
 		}
 	}
-	
+
 	class varListener implements ItemListener {
 		public void itemStateChanged(ItemEvent ev) {
 			if(ev.getStateChange()==ItemEvent.SELECTED)
@@ -220,7 +229,7 @@ public class GUISearch extends JPanel{
 				searchVar = false;
 		}
 	}
-	
+
 	class unitListener implements ItemListener {
 		public void itemStateChanged(ItemEvent ev) {
 			if(ev.getStateChange()==ItemEvent.SELECTED)
@@ -229,4 +238,5 @@ public class GUISearch extends JPanel{
 				searchUnit = false;
 		}
 	}
-}
+
+} // class GUISearch
