@@ -117,10 +117,10 @@ public class GUIMain {
 		panel.add(controlPanel);
 
 		// controlPanel - buttons
-		searchButton.setSelectedIcon(new ImageIcon("img/buttons/searchButtonPressed.png"));
-		printAllButton.setSelectedIcon(new ImageIcon("img/buttons/printAllButtonPressed.png"));
-		formulaSheetButton.setSelectedIcon(new ImageIcon("img/buttons/formulaSheetButtonPressed.png"));
-		addButton.setSelectedIcon(new ImageIcon("img/buttons/addButtonPressed.png"));
+		searchButton.setSelectedIcon(new ImageIcon("img/buttons/searchButtonRollover.png"));
+		printAllButton.setSelectedIcon(new ImageIcon("img/buttons/printAllButtonRollover.png"));
+		formulaSheetButton.setSelectedIcon(new ImageIcon("img/buttons/formulaSheetButtonRollover.png"));
+		addButton.setSelectedIcon(new ImageIcon("img/buttons/addButtonRollover.png"));
 		
 		//add action listeners to buttons
 		searchButton.addActionListener(new searchListener());
