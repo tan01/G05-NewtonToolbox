@@ -16,23 +16,28 @@ import java.util.ArrayList;
  */
 
 public class Tags extends ArrayList<String> implements Serializable{
-
+	final private static long serialVersionUID = 1670087L;
 	/**
 	 * creates an empty Arraylist of tags
 	 */
-
 	//default constructor
 	public Tags() {
 		super(1);// calls superclass's constructor to make and empty ArrayList
 	}
 
-	final private static long serialVersionUID = 1670087L;
+	public int getSize() {return this.size();}
+
+	/**
+	 * returns the tag at position i
+	 * @param i i is the index of the desired tag
+	 * @return 
+	 */
+	public String getTag(int i){return this.get(i);}
 
 	/** Appends a new "tag" to the end of the ArrayList 
 	 * will also delete duplicate tags
 	 * @param newTag New tag to be appended to list
 	 */
-
 	public void addTag(String newTag) {
 		if(!(exists(newTag))) {	
 			this.ensureCapacity(this.size() + 1);
@@ -40,20 +45,6 @@ public class Tags extends ArrayList<String> implements Serializable{
 			this.add(newTag);
 		}
 		deleteDuplicateTags();
-	}
-
-	/**
-	 * A method to check if the tag exists in the ArrayList of tags
-	 * @param tag       a tag to check the existance of
-	 * @return boolean  true if tag exists in array, false if tag DNE in array
-	 */
-	public boolean exists(String tag) {
-		for(int i=0; i<this.size(); i++){
-			if ( tag.equals(this.getTag(i)) ){
-				return true;
-			}
-		}
-		return false;
 	}
 
 	/**
@@ -75,7 +66,6 @@ public class Tags extends ArrayList<String> implements Serializable{
 	/** removes a specified tag from the list
 	 * @param BadTag the tag the must be removed
 	 */
-
 	public void deleteTag(String BadTag) {
 		for(int i=0; i<this.size(); i++ ) {
 			if(this.get(i).equals(BadTag) ) {
@@ -89,19 +79,20 @@ public class Tags extends ArrayList<String> implements Serializable{
 	}
 
 	/** clears all tags*/
-
-	public void clearTags(){
-		this.clear();
-	}
+	public void clearTags(){this.clear();}
 
 	/**
-	 * returns the tag at position i
-	 * @param i i is the index of the desired tag
-	 * @return 
+	 * A method to check if the tag exists in the ArrayList of tags
+	 * @param tag       a tag to check the existance of
+	 * @return boolean  true if tag exists in array, false if tag DNE in array
 	 */
-
-	public String getTag(int i){ // A getter method takes a parameter?
-		return this.get(i);
+	public boolean exists(String tag) {
+		for(int i=0; i<this.size(); i++){
+			if ( tag.equals(this.getTag(i)) ){
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/** returns all of the tags in the array list as a single string (just for the moment, most likely will change)*/
@@ -112,14 +103,13 @@ public class Tags extends ArrayList<String> implements Serializable{
 		}
 		else {
 			for(int i=0; i<this.size(); i++){
-				AllTags = AllTags + this.get(i) + ","; //***TODO format this a bit better***
+				AllTags = AllTags + this.get(i);
+				if(!(i==this.size()-1)) {
+					AllTags = AllTags + ",";
+				}
 			}
 		}
 		return AllTags;
-	}
-
-	public int getSize() {
-		return this.size();
 	}
 
 	public static Tags convertToTags(String tagString) {

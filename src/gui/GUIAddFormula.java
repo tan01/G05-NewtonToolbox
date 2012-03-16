@@ -348,7 +348,7 @@ public class GUIAddFormula extends JPanel {
 			newFormula.getTags().deleteDuplicateTags();
 			
 			// Show added tags in formula tags text section
-			tagTextArea.setText(newVariable.getAllTags());
+			tagTextArea.setText(newFormula.getAllTags());
 
 			// Add new term to formula
 			newFormula.addTerm( newTerm );

@@ -15,7 +15,7 @@ public class Variable implements Serializable{
 	private Unit unit;
 	private Tags tags = new Tags();
 	final private static long serialVersionUID = 8383008L;
-	
+
 	/** Constructor	to make a Variable with just a string to represent it
 	 * @param var  A short String representation of the variable
 	 */
@@ -32,14 +32,14 @@ public class Variable implements Serializable{
 		this.var = var;
 		this.value = value;
 	}
-	
+
 	/** Constructor
 	 * @param var
 	 * @param info
 	 */
 	public Variable (String var, String info) {
-	this.var = var;
-	this.info = info;
+		this.var = var;
+		this.info = info;
 	}
 	/** Constructor
 	 * @param var
@@ -50,60 +50,47 @@ public class Variable implements Serializable{
 		this.var = var;
 		this.info = info;
 		this.tags = tags;
-		}
-	
-	public String getVar () { return this.var; }
-	public double getValue() { return this.value; }
-	public String getInfo() { return this.info; }
-	public Unit getUnit() { return this.unit; }
-	public Tags getTags() { return this.tags; }
-	
+	}
+
 	public void setVar (String var) { this.var = var; }
+
 	public void setValue (double value) { this.value = value; }
+
 	public void setInfo (String info) { this.info = info; }
+
 	public void setUnit(Unit unit) { 
 		// Add unit tags to variable
 		for(int i=0; i<unit.getTagSize(); i++) {
 			addTag(unit.getTag(i));
 		}
 		getTags().deleteDuplicateTags();
-		
+
 		this.unit = unit;
-		}
-	public void setTags(Tags tags) { this.tags = tags; }
-	
-	/**
-	 * @return var  Variable as a string
-	 */
-	public String toString() {
-		return var;
-	} // do we need this method?
-	
-	/**
-	 * returns the "tag" at position i in the tags Array list
-	 * @return the tags
-	 * @param i i is the index of the desired tag
-	 */
-	public String getTag(int i)
-	{
-		return tags.getTag(i);
-	}
-
-	public int getTagSize(){
-		return tags.getSize();
-	}
-
-	public String getAllTags(){
-		return tags.returnAllTags();
 	}
 
 	/**
 	 * @param tags the tags to set
 	 */
-	public void addTag(String NewTag)
-	{
-		tags.addTag(NewTag);
-	}
+	public void addTag(String NewTag){tags.addTag(NewTag);}
+
+	public void setTags(Tags tags) { this.tags = tags; }
+
+	public String getVar () { return this.var; }
+	public double getValue() { return this.value; }
+	public String getInfo() { return this.info; }
+	public Unit getUnit() { return this.unit; }
+	/**
+	 * returns the "tag" at position i in the tags Array list
+	 * @return the tags
+	 * @param i i is the index of the desired tag
+	 */
+	public String getTag(int i){return tags.getTag(i);}
+
+	public Tags getTags() { return this.tags; }
+
+	public int getTagSize(){return tags.getSize();}
+
+	public String getAllTags(){return tags.returnAllTags();}
 
 	/**
 	 * prints the formula's name and info (as well as the formula itself) if a neatly formatted way
@@ -116,6 +103,13 @@ public class Variable implements Serializable{
 		System.out.println("Tags: " + this.getAllTags());
 	}
 
+	/**
+	 * @return var  Variable as a string
+	 */
+	public String toString() {
+		return var;
+	} // do we need this method?
+
 	public String allInfoToString(){
 		String allInfo = "";
 
@@ -126,5 +120,5 @@ public class Variable implements Serializable{
 
 		return allInfo;
 	}
-	
+
 } // class Variable

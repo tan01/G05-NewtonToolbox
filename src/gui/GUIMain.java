@@ -57,7 +57,7 @@ public class GUIMain {
 	public static FormulaDatabase FORMULAS   = (FormulaDatabase)Saver.loadForms();
 	public static VariableDatabase VARIABLES = (VariableDatabase)Saver.loadVars();
 	public static UnitDatabase UNITS         = (UnitDatabase)Saver.loadUnits();
-
+	
 	/**
 	 * Creates the JFrame, and the JPanel
 	 */
@@ -111,8 +111,11 @@ public class GUIMain {
 		panel.add(controlPanel);
 
 		// controlPanel - buttons
-		JToggleButton searchFormsButton = new JToggleButton("Search");
-		searchFormsButton.addActionListener(new searchListener());
+		imgButton searchButton = new imgButton("searchButton");
+		searchButton.addActionListener(new searchListener());
+		
+//		JToggleButton searchFormsButton = new JToggleButton("Search");
+//		searchFormsButton.addActionListener(new searchListener());
 		JToggleButton printFormsButton  = new JToggleButton("Print All");
 		printFormsButton.addActionListener(new printListener());
 		JToggleButton solveFormsButton  = new JToggleButton("Formula Sheet");
@@ -122,14 +125,17 @@ public class GUIMain {
 
 		// cpButtons - button group for buttons on the controlPanel.
 		ButtonGroup cpButtons = new ButtonGroup();
-
-		cpButtons.add(searchFormsButton);
+		cpButtons.add(searchButton);
+		
+//		cpButtons.add(searchFormsButton);
 		cpButtons.add(printFormsButton);
 		cpButtons.add(solveFormsButton);
 		cpButtons.add(addFormsButton);
 
 		// Adding buttons to controlPanel.
-		controlPanel.add(searchFormsButton);
+		controlPanel.add(searchButton);
+		
+//		controlPanel.add(searchFormsButton);
 		controlPanel.add(printFormsButton);
 		controlPanel.add(solveFormsButton);
 		controlPanel.add(addFormsButton);
@@ -275,6 +281,9 @@ public class GUIMain {
 	public static void main (String[] args) {
 		GUIMain gui = new GUIMain();
 		gui.go();
+		for(int i=0; i<GUIMain.FORMULAS.size();i++) {
+			GUIMain.FORMULAS.get(i).toLaTeXIcon();
+		}
 	}
 
 }
