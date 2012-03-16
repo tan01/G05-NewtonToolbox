@@ -60,7 +60,7 @@ public class GUIPrint extends JPanel{
 		output.insertIcon(new ImageIcon("img/formulaheader.png"));
 		//This is retarded.
 		//There has to be a better way to force newlines in a TextPane.
-		//I fucking hate TextPanes.
+		//I loving hate TextPanes.
 		try{
 			doc.insertString(doc.getLength(),"\n",doc.getStyle("regular"));
 		}catch(BadLocationException ble){
@@ -84,7 +84,7 @@ public class GUIPrint extends JPanel{
 		output.insertIcon(new ImageIcon("img/varheader.png"));
 		//This is retarded.
 		//There has to be a better way to force newlines in a TextPane.
-		//I fucking hate TextPanes.
+		//I loving hate TextPanes.
 		try{
 			doc.insertString(doc.getLength(),"\n",doc.getStyle("regular"));
 		}catch(BadLocationException ble){
@@ -115,7 +115,7 @@ public class GUIPrint extends JPanel{
 		output.insertIcon(new ImageIcon("img/unitheader.png"));
 		//This is retarded.
 		//There has to be a better way to force newlines in a TextPane.
-		//I fucking hate TextPanes.
+		//I loving hate TextPanes.
 		try{
 			doc.insertString(doc.getLength(),"\n",doc.getStyle("regular"));
 		}catch(BadLocationException ble){
@@ -166,21 +166,6 @@ public class GUIPrint extends JPanel{
 		StyleConstants.setFontSize(s, 16);
 
 	}
-
-	//Part of my old idea to add this to the TextPane as a StyledDocument.
-	//	private void addFormulaIconToDocument(StyledDocument doc, int i) {
-	//	//LaTeX support goes here
-	//		Style def = StyleContext.getDefaultStyleContext().
-	//                getStyle(StyleContext.DEFAULT_STYLE);
-	//		Style regular = doc.addStyle("regular", def);
-	//		
-	//		Style s = doc.addStyle("icon",regular);
-	//		ImageIcon formulaIcon = new ImageIcon(GUIMain.FORMULAS.get(i).toLaTeXImage());
-	//		if (formulaIcon != null) {
-	//			StyleConstants.setIcon(s, formulaIcon);
-	//		}
-	//		
-	//	}
 	
 	public void back(){
 		contentPanel.removeAll();
