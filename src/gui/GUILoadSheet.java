@@ -11,6 +11,8 @@ import internalformatting.Variable;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.IOException;
 
 import javax.swing.*;
@@ -72,26 +74,41 @@ public class GUILoadSheet extends JPanel
     middlePanel.add(scroller);
     
     loadButton.addActionListener(new loadButtonListener());
+    
+    
+    loadBar.addKeyListener(
+        new KeyAdapter() {
+          public void keyPressed(KeyEvent key) {
+            if (key.getKeyCode()==KeyEvent.VK_ENTER) {
+              display();
+            }
+          }
+        }
+        );
   }
   
   
   class loadButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-      String display ="";
-      String userInput = loadBar.getText();
-      FormulaSheet recovered = Saver.loadSheet(userInput);
-     if(recovered.getName().equals("")){
-        loadResults.append("sheet not found\n");
-      }
-     else{
-       display = display + recovered.getName() + "\n";
-       for(int i=0; i < recovered.size() ;i++){
-         display = display + recovered.get(i).allInfoToString() + "\n";
-       }
-       loadResults.setText(display);
+      display();
+    }
+    
+    }
+  
+  public void display(){
+    String display ="";
+    String userInput = loadBar.getText();
+    FormulaSheet recovered = Saver.loadSheet(userInput);
+   if(recovered.getName().equals("")){
+      loadResults.append("sheet not found\n");
+    }
+   else{
+     display = display + recovered.getName() + "\n";
+     for(int i=0; i < recovered.size() ;i++){
+       display = display + recovered.get(i).allInfoToString() + "\n";
      }
-     
-      }  
+     loadResults.setText(display);
+   }
   }
   
-}
+ }
