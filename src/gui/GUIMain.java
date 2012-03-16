@@ -112,14 +112,14 @@ public class GUIMain {
 		panel.add(controlPanel);
 
 		// controlPanel - buttons
-		imgButton searchButton2 = new imgButton("searchButton2");
-		searchButton2.addActionListener(new searchListener());
-		imgButton printAllButton2 = new imgButton("printAllButton2");
-		printAllButton2.addActionListener(new printListener());
-		imgButton formulaSheetButton2 = new imgButton("formulaSheetButton2");
-		formulaSheetButton2.addActionListener(new solveListener());
-		imgButton addButton2 = new imgButton("addButton2");
-		addButton2.addActionListener(new addListener());
+		imgButton searchButton2nbg = new imgButton("searchButton2nbg");
+		searchButton2nbg.addActionListener(new searchListener());
+		imgButton printAllButton2nbg = new imgButton("printAllButton2nbg");
+		printAllButton2nbg.addActionListener(new printListener());
+		imgButton formulaSheetButton2nbg = new imgButton("formulaSheetButton2nbg");
+		formulaSheetButton2nbg.addActionListener(new solveListener());
+		imgButton addButton2nbg = new imgButton("addButton2nbg");
+		addButton2nbg.addActionListener(new addListener());
 		
 //		JToggleButton searchFormsButton = new JToggleButton("Search");
 //		searchFormsButton.addActionListener(new searchListener());
@@ -132,10 +132,10 @@ public class GUIMain {
 
 		// cpButtons - button group for buttons on the controlPanel.
 		ButtonGroup cpButtons = new ButtonGroup();
-		cpButtons.add(searchButton2);
-		cpButtons.add(printAllButton2);
-		cpButtons.add(formulaSheetButton2);
-		cpButtons.add(addButton2);
+		cpButtons.add(searchButton2nbg);
+		cpButtons.add(printAllButton2nbg);
+		cpButtons.add(formulaSheetButton2nbg);
+		cpButtons.add(addButton2nbg);
 		
 //		cpButtons.add(searchFormsButton);
 //		cpButtons.add(printFormsButton);
@@ -143,10 +143,10 @@ public class GUIMain {
 //		cpButtons.add(addFormsButton);
 
 		// Adding buttons to controlPanel.
-		controlPanel.add(searchButton2);
-		controlPanel.add(printAllButton2);
-		controlPanel.add(formulaSheetButton2);
-		controlPanel.add(addButton2);
+		controlPanel.add(searchButton2nbg);
+		controlPanel.add(printAllButton2nbg);
+		controlPanel.add(formulaSheetButton2nbg);
+		controlPanel.add(addButton2nbg);
 		
 //		controlPanel.add(searchFormsButton);
 //		controlPanel.add(printFormsButton);
