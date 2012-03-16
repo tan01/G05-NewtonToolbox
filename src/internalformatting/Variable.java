@@ -61,7 +61,15 @@ public class Variable implements Serializable{
 	public void setVar (String var) { this.var = var; }
 	public void setValue (double value) { this.value = value; }
 	public void setInfo (String info) { this.info = info; }
-	public void setUnit(Unit unit) { this.unit = unit; }
+	public void setUnit(Unit unit) { 
+		// Add unit tags to variable
+		for(int i=0; i<unit.getTagSize(); i++) {
+			addTag(unit.getTag(i));
+		}
+		getTags().deleteDuplicateTags();
+		
+		this.unit = unit;
+		}
 	public void setTags(Tags tags) { this.tags = tags; }
 	
 	/**

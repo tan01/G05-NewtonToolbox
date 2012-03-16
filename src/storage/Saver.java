@@ -242,11 +242,239 @@ public class Saver
 	}
 
 	/**
+	 * generates a default unit Database in case on is not found
+	 * @throws IOException
+	 */
+	public static void generateUnitData() throws IOException{
+	
+		////new units
+		Unit gram = new Unit("gram");
+		Unit kilogram = new Unit("kilogram");
+		Unit meter = new Unit("meter");
+		Unit liter = new Unit("liter");
+		Unit second = new Unit("second");
+		Unit meterPerSecond = new Unit("meter per second");
+		Unit meterPerSecondSquared = new Unit("meter per second squared");
+		Unit secondSquared = new Unit("second squared");
+		Unit newton = new Unit("newton");
+	
+		//unit - gram
+		gram.setInfo("The units of mass.");
+		gram.setTypicalForm("g");
+		gram.addTag("gram");
+		gram.addTag("grams");
+		gram.addTag("g");
+		gram.addTag("mass");
+	
+		//unit - kilogram
+		kilogram.setInfo("The units of mass.");
+		kilogram.setTypicalForm("kg");
+		kilogram.addTag("kilogram");
+		kilogram.addTag("kilograms");
+		kilogram.addTag("kg");
+		kilogram.addTag("mass");
+	
+		//unit - meter
+		meter.setInfo("The units of length or distance.");
+		meter.setTypicalForm("m");
+		meter.addTag("meter");
+		meter.addTag("meters");
+		meter.addTag("m");
+		meter.addTag("length");
+		meter.addTag("distance");
+	
+		//unit - liter
+		liter.setInfo("The units of volume.");
+		liter.setTypicalForm("l");
+		liter.addTag("liter");
+		liter.addTag("liters");
+		liter.addTag("l");
+		liter.addTag("volume");
+		liter.addTag("fluid");
+		liter.addTag("fluids");
+	
+		//unit - second
+		second.setInfo("The units of time.");
+		second.setTypicalForm("s");
+		second.addTag("second");
+		second.addTag("seconds");
+		second.addTag("s");
+		second.addTag("time");
+	
+		//unit - meter per second
+		meterPerSecond.setInfo("The units of velocity.");
+		meterPerSecond.setTypicalForm("m/s");
+		meterPerSecond.addTag("meter");
+		meterPerSecond.addTag("meters");
+		meterPerSecond.addTag("per");
+		meterPerSecond.addTag("second");
+		meterPerSecond.addTag("seconds");
+		meterPerSecond.addTag("m/s");
+		meterPerSecond.addTag("velocity");
+		meterPerSecond.addTag("velocities");
+		meterPerSecond.addTag("speed");
+	
+		//unit - meter per second squared
+		meterPerSecondSquared.setInfo("The units of acceleration.");
+		meterPerSecondSquared.setTypicalForm("m/s^2");
+		meterPerSecondSquared.addTag("meter");
+		meterPerSecondSquared.addTag("meters");
+		meterPerSecondSquared.addTag("per");
+		meterPerSecondSquared.addTag("second");
+		meterPerSecondSquared.addTag("seconds");
+		meterPerSecondSquared.addTag("squared");
+		meterPerSecondSquared.addTag("m/s^2");
+		meterPerSecondSquared.addTag("acceleration");
+	
+		//unit - second squared
+		secondSquared.setInfo("The units of time squared.");
+		secondSquared.setTypicalForm("s^2");
+		secondSquared.addTag("second");
+		secondSquared.addTag("seconds");
+		secondSquared.addTag("squared");
+		secondSquared.addTag("s^2");
+		secondSquared.addTag("time");
+	
+		//unit - newton
+		newton.setInfo("The units of force. Can also be written as kg * m / s^2");
+		newton.setTypicalForm("N");
+		newton.addTag("neweton");
+		newton.addTag("kilogram");
+		newton.addTag("kilograms");
+		newton.addTag("meter");
+		newton.addTag("meters");
+		newton.addTag("per");
+		newton.addTag("second");
+		newton.addTag("seconds");
+		newton.addTag("squared");
+		newton.addTag("force");
+		newton.addTag("N");
+		newton.addTag("kgm/s^2");
+		
+		UnitDatabase UBase = new UnitDatabase();
+	
+		UBase.addUnit(gram);
+		UBase.addUnit(kilogram);
+		UBase.addUnit(liter);
+		UBase.addUnit(meter);
+		UBase.addUnit(meterPerSecond);
+		UBase.addUnit(meterPerSecondSquared);
+		UBase.addUnit(secondSquared);
+		UBase.addUnit(newton);
+	
+		saveUnits(UBase);
+	}
+	/**
 	 * generates a new VariableDatabase in case on is not found
 	 * @throws IOException
 	 */
 	public static void generateVarData() throws IOException{
 
+		////new units
+		Unit gram = new Unit("gram");
+		Unit kilogram = new Unit("kilogram");
+		Unit meter = new Unit("meter");
+		Unit liter = new Unit("liter");
+		Unit second = new Unit("second");
+		Unit meterPerSecond = new Unit("meter per second");
+		Unit meterPerSecondSquared = new Unit("meter per second squared");
+		Unit secondSquared = new Unit("second squared");
+		Unit newton = new Unit("newton");
+		
+		//unit - gram
+		gram.setInfo("The units of mass.");
+		gram.setTypicalForm("g");
+		gram.addTag("gram");
+		gram.addTag("grams");
+		gram.addTag("g");
+		gram.addTag("mass");
+	
+		//unit - kilogram
+		kilogram.setInfo("The units of mass.");
+		kilogram.setTypicalForm("kg");
+		kilogram.addTag("kilogram");
+		kilogram.addTag("kilograms");
+		kilogram.addTag("kg");
+		kilogram.addTag("mass");
+	
+		//unit - meter
+		meter.setInfo("The units of length or distance.");
+		meter.setTypicalForm("m");
+		meter.addTag("meter");
+		meter.addTag("meters");
+		meter.addTag("m");
+		meter.addTag("length");
+		meter.addTag("distance");
+	
+		//unit - liter
+		liter.setInfo("The units of volume.");
+		liter.setTypicalForm("l");
+		liter.addTag("liter");
+		liter.addTag("liters");
+		liter.addTag("l");
+		liter.addTag("volume");
+		liter.addTag("fluid");
+		liter.addTag("fluids");
+	
+		//unit - second
+		second.setInfo("The units of time.");
+		second.setTypicalForm("s");
+		second.addTag("second");
+		second.addTag("seconds");
+		second.addTag("s");
+		second.addTag("time");
+	
+		//unit - meter per second
+		meterPerSecond.setInfo("The units of velocity.");
+		meterPerSecond.setTypicalForm("m/s");
+		meterPerSecond.addTag("meter");
+		meterPerSecond.addTag("meters");
+		meterPerSecond.addTag("per");
+		meterPerSecond.addTag("second");
+		meterPerSecond.addTag("seconds");
+		meterPerSecond.addTag("m/s");
+		meterPerSecond.addTag("velocity");
+		meterPerSecond.addTag("velocities");
+		meterPerSecond.addTag("speed");
+	
+		//unit - meter per second squared
+		meterPerSecondSquared.setInfo("The units of acceleration.");
+		meterPerSecondSquared.setTypicalForm("m/s^2");
+		meterPerSecondSquared.addTag("meter");
+		meterPerSecondSquared.addTag("meters");
+		meterPerSecondSquared.addTag("per");
+		meterPerSecondSquared.addTag("second");
+		meterPerSecondSquared.addTag("seconds");
+		meterPerSecondSquared.addTag("squared");
+		meterPerSecondSquared.addTag("m/s^2");
+		meterPerSecondSquared.addTag("acceleration");
+	
+		//unit - second squared
+		secondSquared.setInfo("The units of time squared.");
+		secondSquared.setTypicalForm("s^2");
+		secondSquared.addTag("second");
+		secondSquared.addTag("seconds");
+		secondSquared.addTag("squared");
+		secondSquared.addTag("s^2");
+		secondSquared.addTag("time");
+	
+		//unit - newton
+		newton.setInfo("The units of force. Can also be written as kg * m / s^2");
+		newton.setTypicalForm("N");
+		newton.addTag("neweton");
+		newton.addTag("kilogram");
+		newton.addTag("kilograms");
+		newton.addTag("meter");
+		newton.addTag("meters");
+		newton.addTag("per");
+		newton.addTag("second");
+		newton.addTag("seconds");
+		newton.addTag("squared");
+		newton.addTag("force");
+		newton.addTag("N");
+		newton.addTag("kgm/s^2");
+		
+		//new Variables
 		Variable v_av = new Variable("v_(av)");
 		Variable x_1 = new Variable("x_(1)");
 		Variable x_2 = new Variable("x_(2)");
@@ -266,6 +494,23 @@ public class Saver
 		Variable w = new Variable("w");
 		Variable g = new Variable("g");
 
+		//adding units to variables
+		v_av.setUnit(meterPerSecond);
+		x_1.setUnit(meter);
+		x_2.setUnit(meter);
+		t_1.setUnit(second);
+		t_2.setUnit(second);
+		x.setUnit(meter);
+		x_0.setUnit(meter);
+		v_0.setUnit(meterPerSecond);
+		t.setUnit(second);
+		a.setUnit(meterPerSecondSquared);
+		v.setUnit(meterPerSecond);
+		F.setUnit(newton);
+		m.setUnit(kilogram);
+		w.setUnit(newton);
+		g.setUnit(meterPerSecondSquared);
+		
 		//v_av tags
 		v_av.addTag("v_av");
 		v_av.addTag("v");
@@ -423,130 +668,6 @@ public class Saver
 	}
 
 	/**
-	 * generates a default unit Database in case on is not found
-	 * @throws IOException
-	 */
-	public static void generateUnitData() throws IOException{
-
-		////new units
-		Unit gram = new Unit("gram");
-		Unit kilogram = new Unit("kilogram");
-		Unit meter = new Unit("meter");
-		Unit liter = new Unit("liter");
-		Unit second = new Unit("second");
-		Unit meterPerSecond = new Unit("meter per second");
-		Unit meterPerSecondSquared = new Unit("meter per second squared");
-		Unit secondSquared = new Unit("second squared");
-		Unit newton = new Unit("newton");
-
-		//unit - gram
-		gram.setInfo("The units of mass.");
-		gram.setTypicalForm("g");
-		gram.addTag("gram");
-		gram.addTag("grams");
-		gram.addTag("g");
-		gram.addTag("mass");
-
-		//unit - kilogram
-		kilogram.setInfo("The units of mass.");
-		kilogram.setTypicalForm("kg");
-		kilogram.addTag("kilogram");
-		kilogram.addTag("kilograms");
-		kilogram.addTag("kg");
-		kilogram.addTag("mass");
-
-		//unit - meter
-		meter.setInfo("The units of length or distance.");
-		meter.setTypicalForm("m");
-		meter.addTag("meter");
-		meter.addTag("meters");
-		meter.addTag("m");
-		meter.addTag("length");
-		meter.addTag("distance");
-
-		//unit - liter
-		liter.setInfo("The units of volume.");
-		liter.setTypicalForm("l");
-		liter.addTag("liter");
-		liter.addTag("liters");
-		liter.addTag("l");
-		liter.addTag("volume");
-		liter.addTag("fluid");
-		liter.addTag("fluids");
-
-		//unit - second
-		second.setInfo("The units of time.");
-		second.setTypicalForm("s");
-		second.addTag("second");
-		second.addTag("seconds");
-		second.addTag("s");
-		second.addTag("time");
-
-		//unit - meter per second
-		meterPerSecond.setInfo("The units of velocity.");
-		meterPerSecond.setTypicalForm("m/s");
-		meterPerSecond.addTag("meter");
-		meterPerSecond.addTag("meters");
-		meterPerSecond.addTag("per");
-		meterPerSecond.addTag("second");
-		meterPerSecond.addTag("seconds");
-		meterPerSecond.addTag("m/s");
-		meterPerSecond.addTag("velocity");
-		meterPerSecond.addTag("velocities");
-		meterPerSecond.addTag("speed");
-
-		//unit - meter per second squared
-		meterPerSecondSquared.setInfo("The units of acceleration.");
-		meterPerSecondSquared.setTypicalForm("m/s^2");
-		meterPerSecondSquared.addTag("meter");
-		meterPerSecondSquared.addTag("meters");
-		meterPerSecondSquared.addTag("per");
-		meterPerSecondSquared.addTag("second");
-		meterPerSecondSquared.addTag("seconds");
-		meterPerSecondSquared.addTag("squared");
-		meterPerSecondSquared.addTag("m/s^2");
-		meterPerSecondSquared.addTag("acceleration");
-
-		//unit - second squared
-		secondSquared.setInfo("The units of time squared.");
-		secondSquared.setTypicalForm("s^2");
-		secondSquared.addTag("second");
-		secondSquared.addTag("seconds");
-		secondSquared.addTag("squared");
-		secondSquared.addTag("s^2");
-		secondSquared.addTag("time");
-
-		//unit - newton
-		newton.setInfo("The units of force. Can also be written as kg * m / s^2");
-		newton.setTypicalForm("N");
-		newton.addTag("neweton");
-		newton.addTag("kilogram");
-		newton.addTag("kilograms");
-		newton.addTag("meter");
-		newton.addTag("meters");
-		newton.addTag("per");
-		newton.addTag("second");
-		newton.addTag("seconds");
-		newton.addTag("squared");
-		newton.addTag("force");
-		newton.addTag("N");
-		newton.addTag("kgm/s^2");
-		
-		UnitDatabase UBase = new UnitDatabase();
-
-		UBase.addUnit(gram);
-		UBase.addUnit(kilogram);
-		UBase.addUnit(liter);
-		UBase.addUnit(meter);
-		UBase.addUnit(meterPerSecond);
-		UBase.addUnit(meterPerSecondSquared);
-		UBase.addUnit(secondSquared);
-		UBase.addUnit(newton);
-
-		saveUnits(UBase);
-	}
-
-	/**
 	 * generate a default formulaDatabase in case one is not found
 	 * @throws IOException
 	 */
@@ -574,43 +695,99 @@ public class Saver
 		Unit meterPerSecondSquared = new Unit("meter per second squared");
 		Unit secondSquared = new Unit("second squared");
 		Unit newton = new Unit("newton");
-
+		
 		//unit - gram
 		gram.setInfo("The units of mass.");
 		gram.setTypicalForm("g");
-
+		gram.addTag("gram");
+		gram.addTag("grams");
+		gram.addTag("g");
+		gram.addTag("mass");
+	
 		//unit - kilogram
 		kilogram.setInfo("The units of mass.");
 		kilogram.setTypicalForm("kg");
-
+		kilogram.addTag("kilogram");
+		kilogram.addTag("kilograms");
+		kilogram.addTag("kg");
+		kilogram.addTag("mass");
+	
 		//unit - meter
-		meter.setInfo("The units of length.");
+		meter.setInfo("The units of length or distance.");
 		meter.setTypicalForm("m");
-
+		meter.addTag("meter");
+		meter.addTag("meters");
+		meter.addTag("m");
+		meter.addTag("length");
+		meter.addTag("distance");
+	
 		//unit - liter
 		liter.setInfo("The units of volume.");
 		liter.setTypicalForm("l");
-
+		liter.addTag("liter");
+		liter.addTag("liters");
+		liter.addTag("l");
+		liter.addTag("volume");
+		liter.addTag("fluid");
+		liter.addTag("fluids");
+	
 		//unit - second
 		second.setInfo("The units of time.");
 		second.setTypicalForm("s");
-
+		second.addTag("second");
+		second.addTag("seconds");
+		second.addTag("s");
+		second.addTag("time");
+	
 		//unit - meter per second
 		meterPerSecond.setInfo("The units of velocity.");
 		meterPerSecond.setTypicalForm("m/s");
-
+		meterPerSecond.addTag("meter");
+		meterPerSecond.addTag("meters");
+		meterPerSecond.addTag("per");
+		meterPerSecond.addTag("second");
+		meterPerSecond.addTag("seconds");
+		meterPerSecond.addTag("m/s");
+		meterPerSecond.addTag("velocity");
+		meterPerSecond.addTag("velocities");
+		meterPerSecond.addTag("speed");
+	
 		//unit - meter per second squared
 		meterPerSecondSquared.setInfo("The units of acceleration.");
 		meterPerSecondSquared.setTypicalForm("m/s^2");
-
+		meterPerSecondSquared.addTag("meter");
+		meterPerSecondSquared.addTag("meters");
+		meterPerSecondSquared.addTag("per");
+		meterPerSecondSquared.addTag("second");
+		meterPerSecondSquared.addTag("seconds");
+		meterPerSecondSquared.addTag("squared");
+		meterPerSecondSquared.addTag("m/s^2");
+		meterPerSecondSquared.addTag("acceleration");
+	
 		//unit - second squared
 		secondSquared.setInfo("The units of time squared.");
 		secondSquared.setTypicalForm("s^2");
-
+		secondSquared.addTag("second");
+		secondSquared.addTag("seconds");
+		secondSquared.addTag("squared");
+		secondSquared.addTag("s^2");
+		secondSquared.addTag("time");
+	
 		//unit - newton
 		newton.setInfo("The units of force. Can also be written as kg * m / s^2");
 		newton.setTypicalForm("N");
-
+		newton.addTag("neweton");
+		newton.addTag("kilogram");
+		newton.addTag("kilograms");
+		newton.addTag("meter");
+		newton.addTag("meters");
+		newton.addTag("per");
+		newton.addTag("second");
+		newton.addTag("seconds");
+		newton.addTag("squared");
+		newton.addTag("force");
+		newton.addTag("N");
+		newton.addTag("kgm/s^2");
 
 		////variables
 		Variable v_av = new Variable("v_(av)");
@@ -631,6 +808,141 @@ public class Saver
 
 		Variable w = new Variable("w");
 		Variable g = new Variable("g");
+		
+		//v_av tags
+		v_av.addTag("v_av");
+		v_av.addTag("v");
+		v_av.addTag("average");
+		v_av.addTag("velocity");
+		v_av.addTag("meters");
+		v_av.addTag("meter");
+		v_av.addTag("per");
+		v_av.addTag("second");
+		//x_1 tags
+		x_1.addTag("x_1");
+		x_1.addTag("x");
+		x_1.addTag("position");
+		x_1.addTag("1");
+		x_1.addTag("one");
+		x_1.addTag("initial");
+		x_1.addTag("meter");
+		x_1.addTag("meters");
+		//x_2 tags
+		x_2.addTag("x_2");
+		x_2.addTag("x");
+		x_2.addTag("position");
+		x_2.addTag("2");
+		x_2.addTag("two");
+		x_2.addTag("final");
+		x_2.addTag("meter");
+		x_2.addTag("meters");
+		//t_1 tags
+		t_1.addTag("t_1");
+		t_1.addTag("t");
+		t_1.addTag("time");
+		t_1.addTag("1");
+		t_1.addTag("one");
+		t_1.addTag("initial");
+		t_1.addTag("second");
+		t_1.addTag("seconds");
+		//t_2 tags
+		t_2.addTag("t_2");
+		t_2.addTag("t");
+		t_2.addTag("time");
+		t_2.addTag("2");
+		t_2.addTag("twice");
+		t_2.addTag("final");
+		t_2.addTag("second");
+		t_2.addTag("seconds");
+		//x tags
+		x.addTag("x");
+		x.addTag("position");
+		x.addTag("meter");
+		x.addTag("meters");
+		//x_0 tags
+		x_0.addTag("x_0");
+		x_0.addTag("x");
+		x_0.addTag("position");
+		x_0.addTag("1");
+		x_0.addTag("one");
+		x_0.addTag("initial");
+		x_0.addTag("meter");
+		x_0.addTag("meters");
+		//v_0 tags
+		v_0.addTag("v_0");
+		v_0.addTag("v");
+		v_0.addTag("velocity");
+		v_0.addTag("meters");
+		v_0.addTag("meter");
+		v_0.addTag("per");
+		v_0.addTag("second");
+		//t tags
+		t.addTag("t");
+		t.addTag("time");
+		t.addTag("second");
+		t.addTag("seconds");
+		//a tags
+		a.addTag("a");
+		a.addTag("acceleration");
+		a.addTag("meter");
+		a.addTag("meters");
+		a.addTag("per");
+		a.addTag("second");
+		a.addTag("squared");
+		a.addTag("seconds");
+		a.addTag("rate");
+		a.addTag("derivative");
+		//v tags
+		v.addTag("v");
+		v.addTag("velocity");
+		v.addTag("meter");
+		v.addTag("meters");
+		v.addTag("per");
+		v.addTag("second");
+		v.addTag("derivative");
+		v.addTag("rate");
+		//F tags
+		F.addTag("f");
+		F.addTag("force");
+		F.addTag("newton");
+		F.addTag("newtons");
+		F.addTag("kilogram");
+		F.addTag("kilograms");
+		F.addTag("meter");
+		F.addTag("meters");
+		F.addTag("per");
+		F.addTag("second");
+		F.addTag("seconds");
+		F.addTag("squared");
+		F.addTag("n");
+		F.addTag("kgm/s^2");
+		//m tags
+		m.addTag("m");
+		m.addTag("mass");
+		m.addTag("kilogram");
+		m.addTag("kilograms");
+		//w tags
+		w.addTag("w");
+		w.addTag("weight");
+		w.addTag("newton");
+		w.addTag("newtons");
+		w.addTag("force");
+		w.addTag("gravity");
+		//g tags
+		g.addTag("g");
+		g.addTag("gravity");
+		g.addTag("weight");
+		g.addTag("9.8");
+		g.addTag("9.8m/s");
+		g.addTag("acceleration");
+		g.addTag("meter");
+		g.addTag("meters");
+		g.addTag("per");
+		g.addTag("second");
+		g.addTag("seconds");
+		g.addTag("squared");
+		g.addTag("m/s^2");
+		g.addTag("n");
 
 		//term - average velocity
 		Term avVelTerm_v_av = new Term(1, v_av, 1, meterPerSecond);

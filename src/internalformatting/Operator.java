@@ -61,6 +61,10 @@ public class Operator extends Component implements Serializable {
 	public String toString() {
 		return operator;
 	}
+	
+	byte getType(){
+	    return 0;
+	  }
 
 	public String toLaTeX() {
 		String LaTeXOperator = " ";

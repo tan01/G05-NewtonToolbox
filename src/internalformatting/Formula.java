@@ -111,6 +111,14 @@ public class Formula extends ArrayList<Component> implements Serializable{
 	 */
 	public void addTerm(Component newTerm){
 	  this.ensureCapacity(this.size() + 1);
+	  if(newTerm.getType() == 1 ) {
+		// Add variable tags to formula
+		for(int i=0; i<((Term) newTerm).getVariable().getTagSize(); i++) {
+			addTag(((Term) newTerm).getVariable().getTag(i));
+		}
+		getTags().deleteDuplicateTags();
+	  }
+		
 		this.add(newTerm);
 	}
 
