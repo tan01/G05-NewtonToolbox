@@ -8,7 +8,6 @@ import internalformatting.Variable;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -40,14 +39,13 @@ public class GUIAddFormula extends JPanel {
 	private static final long serialVersionUID = 6187284211221392126L;
 
 	private JPanel middlePanel;
-
+	
 	private JPanel namePanel;
 	private JPanel currFormPanel;
 	private JPanel opPanel; //operator
 	private JPanel termPanel;
 	private JPanel coeffPanel; //coefficient
 	private JPanel varPanel; //variable
-	private JPanel addToCurrFormPanel; //add op, coeff, var, exp to current formula panel
 	private JPanel expPanel; //exponent
 	private JPanel infoPanel; //information
 	private JPanel tagPanel;
@@ -64,14 +62,14 @@ public class GUIAddFormula extends JPanel {
 	private JLabel tagLabel    = new JLabel("<HTML>Tags <BR>(separated by ','): </HTML>");
 
 	private JTextField nameTextField   = new JTextField(53);
-	//	private JTextField opTextField = new JTextField(5); //change to down later
+//	private JTextField opTextField = new JTextField(5); //change to down later
 	private JTextField coeffTextField = new JTextField(5);
-	//	private JTextField varTextField   = new JTextField(52); // change to drop down later
+//	private JTextField varTextField   = new JTextField(52); // change to drop down later
 	private JTextField expTextField = new JTextField(4);
 
 	private JTextArea currFormTextArea = new JTextArea(3, 52); //used in scroll later
 	private JTextArea infoTextArea     = new JTextArea(7, 52); //used in scroll later
-	private JTextArea tagTextArea      = new JTextArea(3, 52); //used in scroll later
+	private JTextArea tagTextArea      = new JTextArea(2, 52); //used in scroll later
 
 	private JScrollPane currFormScrollbar;
 	private JScrollPane infoScrollbar;
@@ -98,9 +96,6 @@ public class GUIAddFormula extends JPanel {
 
 	public GUIAddFormula() {
 		setSize(775,480);
-
-		FlowLayout flow = new FlowLayout(FlowLayout.LEFT, 5, 5);
-		FlowLayout center = new FlowLayout(FlowLayout.CENTER, 5, 5);
 
 		allOps.add(leftParen);
 		allOps.add(rightParen);
@@ -147,30 +142,25 @@ public class GUIAddFormula extends JPanel {
 		termPanel     = new JPanel();
 		coeffPanel    = new JPanel();
 		varPanel      = new JPanel();
-		addToCurrFormPanel = new JPanel();
 		expPanel      = new JPanel();
 		infoPanel     = new JPanel();
 		tagPanel      = new JPanel();
 		addFormButtonPanel = new JPanel();
 
-		namePanel.setLayout(flow);
-		currFormPanel.setLayout(flow);
-
-		opPanel.setLayout(flow);
-		termPanel.setLayout(flow);
-		coeffPanel.setLayout(flow);
-		varPanel.setLayout(flow);
-		expPanel.setLayout(flow);
-
-		infoPanel.setLayout(flow);
-		tagPanel.setLayout(flow);
-		addFormButtonPanel.setLayout(center);
-
+		namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.X_AXIS));
+		currFormPanel.setLayout(new BoxLayout(currFormPanel, BoxLayout.X_AXIS));
+		
+		opPanel.setLayout(new BoxLayout(opPanel, BoxLayout.X_AXIS));
+		termPanel.setLayout(new BoxLayout(termPanel, BoxLayout.X_AXIS));
+		coeffPanel.setLayout(new BoxLayout(coeffPanel, BoxLayout.X_AXIS));
+		varPanel.setLayout(new BoxLayout(varPanel, BoxLayout.X_AXIS));
+		expPanel.setLayout(new BoxLayout(expPanel, BoxLayout.X_AXIS));
+		
+		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.X_AXIS));
+		tagPanel.setLayout(new BoxLayout(tagPanel, BoxLayout.X_AXIS));
+		
 		opPanel.setBackground(new Color(0xCCFFFF));
 		termPanel.setBackground(new Color(0x66CCFF));
-		addToCurrFormPanel.setBackground(new Color(0x66CCFF));
-
-		currFormTextArea.setLineWrap(true);
 
 		//wrap words and lines and make sure you can't edit it
 		currFormTextArea.setLineWrap(true);
@@ -188,32 +178,35 @@ public class GUIAddFormula extends JPanel {
 		currFormPanel.add(currFormLabel);
 		currFormPanel.add(Box.createRigidArea(new Dimension(3,0)));
 		currFormPanel.add(currFormScrollbar);
-
+		
 		opPanel.add(opLabel);
 		opPanel.add(opLabel);
 		opPanel.add(Box.createRigidArea(new Dimension(48,0)));
 		opPanel.add(opComboBox);
 		opPanel.add(Box.createRigidArea(new Dimension(371,0)));
 		opPanel.add(addOpToFormButton);
-
+		
 		termPanel.add(termLabel);
 		termPanel.add(Box.createRigidArea(new Dimension(64,0)));
-		// Term contains op, coeff, var, exp, addToCurrFormButton
+		// Term contains op, coeff, var, exp
 		termPanel.add(coeffPanel);
+		termPanel.add(Box.createRigidArea(new Dimension(10,0)));
 		termPanel.add(varPanel);
+		termPanel.add(Box.createRigidArea(new Dimension(10,0)));
 		termPanel.add(expPanel);
+		termPanel.add(Box.createRigidArea(new Dimension(10,0)));
 		termPanel.add(addTermToFormButton);
 
-		//		addToCurrFormPanel.add(addTermToFormButton);
-
-
 		coeffPanel.add(coeffLabel);
+		coeffPanel.add(Box.createRigidArea(new Dimension(5,0)));
 		coeffPanel.add(coeffTextField);
 
 		varPanel.add(varLabel);
+		varPanel.add(Box.createRigidArea(new Dimension(5,0)));
 		varPanel.add(varComboBox);
-
+		
 		expPanel.add(expLabel);
+		expPanel.add(Box.createRigidArea(new Dimension(5,0)));
 		expPanel.add(expTextField);
 
 		infoPanel.add(infoLabel);
@@ -225,32 +218,47 @@ public class GUIAddFormula extends JPanel {
 		tagPanel.add(tagScrollbar);
 
 		addFormButtonPanel.add(addFormButton);
-
+		
+		JPanel opPanelTopBlueBox = new JPanel();
+		opPanelTopBlueBox.setBackground(new Color(0xCCFFFF));
+		JPanel opPanelBottomBlueBox = new JPanel();
+		opPanelBottomBlueBox.setBackground(new Color(0xCCFFFF));
+		JPanel termPanelTopBlueBox = new JPanel();
+		termPanelTopBlueBox.setBackground(new Color(0x66CCFF));
+		JPanel termPanelBottomBlueBox = new JPanel();
+		termPanelBottomBlueBox.setBackground(new Color(0x66CCFF));
+		
 		middlePanel.add(namePanel);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(currFormPanel);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
+		middlePanel.add(opPanelTopBlueBox);
 		middlePanel.add(opPanel);
+		middlePanel.add(opPanelBottomBlueBox);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
+		middlePanel.add(termPanelTopBlueBox);
 		middlePanel.add(termPanel);
-		middlePanel.add(addToCurrFormPanel);
+		middlePanel.add(termPanelBottomBlueBox);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(infoPanel);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(tagPanel);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(addFormButtonPanel);
 
 		setOpaque(false);
 		middlePanel.setOpaque(false);//THIS THING makes it not opaque
-
-		//		opPanel.setOpaque(false);
-		//		termPanel.setOpaque(false);
+		
 		coeffPanel.setOpaque(false);
 		varPanel.setOpaque(false);
 		expPanel.setOpaque(false);
-		//		addToCurrFormPanel.setOpaque(false);
-
+		
 		namePanel.setOpaque(false);
 		currFormPanel.setOpaque(false);
 		varPanel.setOpaque(false);
 		infoPanel.setOpaque(false);
 		tagPanel.setOpaque(false);
-
+		
 		addFormButtonPanel.setOpaque(false);
 
 		addOpToFormButton.addActionListener(new addOpToFormButtonListener());
