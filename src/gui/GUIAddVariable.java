@@ -4,7 +4,6 @@ import internalformatting.Variable;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -65,9 +64,6 @@ public class GUIAddVariable extends JPanel {
 
 		setSize(720,480);
 		
-		// Setting flow layout so can align center
-		FlowLayout flow = new FlowLayout(FlowLayout.LEFT, 5, 5);
-		
 		// unitComboBox is the drop-down menu for Units
 		unitComboBox = new JComboBox<String>();
 		for(int i=0;i<GUIMain.UNITS.getSize();i++){
@@ -96,10 +92,10 @@ public class GUIAddVariable extends JPanel {
 
 		addVariableButtonPanel = new JPanel();
 
-		namePanel.setLayout(flow);
-		unitPanel.setLayout(flow);
-		infoPanel.setLayout(flow);
-		tagPanel.setLayout (flow);
+		namePanel.setLayout(new BoxLayout(namePanel, BoxLayout.X_AXIS));
+		unitPanel.setLayout(new BoxLayout(unitPanel, BoxLayout.X_AXIS));
+		infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.X_AXIS));
+		tagPanel.setLayout (new BoxLayout(tagPanel, BoxLayout.X_AXIS));
 
 		addVariableButtonPanel.setLayout(new BoxLayout(addVariableButtonPanel, BoxLayout.X_AXIS));
 
@@ -129,9 +125,13 @@ public class GUIAddVariable extends JPanel {
 		addVariableButtonPanel.add(addVariableButton);
 
 		middlePanel.add(namePanel);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(unitPanel);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(infoPanel);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(tagPanel);
+		middlePanel.add(Box.createRigidArea(new Dimension(0,10)));
 		middlePanel.add(addVariableButtonPanel);
 
 		setOpaque(false);

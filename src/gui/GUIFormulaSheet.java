@@ -38,19 +38,21 @@ public class GUIFormulaSheet extends JPanel{
    
   
 	public GUIFormulaSheet() {
-	  
-	  setSize(720,480);
-	  
+		setLayout(new BorderLayout());
+		setSize(720,480);
 
+		JPanel topPanel = new JPanel();
     middlePanel = new JPanel();
 
     add(BorderLayout.CENTER, middlePanel);
-
+    add(BorderLayout.NORTH, topPanel);
+    
     //need action listeners
-    middlePanel.add(newFormulaSheetButton);
-    middlePanel.add(loadFormulaButton);
+    topPanel.add(newFormulaSheetButton);
+    topPanel.add(loadFormulaButton);
     
     middlePanel.setOpaque(false);
+    topPanel.setOpaque(false);
     
     newFormulaSheetButton.addActionListener(new newFormulaButtonListener());
     loadFormulaButton.addActionListener(new loadFormulaButtonListener());
