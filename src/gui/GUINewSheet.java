@@ -109,7 +109,7 @@ public class GUINewSheet extends JPanel
         sheetTextArea.setText("Formula Sheet Saved");
       }
       else{
-         String errorMessage = "You left name blank\n";
+         String errorMessage = "You must give your sheet a name\n";
          
          JOptionPane.showMessageDialog(middlePanel,
              errorMessage,
