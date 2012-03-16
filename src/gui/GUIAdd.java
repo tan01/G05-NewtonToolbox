@@ -25,9 +25,11 @@ public class GUIAdd extends JPanel {
 	private JPanel middlePanel;
 
 	// Declaring and initializing our buttons
-	private JToggleButton createUnitButton     = new JToggleButton("Create Unit");
-	private JToggleButton createVariableButton = new JToggleButton("Create Variable");
-	private JToggleButton createFormulaButton  = new JToggleButton("Create Formula");
+
+	imgButton createUnitButton = new imgButton("createUnitButton");
+	imgButton createVariableButton = new imgButton("createVariableButton");
+	imgButton createFormulaButton = new imgButton("createFormulaButton");
+
 
 	public GUIAdd() {
 
@@ -54,9 +56,9 @@ public class GUIAdd extends JPanel {
 		middlePanel.setOpaque(false);
 		
 		// Setting Button icons
-		createUnitButton.setSelectedIcon(new ImageIcon("img/buttons/createUnitButton.png"));
-		createVariableButton.setSelectedIcon(new ImageIcon("img/buttons/createVariableButton.png"));
-		createFormulaButton.setSelectedIcon(new ImageIcon("img/buttons/createFormulaButton.png"));
+		createUnitButton.setSelectedIcon(new ImageIcon("img/buttons/createUnitButtonRollover.png"));
+		createVariableButton.setSelectedIcon(new ImageIcon("img/buttons/createVariableButtonRollover.png"));
+		createFormulaButton.setSelectedIcon(new ImageIcon("img/buttons/createFormulaButtonRollover.png"));
 		
 		//creating button group
 		ButtonGroup topButtons = new ButtonGroup();
