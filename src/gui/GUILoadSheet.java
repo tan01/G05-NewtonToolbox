@@ -77,7 +77,12 @@ public class GUILoadSheet extends JPanel
   
   class loadButtonListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
-      loadResults.append("No.");
+      String userInput = loadBar.getText();
+      FormulaSheet rec = Saver.loadSheet(userInput);
+      if(rec.getName().equals("NewFormulaSheet")){
+        loadResults.append("sheet not found\n");
+      }
+      loadResults.append(rec.printSheet());
   
       }  
     }

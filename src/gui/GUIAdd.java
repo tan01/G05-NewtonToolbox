@@ -18,40 +18,47 @@ public class GUIAdd extends JPanel {
 
 	private static final long serialVersionUID = -5200304895970513817L;
 
+	// middlePanel is the main panel
 	private JPanel middlePanel;
 
-	private JButton createUnitButton = new JButton("Create Unit");
+	// Declaring and initializing our buttons
+	private JButton createUnitButton     = new JButton("Create Unit");
 	private JButton createVariableButton = new JButton("Create Variable");
-	private JButton createFormulaButton = new JButton("Create Formula");
+	private JButton createFormulaButton  = new JButton("Create Formula");
 
 	public GUIAdd() {
 
 		setLayout(new BorderLayout());
 		setSize(720,480);
-		
+
+		// Declaring and initializing a new panel called actionPanel.
+		JPanel actionPanel = new JPanel();
+
+		actionPanel.setOpaque(false);
+
+		// Adding buttons to actionPanel
+		actionPanel.add(createUnitButton);
+		actionPanel.add(createVariableButton);
+		actionPanel.add(createFormulaButton);
+
+		add(BorderLayout.NORTH,actionPanel);
+
+		// Initializing middlePanel
 		middlePanel = new JPanel();
 
 		add(BorderLayout.CENTER, middlePanel);
 
-		JPanel actionPanel = new JPanel();
-		actionPanel.setOpaque(false);
-		
-		actionPanel.add(createUnitButton);
-		actionPanel.add(createVariableButton);
-		actionPanel.add(createFormulaButton);
-		
-		add(BorderLayout.NORTH,actionPanel);
-		
 		middlePanel.setOpaque(false);
-		
+
 		createUnitButton.addActionListener(new createUnitButtonListener());
 		createVariableButton.addActionListener(new createVariableButtonListener());
 		createFormulaButton.addActionListener(new createFormulaButtonListener());
-		
+
 	}
-	
-	// I'll just leave the action listeners like this for now, until
-	// GUI AddUnit, AddVariable, and AddFormula work.
+
+	// Implementation of the Button Listener classes:
+
+	// Button Listener Class: createUnitButtonListener
 	class createUnitButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			remove(middlePanel);
@@ -60,7 +67,8 @@ public class GUIAdd extends JPanel {
 			add(BorderLayout.CENTER,middlePanel);
 		}
 	}
-	
+
+	// Button Listener Class: createVariableButtonListener
 	class createVariableButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			remove(middlePanel);
@@ -69,7 +77,8 @@ public class GUIAdd extends JPanel {
 			add(BorderLayout.CENTER,middlePanel);
 		}
 	}
-	
+
+	// Button Listener Class: createFormulaButtonLister
 	class createFormulaButtonListener implements ActionListener {
 		public void actionPerformed(ActionEvent e) {
 			remove(middlePanel);
@@ -78,5 +87,5 @@ public class GUIAdd extends JPanel {
 			add(BorderLayout.CENTER,middlePanel);
 		}
 	}
-	
+
 } // class GUIAdd
