@@ -27,10 +27,12 @@ public class GUIInfoPane extends JPanel{
 	
 	Font bonnie = new Font("AR BONNIE", Font.BOLD, 30);
 	int whichFormula;
+	GUIPrint referrer = null;
 	
-	public GUIInfoPane(int formulaIndex){
+	public GUIInfoPane(int formulaIndex,GUIPrint creator){
 		//allows the InfoPane to know which formula we're talking about
 		whichFormula = formulaIndex;
+		referrer = creator;
 		
 		//Layout
 		setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
@@ -54,14 +56,21 @@ public class GUIInfoPane extends JPanel{
 		add(supInfo);
 		//A bit of formatting
 		
-		//THe Action Button Panel
+		//The Action Button Panel
 		JPanel actionPanel = new JPanel();
 		//All buttons are added to this thing using its layout.
-		JButton deleteButton = new JButton("DELETE");
+		//Back button - Just goes back to the GUIPrint/search page
+		JButton backButton = new JButton("Back");
+		backButton.addActionListener(new backListener());
+		actionPanel.add(backButton);
+		
+		JButton deleteButton = new JButton("Delete");
 		deleteButton.addActionListener(new deleteListener());
 		actionPanel.add(deleteButton);
 		add(actionPanel);
 	}
+	
+
 	
 	class deleteListener implements ActionListener{
 
@@ -71,6 +80,13 @@ public class GUIInfoPane extends JPanel{
 			Saver.saveForms(GUIMain.FORMULAS);
 		}
 	}
-
 	
+	class backListener implements ActionListener{
+
+		public void actionPerformed(ActionEvent e) {
+			referrer.back();
+			referrer.requestFocus();
+		}
+	}
+
 }
