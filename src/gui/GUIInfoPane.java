@@ -1,5 +1,6 @@
 package gui;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
@@ -40,7 +41,7 @@ public class GUIInfoPane extends JPanel{
 		titleLabel.setFont(bonnie);
 		titleLabel.setText(GUIMain.FORMULAS.get(formulaIndex).getName());
 		titleLabel.setForeground(Color.WHITE);
-		add(titleLabel);
+		add(titleLabel,BorderLayout.NORTH);
 		
 		//Formula
 		JLabel formulaLabel = new JLabel(GUIMain.FORMULAS.get(formulaIndex).toLaTeXIcon());
@@ -49,12 +50,17 @@ public class GUIInfoPane extends JPanel{
 		
 		//The Rest of the Info:
 		JTextArea supInfo = new JTextArea();
+		supInfo.append(GUIMain.FORMULAS.get(formulaIndex).allInfoToString());
+		add(supInfo);
 		//A bit of formatting
 		
-		
+		//THe Action Button Panel
+		JPanel actionPanel = new JPanel();
+		//All buttons are added to this thing using its layout.
 		JButton deleteButton = new JButton("DELETE");
 		deleteButton.addActionListener(new deleteListener());
-		add(deleteButton);
+		actionPanel.add(deleteButton);
+		add(actionPanel);
 	}
 	
 	class deleteListener implements ActionListener{
