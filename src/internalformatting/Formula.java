@@ -18,7 +18,7 @@ import org.scilab.forge.jlatexmath.TeXIcon;
  * @author Clayven Anderson
  * @version 2/15/12 for cs48 W12
  */
-public class Formula extends ArrayList<Component> implements Serializable{
+public class Formula extends ArrayList<Component> implements Serializable {
 
 	private String name;
 	private String info = "";
@@ -26,16 +26,17 @@ public class Formula extends ArrayList<Component> implements Serializable{
 	private static final long serialVersionUID =  3969121L;
 
 	/** default constructor*/
-	public Formula(){
+	public Formula() {
 		super(); //creates an ArrayList of capacity 1
 		this.clear();   
 	}
+	
 	/**
 	 * 
 	 * @param name Name of the formula
 	 * @param info A String of a formula
 	 */
-	public Formula(String name, String info){
+	public Formula(String name, String info) {
 		super(); //creates an ArrayList of capacity 1
 		this.clear();
 		this.name = name;
@@ -45,87 +46,83 @@ public class Formula extends ArrayList<Component> implements Serializable{
 	/**
 	 * @return the name of the formula
 	 */
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
 	/**
 	 * @param name the name of the formula
 	 */
-	public void setName(String name)
-	{
+	public void setName(String name) {
 		this.name = name;
 	}
 
 	/**
 	 * @return the info, a short description of the function
 	 */
-	public String getInfo()
-	{
+	public String getInfo() {
 		return info;
 	}
-
 
 	/**
 	 * @param info the info to set, a string describing the function
 	 */
-	public void setInfo(String info)
-	{
+	public void setInfo(String info) {
 		this.info = info;
 	}
-
 
 	/**
 	 * returns the "tag" at position i in the tags Array list
 	 * @return the tags
 	 * @param i i is the index of the desired tag
 	 */
-	public String getTag(int i)
-	{
+	public String getTag(int i) {
 		return tags.getTag(i);
 	}
 
-	public int getTagSize(){
+	public int getTagSize() {
 		return tags.getSize();
 	}
-	
-	public Tags getTags() { return this.tags; }
-	
-	public void setTags(Tags tags) { this.tags = tags; }
 
-	public String getAllTags(){
+	public Tags getTags() { 
+		return this.tags; 
+	}
+
+	public void setTags(Tags tags) { 
+		this.tags = tags; 
+	}
+
+	public String getAllTags() {
 		return tags.returnAllTags();
 	}
 
 	/**
 	 * @param tags the tags to set
 	 */
-	public void addTag(String NewTag)
-	{
+	public void addTag(String NewTag) {
 		tags.addTag(NewTag);
 	}
 
 	/**
 	 * adds a term Object to the formula
 	 */
-	public void addTerm(Component newTerm){
-	  this.ensureCapacity(this.size() + 1);
+	public void addTerm(Component newTerm) {
+		this.ensureCapacity(this.size() + 1);
 		this.add(newTerm);
 	}
 
 	/** 
 	 * removes a selected Term (by index) from the Formula
 	 */
-	public void deleteTerm(int i){
+	public void deleteTerm(int i) {
 		this.remove(i);
 	}
 
-	/** TEMPORARY TOSTRING METHOD
+	/** 
+	 * TEMPORARY TOSTRING METHOD
 	 * NEEDS PROPER UNIT OPERATOR SUPPORT
 	 */
-
-	public String toString(){
+	public String toString() {
 		String result = "";
 		for(int i=0;i<this.size();i++){
 			result += this.get(i).toString();
@@ -133,11 +130,12 @@ public class Formula extends ArrayList<Component> implements Serializable{
 		}
 		return result;
 	}
+	
 	/**
 	 * prints the formula's name and info (as well as the formula itself) if a neatly formatted way
 	 * (at least it should)
 	 */
-	public void printFormula(){
+	public void printFormula() {
 		System.out.println("Name: " + this.getName());
 		System.out.println("Info: " + this.getInfo());
 		System.out.println("Formula: " + this.toString());
@@ -148,7 +146,8 @@ public class Formula extends ArrayList<Component> implements Serializable{
 	 * puts formula's name and info (as well as the formula itself) if a neatly formatted String
 	 * (at least it should)
 	 */
-	public String allInfoToString(){
+	public String allInfoToString() {
+		
 		String allInfo = "";
 
 		allInfo = allInfo + "Name: "    + this.getName() + "\n";
@@ -158,11 +157,11 @@ public class Formula extends ArrayList<Component> implements Serializable{
 
 		return allInfo;
 	}
-	
+
 	/**
 	 * toLaTeX() returns this formula with LaTeX formatting.
 	 */
-	public String toLaTeX(){
+	public String toLaTeX() {
 		//PLACEHOLDER - INCOMPLETE
 		String LaTeXString = "";
 		for(int i=0;i<this.size();i++){
@@ -171,7 +170,7 @@ public class Formula extends ArrayList<Component> implements Serializable{
 		System.out.println(LaTeXString);
 		return LaTeXString;
 	}
-	
+
 	//Can't get this to work.
 	public BufferedImage toLaTeXImage() {
 		TeXFormula fomule = new TeXFormula("x = a_0 + \\cfrac{1}{a_1 + \\cfrac{1}{a_2 + \\cfrac{1}{a_3 + a_4}}}");
@@ -183,7 +182,7 @@ public class Formula extends ArrayList<Component> implements Serializable{
 
 	public TeXIcon toLaTeXIcon() {
 		TeXFormula fomule = new TeXFormula(toLaTeX());
-				TeXIcon ti = fomule.createTeXIcon(TeXConstants.STYLE_DISPLAY, 24);
+		TeXIcon ti = fomule.createTeXIcon(TeXConstants.STYLE_DISPLAY, 24);
 		BufferedImage b = new BufferedImage(ti.getIconWidth(), ti.getIconHeight(), BufferedImage.TYPE_4BYTE_ABGR);
 		ti.paintIcon(new JLabel(), b.getGraphics(), 0, 0);
 		return ti;
