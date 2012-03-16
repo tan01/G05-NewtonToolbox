@@ -47,7 +47,6 @@ public class GUIFormulaSheet extends JPanel{
     add(BorderLayout.CENTER, middlePanel);
     add(BorderLayout.NORTH, topPanel);
     
-    //need action listeners
     topPanel.add(newFormulaSheetButton);
     topPanel.add(loadFormulaButton);
     
